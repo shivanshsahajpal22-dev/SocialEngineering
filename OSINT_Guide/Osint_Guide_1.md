@@ -13,7 +13,6 @@ when looking at a picture how do you extract its location:here are clues to look
 **CONTEXT**
 - First use you eyes to look for context and any description
 - Look at sign for common tag and location tips and addresses 
-- 
 
 **Tool tips**
 ```
