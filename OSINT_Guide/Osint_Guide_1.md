@@ -6,6 +6,8 @@ Username ->  Username search engines Current Best: maigret
 Image -> Reverse Image search Current Best:Yandex or Google lens 
 Image -> Face image people searcher Current Best:Facecheck.id or lenso.ai {none are good}
 Image -> Meta data extractor tool Current Best: Exiftool or EXIF.tools 
+Image -> Misc functioning Current Best:
+Image -> Street view websites Current Best: 
 Email address -> Email-ID search engine Current Best: Epieso or holehe  
 Email address -> Email-ID format predictors Current Best: 
 Email address -> Email-ID verification engines Current Best:
