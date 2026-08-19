@@ -1,6 +1,6 @@
-# OSINT GUIDE PART ONE 
+# OSINT GUIDE PART 1
 
-### OSINT tools 
+### OSINT TOOLS
 
 **last updated** - `19 August 2026`
 ```
