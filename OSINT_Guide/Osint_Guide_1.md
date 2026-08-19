@@ -4,8 +4,7 @@
 
 **last updated** - `19 August 2026`
 ```
-person's name -> name based address search Current Best: 
-person's name -> variation of name searcher Current Best: 
+person's name -> name based address search Current Best: TruePeopleSearch or 192.com (us only) 
 person's name -> name based username and email generator Current Best: 
 person's name -> person name to phone number finder Current Best: Truecaller 
 
@@ -23,9 +22,9 @@ Email address -> Email-ID verification engines Current Best: myemailverifier.com
 Email address -> Email-ID breach data searchers Current Best: IHaveBeenPwned 
 Email address -> Email-ID Mail blacklist processor Current Best: MXToolbox SuperTool
 
-Phone number -> phone number databases Current Best: 
+Phone number -> phone number databases Current Best: Truecaller or phoneinfoga {truecaller still dominates} 
 
-Search Engines -> Search engine dorker Current Best: 
+Search Engines -> Search engine dorker Current Best:Dorkgpt or pagodo 
 ```
 
 ### Geo-Osint 
