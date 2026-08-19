@@ -16,8 +16,11 @@ Username ->  Username search engines Current Best: maigret
 Image -> Reverse Image search Current Best:Yandex or Google lens 
 Image -> Face image people searcher Current Best:Facecheck.id or lenso.ai {none are good}
 Image -> Meta data extractor tool Current Best: Exiftool or EXIF.tools 
-Image -> Street view websites Current Best: Google street view or Yandex Panorama 
-Image -> Geolocator finder and hunter Current Best: GeoSeeere.com, GeoAxis.com or picarta.ai 
+Image -> Street view websites Current Best: Google street view,Yandex Panorama,mapillary,kartaView,panormax (to cover all)
+Image -> Advance street view query engine: Overpass-turbo (very good)
+Image -> Geolocator finder and hunter Current Best: GeoSeeere.com, GeoAxis.com or picarta.ai
+Image -> image based hints collection base Current Best: GeoHints.com 
+Image -> Shadow to location pinpointing Current Best: SunCalc,ShadowMap and ShadowFinder 
 
 Email address -> Email-ID search engine Current Best: Epieso or holehe  
 Email address -> Email-ID format predictors Current Best:mailmeteor.com/email-permutator
@@ -52,6 +55,8 @@ when looking at a picture how do you extract its location:here are clues to look
 5. Trial and error 
 ```
 **CONTEXT**
-- First use you eyes to look for context and any description
-- Look at sign for common tag and location tips and addresses 
+- Fastest way to get someone location is through the extraction on meta data
+- Reverse image search and image based location search are effective methods
+- Tools like street views form google can be used to pin point the location
+- 
 
