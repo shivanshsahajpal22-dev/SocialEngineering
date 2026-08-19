@@ -1,6 +1,8 @@
 # OSINT GUIDE PART ONE 
 
 ### OSINT tools 
+
+**last updated** - `19 August 2026`
 ```
 person's name -> name based address search Current Best: 
 person's name -> variation of name searcher Current Best: 
