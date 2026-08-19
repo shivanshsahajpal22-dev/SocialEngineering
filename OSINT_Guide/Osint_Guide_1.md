@@ -2,11 +2,14 @@
 
 ### OSINT TOOLS
 
+> This is people related OSINT not company related if you want that it's in web exploitation guide passive recon 
+
 **last updated** - `19 August 2026`
 ```
 person's name -> name based address search Current Best: TruePeopleSearch or 192.com (us only) 
 person's name -> name based username and email generator Current Best: soxoj's username-generation-guide and transform_username tool  
 person's name -> person name to phone number finder Current Best: Truecaller 
+Person's name -> Company or work place finding Current best: Open corporates Then pivot to country based pools  
 
 Username ->  Username search engines Current Best: maigret 
 
@@ -25,6 +28,17 @@ Email address -> Email-ID Mail blacklist processor Current Best: MXToolbox Super
 Phone number -> phone number databases Current Best: Truecaller or phoneinfoga {truecaller still dominates} 
 
 Search Engines -> Search engine dorker Current Best:Dorkgpt or pagodo 
+
+IP address -> to Geo location and ownership Current Best:Ipinfo and ViewDNS.info
+IP address -> Exposed service and devices:Shodan or censys 
+
+Domain name/website -> WHOIS/Ownership records Current best:WhoisXML or ICANN Lookup
+Domain name/website -> Subdomain enumeration Current Best:crt.sh or Amass 
+Domain name/website -> archived or deleted content Current Best:Wayback machine
+Domain name/Website -> Domain name to ip address Current Best:dig
+Domain name/website -> exposed document's metadata Current Best: FOCA 
+
+Company name/ownership -> Ownership and registry Current Best: OpenCorporates or Crunchbase 
 ```
 
 ### Geo-Osint 
@@ -41,11 +55,3 @@ when looking at a picture how do you extract its location:here are clues to look
 - First use you eyes to look for context and any description
 - Look at sign for common tag and location tips and addresses 
 
-**Tool tips**
-```
-I will star by putting the picture in google lens to get clues about the location
-```
-**Tool tips**
-```
-Once location is confirmed to proximity i will use google satellite view to get to the exact location
-```
