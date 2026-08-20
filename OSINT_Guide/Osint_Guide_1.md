@@ -46,6 +46,8 @@ Company name/ownership -> Ownership and registry Current Best: OpenCorporates or
 
 ### Geo-Osint 
 
+> practice this using geo-gusser
+
 when looking at a picture how do you extract its location:here are clues to look at
 ```
 1. Context
@@ -57,6 +59,30 @@ when looking at a picture how do you extract its location:here are clues to look
 **CONTEXT**
 - Fastest way to get someone location is through the extraction on meta data
 - Reverse image search and image based location search are effective methods
-- Tools like street views form google can be used to pin point the location
-- 
-
+- Tools like street views form google or location query engines for location
+- Visual Analysis of the image looking for anything extra you can get to lrn
+```
+High confidence visual bucket
+1. Street sign (language,font-sign,contry specific design)
+2. License plates (country/state format)
+3. Road markings (lane colors, arrow styles vary by country)
+4. Utility poles/power lines (design vary by country)
+5. Architecture style (building material,roof tops,window style)
+6. Vegetation (palm tree=topical,pin tree=nothern region)
+7. Sun position (shadows indicate time of day + hemisphere)
+```
+```
+medium confidence visual bucket
+1. Vehicle types (left/right-hand drive, common brands in region)
+2. Clothing styles (traditional dress, weather-appropriate clothing)
+3. Currency/pricing visible in shops
+4. Language on signs/billboards
+5. Food/restaurant chains (regional fast food chains)
+6. Sports teams logos/jerseys
+```
+```
+low confidence visual bucket 
+1. Sky color/cloud patterns
+2. General landscape features
+3. Building density (urban vs rural)
+```
