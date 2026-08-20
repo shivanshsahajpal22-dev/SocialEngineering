@@ -258,6 +258,454 @@ INSTANT COUNTRY TELLS
 │ Pampas grass        → Argentina / Uruguay        │
 └──────────────────────────────────────────────────┘
 ```
+- based on the visible terrain 
+```
+TERRAIN / LANDSCAPE QUICK CHECKLIST
+
+MOUNTAINS
+├── PERFECTLY CONE SHAPED volcano
+│     Snow-capped, near ocean             → Japan (Fuji) / Indonesia / Philippines
+│     Tropical jungle surroundings        → Indonesia / Papua New Guinea
+│     Pacific coastline nearby            → Mexico / Central America
+│
+├── JAGGED SHARP peaks (like teeth)
+│     Extreme height, glaciers visible    → Himalayas (Nepal / Tibet / Pakistan)
+│     Green valleys below                 → Swiss / Austrian Alps
+│     Very sharp dramatic spires          → Patagonia (Argentina / Chile) ONLY
+│     Granite dome shapes                 → Yosemite USA / Madagascar
+│
+├── ROUNDED smooth peaks
+│     Green covered, misty                → UK / Ireland / Scandinavia
+│     Brown/bare at top                   → Scotland Highlands specifically
+│     Very wide flat topped               → South Africa (Table Mountain)
+│
+├── FLAT TOPPED mountains (mesa / butte)
+│     Red/orange rock                     → USA Southwest (Utah / Arizona) ONLY
+│     Green flat top                      → Brazil (tepui) / Venezuela
+│     Brown flat top                      → South Africa / Namibia
+│
+└── KARST LIMESTONE towers
+      Green jungle covered pillars        → China (Guilin) / Vietnam (Ha Long)
+      Surrounded by turquoise water       → Vietnam (Ha Long Bay) ONLY
+      Inland dry setting                  → China specifically
+
+DESERTS
+├── SAND DUNES (tall, curved)
+│     Orange/red sand                     → Namibia / UAE / Saudi Arabia
+│     White/pale sand                     → Sahara / Libya / Algeria
+│     Pink sand                           → Jordan (Wadi Rum) ONLY
+│     Very tall massive dunes             → Namibia (Sossusvlei) ONLY
+│
+├── ROCKY DESERT (flat, stony)
+│     Red rock surface                    → Australia outback ONLY
+│     Grey/brown gravel flat              → Gobi (Mongolia / China)
+│     Black volcanic rock                 → Iceland / Hawaii / Canary Islands
+│     White salt flat                     → Bolivia (Salar de Uyuni) / USA (Bonneville)
+│
+├── CANYON / GORGE
+│     Red/orange layered rock walls       → USA (Grand Canyon / Utah) ONLY
+│     Narrow slot canyon                  → USA / Jordan (Petra)
+│     Green river at bottom               → USA / Turkey / Ethiopia
+│
+└── SCRUBLAND / SEMI ARID
+      Red soil, sparse dry bush           → Australia outback
+      Grey green low scrub                → USA Southwest / Mexico
+      Dry yellow grass, flat              → East Africa (savanna)
+      Dry yellow grass, hilly             → South Africa / Zimbabwe
+
+COASTLINES
+├── FJORDS (steep cliffs straight into water)
+│     Very dramatic, near vertical walls  → Norway ONLY
+│     Similar but smaller scale           → New Zealand / Chile / Alaska
+│
+├── CLIFFS
+│     White chalk cliffs                  → UK (Dover) / France (Normandy)
+│     Black volcanic cliffs               → Iceland / Canary Islands / Hawaii
+│     Red sandstone cliffs                → Australia / Portugal (Algarve)
+│     Orange limestone cliffs             → Malta / Croatia / Greece
+│
+├── BEACHES
+│     White sand + turquoise water        → Caribbean / Maldives / SE Asia
+│     Black sand beach                    → Iceland / Hawaii / New Zealand
+│     Pink sand beach                     → Bahamas / Bermuda / Greece (rare)
+│     Grey/brown sand, cold looking water → UK / Northern Europe
+│     Red sand beach                      → Prince Edward Island Canada ONLY
+│     Green sand beach                    → Hawaii (Papakolea) ONLY
+│
+├── TROPICAL COASTLINE
+│     Mangroves at water edge             → Southeast Asia / Caribbean / Africa
+│     Coral visible through water         → Great Barrier Reef / SE Asia / Red Sea
+│     Palm lined beach                    → Within 35° of equator
+│     Rice paddies near coast             → Southeast Asia / Indonesia
+│
+└── ROCKY COASTLINE
+      Granite boulders on beach           → Seychelles ONLY
+      Limestone stacks in water           → Australia (Twelve Apostles)
+      Basalt hexagonal columns            → Ireland (Giants Causeway) / Iceland
+      Small rocky islands covered green   → Greece / Croatia / Norway
+
+PLAINS / FLATLANDS
+├── GRASSLAND / SAVANNA
+│     Flat, dry yellow grass, acacia trees→ East Africa (Kenya / Tanzania)
+│     Flat, dry, red soil visible         → Australia outback
+│     Flat, green, very wide open         → Argentina (Pampas) / Uruguay
+│     Flat, green, hedgerows dividing     → UK / France / Netherlands
+│
+├── STEPPE
+│     Flat, dry, treeless, windy looking  → Mongolia / Kazakhstan / Russia
+│     Similar but colder, snow possible   → Siberia / Northern Kazakhstan
+│
+├── WETLANDS
+│     Flat, reeds, many waterways         → Netherlands / Bangladesh / Louisiana
+│     Flooded forest                      → Amazon / Congo / Southeast Asia
+│     Salt marshes, coastal               → UK / France Atlantic coast
+│
+└── AGRICULTURAL PLAINS
+      Perfect grid fields                 → USA Midwest / Canada prairies
+      Irregular shaped fields             → Europe / UK
+      Flooded paddy fields                → Southeast Asia / East Asia
+      Circular irrigation patterns        → USA / Saudi Arabia (seen from above)
+
+RIVERS / LAKES
+├── RIVERS
+│     Brown/red muddy wide river          → Amazon / Congo / Mississippi
+│     Bright blue clear river             → New Zealand / Scandinavia / Alps
+│     Green river through canyon          → USA Southwest / Turkey
+│     Very wide flat slow river           → Russia / Siberia / Bangladesh
+│
+├── LAKES
+│     Bright blue, snow peaks around      → Switzerland / Austria / Canada Rockies
+│     Turquoise glacial lake              → Canada (Banff) / New Zealand / Patagonia
+│     Pink lake                           → Australia (Lake Hillier) ONLY
+│     Salt lake, white edges              → Bolivia / USA (Great Salt Lake)
+│     Very large, looks like sea          → Great Lakes USA / Lake Victoria Africa
+│
+└── GLACIERS
+      Glacier descending into sea         → Iceland / Greenland / Alaska
+      Glacier on mountain side            → Alps / Himalayas / Andes / Rockies
+      Glacier lake at bottom (grey water) → Patagonia / Iceland / New Zealand
+
+INSTANT COUNTRY TELLS
+┌──────────────────────────────────────────────────┐
+│ Perfect cone volcano      → Japan / Indonesia    │
+│ Red rock mesa / butte     → USA Southwest ONLY   │
+│ Karst limestone pillars   → China / Vietnam      │
+│ Pink desert sand          → Jordan (Wadi Rum)    │
+│ Massive orange sand dunes → Namibia              │
+│ White chalk cliffs        → UK / France          │
+│ Black sand beach          → Iceland / Hawaii     │
+│ Granite boulders on beach → Seychelles ONLY      │
+│ Basalt hexagonal columns  → Ireland / Iceland    │
+│ Fjords                    → Norway / NZ / Chile  │
+│ Pink lake                 → Australia ONLY       │
+│ Turquoise glacial lake    → Canada / Patagonia   │
+│ Sharp spire mountains     → Patagonia ONLY       │
+│ Flat topped tepui         → Venezuela / Brazil   │
+│ Salt flat white mirror    → Bolivia ONLY         │
+└──────────────────────────────────────────────────┘
+```
+- from people and clothing visible in the image 
+```
+PEOPLE / CLOTHING QUICK CHECKLIST
+
+TRADITIONAL / NATIONAL DRESS
+├── SOUTH ASIA
+│     Sari (long draped fabric, women)    → India / Sri Lanka / Bangladesh
+│     Salwar Kameez (tunic + trousers)    → India / Pakistan / Bangladesh
+│     Lungi (wraparound cloth, men)       → Bangladesh / South India / Myanmar
+│     Dhoti (white wraparound, men)       → Rural India ONLY
+│     Topi (white cap, men)               → Nepal / Northern India
+│
+├── SOUTHEAST ASIA
+│     Longyi (wraparound skirt, men+women)→ Myanmar ONLY
+│     Ao Dai (fitted silk tunic, women)   → Vietnam ONLY
+│     Batik patterned clothing            → Indonesia / Malaysia
+│     Conical straw hat (non la)          → Vietnam ONLY
+│     Sarong common on both genders       → Indonesia / Malaysia / Pacific Islands
+│
+├── EAST ASIA
+│     Hanbok (wide skirt, short jacket)   → Korea ONLY
+│     Kimono / Yukata (formal occasions)  → Japan ONLY
+│     Qipao / Cheongsam (fitted dress)    → China / Hong Kong
+│     Mandarin collar shirts common       → China
+│
+├── MIDDLE EAST
+│     Thobe (long white robe, men)        → Saudi Arabia / Gulf states
+│     Keffiyeh (red+white checked scarf)  → Saudi Arabia / Jordan
+│     Keffiyeh (black+white checked)      → Palestine / Jordan
+│     Abaya (full black robe, women)      → Saudi Arabia / Gulf states
+│     Niqab (face veil, eyes only)        → Saudi Arabia / Gulf states
+│     Hijab (headscarf only)              → Muslim-majority countries globally
+│     Kandura (white robe) + Agal         → UAE / Qatar / Kuwait ONLY
+│
+├── CENTRAL ASIA
+│     Chapan (colorful robe, men)         → Uzbekistan / Tajikistan
+│     Kalpak (white felt pointed hat)     → Kyrgyzstan ONLY
+│     Tubeteika (small embroidered cap)   → Uzbekistan / Kazakhstan
+│     Yurt + traditional felt clothing    → Mongolia / Kazakhstan
+│
+├── AFRICA
+│     Kente cloth (colorful woven strips) → Ghana ONLY
+│     Dashiki (colorful loose shirt)      → West Africa broadly
+│     Shuka (red checked cloth)           → Maasai Kenya / Tanzania ONLY
+│     Boubou (long wide robe)             → West Africa / Senegal
+│     Djellaba (long hooded robe)         → Morocco / Algeria / Tunisia
+│     Basotho blanket (geometric pattern) → Lesotho ONLY
+│
+├── EUROPE
+│     Lederhosen (leather shorts)         → Bavaria Germany / Austria ONLY
+│     Dirndl (dress + apron)              → Bavaria Germany / Austria ONLY
+│     Kilt (tartan skirt, men)            → Scotland ONLY
+│     Clog shoes visible                  → Netherlands
+│     Saami clothing (colorful trim)      → Lapland Norway/Sweden/Finland
+│
+├── AMERICAS
+│     Poncho (woven, colorful)            → Andes (Peru / Bolivia / Ecuador)
+│     Sombrero (very wide brim)           → Mexico ONLY
+│     Mola (colorful panel clothing)      → Panama (Kuna people) ONLY
+│     Indigenous feather headdress        → Amazon Brazil / Central America
+│
+└── PACIFIC
+      Grass skirt / tapa cloth            → Pacific Islands broadly
+      Lei (flower garland around neck)    → Hawaii / Pacific Islands
+      Lavalava (wraparound cloth)         → Samoa / Tonga / Fiji
+
+RELIGIOUS CLOTHING
+├── Turban (large, colorful)              → Sikh India / Punjab ONLY
+├── Turban (white, simple)                → Muslim scholars / West Africa
+├── Kippah (small round cap)              → Jewish / Israel
+├── Buddhist monk orange robes            → Thailand / Myanmar / Sri Lanka
+├── Buddhist monk yellow/red robes        → Tibet / Mongolia / Bhutan
+├── Orthodox priest black robes + hat     → Russia / Greece / Eastern Europe
+├── Catholic nun habit                    → Global but common Latin America / Europe
+└── Hare Krishna robes (orange/white)     → India / Global urban areas
+
+HEADWEAR
+├── Fez (red flat-topped cylinder)        → Morocco / Turkey / Egypt
+├── Keffiyeh (checkered headscarf)        → Middle East
+├── Pagri (tied turban)                   → India / Pakistan
+├── Deerstalker hat                       → UK / Scotland
+├── Akubra (wide brim felt)               → Australia ONLY
+├── Gaucho beret (flat, black/grey)       → Argentina / Uruguay ONLY
+├── Ushanka (fur ear-flap hat)            → Russia / Eastern Europe / Mongolia
+├── Conical bamboo hat                    → Vietnam / China / Southeast Asia
+├── Karakul (lamb fur hat)                → Central Asia / Afghanistan
+└── Baseball cap worn backwards           → USA / Global youth culture
+
+FOOTWEAR
+├── Wooden clogs                          → Netherlands / Belgium
+├── Geta (wooden sandals)                 → Japan (traditional)
+├── Huarache sandals (woven leather)      → Mexico ONLY
+├── Juttis (pointed embroidered)          → India / Pakistan
+└── Barefoot common in streets            → Parts of Southeast Asia / Pacific Islands
+
+UNIFORMS
+├── POLICE
+│     Bobby helmet (tall black dome)      → UK ONLY
+│     Blue beret + blue uniform           → France
+│     Khaki uniform + beret               → India / Pakistan / many ex-British
+│     Grey/olive uniform                  → Russia / Eastern Europe
+│     Brown uniform + star badge          → USA (sheriff) ONLY
+│
+├── MILITARY
+│     Red ceremonial uniform + bearskin   → UK (Buckingham Palace) ONLY
+│     Olive drab very common              → USA / most NATO
+│     Digital camo pattern                → USA / Canada / modern armies
+│     Blue/white naval uniform            → Global but prominent Russia/France
+│
+├── SCHOOL UNIFORMS
+│     Blazer + tie + grey trousers        → UK / Australia / NZ / Hong Kong
+│     White shirt + dark trousers/skirt   → Japan / South Korea / SE Asia
+│     No uniform, casual clothes          → USA / Canada / most of Europe
+│     White shirt + blue/red neckerchief  → Cuba / China (Young Pioneers)
+│
+└── WORKERS
+      High-vis yellow/orange vest common  → UK / Australia / Europe
+      Conical hat + simple clothes        → Vietnam / China (rural workers)
+      White lab coat common               → Global (medical / scientific)
+      Salwar kameez work clothing         → India / Pakistan (very common)
+
+BODY FEATURES / MARKINGS
+├── Bindi (dot on forehead, women)        → India / Hindu communities globally
+├── Mehndi / henna on hands              → India / Middle East / North Africa
+├── Lip plate (disc in lower lip)         → Ethiopia (Mursi tribe) ONLY
+├── Neck rings (coils on neck)            → Myanmar (Kayan) / Thailand
+├── Full body tattoos visible             → Samoa / Polynesia / Maori NZ
+└── Scarification patterns               → Sub-Saharan Africa broadly
+
+QUICK TELLS
+┌──────────────────────────────────────────────────┐
+│ Kilt                      → Scotland ONLY        │
+│ Lederhosen / Dirndl       → Bavaria / Austria    │
+│ Sombrero                  → Mexico ONLY          │
+│ Longyi wraparound         → Myanmar ONLY         │
+│ Ao Dai fitted tunic       → Vietnam ONLY         │
+│ Hanbok wide skirt         → Korea ONLY           │
+│ Maasai red shuka          → Kenya / Tanzania     │
+│ Kente cloth strips        → Ghana ONLY           │
+│ Akubra wide brim          → Australia ONLY       │
+│ Bobby helmet police       → UK ONLY              │
+│ Orange monk robes         → Thailand / SE Asia   │
+│ Red+white keffiyeh        → Saudi / Jordan       │
+│ Conical non la hat        → Vietnam ONLY         │
+│ Kalpak pointed hat        → Kyrgyzstan ONLY      │
+│ Basotho blanket           → Lesotho ONLY         │
+│ Gaucho beret              → Argentina / Uruguay  │
+│ Ushanka fur hat           → Russia / Central Asia│
+│ Bearskin guard hat        → UK (palace) ONLY     │
+│ School blazer + tie       → UK / Australia / NZ  │
+│ White + neckerchief       → Cuba / China kids    │
+└──────────────────────────────────────────────────┘
+```
+- based on any animal visible in the photo
+```
+ANIMALS QUICK CHECKLIST
+
+INSTANTLY UNIQUE (seen = country confirmed)
+├── Kangaroo                             → Australia ONLY
+├── Koala                                → Australia ONLY
+├── Wombat                               → Australia ONLY
+├── Platypus                             → Australia ONLY
+├── Tasmanian Devil                      → Tasmania Australia ONLY
+├── Lemur                                → Madagascar ONLY
+├── Kiwi bird                            → New Zealand ONLY
+├── Giant Panda                          → China ONLY
+├── Komodo Dragon                        → Indonesia (Komodo) ONLY
+├── Quokka                               → Australia (Rottnest Island) ONLY
+├── Capybara (wild, large rodent)        → South America ONLY
+├── Jaguar                               → Central / South America ONLY
+├── Llama / Alpaca (wild)                → Peru / Bolivia / Chile ONLY
+├── Bison roaming free                   → USA / Canada (national parks)
+└── Polar Bear                           → Arctic (Canada / Norway / Russia)
+
+LARGE MAMMALS
+├── ELEPHANTS
+│     Very large ears, flat back         → Africa (savanna / forest)
+│     Smaller ears, domed back           → India / Sri Lanka / SE Asia
+│     Used as working animal             → Thailand / Myanmar / Sri Lanka
+│
+├── RHINO
+│     Two horns, grey, square lip        → Africa (Kenya / South Africa)
+│     One horn, grey, folded skin        → India / Nepal ONLY
+│
+├── HIPPO
+│     In or near river                   → Sub-Saharan Africa ONLY
+│
+├── GIRAFFE
+│     Open savanna, acacia trees         → East / Southern Africa ONLY
+│
+├── ZEBRA
+│     Open grassland, mixed herds        → East / Southern Africa ONLY
+│
+├── LION
+│     Open savanna, dry grass            → Sub-Saharan Africa
+│     Forested / grassland (rare)        → India (Gir Forest) ONLY
+│
+├── TIGER
+│     Dense jungle or grassland          → India / Bangladesh / Russia (Siberia)
+│     Managed reserve setting            → India most likely
+│
+├── GORILLA
+│     Dense rainforest                   → Congo / Rwanda / Uganda ONLY
+│
+├── MOOSE
+│     Boreal forest / wetlands           → Canada / Scandinavia / Russia
+│     Near road in forest                → Canada / Alaska / Scandinavia
+│
+├── GRIZZLY / BROWN BEAR
+│     Near salmon river / forest         → Alaska / Canada / Russia
+│     Mountain setting                   → USA Rockies / European Alps
+│
+└── REINDEER / CARIBOU
+      Semi-domesticated near people      → Finland / Norway / Sweden
+      Wild large herds                   → Canada / Alaska / Russia
+
+MEDIUM MAMMALS
+├── RED FOX in urban setting             → UK / Western Europe
+├── RACCOON near buildings               → USA / Canada ONLY
+├── COYOTE in suburban area              → USA / Mexico ONLY
+├── DINGO (wild dog, sandy)              → Australia ONLY
+├── HYENA near settlement                → Sub-Saharan Africa / North Africa
+├── BABOON near roads                    → South Africa / East Africa
+├── MACAQUE monkey near temples          → India / Japan / Southeast Asia
+├── PROBOSCIS MONKEY (huge nose)         → Borneo (Malaysia) ONLY
+├── SNOW MONKEY in hot spring            → Japan ONLY
+└── MEERKAT standing upright             → South Africa / Namibia / Botswana
+
+BIRDS
+├── EMU (large flightless, grey)         → Australia ONLY
+├── OSTRICH (very large, long neck)      → Africa / Australia (farmed)
+├── CASSOWARY (blue head, black)         → Australia / Papua New Guinea
+├── FLAMINGO (pink, standing in water)   → East Africa / Caribbean / Spain
+├── TOUCAN (huge colorful beak)          → Central / South America ONLY
+├── MACAW (large colorful parrot)        → South / Central America ONLY
+├── PELICAN on coast                     → USA / Australia / Africa / Europe
+├── PUFFIN (black/white, colorful beak)  → Iceland / UK / Norway / Canada
+├── PENGUIN (wild)
+│     Large Emperor / King               → Antarctica / South Georgia
+│     Smaller Jackass penguin            → South Africa ONLY
+│     Small blue penguin                 → New Zealand / Australia
+├── CONDOR (huge black soaring)          → Andes (Peru / Chile / Argentina)
+├── BALD EAGLE soaring                   → USA / Canada ONLY
+├── RED KITE (rusty red, forked tail)    → UK / Spain / Germany
+├── PEACOCK roaming free                 → India / Sri Lanka
+├── HORNBILL (large curved beak)         → Southeast Asia / Africa
+└── BIRDS OF PARADISE                   → Papua New Guinea ONLY
+
+REPTILES
+├── CROCODILE in river                   → Australia / Africa / SE Asia
+├── ALLIGATOR near water                 → USA (Florida / Louisiana) ONLY
+├── GHARIAL (long thin snout)            → India / Nepal ONLY
+├── MONITOR LIZARD near water            → Southeast Asia / Australia / Africa
+├── IGUANA roaming freely                → Caribbean / Central America
+├── CHAMELEON in tree                    → Madagascar / East Africa
+└── COBRA near settlement                → India / Southeast Asia / Africa
+
+MARINE / COASTAL
+├── GREAT WHITE SHARK (news / signs)     → South Africa / Australia / USA
+├── DUGONG / MANATEE                     → Southeast Asia / Caribbean / Africa
+├── SEA LION on rocks                    → USA Pacific / South America / NZ
+├── FUR SEAL colony on beach             → South Africa / New Zealand / Alaska
+├── WHALE SHARK near boats               → Philippines / Mexico / Australia
+└── CLOWNFISH / REEF FISH visible        → Indo-Pacific / Red Sea / Caribbean
+
+FARM / WORKING ANIMALS
+├── WATER BUFFALO plowing field          → Southeast Asia / India / China
+├── CAMEL as transport                   → Middle East / North Africa / Central Asia
+├── YAK carrying loads                   → Tibet / Nepal / Mongolia ONLY
+├── ELEPHANT being ridden                → Thailand / India / Sri Lanka
+├── DONKEY common on roads               → Middle East / North Africa / Mediterranean
+├── ZEBU (humped cattle)                 → India / East Africa / Southeast Asia
+└── LLAMA carrying loads                 → Peru / Bolivia ONLY
+
+INSECTS / SMALL CREATURES
+├── GIANT CENTIPEDE visible              → Southeast Asia / Australia / South America
+├── SCORPION common                      → Middle East / North Africa / SW USA
+├── TARANTULA crossing road              → South America / SW USA / Southeast Asia
+└── FIREFLIES at dusk                    → USA / Japan / Southeast Asia
+
+INSTANT COUNTRY TELLS
+┌──────────────────────────────────────────────────┐
+│ Kangaroo                  → Australia ONLY       │
+│ Lemur                     → Madagascar ONLY      │
+│ Giant Panda               → China ONLY           │
+│ Snow monkey in hot spring → Japan ONLY           │
+│ One horned rhino          → India / Nepal ONLY   │
+│ Proboscis monkey          → Borneo ONLY          │
+│ Quokka                    → Australia ONLY       │
+│ Capybara wild             → South America ONLY   │
+│ Alligator                 → USA Southeast ONLY   │
+│ Gharial                   → India / Nepal ONLY   │
+│ Bald eagle                → USA / Canada ONLY    │
+│ Condor soaring            → Andes ONLY           │
+│ Birds of paradise         → Papua New Guinea     │
+│ Yak carrying loads        → Tibet / Nepal        │
+│ Jackass penguin           → South Africa ONLY    │
+│ Dingo                     → Australia ONLY       │
+│ Raccoon near buildings    → USA / Canada ONLY    │
+│ Llama carrying loads      → Peru / Bolivia       │
+└──────────────────────────────────────────────────┘
+```
 - architectural clues are always there in the nature
 ```
 ARCHITECTURAL QUICK CHECKLIST
@@ -590,4 +1038,8 @@ STEP 7: Which character?
 ├── å  æ  ø                             → Norwegian / Danish
 ├── å  ä  ö  (no æ/ø)                  → Swedish
 └── ș  ț  â  î                          → Romanian
+```
+- based on shop signs and shop culture
+```
+
 ```
