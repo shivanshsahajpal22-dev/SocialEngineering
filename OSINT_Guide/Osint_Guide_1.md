@@ -49,6 +49,7 @@ flight/ship info -> Marine traffic and ship tracking Current Best:MarineTraffic
 flight/ship info -> Vessel and container tracking Current Best: VesselFinder
 flight/ship info -> for train info and past data Current Best: openrailwaymap.org {for live it varies} 
 ```
+> Practitioners Note: if you ever get someone pgp keys you can decode it using https://cirw.in/gpg-decoder to decode it to get the email id  
 
 ### Geo-Osint 
 
