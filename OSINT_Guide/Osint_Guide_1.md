@@ -42,6 +42,12 @@ Domain name/Website -> Domain name to ip address Current Best:dig
 Domain name/website -> exposed document's metadata Current Best: FOCA 
 
 Company name/ownership -> Ownership and registry Current Best: OpenCorporates or Crunchbase 
+
+flight/ship info -> real time flight tracking Current Best:FlightRadar24 
+fight/ship info -> Flight history and data Current Best:FlightAware
+flight/ship info -> Marine traffic and ship tracking Current Best:MarineTraffic
+flight/ship info -> Vessel and container tracking Current Best: VesselFinder
+flight/ship info -> for train info and past data Current Best: openrailwaymap.org {for live it varies} 
 ```
 
 ### Geo-Osint 
@@ -85,4 +91,72 @@ low confidence visual bucket
 1. Sky color/cloud patterns
 2. General landscape features
 3. Building density (urban vs rural)
+```
+- Short shadow can indicate midday whereas long shadow can suggest early/late
+- Shadow's pointing direction can tell the position on the country form equator
+- Country specific road sign always exist here is list of the few
+```
+USA:        Green highway signs, mile markers, STOP in English
+UK:         White/blue signs, "Give Way" instead of STOP
+Germany:    Blue Autobahn signs, yellow federal road signs
+France:     Blue motorway signs, green national road signs
+Russia:     Cyrillic text, blue highway signs
+Japan:      Japanese + Roman characters, blue expressway signs
+Australia:  Green highway signs, metric distances
+China:      Chinese characters + pinyin, blue highway signs
+Brazil:     Green signs, Portuguese text
+```
+- license plate can determine the exact country based on the format
+```
+USA:    Multiple formats by state
+UK:     "XX00 XXX" format (2 letters, 2 numbers, 3 letters)
+EU:     Blue strip on left with country code
+Russia: Letters-numbers-letters-region code
+Japan:  Hiragana + numbers format
+Australia: State-specific format
+```
+- vegetation can too determine the area as well the region for example
+```
+Palm trees          → tropical/subtropical (within 35° of equator)
+Coniferous forests  → boreal/temperate northern regions
+Eucalyptus trees    → Australia, California, parts of Africa
+Baobab trees        → Africa, Madagascar
+Cherry blossoms     → Japan, Korea, China (spring indicator)
+Red soil            → Australia outback, parts of Africa, Georgia (USA)
+Snow-capped peaks   → Alpine regions, Rockies, Andes, Himalayas
+Rice paddies        → Southeast Asia, East Asia
+Terraced farming    → Southeast Asia, Mediterranean, Andes
+```
+- architectural clues are always there in the nature
+```
+Timber framing      → Northern Europe, UK, New England USA
+Adobe/mud brick     → Middle East, Southwest USA, North Africa
+Soviet-era blocks   → Former Soviet states
+Pagoda rooflines    → East/Southeast Asia
+Onion domes         → Russia, Eastern Europe
+Minarets            → Muslim-majority countries
+Tropical stilted    → Southeast Asia, Pacific Islands
+Scandinavian wooden → Nordic countries
+```
+- Infrastructure clues are always there as well
+```
+Power lines:
+  Wooden poles       → North America, Japan
+  Concrete poles     → Europe, Russia
+  Underground lines  → Dense urban Europe
+
+Traffic lights:
+  Horizontal         → North America, some Asia
+  Vertical           → Most of world
+
+Driving side:
+  Right-hand traffic → Most of world (steering wheel LEFT side of car)
+  Left-hand traffic  → UK, Australia, Japan, India (steering wheel RIGHT)
+```
+- stars can be used to pin point location and time
+```
+1. Identify visible stars/constellations
+2. Use Stellarium (stellarium.org)
+3. Input suspected location
+4. Adjust time until star positions match
 ```
