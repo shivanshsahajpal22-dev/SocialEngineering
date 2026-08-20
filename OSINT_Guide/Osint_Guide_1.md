@@ -1284,3 +1284,220 @@ QUICK TELLS
 │ Roti canai stall           → Malaysia ONLY       │
 └──────────────────────────────────────────────────┘
 ```
+- boat and harbors verification 
+```
+BOATS / HARBORS QUICK CHECKLIST
+
+FISHING BOATS
+├── Longtail boat (long engine arm)      → Thailand ONLY
+├── Banca boat (outriggers both sides)   → Philippines ONLY
+├── Jukung (small outrigger, colorful)   → Indonesia / Bali ONLY
+├── Dhow (triangular lateen sail)        → Oman / UAE / East Africa / Yemen
+├── Felucca (small wooden sail)          → Egypt / Nile ONLY
+├── Sampan (flat bottom, oar steered)    → China / Vietnam / Hong Kong
+├── Coracle (round wicker boat)          → Wales / India (Bhutan)
+├── Dinghy / trawler, plain white        → UK / Ireland / Northern Europe
+├── Colorful wooden hull, Mediterranean  → Greece / Turkey / Croatia / Italy
+└── Pirogues (carved wooden canoe)       → West Africa / Pacific Islands
+
+COMMERCIAL / CARGO VESSELS
+├── Massive container ships              → Major ports globally (Singapore / Rotterdam)
+├── River barges (long flat)             → Europe (Rhine / Danube) / China / Russia
+├── Traditional junk (red sails)         → China / Hong Kong ONLY
+├── Ferry with cars on deck              → Scandinavia / Greece / UK / Japan
+└── Small inter-island ferries           → Philippines / Indonesia / Greece
+
+HARBOR / PORT CLUES
+├── HARBOR TYPE
+│     Natural fjord harbor               → Norway / New Zealand / Chile
+│     Artificial modern container port   → Singapore / Rotterdam / Shanghai
+│     Old stone quay walls               → UK / Ireland / Malta / Croatia
+│     Floating pontoon docks             → USA / Australia / Scandinavia
+│     Wooden stilted dock                → Southeast Asia / Pacific Islands
+│
+├── HARBOR SURROUNDINGS
+│     Whitewashed buildings on cliffs    → Greece (Santorini / Mykonos)
+│     Red/orange roofed town behind      → Croatia / Montenegro / Italy
+│     Green hills steep into water       → Norway / New Zealand
+│     Flat desert behind harbor          → UAE / Saudi / Oman
+│     Dense urban skyscrapers            → Hong Kong / Singapore / Dubai
+│     Wooden fishing shacks on stilts    → Southeast Asia / Pacific
+│
+└── HARBOR EQUIPMENT
+      Red/green buoys (standard)         → Most of world (IALA system)
+      Yellow buoys dominant              → Some Asian waters
+      Wooden fish traps in water         → Southeast Asia / Middle East
+      Lobster pot stacks on dock         → UK / Ireland / Canada / Maine USA
+      Massive cranes, container stacks   → Major global shipping ports
+
+SEA / WATER COLOR
+├── Turquoise / crystal clear            → Caribbean / Maldives / Mediterranean
+├── Deep blue, very clear                → Open Pacific / Atlantic / Mediterranean
+├── Green tinted                         → North Sea / Baltic / Irish Sea
+├── Brown / murky                        → River mouths / Bangladesh / Indonesia
+├── Grey, choppy, cold looking           → North Atlantic / UK / Norway
+└── Red tinted (algae bloom)             → Specific seasonal event anywhere
+
+BOAT ACTIVITY CLUES
+├── Rice barge on river                  → Vietnam / Myanmar / Thailand
+├── Gondola in canal                     → Venice Italy ONLY
+├── Abra (wooden water taxi)             → Dubai Creek ONLY
+├── Water taxi, very busy crossing       → Bangladesh / Vietnam / Philippines
+├── Speedboat towing skiers              → USA / Australia / Western Europe
+└── Reed boat (totora reeds)             → Lake Titicaca Peru / Bolivia ONLY
+
+QUICK TELLS
+┌──────────────────────────────────────────────────┐
+│ Longtail boat          → Thailand ONLY           │
+│ Banca outrigger        → Philippines ONLY        │
+│ Gondola                → Venice Italy ONLY       │
+│ Dhow triangular sail   → Middle East / E Africa  │
+│ Felucca                → Egypt / Nile ONLY       │
+│ Red sailed junk        → China / Hong Kong       │
+│ Abra water taxi        → Dubai ONLY              │
+│ Reed boat              → Lake Titicaca ONLY      │
+│ Coracle round boat     → Wales / India           │
+│ Jukung outrigger       → Bali / Indonesia        │
+│ Lobster pots on dock   → UK / Ireland / Canada   │
+│ Whitewashed cliff port → Greece                  │
+└──────────────────────────────────────────────────┘
+```
+- night and artificial lighting quick checklist
+```
+NIGHT / ARTIFICIAL LIGHTING QUICK CHECKLIST
+
+STREET LIGHT COLOR
+├── Warm orange / yellow (sodium)        → UK / older Europe / Middle East
+├── Cool white / blue-white (LED)        → Modern cities globally post 2015
+├── Warm white LED                       → Japan / South Korea / Modern Europe
+├── Green tinted lights                  → Some older US cities / Latin America
+└── Inconsistent mix of colors           → Developing world / older infrastructure
+
+NEON SIGNS / SIGNAGE
+├── Dense Chinese neon / LED signs       → Hong Kong / China / Taiwan
+├── Dense Korean neon signage            → South Korea (Gangnam / Seoul)
+├── Japanese neon + vending machines lit → Japan (very dense vending machines)
+├── Arabic neon signs                    → Middle East / North Africa
+├── Cyrillic neon signs                  → Russia / Eastern Europe
+├── Hebrew neon signs                    → Israel ONLY
+├── Thai script neon                     → Thailand
+└── Latin script only neon               → USA / Europe / Latin America
+
+LIGHT DENSITY FROM ABOVE
+├── Extremely dense bright grid          → USA (city grid pattern)
+├── Dense but organic pattern            → Europe / older cities
+├── Very dense + river visible dark      → Major river cities (London/Paris/Cairo)
+├── Sparse with dark gaps                → Developing world / rural areas
+├── Almost no light                      → North Korea ONLY (from satellite)
+└── Single bright spot in darkness       → Remote mining / oil facility
+
+SPECIFIC LIGHTING CLUES
+├── VENDING MACHINES lit on street       → Japan ONLY (extremely dense)
+├── Red lanterns hanging lit             → China / Chinese New Year / Vietnam
+├── Neon cross on buildings              → South Korea (churches everywhere)
+├── Green mosque lights at night         → Muslim-majority countries
+├── Orthodox church lit gold at night    → Russia / Greece / Eastern Europe
+├── Blue/white lit buildings             → Greece / Israel (national colors)
+├── Casino strip lighting                → Las Vegas USA / Macau China / Monaco
+└── Stadium floodlights visible          → Urban areas globally
+
+TRAFFIC LIGHT COLOR
+├── Standard red/amber/green             → Most of world
+├── Countdown timer on lights            → China / South Korea / India
+├── Flashing green before red            → Some Eastern European countries
+└── Pedestrian light makes sound         → Japan / South Korea / Australia
+
+QUICK TELLS
+┌──────────────────────────────────────────────────┐
+│ Dense vending machines lit  → Japan ONLY         │
+│ Almost no light from above  → North Korea ONLY   │
+│ Neon cross on buildings     → South Korea        │
+│ Green mosque lights         → Muslim countries   │
+│ Red lanterns hanging        → China / Vietnam    │
+│ Hebrew neon signs           → Israel ONLY        │
+│ Casino strip lighting       → Las Vegas / Macau  │
+│ Orange sodium streetlights  → UK / older Europe  │
+│ Countdown traffic timers    → China / India      │
+└──────────────────────────────────────────────────┘
+```
+- sports and recreation checklist
+```
+SPORTS / RECREATION QUICK CHECKLIST
+
+PITCH / FIELD TYPE
+├── CRICKET PITCH (flat oval, 22 yard strip center)
+│     White flannels, red ball            → UK / Australia / NZ / South Africa
+│     Colored kit, white ball             → India / Pakistan / Sri Lanka / UAE
+│
+├── BASEBALL DIAMOND (90° infield dirt)
+│     Large stadiums, very common         → USA / Canada
+│     Smaller setups                      → Japan / Cuba / Dominican Republic
+│
+├── AUSTRALIAN RULES FOOTBALL
+│     Oval pitch, tall H + behind posts   → Australia ONLY
+│
+├── RUGBY PITCH (H posts, rectangular)
+│     Very common, village level          → UK / NZ / South Africa / France
+│     Less common                         → Australia / Argentina / Japan
+│
+├── AMERICAN FOOTBALL (yard lines visible)
+│     Very wide H posts                   → USA / Canada ONLY
+│
+├── GAELIC FOOTBALL / HURLING pitch       → Ireland ONLY
+│
+└── SEPAK TAKRAW court (rattan ball net)  → Southeast Asia ONLY
+
+COURT TYPES
+├── Basketball court (very common)        → USA / Global urban areas
+├── Petanque / boules gravel court        → France / Southern Europe ONLY
+├── Padel court (glass walls)             → Spain / Latin America / Middle East
+├── Gateball court                        → Japan / China (elderly sport)
+└── Volleyball on beach very common       → Brazil / USA / Europe coastal
+
+WINTER SPORTS
+├── Ski lifts on mountain                 → Alps / Rockies / Andes / Japan
+├── Outdoor ice rink natural              → Canada / Russia / Scandinavia
+├── Curling rink                          → Canada / Scotland / Scandinavia
+└── Ski jump structure visible            → Norway / Austria / Finland / Japan
+
+WATER SPORTS
+├── Surfing (beach break, consistent)     → Australia / Hawaii / Portugal / South Africa
+├── Dragon boat racing                    → China / Hong Kong / Taiwan / Vietnam
+├── Waka ama (outrigger canoe racing)     → New Zealand / Pacific Islands ONLY
+└── Kite surfing common                   → Netherlands / Brazil / Australia
+
+RECREATIONAL CLUES
+├── Pétanque players in park              → France / Southern Europe
+├── Chess players in public park          → Russia / Eastern Europe / China
+├── Tai chi in park at dawn               → China / Taiwan / SE Asian Chinese communities
+├── Sumo wrestling                        → Japan ONLY
+├── Kabaddi being played                  → India / Bangladesh / Pakistan
+├── Capoeira on street                    → Brazil ONLY
+├── Zorbing / bungee common               → New Zealand (adventure capital)
+└── Polo being played                     → Argentina / UK / Pakistan / UAE
+
+STADIUM CLUES
+├── Very large, modern, air conditioned   → UAE / Qatar / Saudi (indoor stadiums)
+├── Old Victorian brick stadium           → UK ONLY
+├── Wooden bleachers, small               → USA rural / Latin America
+├── Standing terraces still in use        → Eastern Europe / South America
+└── Retractable roof stadium              → USA / Australia / Canada / Japan
+
+QUICK TELLS
+┌──────────────────────────────────────────────────┐
+│ Cricket oval pitch        → British Commonwealth │
+│ Baseball diamond          → USA / Japan / Cuba   │
+│ AFL oval + behind posts   → Australia ONLY       │
+│ Gaelic football           → Ireland ONLY         │
+│ Petanque gravel court     → France / S Europe    │
+│ Sepak takraw net          → SE Asia ONLY         │
+│ Sumo ring                 → Japan ONLY           │
+│ Capoeira on street        → Brazil ONLY          │
+│ Dragon boat racing        → China / SE Asia      │
+│ Waka ama canoe            → NZ / Pacific ONLY    │
+│ Kabaddi being played      → India / Pakistan     │
+│ Curling rink              → Canada / Scotland    │
+│ Polo match                → Argentina / UK       │
+│ Victorian brick stadium   → UK ONLY              │
+└──────────────────────────────────────────────────┘
+```
