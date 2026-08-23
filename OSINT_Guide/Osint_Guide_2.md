@@ -13,6 +13,7 @@
 ```
 1. Try to search the image's location using the provided tools
 2. You can also get the location using metadata:exif tool or sc specific
+ALthough most social media's strip the meta data so only expect in raw images 
 3. Identify the specific person using the reverse image search/people search -> real name 
 4. Using reverse search using search engines can reveal social media accounts -> usernames 
 ```
@@ -20,7 +21,8 @@
 ```
 1. Perform a cross-media search using the tools provided
 2. Try logging into certain social media with a username can provide the last two digits of a phone number/email IDs
-3. Generate variations of usernames using provided tools and generate email IDs based on the given name  
+3. Generate variations of usernames using provided tools and generate email IDs based on the given name
+4. Github repo and commits is nutorious for leaking the developer's data usine the .patch at the end of a commit  
 ```
 **EMAIL-IDS**
 ```
