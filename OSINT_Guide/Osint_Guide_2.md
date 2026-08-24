@@ -54,6 +54,8 @@ b) Twitter/x: Use a username to ID coverter -> then go to x.com/username/status/
 c) Instagram: Post url -> instagram.com/p/Code -> put that code in shortcode-ID coverter then that into a snowfalke decoder
 d) Mastodon -> URL directly -> instances.social/@user/<snowfalke id>
 ```
+> Reddit deleted-content recovery - Pushshift-successor tools (Arctic shift and camas.unddit.com or use other sites) 
+
 **EMAIL-IDS**
 ```
 1. Perform email ID search using the given tools from section 1
@@ -74,6 +76,8 @@ this helped me once in a CTF :) !
 4. Look for passive DNS search history on DNS history.org
 5. VPN/proxy/tor exit node detection using the given tool in section 1
 ```
+> Here is a site with a very good interface https://bgp.he.net/ nothing new, just great UI :) 
+
 **PHONE-NUMBER**
 ```
 1. Social media like WhatsApp, Telegram.. provide a category for phone number search
