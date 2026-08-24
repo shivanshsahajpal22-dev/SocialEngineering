@@ -10,4 +10,5 @@ Owner does not stand accountable for anything
 **Tool to create phishing site**:evilginx2/Modlishka 
 **Phishing platforms**: Gophish, SET, KingPhish
 **The phishing combo**: Muraena + Necrobrowser 
+**Steal location through phishing**: Seeker   
 ```
