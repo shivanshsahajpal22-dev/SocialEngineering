@@ -34,6 +34,7 @@ ALthough most social media's strip the meta data so only expect in raw images
 4. GitHub repo and commits are notorious for leaking the developer's data using the .patch at the end of a commit  
 5. Use Wayback URLs on the profile pages themselves + combined with github histrory -> can provide old info + umaintained accounts
 6. Once a social media account is identified, use a stylometry tool to identify other accounts
+
 7. Once a social media account is identified, use chronemics to identify timezone -> take timestamps of post -> convert to UTC
 a) biggest dead zone is the sleep time generally
 b) difference in weekday/weekend can tell you the work schedule
@@ -42,6 +43,7 @@ d) Holiday correlation is also a thing
 e) if rhythm is too regular, that is post scheduling
 f) A long drift from social media means a life event
 g) A temporal change in the rhythm can mean travelling
+
 8. Once a social media account is identified, you can get the snow flake id
 a) Discord: setting -> advanced -> developer mode -> message have copy id setting now
 b) Twitter/x: Use a username to ID coverter -> then go to x.com/username/status/TWEET-ID
