@@ -26,6 +26,10 @@ ALthough most social media's strip the meta data so only expect in raw images
 ```
 `Image is almost always the richest entry point precisely because it fans out into the most next-buckets at once — location, face, and background context are three independent pivots from one file`
 
+`Break down videos into frame + sounds`
+
+`sounds itself is a OSINT vector although not as developed`
+
 **USERNAME**
 ```
 1. Perform a cross-media search using the tools provided
