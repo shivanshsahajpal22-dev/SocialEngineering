@@ -13,6 +13,8 @@ Person's name -> Company or work place finding Current best: Open Corporates. Th
 
 Username ->  Username search engines Current Best: maigret 
 Username -> look at writing style for stylometry Current Best: JStylo 
+Username -> Use snowflake decoding on social media account Current Best: singhajit.com/tools/snowflake-decoder
+Username -> Shortcode/Id to snowflake ID converter Current Best: Tweeterid.com + https://techconverter.me/instagram-shortcode-to-date
 
 Image -> Reverse Image search Current Best:Yandex or Google lens 
 Image -> Face image people searcher Current Best:Facecheck.id or lenso.ai {none are good}
