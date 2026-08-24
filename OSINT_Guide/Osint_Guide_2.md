@@ -7,7 +7,7 @@ NOTE BEFORE YOU PROCEED
 > Cyber OSINT (info about a company) covered in web_exploiation_Guide/Web_exploitation/Passive-recon 
 ```
 
-> This one is more about the people : SOCMINT whereas last one was focused on the geo-Osint
+> This one is more about the people: SOCMINT, whereas the last one was focused on the geo-OSINT
 
 - I would suggest to start you search from google + dork gpt (>>> any tool)
 
@@ -31,8 +31,22 @@ ALthough most social media's strip the meta data so only expect in raw images
 1. Perform a cross-media search using the tools provided
 2. Try logging into certain social media with a username can provide the last two digits of a phone number/email IDs
 3. Generate variations of usernames using provided tools and generate email IDs based on the given name
-4. Github repo and commits is nutorious for leaking the developer's data usine the .patch at the end of a commit  
+4. GitHub repo and commits are notorious for leaking the developer's data using the .patch at the end of a commit  
 5. Use Wayback URLs on the profile pages themselves + combined with github histrory -> can provide old info + umaintained accounts
+6. Once a social media account is identified, use a stylometry tool to identify other accounts
+7. Once a social media account is identified, use chronemics to identify timezone -> take timestamps of post -> convert to UTC
+a) biggest dead zone is the sleep time generally
+b) difference in weekday/weekend can tell you the work schedule
+c) meal time dips is also a thing that exists
+d) Holiday correlation is also a thing
+e) if rhythm is too regular, that is post scheduling
+f) A long drift from social media means a life event
+g) A temporal change in the rhythm can mean travelling
+8. Once a social media account is identified, you can get the snow flake id
+a) Discord: setting -> advanced -> developer mode -> message have copy id setting now
+b) Twitter/x: Use a username to ID coverter -> then go to x.com/username/status/TWEET-ID
+c) Instagram: Post url -> instagram.com/p/Code -> put that code in shortcode-ID coverter then that into a snowfalke decoder
+d) Mastodon -> URL directly -> instances.social/@user/<snowfalke id>
 ```
 **EMAIL-IDS**
 ```
@@ -104,6 +118,11 @@ WARNING : Dark web is a dangerous place to be at , continue at your own risk
 
 > Practitioner's note: assume there is a wifi and you have it's BSD and you wanna have more info about it then go to: wigle.net  
 
+> Practitioner's note: Fitness-tracker heatmap -> sometimes apps and fitness websites like Strava er al. can reveal the daily visit location and place, which are mostly workplace and home
+
+This method was actually used to find military bases in a real investigation once 
+
+> Patent information records have to be real and cannot be faked! 
 
 ## OPSEC FOR THE INVESTIGATOR — DON'T BECOME PART OF THE STORY
 
