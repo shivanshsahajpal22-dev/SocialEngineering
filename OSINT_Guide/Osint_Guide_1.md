@@ -9,9 +9,10 @@
 person's name -> name based address search Current Best: TruePeopleSearch or 192.com (us only) 
 person's name -> name based username and email generator Current Best: soxoj's username-generation-guide and transform_username tool  
 person's name -> person name to phone number finder Current Best: Truecaller 
-Person's name -> Company or work place finding Current best: Open corporates Then pivot to country based pools  
+Person's name -> Company or work place finding Current best: Open Corporates. Then pivot to country-based pools  
 
 Username ->  Username search engines Current Best: maigret 
+Username -> look at writing style for stylometry Current Best: JStylo 
 
 Image -> Reverse Image search Current Best:Yandex or Google lens 
 Image -> Face image people searcher Current Best:Facecheck.id or lenso.ai {none are good}
