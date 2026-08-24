@@ -9,6 +9,8 @@ NOTE BEFORE YOU PROCEED
 
 > This one is more about the people: SOCMINT, whereas the last one was focused on the geo-OSINT
 
+- **WANT a detective like whiteboard** -> use maltego ! 
+
 - I would suggest to start you search from google + dork gpt (>>> any tool)
 
 ---
@@ -123,6 +125,7 @@ WARNING : Dark web is a dangerous place to be at , continue at your own risk
 15. SOCRadar — commercial dark web threat intel platform
 16. OSINT Framework (osintframework.com) — curated, categorized link directory including a dark web section
 17. awesome-osint (GitHub) — community-maintained OSINT resource list
+18. ONION SEARCH -> automated darkweb recon 
 ```
 ~Dev note: please filter this list~
 
@@ -135,6 +138,8 @@ This method was actually used to find military bases in a real investigation onc
 > Patent information records and licensing bodies have to be real and cannot be faked! 
 
 > bit.ly short links reveal information on adding + at the end
+
+> what's 3 words is a platform that creates 3 words maps for every location 
 
 ## OPSEC FOR THE INVESTIGATOR — DON'T BECOME PART OF THE STORY
 
