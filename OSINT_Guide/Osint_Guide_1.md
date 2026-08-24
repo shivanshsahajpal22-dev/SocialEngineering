@@ -6,6 +6,8 @@
 
 **last updated** - `19 August 2026`
 ```
+----------------> SPIDERFOOT and RECON-NG are the first things to open <---------
+
 person's name -> name based address search Current Best: TruePeopleSearch or 192.com (us only) 
 person's name -> name based username and email generator Current Best: soxoj's username-generation-guide and transform_username tool  
 person's name -> person name to phone number finder Current Best: Truecaller 
