@@ -22,7 +22,7 @@ Image -> Geolocator finder and hunter Current Best: GeoSeeere.com, GeoAxis.com o
 Image -> image based hints collection base Current Best: GeoHints.com 
 Image -> Shadow to location pinpointing Current Best: SunCalc,ShadowMap and ShadowFinder 
 
-Email address -> Email-ID search engine Current Best: Epieso or holehe  
+Email address -> Email-ID search engine Current Best: Epieso or holehe, if the emailid is Gmail use GHunt 
 Email address -> Email-ID format predictors Current Best:mailmeteor.com/email-permutator
 Email address -> Email-ID verification engines Current Best: myemailverifier.com or verifyemailaddress.org 
 Email address -> Email-ID breach data searchers Current Best: IHaveBeenPwned 
@@ -32,8 +32,9 @@ Phone number -> phone number databases Current Best: Truecaller or phoneinfoga {
 
 Search Engines -> Search engine dorker Current Best:Dorkgpt or pagodo 
 
-IP address -> to Geo location and ownership Current Best:Ipinfo and ViewDNS.info
-IP address -> Exposed service and devices:Shodan or censys 
+IP address -> to geolocation and ownership Current Best:Ipinfo and ViewDNS.info
+IP address -> Exposed services and devices:Shodan or censys 
+IP address -> Understanding if it a tor/vpn node Current Best: IPQuality Score, GetIPIntel 
 
 Domain name/website -> WHOIS/Ownership records Current best:WhoisXML or ICANN Lookup
 Domain name/website -> Subdomain enumeration Current Best:crt.sh or Amass 
