@@ -39,6 +39,7 @@ IP address -> to geolocation and ownership Current Best:Ipinfo and ViewDNS.info
 IP address -> Exposed services and devices:Shodan or censys 
 IP address -> Understanding if it a tor/vpn node Current Best: IPQuality Score, GetIPIntel 
 
+---> Before you do anything manually,with harvester <-----
 Domain name/website -> WHOIS/Ownership records Current best:WhoisXML or ICANN Lookup
 Domain name/website -> Subdomain enumeration Current Best:crt.sh or Amass 
 Domain name/website -> archived or deleted content Current Best:Wayback machine
