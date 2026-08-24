@@ -70,7 +70,7 @@ this helped me once in a CTF :) !
 ```
 1. Try to use IP address search engines as per provided
 2. If you wanna know what services are running use Shodan/Cebsys
-3. Reverse DNS + WHOIS on any ip block you can get
+3. Reverse DNS + WHOIS + Reverse WHOIS on any ip block you can get
 4. Look for passive DNS search history on DNS history.org
 5. VPN/proxy/tor exit node detection using the given tool in section 1
 ```
@@ -128,7 +128,9 @@ WARNING : Dark web is a dangerous place to be at , continue at your own risk
 
 This method was actually used to find military bases in a real investigation once 
 
-> Patent information records have to be real and cannot be faked! 
+> Patent information records and licensing bodies have to be real and cannot be faked! 
+
+> bit.ly short links reveal information on adding + at the end
 
 ## OPSEC FOR THE INVESTIGATOR — DON'T BECOME PART OF THE STORY
 
