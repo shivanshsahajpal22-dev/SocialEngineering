@@ -82,7 +82,7 @@ this helped me once in a CTF :) !
 ```
 1. Social media like WhatsApp, Telegram.. provide a category for phone number search
 2. Get the number lookup from something like Truecaller 
-3. Adding the phone number in WhatsApp and then looking at profile + last seen can be a breakthrough
+3. Adding the phone number in WhatsApp/Phone contacts and then looking at profile + last seen can be a breakthrough
 4. Password reset trick can also reveal name , username or email in MFA systems
 ```
 **REALNAME**
