@@ -1,5 +1,12 @@
 # OSINT GUIDE PART 2 
 
+```
+NOTE BEFORE YOU PROCEED
+
+> Tools are listed in section 1
+> Cyber OSINT (info about a company) covered in web_exploiation_Guide/Web_exploitation/Passive-recon 
+```
+
 > This one is more about the people : SOCMINT whereas last one was focused on the geo-Osint
 
 - I would suggest to start you search from google + dork gpt (>>> any tool)
@@ -15,20 +22,23 @@
 2. You can also get the location using metadata:exif tool or sc specific
 ALthough most social media's strip the meta data so only expect in raw images 
 3. Identify the specific person using the reverse image search/people search -> real name 
-4. Using reverse search using search engines can reveal social media accounts -> usernames 
+4. Using reverse search using search engines can reveal social media accounts -> usernames
 ```
+`Image is almost always the richest entry point precisely because it fans out into the most next-buckets at once — location, face, and background context are three independent pivots from one file`
+
 **USERNAME**
 ```
 1. Perform a cross-media search using the tools provided
 2. Try logging into certain social media with a username can provide the last two digits of a phone number/email IDs
 3. Generate variations of usernames using provided tools and generate email IDs based on the given name
 4. Github repo and commits is nutorious for leaking the developer's data usine the .patch at the end of a commit  
+5. Use Wayback URLs on the profile pages themselves + combined with github histrory -> can provide old info + umaintained accounts
 ```
 **EMAIL-IDS**
 ```
 1. Perform email ID search using the given tools from section 1
 2. Try variations of the email ID (can craft using the provided tools)
-3. Search for dark web leak databases like IHaveBeenPwned
+3. Search for dark web leak databases like IHaveBeenPwned for exact info try using the DeHashed/LeakCheck/InteligenceX
 4. Gravatar hash pivot — Gravatar profiles are looked up by the MD5 hash of the (lowercased, trimmed) email address
 this helped me once in a CTF :) !
 5. With sites that are not covered in the tool, try to login in with the email
@@ -38,12 +48,18 @@ this helped me once in a CTF :) !
 
 **IP-ADDRESS**
 ```
-1. Try to use IP address search engines as per provided 
+1. Try to use IP address search engines as per provided
+2. If you wanna know what services are running use Shodan/Cebsys
+3. Reverse DNS + WHOIS on any ip block you can get
+4. Look for passive DNS search history on DNS history.org
+5. VPN/proxy/tor exit node detection using the given tool in section 1
 ```
 **PHONE-NUMBER**
 ```
 1. Social media like WhatsApp, Telegram.. provide a category for phone number search
 2. Get the number lookup from something like Truecaller 
+3. Adding the phone number in WhatsApp and then looking at profile + last seen can be a breakthrough
+4. Password reset trick can also reveal name , username or email in MFA systems
 ```
 **REALNAME**
 ```
