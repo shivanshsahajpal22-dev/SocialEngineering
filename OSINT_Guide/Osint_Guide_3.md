@@ -2,6 +2,8 @@
 
 `we will discuss the big three here: Maltego, SpiderFoot, and Harvester.`
 
+> DEV NOTE: i know with this guide heading formating is out of the window 😿
+
 ---
 ## MALTEGO 
 
