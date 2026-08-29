@@ -659,6 +659,37 @@ Layer 4 — Content/keyword analysis      -> scans body text for known phishing 
 
 No single trick above is permanent — SEG vendors patch detection for whatever's publicly well-known on a constant cycle, which is exactly why this guide frames it as **layers**, not a fixed recipe: identify which specific layer(s) the target's SEG actually enforces (a quick authorized test send with a deliberately benign probe tells you a lot before you commit a real campaign), and match your technique to that specific layer rather than assuming one trick clears the whole stack.
 
+## SEG-bypass-specific ROE checklist — separate from the general authorization
+
+> A signed-off phishing simulation is not automatically a signed-off SEG-evasion test. These are two different scope statements, and the techniques above (particularly Layers 2–4) cross from "testing staff susceptibility" into "actively defeating a purchased security control" — that distinction needs its own explicit line in the ROE, not a blanket assumption it's covered by the general go-ahead.
+
+```
+□ Client has explicitly authorized testing AGAINST their SEG specifically,
+  not just against their staff — "phishing simulation approved" does not
+  automatically mean "you may fingerprint and evade our email security
+  vendor" was also approved
+□ Scanner-vs-human cloaking specifically called out and approved, if used —
+  this one deserves its own line item: it's not simulating a phish, it's
+  simulating an attacker who has already profiled and is actively evading
+  the org's specific security tooling
+□ QR-code delivery specifically flagged if used — this moves the
+  interaction onto an unmonitored personal device/network by design; the
+  client's security team should know this is happening so a "successful"
+  result isn't misread as a gap in THEIR monitored infrastructure when
+  it was never going to be visible to it in the first place
+□ Client's internal security/SOC team has a POC informed of the
+  engagement window — same logic as the existing lookalike-domain
+  sign-off above, but specifically so a real evasion attempt mid-campaign
+  doesn't get escalated as an actual incident by their own analysts
+□ Debrief explicitly separates "staff susceptibility" findings from
+  "SEG control gap" findings — these measure two different things and
+  get reported to two different audiences (security awareness owner vs.
+  the team that owns the SEG vendor relationship); collapsing them into
+  one number misrepresents what was actually tested
+```
+
+**Why this is worth its own checklist rather than folding into the existing one:** the general operational checklist covers *running the campaign safely*; this one covers *whether you were actually authorized to run this specific version of it*. Conflating the two is exactly how a technically-successful SEG-bypass test turns into a scope dispute after the fact — the same failure mode the proportionality checklist above exists to prevent on the pretext side, just showing up on the infrastructure side instead.
+
 ## Worked example chain — a full campaign, start to finish
 
 **Phase 1 — Input from OSINT (per the OSINT guide series)**
