@@ -527,7 +527,16 @@ Both of these plug directly into the GoPhish template editor from the last guide
 ---
 ## Bypassing the modern secure email gateways
 
+```
+Will add this later; for that is provided will work with most real engagement if email systems were never hardened!
+```
 ---
-## Some real attacks people fell for
-```
-```
+## Phishing email databases 
+
+1. UC Berkeley's Phishing Examples Archive [click here](https://security.berkeley.edu/education-awareness/phishing/phishing-examples-archive)
+2. Stanford's "Recent Examples of Phishing" [click here](https://uit.stanford.edu/phishing)
+3. CanIPhish's "50+ Phishing Email Examples [click here](https://caniphish.com/phishing-email-examples)
+
+**Here are a few examples I liked**
+`There are others, but I genuinely liked none of them.`
+
