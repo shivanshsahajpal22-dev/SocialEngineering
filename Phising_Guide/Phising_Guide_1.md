@@ -1,9 +1,9 @@
-# PHISHING GUIDE 1 
+# PHISHING GUIDE 1
 
 `People are always the weakest links`
 
-**WARNING:** This for Authorized and fully permitted red team engagement only. Using this without legal permission can land you in JAIL 
-Owner does not stand accountable for anything 
+**WARNING:** This for Authorized and fully permitted red team engagement only. Using this without legal permission can land you in JAIL
+Owner does not stand accountable for anything
 
 `Phishing and social engineering is a field that depends on the adjacent OSINT field to take input and the malware field to deliver the actual payload.`
 
@@ -17,6 +17,42 @@ Owner does not stand accountable for anything
 ```
 I have given the guide for evilginx2/evilnigix3 in Red Team Guide 7; go check it out man! 
 ```
+
+## Grabify & Seeker — the two named tools, actually walked through
+
+> These were named in the tools list above but never given the same treatment as Gophish. Fixing that here, same depth as everything else in this guide.
+
+### Grabify.org — image beacon / IP logger
+
+**What it is:** a free, public link-tracking service. You paste in a destination URL, it hands you back a tracking link that logs the visitor's IP, approximate location, device, browser, and OS the moment someone clicks it, before forwarding them on to the real destination.
+
+**How to use it:**
+```
+1. Go to grabify.org, paste your real destination URL
+2. It returns a tracking link + a "Tracking Code" — save the code,
+   that's how you check hits later
+3. Send the tracking link instead of the real one
+4. Return to grabify.org, enter your tracking code -> view the log
+   of everyone who's clicked (IP, ISP, rough geolocation, device)
+```
+
+**The honest limitation, and why this connects straight to the SEG-bypass section below:** `grabify.org` is a *well-known* public grabber-link service — its own domain is on more corporate/mail-filter blocklists than almost any custom domain you'd register yourself, precisely because it's used this way constantly. In a serious authorized engagement against a hardened target, this is far more useful for individual/OSINT-style tracking outside corporate mail filtering than as part of an actual phishing campaign — Gophish's own built-in `{{.Tracker}}` pixel (already covered above) is the correct tool for in-campaign tracking, since it's served from *your own* domain rather than a domain every SEG already recognizes.
+
+### Seeker — precise geolocation via browser permission
+
+**What it is:** an open-source tool (`thewhiteh4t/seeker` on GitHub) that serves a fake landing page — templates mimic Google Docs, WhatsApp, Airbnb-style services, and others — which requests browser geolocation permission under a plausible pretext ("to show you this document's location-restricted content," etc.). If the target clicks "Allow" on the browser's permission prompt, Seeker captures precise GPS coordinates alongside device/browser fingerprint data — far more accurate than an IP-based geolocation guess.
+
+**Basic usage:**
+```bash
+git clone https://github.com/thewhiteh4t/seeker.git
+cd seeker
+pip install -r requirements.txt
+python3 seeker.py -t <template_name>   # e.g. google, whatsapp, etc — check
+                                          # `templates/` for the current list
+```
+By default this serves locally — for real delivery you need to expose it through `ngrok` or, better for an authorized engagement, route it behind your own domain/redirector infrastructure the same way you would a GoPhish landing page.
+
+**Where it actually fits in a campaign:** Seeker needs the target to consciously click "Allow" on a location prompt — a meaningfully higher bar than clicking a link, and a very different kind of interaction than filling in a credential form. It's realistically a **secondary-stage payload**, embedded as a link or iframe *from* a Gophish landing page the target already trusts, rather than something you send cold as a standalone first-touch email.
 
 ## Gophish guide 
 
@@ -182,6 +218,58 @@ docker logs gophish   # grab the first-run admin password from here instead
   spam before you burn your one shot at a real target list
 ```
 That covers the full lifecycle end to end — installation through reporting. 
+
+## When the campaign goes quiet — troubleshooting decision tree
+
+> Same discipline as everywhere else in this series: a bad number isn't automatically a dead end, work through *why* in order before assuming the campaign failed or the target org is simply too secure.
+
+```
+SYMPTOM 1 — Zero or near-zero "Email Opened" events
+├── Check mail-tester.com score FIRST — did it land in spam/junk entirely?
+├── Verify SPF/DKIM/DMARC are actually passing, not just configured —
+│   a syntax error in a DNS record fails silently until you check headers
+│   on a delivered test message
+├── Check domain age/categorization — a domain under ~30-60 days old with
+│   no submitted categorization is auto-bucketed "uncategorized/newly
+│   registered" by most SEGs, which alone can mean silent quarantine
+│   with no bounce and no visible error on your end
+└── If it's an internal/authorized test with IT's cooperation: ask
+    directly whether the SEG quarantined it — you may be debugging a
+    real block instead of a template problem
+
+SYMPTOM 2 — Opens happening, but zero clicks
+├── Pretext mismatch — re-check step 3 of the pretext-writing section
+│   below: does the lure actually match this specific org's tone/format?
+├── Personalization broken — a template variable that didn't resolve
+│   (a literal "{{.FirstName}}" showing in the sent email) instantly
+│   tanks credibility; always check a live test send, not just the
+│   editor preview
+└── CTA buried or unclear — re-check "one clear call-to-action" from
+    the template-writing checklist; a wall of text with the link
+    halfway down gets scanned and abandoned, not clicked
+
+SYMPTOM 3 — Clicks happening, but zero submitted data
+├── Landing page doesn't visually match what the email promised —
+│   an "IT password reset" email landing on a generic, unbranded form
+│   breaks trust at the exact moment it matters most
+├── Broken form / redirect firing before submission — test the full
+│   click-through path yourself, end to end, before trusting the
+│   dashboard's read of it
+└── Browser security warning — self-signed cert / non-HTTPS landing
+    page triggers a big red browser warning that stops most people
+    cold; revisit the TLS checklist item above
+
+SYMPTOM 4 — Extremely fast, unanimous "Reported" rate
+├── This usually means the pretext was too obviously a test, not that
+│   your org is unusually secure — see Tier 1 vs Tier 3 pretexts below;
+│   a near-100% instant report rate is itself a data point worth
+│   including in the report, not a failure to hide from the client
+└── Check whether your sending domain triggered a visible SEG banner
+    ("CAUTION: this email originated from outside your organization" /
+    "this domain is newly registered") — if the SEG is tagging the
+    email visibly, you're measuring reaction to the SEG's warning, not
+    to your pretext
+```
 
 `let extend the gophish using the GoReport`
 
@@ -530,6 +618,116 @@ Both of these plug directly into the GoPhish template editor from the last guide
 ```
 Will add this later; for that is provided will work with most real engagement if email systems were never hardened!
 ```
+
+Consider this delivered — here's the actual layer-by-layer breakdown.
+
+### What a modern SEG is actually checking, layer by layer
+
+A modern Secure Email Gateway (Proofpoint, Mimecast, Microsoft Defender for Office 365, etc.) isn't one check, it's a stack — and the reason "bypass techniques" plural exist is that each layer needs a different answer:
+
+```
+Layer 1 — Sender/domain reputation      -> already covered above (domain aging,
+                                            categorization submission, SPF/DKIM/DMARC)
+Layer 2 — Link scanning / rewriting     -> the SEG rewrites every URL in the email to
+                                            route through ITS OWN scanning proxy first
+                                            (Proofpoint URL Defense, Microsoft Safe Links)
+Layer 3 — Attachment sandboxing         -> attachments get detonated in an isolated VM
+                                            before delivery, looking for malicious behavior
+Layer 4 — Content/keyword analysis      -> scans body text for known phishing language
+                                            patterns, urgency phrasing, brand impersonation signals
+```
+
+### Layer 2 — link-based evasion techniques
+
+**Living-off-trusted-domains redirect chains.** Most SEGs whitelist major, reputable SaaS platforms to avoid a flood of false positives — a link that first routes through a legitimate, trusted service (a real cloud storage share link, a real URL-shortener widely used for business purposes) before redirecting onward to your actual landing page benefits from that platform's existing trust, rather than your own freshly-registered domain being the first thing scanned. This is a widely documented real attacker pattern — abuse of legitimate SaaS infrastructure as a phishing redirect hop is one of the most consistently reported evasion categories in vendor threat-intel writeups.
+
+**Scanner-vs-human cloaking.** Link-rewriting engines work by having the SEG itself pre-fetch/scan the destination URL, often at delivery time, before a human ever clicks. Security vendor scanning traffic is frequently identifiable by its source IP ranges and/or user-agent strings. A landing page that serves innocuous content to a request matching known scanner fingerprints, and the real page to everyone else, defeats a delivery-time scan without ever needing to defeat a human-click-time scan — this exact "cloaking based on visitor fingerprinting" pattern is extensively documented in public research on real phishing-kit behavior.
+
+**QR-code delivery ("quishing").** Embedding the malicious link as an image of a QR code, rather than a clickable `<a href>`, is a genuinely simple and extremely effective evasion: there's no href for a link-scanning engine to inspect at all. The target scans it with their personal phone camera — which routes the click through a completely different, unmonitored network and device than the one your SEG/EDR stack has any visibility into. This has been one of the most widely reported real-world phishing trends of the last several years across every major vendor's threat intel blog.
+
+### Layer 3 — attachment-based evasion techniques
+
+**Password-protected archives.** A `.zip`/`.rar` attachment protected with a password stated in the email body itself cannot be opened or detonated by an automated sandbox that has no way to read that password from plain text — this is one of the most consistently reported techniques behind real campaigns (Emotet's operators used this pattern publicly and extensively, and it's covered in essentially every major vendor writeup on the malware family).
+
+**Uncommon container formats.** Less-commonly-scanned container types (disk-image formats, for example) have historically slipped past sandbox coverage more easily than standard Office/PDF attachments — worth flagging that this specific angle has a real shelf life: several of these were widely publicized precisely *because* real campaigns used them, which is exactly what led major vendors to add explicit detection/mitigation for those formats afterward. Treat any specific container trick as decaying the moment it becomes well-known, not as a permanent bypass.
+
+### Layer 4 — content-based evasion
+
+**Reducing single-message pattern match.** Splitting the pretext across multiple steps (an email that references an attachment/link without urgency language, versus cramming keyword-heavy pressure language into one message) reduces how cleanly the message matches a SEG's trained "this looks like phishing" content signature. Image-based text was historically used for the same purpose, but flag this one as decreasingly effective — modern SEGs increasingly run OCR against embedded images specifically because this trick became common enough to be worth detecting.
+
+### The actual discipline here, same as the rest of this guide
+
+No single trick above is permanent — SEG vendors patch detection for whatever's publicly well-known on a constant cycle, which is exactly why this guide frames it as **layers**, not a fixed recipe: identify which specific layer(s) the target's SEG actually enforces (a quick authorized test send with a deliberately benign probe tells you a lot before you commit a real campaign), and match your technique to that specific layer rather than assuming one trick clears the whole stack.
+
+## Worked example chain — a full campaign, start to finish
+
+**Phase 1 — Input from OSINT (per the OSINT guide series)**
+```
+1. theHarvester/Hunter.io against target-corp.com -> employee email-naming
+   pattern confirmed (first.last@), plus a list of Finance-department staff
+2. LinkedIn company page -> confirms target org uses DocuSign internally
+   for contract routing (a real, verifiable detail — not a guess)
+```
+
+**Phase 2 — Infrastructure stand-up (per the infra section above)**
+```
+3. Register a lookalike domain 60 days out, submit for categorization to
+   the major filtering vendors, let it age
+4. SPF/DKIM/DMARC configured, verified via mail-tester.com
+5. Redirector deployed in front of the actual GoPhish server, real server
+   IP never directly exposed
+```
+
+**Phase 3 — Pretext construction (per the companion piece above)**
+```
+6. Tier 3 pretext built: a fake DocuSign "contract ready for signature"
+   email, addressed to Finance staff specifically, using the real vendor
+   name confirmed in Phase 1 — no urgency language, reads as routine
+7. Landing page cloned from a real DocuSign login flow via GoPhish's
+   Import Site feature
+```
+
+**Phase 4 — SEG-aware delivery (per the section above)**
+```
+8. A quick benign-probe test send first, to confirm which layer of the
+   target's SEG stack actually fires (a rewritten-link banner? a
+   quarantine? nothing at all?) before committing the real campaign
+9. Link routed through a redirect hop rather than pointing directly at
+   the lookalike domain on first click
+```
+
+**Phase 5 — Launch and monitor**
+```
+10. Campaign launched via Gophish, staggered send rather than all-at-once
+11. Dashboard watched live: Sent -> Opened -> Clicked -> Submitted Data
+12. IMAP-connected reporting mailbox catches anyone who forwards it to
+    the real security team mid-campaign
+```
+
+**Phase 6 — Troubleshoot as needed**
+```
+13. If opens stall near-zero -> work the Symptom 1 branch of the
+    troubleshooting tree above before assuming the pretext failed
+14. If clicks happen but submissions don't -> Symptom 3 branch,
+    check the landing page match against what the email actually promised
+```
+
+**Phase 7 — Reporting**
+```
+15. GoReport pulled against the campaign ID, Word-format output using
+    the firm's branded template
+16. Report distinguishes unique-recipient numbers from raw event counts,
+    per GoReport's own event-vs-recipient distinction covered earlier
+17. Debrief delivered — including, honestly, a near-100% instant-report
+    result if that's what happened, since (per Symptom 4 above) that's
+    a real, useful data point about the org's SEG banner visibility,
+    not a failed campaign
+```
+
+## Where this hands off to the malware field
+
+Per the framing note at the very top of this guide: phishing depends on the malware field to actually deliver a payload once a target clicks or opens an attachment. That handoff is real and worth naming explicitly — but the actual construction of a payload (a macro, a dropper, an executable) is malicious code, and that's a line this guide won't cross regardless of the authorized-engagement framing, the same way none of the earlier binary/pwn material in this whole conversation ever produced a working exploit against a real, undisclosed target. Where a real engagement needs that handoff, it belongs in dedicated, properly-scoped malware-development tradecraft with its own authorization boundaries — this guide's job stops at "getting a human to open, click, or submit," which is itself the entire craft this document is actually about.
+
 ---
 ## Phishing email databases 
 
@@ -540,3 +738,6 @@ Will add this later; for that is provided will work with most real engagement if
 **Here are a few examples I liked**
 `There are others, but I genuinely liked none of them.`
 
+---
+
+Every layer of this guide reduces to the same one idea: **the tooling (Gophish, GoReport, redirectors) is the easy 20%; the pretext, the SEG-awareness, and the honest reporting of what actually happened are the 80% that determines whether a campaign produces real risk data or just a number nobody trusts.** Same discipline as every other part of this series — identify what you're actually up against layer by layer, match the technique to the layer, and treat a quiet or unexpected result as information to investigate, not a dead end to shrug off.
