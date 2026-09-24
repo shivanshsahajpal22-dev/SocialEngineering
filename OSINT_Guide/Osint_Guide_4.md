@@ -35,6 +35,7 @@ Never use your real email provider.
 
 > **Key rule:** The email address must be plausible for the puppet's claimed profession and age — a 52-year-old retired logistics manager does not have a `gmail.com`/`anime123` address.
 
+> For short-term burner email you can use : Temp mail/Fakeemailgenerator.com => not professional tho 
 ---
 
 ## PART 2 — Legend Construction (The Identity Itself)
@@ -50,6 +51,8 @@ Decide all of these before creating any account. Inconsistency between platforms
 | **Occupation** | Choose something that explains why the puppet would be contacting/researching the target (a security researcher, a journalist, a vendor, a recruiter — whatever fits the engagement), has a plausible LinkedIn career trajectory, and generates natural-sounding reasons to reach out. |
 | **Education** | A real university the puppet claims to have attended. Check that the claimed graduation year is consistent with the date of birth (graduated at $22 \pm 2$ years). Do not claim degrees that can be verified via a registrar lookup (some universities publish alumni directories). |
 | **Backstory notes** | 3–5 bullet points of personal detail you will never post publicly but will remember if questioned: Sibling names, hometown (different from current city), first job, a hobby, a pet's name. These exist so you stay consistent across long multi-turn interactions with a target. |
+
+> Before we begin with this section, you can always use [fakenamegenerator.com](https://www.fakenamegenerator.com/) to create fake entire persona plans 
 
 ### 2.2 Profile Photo
 Never use:
@@ -76,7 +79,8 @@ For a more robust puppet:
 * **CTF-grade (fast, low cost):**
   * `Silent.link` — crypto-paid eSIM, no registration required
   * `MySudo` — US/Canada numbers, compartmentalized
-  * Temporary SMS services (SMS-Activate, 5sim) for one-time verification codes only — do not use these as a "real" number the puppet gives out, only for the initial account creation code.
+  * Temporary SMS services (SMS-Activate, 5sim.net or recievesms.com) for one-time verification codes only — do not use these as a "real" number the puppet gives out, only for the initial account creation code.
+  * for the cheapest category you can use : Google voice or text now or text free (by it's something that should genuinely be avoided)
 * **Engagement-grade (more persistent):**
   * A prepaid SIM purchased with cash in person *(check local laws — some jurisdictions require ID for SIM purchase)*
   * `Silent.link` eSIM provisioned on a dedicated device or eSIM slot that never touches your real accounts.
