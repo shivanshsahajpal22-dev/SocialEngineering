@@ -14,12 +14,12 @@
 - person's name -> name based username and email generator Current Best: [soxoj's username-generation-guide](https://github.com/soxoj/username-generation-guide) and [transform_username](https://github.com/soxoj/transform_username) tool
 - person's name -> person name to phone number finder Current Best: [Truecaller](https://www.truecaller.com)
 - Person's name -> Company or work place finding Current best: [Open Corporates](https://opencorporates.com). Then pivot to country-based pools
-
+---
 - Username -> Username search engines Current Best: [maigret](https://github.com/soxoj/maigret)
 - Username -> look at writing style for stylometry Current Best: [JStylo](https://github.com/psal/jstylo)
 - Username -> Use snowflake decoding on social media account Current Best: [singhajit.com/tools/snowflake-decoder](https://singhajit.com/tools/snowflake-decoder)
 - Username -> Shortcode/Id to snowflake ID converter Current Best: [Tweeterid.com](https://tweeterid.com) + [https://techconverter.me/instagram-shortcode-to-date](https://techconverter.me/instagram-shortcode-to-date)
-
+---
 - Image -> Reverse Image search Current Best: [Yandex](https://yandex.com/images) or [Google lens](https://lens.google.com)
 - Image -> Face image people searcher Current Best: [Facecheck.id](https://facecheck.id) or [lenso.ai](https://lenso.ai) {none are good}
 - Image -> Meta data extractor tool Current Best: [Exiftool](https://exiftool.org) or [EXIF.tools](https://exif.tools)
@@ -28,36 +28,36 @@
 - Image -> Geolocator finder and hunter Current Best: [GeoSeeere.com](https://geoseeker.com), [GeoAxis.com](https://geoaxis.com) or [picarta.ai](https://picarta.ai)
 - Image -> image based hints collection base Current Best: [GeoHints.com](https://geohints.com)
 - Image -> Shadow to location pinpointing Current Best: [SunCalc](https://www.suncalc.org),[ShadowMap](https://shadowmap.org) and [ShadowFinder](https://github.com/bellingcat/ShadowFinder)
-
+---
 - Email address -> Email-ID search engine Current Best: [Epieso](https://epieos.com) or [holehe](https://github.com/megadose/holehe) or [mailmeter.com](https://mailmeteor.com) , if the emailid is Gmail use [GHunt](https://github.com/mxrch/GHunt)
 - Email address -> Email-ID format predictors Current Best: [mailmeteor.com/email-permutator](https://mailmeteor.com/email-permutator)
 - Email address -> Email-ID verification engines Current Best: [myemailverifier.com](https://myemailverifier.com) or [verifyemailaddress.org](https://www.verifyemailaddress.org)
 - Email address -> Email-ID breach data searchers Current Best: [IHaveBeenPwned](https://haveibeenpwned.com)
 - Email address -> Email-ID Mail blacklist processor Current Best: [MXToolbox SuperTool](https://mxtoolbox.com/SuperTool.aspx)
-
+---
 - Phone number -> phone number databases Current Best: [Truecaller](https://www.truecaller.com) or [phoneinfoga](https://github.com/sundowndev/phoneinfoga) {truecaller still dominates}
-
+---
 - Search Engines -> Search engine dorker Current Best: [Dorkgpt](https://www.dorkgpt.com) or [pagodo](https://github.com/opsdisk/pagodo)
-
+---
 - IP address -> to geolocation and ownership Current Best: [Ipinfo](https://ipinfo.io) and [ViewDNS.info](https://viewdns.info)
 - IP address -> Exposed services and devices: [Shodan](https://www.shodan.io) or [censys](https://censys.io)
 - IP address -> Understanding if it a tor/vpn node Current Best: [IPQuality Score](https://www.ipqualityscore.com), [GetIPIntel](https://getipintel.net)
-
+---
 ---> Before you do anything manually, with [theHarvester](https://github.com/laramies/theHarvester) <-----
 - Domain name/website -> WHOIS/Ownership records Current best: [WhoisXML](https://www.whoisxmlapi.com) or [ICANN Lookup](https://lookup.icann.org)
 - Domain name/website -> Subdomain enumeration Current Best: [crt.sh](https://crt.sh) or [Amass](https://github.com/owasp-amass/amass)
 - Domain name/website -> archived or deleted content Current Best: [Wayback machine](https://web.archive.org)
 - Domain name/Website -> Domain name to ip address Current Best: [dig](https://linux.die.net/man/1/dig)
 - Domain name/website -> exposed document's metadata Current Best: [FOCA](https://github.com/ElevenPaths/FOCA)
-
+---
 - Company name/ownership -> Ownership and registry Current Best: [OpenCorporates](https://opencorporates.com) or [Crunchbase](https://www.crunchbase.com)
-
+---
 - flight/ship info -> real time flight tracking Current Best: [FlightRadar24](https://www.flightradar24.com)
 - fight/ship info -> Flight history and data Current Best: [FlightAware](https://www.flightaware.com)
 - flight/ship info -> Marine traffic and ship tracking Current Best: [MarineTraffic](https://www.marinetraffic.com)
 - flight/ship info -> Vessel and container tracking Current Best: [VesselFinder](https://www.vesselfinder.com)
 - flight/ship info -> for train info and past data Current Best: [openrailwaymap.org](https://www.openrailwaymap.org) {for live it varies}
-
+---
 **Bonus tools**
 
 > Putting my Instagram reels to go use :) 
