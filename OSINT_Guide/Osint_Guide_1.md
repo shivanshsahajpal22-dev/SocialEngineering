@@ -37,7 +37,7 @@
 ---
 - Phone number -> phone number databases Current Best: [Truecaller](https://www.truecaller.com) or [phoneinfoga](https://github.com/sundowndev/phoneinfoga) {truecaller still dominates}
 ---
-- Search Engines -> Search engine dorker Current Best: [Dorkgpt](https://www.dorkgpt.com) or [pagodo](https://github.com/opsdisk/pagodo)
+- Search Engines -> Search engine dorker Current Best: [Dorkgpt](https://www.dorkgpt.com) or [pagodo](https://github.com/opsdisk/pagodo) or [google hacking DB](https://www.exploit-db.com/google-hacking-database)
 ---
 - IP address -> to geolocation and ownership Current Best: [Ipinfo](https://ipinfo.io) and [ViewDNS.info](https://viewdns.info)
 - IP address -> Exposed services and devices: [Shodan](https://www.shodan.io) or [censys](https://censys.io)
