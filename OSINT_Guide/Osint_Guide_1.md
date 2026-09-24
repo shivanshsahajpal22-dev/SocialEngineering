@@ -9,54 +9,89 @@
 **MY OSINT TOOL BOARD** 
 > Active tools upfront and deprecated tools mentioned in the last 
 
-----------------> SPIDERFOOT and RECON-NG are the first things to open <---------
+---> Framework Automation Hubs <-----
+- Automation Frameworks -> All-in-one OSINT and reconnaissance automation Current Best: [SpiderFoot](https://github.com/smicallef/spiderfoot) or [Recon-ng](https://github.com/lanmaster53/recon-ng)
+  - Now degraded tools: Maltego (heavily paywalled/restricted free tier), Datasploit (unmaintained)
+
+---
 - person's name -> name based address search Current Best: [TruePeopleSearch](https://www.truepeoplesearch.com) or [192.com](https://www.192.com) (us only)
 - person's name -> name based username and email generator Current Best: [soxoj's username-generation-guide](https://github.com/soxoj/username-generation-guide) and [transform_username](https://github.com/soxoj/transform_username) tool
 - person's name -> person name to phone number finder Current Best: [Truecaller](https://www.truecaller.com)
-- Person's name -> Company or work place finding Current best: [Open Corporates](https://opencorporates.com). Then pivot to country-based pools
+- Person's name -> Company or work place finding Current best: [OpenCorporates](https://opencorporates.com). Then pivot to country-based pools
+  - Now degraded tools: Pipl (now fully commercial/paid-only), Spokeo (heavy restrictions/paywalls on free lookups)
 ---
-- Username -> Username search engines Current Best: [maigret](https://github.com/soxoj/maigret)
+- Username -> Username search engines Current Best: [maigret](https://github.com/soxoj/maigret) or [Sherlock](https://github.com/sherlock-project/sherlock)
 - Username -> look at writing style for stylometry Current Best: [JStylo](https://github.com/psal/jstylo)
 - Username -> Use snowflake decoding on social media account Current Best: [singhajit.com/tools/snowflake-decoder](https://singhajit.com/tools/snowflake-decoder)
-- Username -> Shortcode/Id to snowflake ID converter Current Best: [Tweeterid.com](https://tweeterid.com) + [https://techconverter.me/instagram-shortcode-to-date](https://techconverter.me/instagram-shortcode-to-date)
+- Username -> Shortcode/Id to snowflake ID converter Current Best: [Tweeterid.com](https://tweeterid.com) + [Instagram Shortcode Converter](https://techconverter.me/instagram-shortcode-to-date)
+  - Now degraded tools: WhatsMyName (older local python wrappers lacking active updates compared to web/maigret)
 ---
-- Image -> Reverse Image search Current Best: [Yandex](https://yandex.com/images) or [Google lens](https://lens.google.com)
-- Image -> Face image people searcher Current Best: [Facecheck.id](https://facecheck.id) or [lenso.ai](https://lenso.ai) {none are good}
+- Image -> Reverse Image search Current Best: [Yandex Images](https://yandex.com/images) or [Google Lens](https://lens.google.com)
+- Image -> Face image people searcher Current Best: [Facecheck.id](https://facecheck.id) or [lenso.ai](https://lenso.ai)
 - Image -> Meta data extractor tool Current Best: [Exiftool](https://exiftool.org) or [EXIF.tools](https://exif.tools)
-- Image -> Street view websites Current Best: [Google street view](https://www.google.com/maps),[Yandex Panorama](https://yandex.com/maps),[mapillary](https://www.mapillary.com),[kartaView](https://kartaview.org),[panormax](https://panoramax.fr) (to cover all)
-- Image -> Advance street view query engine: [Overpass-turbo](https://overpass-turbo.eu) (very good)
-- Image -> Geolocator finder and hunter Current Best: [GeoSeeere.com](https://geoseeker.com), [GeoAxis.com](https://geoaxis.com) or [picarta.ai](https://picarta.ai)
-- Image -> image based hints collection base Current Best: [GeoHints.com](https://geohints.com)
-- Image -> Shadow to location pinpointing Current Best: [SunCalc](https://www.suncalc.org),[ShadowMap](https://shadowmap.org) and [ShadowFinder](https://github.com/bellingcat/ShadowFinder)
+- Image -> Street view websites Current Best: [Google Street View](https://www.google.com/maps), [Yandex Panorama](https://yandex.com/maps), [Mapillary](https://www.mapillary.com), [KartaView](https://kartaview.org), [Panoramax](https://panoramax.fr)
+- Image -> Advance street view query engine: [Overpass-turbo](https://overpass-turbo.eu)
+- Image -> Geolocator finder and hunter Current Best: [GeoSeeker](https://geoseeker.com), [GeoAxis](https://geoaxis.com) or [Picarta.ai](https://picarta.ai)
+- Image -> image based hints collection base Current Best: [GeoHints](https://geohints.com)
+- Image -> Shadow to location pinpointing Current Best: [SunCalc](https://www.suncalc.org), [ShadowMap](https://shadowmap.org) and [ShadowFinder](https://github.com/bellingcat/ShadowFinder)
+  - Now degraded tools: TinEye (outperformed by modern neural reverse search engines)
 ---
-- Email address -> Email-ID search engine Current Best: [Epieso](https://epieos.com) or [holehe](https://github.com/megadose/holehe) or [mailmeter.com](https://mailmeteor.com) , if the emailid is Gmail use [GHunt](https://github.com/mxrch/GHunt)
-- Email address -> Email-ID format predictors Current Best: [mailmeteor.com/email-permutator](https://mailmeteor.com/email-permutator)
-- Email address -> Email-ID verification engines Current Best: [myemailverifier.com](https://myemailverifier.com) or [verifyemailaddress.org](https://www.verifyemailaddress.org)
-- Email address -> Email-ID breach data searchers Current Best: [IHaveBeenPwned](https://haveibeenpwned.com)
+- Email address -> Email-ID search engine Current Best: [Epieos](https://epieos.com) or [Holehe](https://github.com/megadose/holehe) or [Mailmeteor](https://mailmeteor.com), if Gmail use [GHunt](https://github.com/mxrch/GHunt)
+- Email address -> Email-ID format predictors Current Best: [Mailmeteor Email Permutator](https://mailmeteor.com/email-permutator)
+- Email address -> Email-ID verification engines Current Best: [MyEmailVerifier](https://myemailverifier.com) or [VerifyEmailAddress](https://www.verifyemailaddress.org)
+- Email address -> Email-ID breach data searchers Current Best: [Have I Been Pwned](https://haveibeenpwned.com)
 - Email address -> Email-ID Mail blacklist processor Current Best: [MXToolbox SuperTool](https://mxtoolbox.com/SuperTool.aspx)
+  - Now degraded tools: Skymem (drastically throttled free export limits)
 ---
-- Phone number -> phone number databases Current Best: [Truecaller](https://www.truecaller.com) or [phoneinfoga](https://github.com/sundowndev/phoneinfoga) {truecaller still dominates}
+- Phone number -> phone number databases Current Best: [Truecaller](https://www.truecaller.com) or [PhoneInfoga](https://github.com/sundowndev/phoneinfoga)
+  - Now degraded tools: Twilio Lookup basic carrier APIs (heavily restricted to verified commercial accounts)
 ---
-- Search Engines -> Search engine dorker Current Best: [Dorkgpt](https://www.dorkgpt.com) or [pagodo](https://github.com/opsdisk/pagodo) or [google hacking DB](https://www.exploit-db.com/google-hacking-database)
+- Search Engines -> Search engine dorker Current Best: [Dorkgpt](https://www.dorkgpt.com) or [pagodo](https://github.com/opsdisk/pagodo) or [Google Hacking Database](https://www.exploit-db.com/google-hacking-database)
+  - Now degraded tools: Unindexed basic google scraping scripts without captcha solving or proxy pools
 ---
 - IP address -> to geolocation and ownership Current Best: [Ipinfo](https://ipinfo.io) and [ViewDNS.info](https://viewdns.info)
-- IP address -> Exposed services and devices: [Shodan](https://www.shodan.io) or [censys](https://censys.io)
-- IP address -> Understanding if it a tor/vpn node Current Best: [IPQuality Score](https://www.ipqualityscore.com), [GetIPIntel](https://getipintel.net)
+- IP address -> Exposed services and devices: [Shodan](https://www.shodan.io) or [Censys](https://censys.io)
+- IP address -> Understanding if it a tor/vpn node Current Best: [IPQualityScore](https://www.ipqualityscore.com), [GetIPIntel](https://getipintel.net)
+  - Now degraded tools: MaxMind GeoLite legacy offline formats
 ---
 ---> Before you do anything manually, with [theHarvester](https://github.com/laramies/theHarvester) <-----
-- Domain name/website -> WHOIS/Ownership records Current best: [WhoisXML](https://www.whoisxmlapi.com) or [ICANN Lookup](https://lookup.icann.org)
+- Domain name/website -> WHOIS/Ownership records Current Best: [WhoisXML](https://www.whoisxmlapi.com) or [ICANN Lookup](https://lookup.icann.org)
 - Domain name/website -> Subdomain enumeration Current Best: [crt.sh](https://crt.sh) or [Amass](https://github.com/owasp-amass/amass)
-- Domain name/website -> archived or deleted content Current Best: [Wayback machine](https://web.archive.org)
+- Domain name/website -> archived or deleted content Current Best: [Wayback Machine](https://web.archive.org)
 - Domain name/Website -> Domain name to ip address Current Best: [dig](https://linux.die.net/man/1/dig)
-- Domain name/website -> exposed document's metadata Current Best: [FOCA](https://github.com/ElevenPaths/FOCA)
+- Domain name/website -> exposed document's metadata Current Best: [FOCA](https://github.com/ElevenPaths/FOCA) or [Metagoofil](https://github.com/laramies/metagoofil)
+  - Now degraded tools: Sublist3r (unmaintained, broken api endpoints)
 ---
 - Company name/ownership -> Ownership and registry Current Best: [OpenCorporates](https://opencorporates.com) or [Crunchbase](https://www.crunchbase.com)
+  - Now degraded tools: Gleif (too narrow/niche for broad enterprise identification)
 ---
 - flight/ship info -> real time flight tracking Current Best: [FlightRadar24](https://www.flightradar24.com)
-- fight/ship info -> Flight history and data Current Best: [FlightAware](https://www.flightaware.com)
+- flight/ship info -> Flight history and data Current Best: [FlightAware](https://www.flightaware.com)
 - flight/ship info -> Marine traffic and ship tracking Current Best: [MarineTraffic](https://www.marinetraffic.com)
 - flight/ship info -> Vessel and container tracking Current Best: [VesselFinder](https://www.vesselfinder.com)
-- flight/ship info -> for train info and past data Current Best: [openrailwaymap.org](https://www.openrailwaymap.org) {for live it varies}
+- flight/ship info -> for train info and past data Current Best: [OpenRailwayMap](https://www.openrailwaymap.org)
+  - Now degraded tools: PlaneFinder (less comprehensive tracking density than FlightRadar24)
+---
+- Social Media -> Platform-specific aggregator search Current Best: [Social-Searcher](https://www.social-searcher.com) or [Social Analyzer](https://github.com/qeeqbox/social-analyzer)
+  - Now degraded tools: Twint (frequently breaks due to continuous X/Twitter API structural updates)
+---
+- Instant Messaging -> Telegram, WhatsApp, and Discord OSINT Current Best: [Telemint](https://github.com/telemint/telemint) or Telegram search dorks via [Google CSE](https://cse.google.com)
+  - Now degraded tools: ChatWatch (outdated WhatsApp status tracking scripts)
+---
+- Cryptocurrencies -> Blockchain transaction tracing Current Best: [Blockchair](https://blockchair.com) or [Arkham Intelligence](https://platform.arkhamintelligence.com)
+  - Now degraded tools: BitcoinWhosWho (archaic user interface and minimal free tracking depth)
+---
+- Dark Web -> Onion directory and leak site monitors Current Best: [Ahmia](https://ahmia.fi) or [Dark.fail](https://dark.fail)
+  - Now degraded tools: Torch (unreliable index uptime and dead mirrors)
+---
+- Threat Intelligence & Vulnerabilities -> IOC lookups and vulnerability feeds Current Best: [VirusTotal](https://www.virustotal.com), [AlienVault OTX](https://otx.alienvault.com), or [CVE Details](https://www.cvedetails.com)
+  - Now degraded tools: Older static signature scanners without cloud threat feeds
+---
+- Code Repositories & Pastebins -> Source code leak scanning Current Best: [Gitleaks](https://github.com/gitleaks/gitleaks) or GitHub Code Search
+  - Now degraded tools: Pastebin basic unauthenticated scrapers (heavily rate-limited by Cloudflare)
+---
+- OpSec & Anonymity -> Privacy and browser fingerprint testing Current Best: [BrowserLeaks](https://browserleaks.com) or [Tor Browser](https://www.torproject.org)
+  - Now degraded tools: Abandoned public proxy lists
 ---
 **Bonus tools**
 
