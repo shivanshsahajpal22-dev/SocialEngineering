@@ -84,6 +84,7 @@
 ---
 - Threat Intelligence & Vulnerabilities -> IOC lookups and vulnerability feeds Current Best: [VirusTotal](https://www.virustotal.com), [AlienVault OTX](https://otx.alienvault.com), or [CVE Details](https://www.cvedetails.com)
   - Now degraded tools: Older static signature scanners without cloud threat feeds
+- Threat actor information -> [Mitre.org](https://www.mitre.org/) or [Recorded future](https://www.recordedfuture.com/) (paid)
 ---
 - Code Repositories & Pastebins -> Source code leak scanning Current Best: [Gitleaks](https://github.com/gitleaks/gitleaks) or GitHub Code Search
   - Now degraded tools: Pastebin basic unauthenticated scrapers (heavily rate-limited by Cloudflare)
