@@ -1,12 +1,11 @@
 # OSINT GUIDE PART 1
 
-### OSINT TOOLS
+## MY OSINT DASHBOARD 
 
 > This is people related OSINT not company related if you want that it's in web exploitation guide passive recon 
 
 **last updated** - `19 August 2026`
 
-**MY OSINT TOOL BOARD** 
 > Active tools upfront and deprecated tools mentioned in the last 
 
 ---> Framework Automation Hubs <-----
