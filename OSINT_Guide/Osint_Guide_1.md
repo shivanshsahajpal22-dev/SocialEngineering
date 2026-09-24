@@ -4,14 +4,13 @@
 
 > This is people related OSINT not company related if you want that it's in web exploitation guide passive recon 
 
-**last updated** - `19 August 2026`
+**last updated** - `24 september 2026`
 
 > Active tools upfront and deprecated tools mentioned in the last 
 
 ---> Framework Automation Hubs <-----
 - Automation Frameworks -> All-in-one OSINT and reconnaissance automation Current Best: [SpiderFoot](https://github.com/smicallef/spiderfoot) or [Recon-ng](https://github.com/lanmaster53/recon-ng)
   - Now degraded tools: Maltego (heavily paywalled/restricted free tier), Datasploit (unmaintained)
-
 ---
 - person's name -> name based address search Current Best: [TruePeopleSearch](https://www.truepeoplesearch.com) or [192.com](https://www.192.com) (us only)
 - person's name -> name based username and email generator Current Best: [soxoj's username-generation-guide](https://github.com/soxoj/username-generation-guide) and [transform_username](https://github.com/soxoj/transform_username) tool
@@ -92,6 +91,20 @@
 - OpSec & Anonymity -> Privacy and browser fingerprint testing Current Best: [BrowserLeaks](https://browserleaks.com) or [Tor Browser](https://www.torproject.org)
   - Now degraded tools: Abandoned public proxy lists
 ---
+- fully automated OSINT platforms - [OSINT CAT](https://www.osintcat.net/) , [Intell Base](https://intelbase.is/)
+
+**Specialised privacy-focused alternative of normal apps**
+
+* Best VPN -> [Proton VPN](https://protonvpn.com/?utm_source=gemini) or [Mullvad VPN](https://mullvad.net/?utm_source=gemini)
+* Best Browser -> [Mullvad Browser](https://mullvad.net/browser?utm_source=gemini) or [Firefox](https://www.firefox.com/?utm_source=gemini)/[Brave](https://brave.com/?utm_source=gemini)
+* Best search engine -> [Kagi](https://kagi.com/?utm_source=gemini), [SearXNG](https://github.com/searxng/searxng?utm_source=gemini) or [DuckDuckGo](https://duckduckgo.com/?utm_source=gemini)
+* Best Emails -> [Proton Mail](https://proton.me/mail?utm_source=gemini) or [Tuta Mail](https://tuta.com/?utm_source=gemini)
+* Best Message -> [Threema](https://threema.ch/?utm_source=gemini) or [Signal](https://signal.org/?utm_source=gemini)
+* Best Cloud storage -> [Tresorit](https://tresorit.com/?utm_source=gemini) or [Proton Drive](https://proton.me/drive?utm_source=gemini)
+* Best Antivirus -> [Bitdefender](https://www.bitdefender.com/?utm_source=gemini), [ClamAV](https://www.clamav.net/?utm_source=gemini) or [Sophos](https://www.sophos.com/?utm_source=gemini)
+* Best password manager -> [1Password](https://1password.com/?utm_source=gemini) or [Bitwarden](https://bitwarden.com/?utm_source=gemini)
+* Best note-taking -> [Obsidian](https://obsidian.md/?utm_source=gemini) or [Joplin](https://joplinapp.org/?utm_source=gemini)
+
 **Bonus tools**
 
 > Putting my Instagram reels to go use :) 
