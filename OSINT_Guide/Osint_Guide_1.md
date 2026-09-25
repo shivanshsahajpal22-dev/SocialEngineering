@@ -274,6 +274,23 @@ Note-taking      -> Obsidian or Joplin
 
 > **The bottom line for geo-OSINT:** Google Maps is not a single global truth — it is a patchwork of varying coverage, legal restrictions, deliberate blurring, and aging imagery. Knowing which country you are looking at (which your Stages 1–4 already narrow down) tells you immediately which mapping tool is actually authoritative for that region.
 ---
+### 20. Social Media & Video Geolocation Search Tools + advanced social media search engines 
+(Focused specifically on discovering user-generated media, location-tagged uploads, and spatial tracking across platforms during an investigation)
+
+* **[YouTube Geofind (MW Geofind)](https://mattw.io/youtube-geofind/location)**: The direct counterpart enabling radius-based searches and bulk metadata exports for geotagged YouTube videos.
+* **[Echosec](https://www.echosec.net/)**: Commercial geospatial OSINT platform that aggregates social media posts (X/Twitter, YouTube, VK, and others) by drawing a bounding box or radius over a map interface.
+* **Scylla / Social Media Map Search Tools**: Specialized scripts and wrappers that query platform APIs to filter content based on coordinate bounding limits or embedded location tags.
+* **Telegram Geo-Scrapers**: Custom scripts and open-source tools designed to scrape geotagged media and channel posts originating from a precise coordinate point or radius.
+* **[Snapchat Map](https://map.snapchat.com/)**: Public web interface for viewing localized, public user snaps across the globe in real time, frequently used to track crowd movements or localized events.
+* **Twitter/X Advanced Search Operators**: Utilizing manual string parameters (`geocode:lat,long,radius`) via the search bar to surface tweets containing native GPS coordinates or location markers.
+
+Deprioritized: Native platform search bars (natively scrub or heavily obscure granular coordinate data without specialized third-party filtering layers)
+
+[The 2026 OSINT Method: How to EASILY TRACK and Find Someone Online](https://m.youtube.com/watch?v=smf1_NY3680)
+
+This video provides an overview of modern open-source tracking techniques, demonstrating how digital footprints and public uploads are analyzed during an investigation.
+
+---
 
 **Bonus tools**
 
