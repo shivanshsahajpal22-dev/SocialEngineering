@@ -258,59 +258,47 @@ wastes time — a road sign font means nothing until you already know
 which country's font system you're comparing it against.
 
 ```
-STAGE 1 — INSTANT WORLD-CUTTING CLUES (check these in the first 5 seconds)
+STAGE 1 — INSTANT WORLD-CUTTING CLUES (first 5 seconds)
 ├── LANGUAGE / SCRIPT on any visible text
-│     Single biggest narrowing clue that exists — cuts the entire world
-│     down to a specific script family/country group before anything else
+│     Single biggest narrowing clue — cuts the world to a script
+│     family / country group before anything else
 ├── STEERING WHEEL SIDE / TRAFFIC DIRECTION
-│     Cuts the world roughly in half instantly (left-hand vs right-hand traffic)
-└── ANY "ONLY" TELL (instant unique clue)
-      Kangaroo, baobab, torii gate, kilt, yurt, etc. — if one of these
-      appears, skip straight to Stage 4, country is already confirmed
+│     Cuts the world in half instantly
+└── ANY UNIQUE / "ONLY" TELL
+      Kangaroo, baobab, gondola, longtail boat, torii gate, etc.
+      If one appears → country confirmed → skip straight to Stage 6
 
-STAGE 2 — HEMISPHERE / CLIMATE / LATITUDE (narrows to a broad region)
-├── SHADOW DIRECTION
-│     Confirms Northern vs Southern Hemisphere in seconds
-├── VEGETATION TYPE
-│     Palms/rainforest = tropical band, conifers = high latitude, etc.
-└── TERRAIN TYPE
-      Desert / mountain range / coastline shape narrows further within
-      the hemisphere+climate band already established
+STAGE 2 — HEMISPHERE / CLIMATE / LATITUDE
+├── SHADOW DIRECTION          → Northern vs Southern Hemisphere
+├── VEGETATION TYPE            → Tropical / temperate / high latitude band
+└── TERRAIN TYPE               → Desert / mountain / coastline narrows further
 
 STAGE 3 — CONTINENT / CULTURAL REGION
-├── ARCHITECTURE STYLE (materials, roof type, window style)
-├── CLOTHING / PEOPLE (if visible)
-└── ROAD MARKINGS + LICENSE PLATE COLOR/SCRIPT
-      By this point you should have narrowed to a handful of plausible
-      countries, not the whole world
+├── ARCHITECTURE STYLE         → Materials, roof type, window style
+├── CLOTHING / PEOPLE          → Traditional dress, uniforms, religious clothing
+└── ROAD MARKINGS + PLATE COLOR/SCRIPT
 
 STAGE 4 — COUNTRY-SPECIFIC CONFIRMATION
-├── ROAD SIGNS (exact wording, colors, font)
+├── ROAD SIGNS                 → Exact wording, colors, font
 ├── UTILITY POLES / POSTBOXES / POLICE CAR LIVERY
-└── SHOP / FAST FOOD / FUEL STATION BRANDS
-      These confirm the specific country once you already have 2-3
-      candidates from Stage 3 — checking brand signage against the
-      WHOLE world at Stage 1 is inefficient, it only works well once
-      narrowed
+└── SHOP / FUEL / FAST FOOD BRANDS
+      Only useful once narrowed to 2-3 candidates — checking brand
+      signage against the whole world at Stage 1 is inefficient
 
 STAGE 5 — REGION / CITY WITHIN THE COUNTRY
-├── DIALECT / SCRIPT VARIANT (e.g. Cyrillic sub-type, regional
-│     markers on signs)
-├── LOCAL-ONLY CHAIN BRANDS (not national)
-├── REGIONAL ARCHITECTURE VARIATION
-└── ROAD SIGN FONT/STYLE SPECIFIC TO A PROVINCE/STATE
+├── DIALECT / SCRIPT VARIANT   → Regional markers on signs
+├── LOCAL-ONLY CHAIN BRANDS    → Not national chains
+└── REGIONAL ARCHITECTURE VARIATION
 
 STAGE 6 — EXACT PINPOINT
-├── REVERSE IMAGE SEARCH on any visible landmark
-├── SEARCHABLE BUSINESS NAME / STOREFRONT TEXT
-├── CROSS-REFERENCE AGAINST STREET VIEW for the narrowed candidate area
-└── UNIQUE STREET FURNITURE (manhole cover design, bollard style)
+├── REVERSE IMAGE SEARCH       → Any visible landmark or storefront
+├── STREET VIEW CROSS-REFERENCE→ Walk the candidate area virtually
+└── UNIQUE STREET FURNITURE    → Manhole cover design, bollard style
 
-STAGE 7 — TIME / DATE CONFIRMATION
-(always last — needs a location guess already in hand to be useful)
-├── SHADOW LENGTH + SUNCALC against your Stage 6 candidate location
-├── SEASONAL VEGETATION STATE (cherry blossom, autumn color, snow)
-└── STAR POSITION via Stellarium if a clear night sky is visible
+STAGE 7 — TIME / DATE CONFIRMATION (always last)
+├── SHADOW LENGTH + SUNCALC    → Against your Stage 6 candidate location
+├── SEASONAL VEGETATION STATE  → Blossom, autumn color, snow
+└── STAR POSITION via Stellarium → Clear night sky only
 ```
 **HERE ARE THE MORE BROAD CHECKLISTS**
 ```
