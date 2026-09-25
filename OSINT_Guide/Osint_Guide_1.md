@@ -1736,3 +1736,169 @@ QUICK TELLS
 └──────────────────────────────────────────────────┘
 ```
 **Since the location is now identified to the narrowest possible region, let's hop on the map engine and get to the very location !**
+
+### STAGE MANUAL MAP HUNT (THE FINAL SWEEP)
+
+You have a confirmed country, a probable city or region, and a shortlist of 2–4 candidate areas. This is where you stop using clues from the image and start moving through the map manually until reality matches what you see.
+
+---
+
+#### SET UP YOUR WORKING AREA FIRST
+
+```
+Open two windows side by side:
+  Left  → the image you are locating
+  Right → Google Maps (or Apple Maps / Yandex Maps as backup)
+
+Drop a pin on your best candidate area first
+Switch to Satellite view
+Zoom until individual buildings / blocks are distinguishable
+DO NOT open Street View yet — satellite orientation comes first
+```
+
+---
+
+#### STEP 1 — ORIENT FROM ABOVE BEFORE GOING TO GROUND LEVEL
+
+```
+In satellite view, identify ONE structural feature from the image
+that is visible from above:
+
+  Road layout shape     → straight grid / curved / radial / irregular
+  Building footprint    → rectangular / courtyard / L-shaped / detached
+  Roof color / material → visible from satellite in most cities
+  Green space           → park, garden, tree line adjacent to the scene
+  Water feature         → river bend, canal, coastline edge
+  Parking lot shape     → distinctive in satellite view
+
+Scan your candidate area for that single feature
+When you find a match → that block or that road is your entry point
+If you find zero matches across the whole candidate area → wrong area,
+expand outward or move to your next candidate
+```
+
+---
+
+#### STEP 2 — NARROW TO A CANDIDATE BLOCK
+
+```
+Once you have an entry point from satellite:
+
+  Look at the road network immediately around it
+  Count how many roads intersect your candidate block
+  Match that count and angle to what is visible in the image
+  (a T-junction looks very different from a 4-way cross or a curve)
+
+From the image extract one more architectural anchor:
+  Which direction does the main building face? (shadow tells you this)
+  Is the building on a corner, mid-block, or at a road end?
+  Is there a visible gap / alley / car park immediately adjacent?
+
+Cross-reference these two things simultaneously on satellite:
+  Road geometry + building position together
+  When both match → you are on the correct block
+```
+
+---
+
+#### STEP 3 — DROP INTO STREET VIEW AND WALK IT
+
+```
+Click into Street View at the edge of your candidate block
+NOT at the midpoint — start at a corner so you can see
+down two roads simultaneously
+
+Move through Street View methodically:
+  ONE direction at a time
+  Check left and right at every junction before advancing
+  Do not skip ahead — a single storefront or pole or fence
+  can be the confirmation you need
+
+What to match first in Street View:
+  1. Sky / roofline silhouette against the image
+     (this is fast and eliminates the wrong side of a block immediately)
+  2. Road surface width and marking
+  3. Pavement / sidewalk material and width
+  4. Any vegetation (single tree, hedge, planter) adjacent to the scene
+  5. Storefront / signage if visible in the original image
+  6. Building entrance position and door color / style
+```
+
+---
+
+#### STEP 4 — THE COMPASS LOCK (CONFIRM YOUR FACING DIRECTION)
+
+```
+Once you think you have the right block in Street View:
+
+  Look at the shadow direction in the original image
+  Note which direction in Street View the shadow would point
+  Rotate your Street View view until shadows in Street View
+  would match the original if it were the same time of day
+
+  If the facing direction is consistent with the shadow analysis
+  from Stage 7 → you have confirmed orientation
+  If it is not → you are either on the wrong block or
+  facing the wrong way — rotate 180° and re-check before moving
+
+This is the step most people skip and it is why they end up
+one block off or on the wrong side of the street
+```
+
+---
+
+#### STEP 5 — FINAL PIN CONFIRMATION
+
+```
+You have the right block and the right facing direction.
+Now identify the single most specific detail in the image:
+
+  Most specific = least likely to repeat anywhere else nearby
+
+  Good specifics:
+    A building with a unique color combination
+    A mural or wall art
+    A specific shopfront with a readable name
+    A distinctive lamp post or bollard style
+    A utility box or postbox in an unusual position
+    A crack / patch in the road surface (visible in Street View)
+    A drain / grate in a specific position relative to the kerb
+
+  Bad specifics (too common to confirm):
+    "A red car parked outside"   → not fixed
+    "A tree on the left"         → too common
+    "A white building"           → too common
+
+Find that one specific detail in Street View
+When it matches → place your final pin at that exact position
+```
+
+---
+
+#### THE MINDSET FOR THE MANUAL HUNT
+
+```
+Do not try to match everything at once
+Pick ONE anchor feature, find it, then use it as a base
+to find the next feature from there
+
+The guy who narrows 40 blocks to 1 is not doing anything
+clever — he is doing this loop very fast:
+
+  Pick a feature → scan → match or discard → move to next block
+  repeat until only one block matches two features simultaneously
+
+Speed comes from:
+  Committing to a candidate and testing it fully before moving on
+  Never trying to hold two candidate blocks in your head at once
+  Using satellite to pre-eliminate whole streets before Street View
+  (Street View is slow — satellite culls first, Street View confirms)
+
+When you are stuck:
+  Go back to the image and find a feature you have not used yet
+  The image always has more information than you have extracted
+  Change the zoom level on satellite — sometimes a feature is only
+  visible at a specific zoom (a narrow alley, a small courtyard)
+  Try Yandex Maps Street View or Apple Maps Look Around as a backup
+  — they cover some areas where Google Street View is absent or outdated
+```
