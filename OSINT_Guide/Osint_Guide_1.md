@@ -35,7 +35,10 @@ Organized by Investigative Pivot. Each category leads with the tools actually wo
 - Snowflake ID decoding: [singhajit.com snowflake-decoder](https://singhajit.com/tools/snowflake-decoder)
 - Shortcode/ID converters: [Tweeterid.com](https://tweeterid.com) + [Instagram Shortcode Converter](https://techconverter.me/instagram-shortcode-to-date)
 **Deprioritized:** WhatsMyName (older local Python wrappers lacking active updates compared to the web version/maigret)
- 
+
+`These are quite useful but require proper drafting. if you are reading this help me out by placing them in thier category and them making a merge request`
+
+**Some other platforms:** [tomba](https://tomba.io/) , [InstantUsername.com](https://instantusername.com/) , [whatsmyname CheapCopy](https://whatsmynameapp.org/) , [wolver eye](https://wolverbot.online/) , [osint search.org](https://osintsearch.org/) , [social searcher](https://www.social-searcher.com/) , [intel-techniques.com](https://inteltechniques.com/tools/) , [arkm.com](https://arkm.com/) , {This category is particularly from the osint lectures i attended}
 ---
  
 ### 4. Image & Visual Pivots
@@ -289,6 +292,9 @@ Note-taking      -> Obsidian or Joplin
   * **[Twitonomy](https://www.twitonomy.com/)**: Web-analytics platform providing granular visual stats on a user's posting habits, active hours, retweet networks, and geographical context.
 * **LinkedIn**
   * **[CrossLinked](https://github.com/m8sec/CrossLinked)**: Reconnaissance tool designed to harvest valid employee names, structural titles, and email permutations from LinkedIn via search engine scraping without needing an authenticated user account.
+* **GitHub**
+  * **[GitRecon](https://github.com/atiilla/gitrecon)**: Advanced OSINT and reconnaissance tool designed to scan GitHub and GitLab user profiles, repositories, and organizations for exposed personal email addresses, commit patterns, SSH keys, and internal metadata.
+  * **GitHub Advanced Search & API Dorking**: Leveraging targeted query operators (`filename:`, `path:`, `extension:`, `org:`, and `repo:`) combined with scripts like `gitrob` or `gitleaks` to unearth hardcoded secrets, personal naming conventions, and developer footprints.
 * **Reddit**
   * **[ThinkPol](https://think-pol.com/)**: Professional-grade archival search engine providing full-archive historical text search, covering user deletions, moderator removals, and pre-edit versions.
   * **[Reveddit](https://www.reveddit.com/)**: Transparency utility used to track and audit content silently removed or filtered by moderators on target user profiles or subreddits.
@@ -297,6 +303,7 @@ Note-taking      -> Obsidian or Joplin
   * **Server & Message Indexers**: Third-party public chat archives and server directories (such as DiscordGate) used to track public user activity, historical message presence, and mutual guild memberships across open ecosystems.
 * **Telegram**
   * **[Tgstat](https://tgstat.com/) / Livegram**: Dedicated platform search engines and indexes used to track channel growth metrics, message history logs, and cross-reference public group mentions.
+`Telegram is and will stay one of the best tools for threat actor related osint, find groups using bots, then join those groups to get links for more groups -> build you entire telegram networks untill you get the deep down part of Telegram that cannot be reached directly , that is where the main information lies` 
 
 Deprioritized: Standard native platform search bars (natively scrub deep historical metadata, restrict advanced boolean queries, and impose aggressive rate-limits on unauthenticated enumeration)
 
