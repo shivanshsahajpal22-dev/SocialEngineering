@@ -95,7 +95,6 @@
 - fully automated OSINT platforms - [OSINT CAT](https://www.osintcat.net/) , [Intell Base](https://intelbase.is/)
 
 **Specialised privacy-focused alternative of normal apps**
-
 * Best VPN -> [Proton VPN](https://protonvpn.com/?utm_source=gemini) or [Mullvad VPN](https://mullvad.net/?utm_source=gemini)
 * Best Browser -> [Mullvad Browser](https://mullvad.net/browser?utm_source=gemini) or [Firefox](https://www.firefox.com/?utm_source=gemini)/[Brave](https://brave.com/?utm_source=gemini)
 * Best search engine -> [Kagi](https://kagi.com/?utm_source=gemini), [SearXNG](https://github.com/searxng/searxng?utm_source=gemini) or [DuckDuckGo](https://duckduckgo.com/?utm_source=gemini)
@@ -106,17 +105,69 @@
 * Best password manager -> [1Password](https://1password.com/?utm_source=gemini) or [Bitwarden](https://bitwarden.com/?utm_source=gemini)
 * Best note-taking -> [Obsidian](https://obsidian.md/?utm_source=gemini) or [Joplin](https://joplinapp.org/?utm_source=gemini)
 
+**Specialised investigative and document search engines for OSINT & research**
+- [Google Pinpoint](https://journaliststudio.google.com/pinpoint/) (Google's tool for journalists and researchers to parse massive troves of PDFs, audio, emails, and handwritten notes)
+- [DocumentCloud](https://www.documentcloud.org/) (Platform for journalists and researchers to annotate, publish, and search leaked or public-record documents)
+- [OCCRP Aleph](https://aleph.occrp.org/) (Global data platform indexing millions of leaked and public corporate records, court filings, and sanctions lists)
+- [RECAP / CourtListener](https://www.courtlistener.com/recap/) (Project by the Free Law Project to archive, search, and liberate millions of federal and state court legal documents)
+- [Wayback Machine (Internet Archive)](https://archive.org/web/) (Essential document and historical page search engine for recovering dead links, deleted PDFs, and past snapshots of target sites)
+- [De-facto (Deprecated - Closed)](https://archive.org/) *(Historical research search platform that has been shut down or absorbed)*
+
+### **Main National Search Engines**
+Localized search engines categorized by tier and region for regional reconnaissance and OSINT.
+
+**Tier 1 — Strategic Global Powers (China, Russia, South Korea)**
+- [Baidu](https://www.baidu.com/) (China) - The dominant search engine used in China, essential for tracking regional entities, domestic Chinese web assets, and localized metadata.
+- [Yandex](https://yandex.com/) (Russia) - Primary search engine for Russia and Eastern Europe, featuring superior reverse image search capabilities and deep regional indexing.
+- [Naver](https://www.naver.com/) (South Korea) - South Korea's dominant web portal and search engine, critical for uncovering local blogs, forums (Cafe), and community discourse.
+- [Daum](https://www.daum.net/) (South Korea) - Major South Korean portal and search engine used widely for community forums and localized content.
+- [SoGou](https://www.sogou.com/) (China) - Major Chinese search engine owned by Tencent, indexing specialized localized content such as WeChat official account articles.
+
+**Tier 2 — Global Search Engines**
+- [Google](https://www.google.com/) (Global) - The standard global search engine utilized worldwide for broad reconnaissance, dorking, and open-source intelligence gathering.
+- [Bing](https://www.bing.com/) (Global) - Microsoft's global search engine, frequently used as an alternative indexing source for unique results and file types.
+- [Yahoo](https://www.yahoo.com/) (Global) - Long-standing global web portal and search engine.
+
+**Tier 3 — Regional and Localized Search Engines**
+- Alleba (Philippines) - Regional search engine indexing Philippine web properties and local directories.
+- Eniro (Sweden) - Scandinavian local search engine and business directory covering Sweden and Nordic regions.
+- Gerdoo (Iran) - Iranian regional search engine.
+- Goo (Japan) - Japanese web portal and search engine operated by NTT Resonant.
+- Najdi (Slovenia) - Slovenian search engine and web portal.
+- Onet.pl (Poland) - Leading Polish web portal and search engine.
+- Orange (France) - French telecommunications portal and regional search utility.
+- Parseek (Iran) - Iranian web directory and search engine.
+- SAPO (Portugal) - Major Portuguese web portal and search engine.
+- Search.ch (Switzerland) - Swiss local directory and search utility.
+- Seznam (Czech Republic) - Czech web portal and dominant local search engine.
+- Walla (Israel) - Israeli web portal and search engine.
+- Zarebin (Iran) - Iranian search engine and media discovery tool.
+- Coc Coc (Vietnam) - Vitename specialised search engine !  
+
+**Data Breach Search Engines**
+`Search engines and tools that can be used to check if your data's been breached: Only tho i personally hate this just learn DarkWebINT`
+
+- [CheckLeaked](https://checkleaked.cc/) - Check if an email, username or phone appears in a data breach, showing the sources; free searches, developer API and chat bots.
+- CredenShow - Identify your compromised credentials before others do.
+- HIB Ransomed - Because people have the right to know if their data has been leaked.
+- HEROIC.NOW - Has your data been leaked on the dark web? Scan your identities for FREE.
+- IKnowYour.Dad - Data Breach Search Engine.
+- Leaker - Passive leak enumeration CLI tool that searches across 10 breach databases simultaneously.
+- NOX - Recursive async framework for deep breach analysis and identity pivoting.
+- [OsintCat](https://www.osintcat.net/) - Check if an email address has been exposed in known data breaches. Fast lookup across multiple breach databases, with a simple API available.
+- StealSeek - Powerful search engine designed to help you find and analyze data breaches.
+- Venacus - Search for your data breaches and get notified when your data is compromised.
+
 **Bonus tools**
 
 > Putting my Instagram reels to go use :) 
 ```
 Ip address -> what is downloaded by the user: http://iknowwhatyoudownload.com/ (this was not opening in my pc :[ )
-
 ```
 
 > Practitioners Note: if you ever get someone pgp keys you can decode it using https://cirw.in/gpg-decoder to decode it to get the email id  
 
-### Geo-Osint 
+## Geo-Osint 
 
 > practice this using geo-gusser
 
