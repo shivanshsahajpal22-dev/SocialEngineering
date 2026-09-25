@@ -59,7 +59,7 @@ Never use:
 * A photo of a real person (reverse-image-searchable in seconds)
 * A stock photo (indexed by every reverse image search engine)
 * An AI face from a well-known generator without processing 
-* ThisPersonDoesNotExist.com* faces are now detectable by several tools including Hive Moderation and AI-or-Not
+* ThisPersonDoesNotExist.com* faces are now detectable by several tools including Hive Moderation and AI-or-Not {just use social engineering to gt the face ;)}
 
 > **Recommended approach:**
 > 1. Generate a base face using StyleGAN2 or a similar local model *(run locally — do not use web-based generators that log inputs)*.
