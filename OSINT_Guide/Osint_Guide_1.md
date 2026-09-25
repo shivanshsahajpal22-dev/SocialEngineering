@@ -204,7 +204,7 @@ Alleba (Philippines), Eniro (Sweden/Nordics), Gerdoo (Iran), Goo (Japan), Najdi 
  
 **Fingerprint / leak testing (test yourself before you test anyone else):**
 [BrowserLeaks](https://browserleaks.com), [packet.guru](https://packet.guru) (WebRTC/DNS leak test, TLS/TCP fingerprinting, VPN/proxy/Tor detection with a trust score, no signup), [Tor Browser](https://www.torproject.org)
- 
+
 **Privacy-respecting daily-driver apps:**
 ```
 VPN              -> Proton VPN or Mullvad VPN
@@ -220,6 +220,59 @@ Note-taking      -> Obsidian or Joplin
  
 **Deprioritized:** Abandoned public proxy lists
  
+---
+### 19. Countries Where Google Maps / Street View Has Significant Restrictions
+
+**Fully or largely absent from Street View:**
+- **North Korea** — no Street View at all, satellite imagery is deliberately degraded by the regime, Maps shows almost no road detail
+- **China** — Google Maps and Street View are blocked entirely inside China (use **[Baidu Maps](https://map.baidu.com/)** or **[Amap/Gaode](https://amap.com/)** instead — far better coverage for China than anything Google has)
+- **Saudi Arabia** — Street View only recently became partially available and coverage is still very patchy outside major cities
+- **Iran** — Google Maps accessible but Street View coverage is almost nonexistent, satellite imagery is limited in detail
+- **Cuba** — very sparse Street View, road data is poor
+- **Bhutan** — almost no Street View, government restricts most mapping
+- **Turkmenistan** — effectively no Street View coverage
+
+**Partial/restricted Street View for security reasons:**
+- **Israel** — by law (Mapping and Databases Law), Google must blur military sites and certain government buildings before publishing imagery; coverage exists but with deliberate gaps
+- **India** — Street View was banned for years over national security concerns, only returned in 2022 with restrictions near border regions and military installations
+- **Russia** — Street View still exists but Google stopped updating it after 2022 and the existing imagery is aging fast; use **[Yandex Maps](https://yandex.com/maps/)** (specifically **[Yandex Panorama](https://yandex.com/maps/)**) which has far better and more current Russian Street View coverage
+- **Ukraine** — Google paused Street View collection in active conflict zones
+- **Pakistan** — Street View coverage is extremely sparse outside Islamabad and Lahore
+
+**Countries where Google Maps exists but local alternatives are far better:**
+- **China** $\rightarrow$ **[Baidu Maps](https://map.baidu.com/)** / **[Amap (Gaode)](https://amap.com/)** — Google has no usable China data
+- **Russia** $\rightarrow$ **[Yandex Maps](https://yandex.com/maps/)** — much fresher and denser Street View than Google
+- **Japan** — Google is good but **[Mapion](https://www.mapion.co.jp/)** and **[Yahoo Japan Maps](https://map.yahoo.co.jp/)** have detail Google misses at hyper-local level
+- **South Korea** $\rightarrow$ **[Naver Maps](https://map.naver.com/)** / **[Kakao Maps](https://map.kakao.com/)** — Korean law restricts Google from having full-resolution map data, so local apps are far superior
+- **Czech Republic** $\rightarrow$ **[Mapy.cz](https://en.mapy.cz/)** — significantly better hiking/rural coverage
+- **Germany** — Google Street View coverage is intentionally very sparse because a large number of German residents legally opted out when Street View launched (right to be forgotten requests blurred entire streets); **[OpenStreetMap](https://www.openstreetmap.org/)** + **[Mapillary](https://www.mapillary.com/)** often have better German ground-level coverage
+
+#### The Practical Implications for Geo-OSINT
+
+> If your image looks like it could be China and Google Maps shows you nothing useful $\rightarrow$ switch to **[Baidu Maps](https://map.baidu.com/)** immediately, it is not a fallback, it is the primary tool for China
+
+> If your image looks Russian and Street View imagery looks old or is missing $\rightarrow$ **[Yandex Maps Street View (Panorama)](https://yandex.com/maps/)** is what you actually want, it has coverage Google does not
+
+> If your image looks South Korean $\rightarrow$ **[Naver Maps](https://map.naver.com/)** or **[Kakao Maps](https://map.kakao.com/)** will show you ground-level imagery in areas Google cannot legally provide at full resolution
+
+> If your image is in a military-adjacent area in Israel, India, or Pakistan $\rightarrow$ the deliberate blur / absence on Google is itself a clue that you are near a sensitive site
+
+> If there is simply no Street View anywhere near your candidate location $\rightarrow$ **[Mapillary](https://www.mapillary.com/)** is community-contributed ground-level imagery and covers many areas Google has never sent a car to
+
+#### Quick Reference — What to Use Where
+
+| Location | Primary Map Tool | Street View Equivalent |
+| :--- | :--- | :--- |
+| **China** | **[Baidu Maps](https://map.baidu.com/)** / **[Amap](https://amap.com/)** | Baidu Street View |
+| **Russia** | **[Yandex Maps](https://yandex.com/maps/)** | Yandex Panorama |
+| **South Korea** | **[Naver Maps](https://map.naver.com/)** / **[Kakao](https://map.kakao.com/)** | Naver Street View |
+| **North Korea** | None useful | Literally nothing |
+| **Germany (sparse)** | **[OpenStreetMap](https://www.openstreetmap.org/)** | **[Mapillary](https://www.mapillary.com/)** |
+| **Japan (hyper-local)** | **[Yahoo Japan Maps](https://map.yahoo.co.jp/)** | Google still usable |
+| **Global gaps** | **[Mapillary](https://www.mapillary.com/)** | Community-contributed imagery |
+| **Conflict zones** | **[LiveUAMap](https://liveuamap.com/)** + **[OSM](https://www.openstreetmap.org/)** | Older cached Google imagery |
+
+> **The bottom line for geo-OSINT:** Google Maps is not a single global truth — it is a patchwork of varying coverage, legal restrictions, deliberate blurring, and aging imagery. Knowing which country you are looking at (which your Stages 1–4 already narrow down) tells you immediately which mapping tool is actually authoritative for that region.
 ---
 
 **Bonus tools**
