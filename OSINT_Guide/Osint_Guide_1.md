@@ -2,11 +2,11 @@
 
 ## MY OSINT DASHBOARD 
 
-> This is people related OSINT not company related if you want that it's in web exploitation guide passive recon 
+> This is people-related OSINT, not company-related. If you want that, it's in the web exploitation guide passive recon 
 
-**last updated** - `24 september 2026`
+**last updated** - `25 september 2026`
 
-Organized by investigative pivot. Each category leads with the tools actually worth reaching for; anything kept only for completeness sits in a **Deprioritized** bucket at the end of that same category, not mixed in above the fold.
+Organized by Investigative Pivot. Each category leads with the tools actually worth reaching for; anything kept only for completeness sits in a **Deprioritized** bucket at the end of that same category, not mixed in above the fold.
  
 ---
  
@@ -277,6 +277,30 @@ Note-taking      -> Obsidian or Joplin
 ### 20. Social Media & Video Geolocation Search Tools + advanced social media search engines 
 (Focused specifically on discovering user-generated media, location-tagged uploads, and spatial tracking across platforms during an investigation)
 
+`advanced search engines`
+* Honorable mention here btw => [Awesome-Telegram-OSINT](https://github.com/ItIsMeCall911/Awesome-Telegram-OSINT)
+* **[Getdaytrends.com](https://getdaytrends.com/)** : Check the active social media trends
+
+* **Instagram**
+  * **[Toutatis](https://github.com/megadose/toutatis)**: Python tool designed to extract hidden profile details from target Instagram accounts, including linked phone numbers, masked emails, and internal user IDs.
+  * **[Osintgram](https://github.com/Datalux/Osintgram)**: Interactive CLI tool that parses an Instagram profile to automatically map followers, target captions, utilized hashtags, and geotagged locations.
+* **Twitter / X**
+  * **[Twint](https://github.com/twintproject/twint)**: Open-source intelligence tool that scrapes tweets, lists, and user metadata without requiring the official Twitter/X API or authentication keys, bypassing standard rate limits.
+  * **[Twitonomy](https://www.twitonomy.com/)**: Web-analytics platform providing granular visual stats on a user's posting habits, active hours, retweet networks, and geographical context.
+* **LinkedIn**
+  * **[CrossLinked](https://github.com/m8sec/CrossLinked)**: Reconnaissance tool designed to harvest valid employee names, structural titles, and email permutations from LinkedIn via search engine scraping without needing an authenticated user account.
+* **Reddit**
+  * **[ThinkPol](https://think-pol.com/)**: Professional-grade archival search engine providing full-archive historical text search, covering user deletions, moderator removals, and pre-edit versions.
+  * **[Reveddit](https://www.reveddit.com/)**: Transparency utility used to track and audit content silently removed or filtered by moderators on target user profiles or subreddits.
+* **Discord**
+  * **Snowflake ID / Metadata Extractors**: Specialized lookup utilities (such as Discord developer utilities and historical guild mappers) used to extract account creation timelines, public metadata, and server association patterns via unique user IDs.
+  * **Server & Message Indexers**: Third-party public chat archives and server directories (such as DiscordGate) used to track public user activity, historical message presence, and mutual guild memberships across open ecosystems.
+* **Telegram**
+  * **[Tgstat](https://tgstat.com/) / Livegram**: Dedicated platform search engines and indexes used to track channel growth metrics, message history logs, and cross-reference public group mentions.
+
+Deprioritized: Standard native platform search bars (natively scrub deep historical metadata, restrict advanced boolean queries, and impose aggressive rate-limits on unauthenticated enumeration)
+
+`geo location`
 * **[YouTube Geofind (MW Geofind)](https://mattw.io/youtube-geofind/location)**: The direct counterpart enabling radius-based searches and bulk metadata exports for geotagged YouTube videos.
 * **[Echosec](https://www.echosec.net/)**: Commercial geospatial OSINT platform that aggregates social media posts (X/Twitter, YouTube, VK, and others) by drawing a bounding box or radius over a map interface.
 * **Scylla / Social Media Map Search Tools**: Specialized scripts and wrappers that query platform APIs to filter content based on coordinate bounding limits or embedded location tags.
@@ -285,10 +309,6 @@ Note-taking      -> Obsidian or Joplin
 * **Twitter/X Advanced Search Operators**: Utilizing manual string parameters (`geocode:lat,long,radius`) via the search bar to surface tweets containing native GPS coordinates or location markers.
 
 Deprioritized: Native platform search bars (natively scrub or heavily obscure granular coordinate data without specialized third-party filtering layers)
-
-[The 2026 OSINT Method: How to EASILY TRACK and Find Someone Online](https://m.youtube.com/watch?v=smf1_NY3680)
-
-This video provides an overview of modern open-source tracking techniques, demonstrating how digital footprints and public uploads are analyzed during an investigation.
 
 ---
 
