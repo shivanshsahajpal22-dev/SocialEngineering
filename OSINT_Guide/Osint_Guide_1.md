@@ -235,18 +235,18 @@ Localized search engines categorized by tier and region for regional reconnaissa
 > Verified individually, not just carried over unquestioned. Grouped by what they used to cover.
 
 *Attack surface / general search — dead or pivoted*
-- <!--[Zanran (Deprecated - Pivoted away)](https://zanran.com) *(the original public data/graph search engine is entirely gone; the domain now hosts an unrelated B2B private-equity reporting product)*
-- <!--[Zapmeta (Deprecated - Defunct)](https://www.zapmeta.com) *(a 2003-era meta-search engine with no evidence of activity since; the domain now blocks automated access entirely, consistent with a parked/abandoned site)*
-- <!--[Mamont / mmnt.ru (Deprecated - Niche/rarely used)](https://www.mmnt.ru/) *(technically still online — a Russian-language global FTP file index with billions of files — but not something a professional investigator reaches for outside very specific FTP-leak hunting, and the interface is Russian-only)*
-- <!--[2lingual Search (Deprecated - Not OSINT-relevant)](https://www.2lingual.com) *(confirmed still functional, but it's a bilingual Google search wrapper with no investigative utility)*
+- <!--[Zanran (Deprecated - Pivoted away)](https://zanran.com) *(the original public data/graph search engine is entirely gone; the domain now hosts an unrelated B2B private-equity reporting product)* -->
+- <!--[Zapmeta (Deprecated - Defunct)](https://www.zapmeta.com) *(a 2003-era meta-search engine with no evidence of activity since; the domain now blocks automated access entirely, consistent with a parked/abandoned site)* -->
+- <!--[Mamont / mmnt.ru (Deprecated - Niche/rarely used)](https://www.mmnt.ru/) *(technically still online — a Russian-language global FTP file index with billions of files — but not something a professional investigator reaches for outside very specific FTP-leak hunting, and the interface is Russian-only)* -->
+- <!--[2lingual Search (Deprecated - Not OSINT-relevant)](https://www.2lingual.com) *(confirmed still functional, but it's a bilingual Google search wrapper with no investigative utility)* -->
 
 *Document/records/science search — sunset or broken*
-- <!--[WorldWideScience.org (Deprecated - Sunset)](https://worldwidescience.org) *(the homepage now shows retrospective "thanks to our founding partners" language, and reference sources have shifted to describing it in the past tense)*
-- <!--[Biznar (Deprecated - Defunct)](https://biznar.com) *(Deep Web Technologies wound down its federated-search products years ago; no evidence of activity since roughly 2015)*
-- <!--[CiteSeerX (Deprecated - Currently broken)](https://citeseer.ist.psu.edu) *(the domain currently serves a bare placeholder page instead of the actual academic search index)*
+- <!--[WorldWideScience.org (Deprecated - Sunset)](https://worldwidescience.org) *(the homepage now shows retrospective "thanks to our founding partners" language, and reference sources have shifted to describing it in the past tense)* -->
+- <!--[Biznar (Deprecated - Defunct)](https://biznar.com) *(Deep Web Technologies wound down its federated-search products years ago; no evidence of activity since roughly 2015)* -->
+- <!--[CiteSeerX (Deprecated - Currently broken)](https://citeseer.ist.psu.edu) *(the domain currently serves a bare placeholder page instead of the actual academic search index)* -->
 
 *Records/listings — pivoted to paid enterprise product*
-- <!--[Harmari Unified Listings Search (Deprecated - Pivoted away)](https://www.harmari.com/search/unified) *(rebranded to "Neumo" and pivoted into a paid short-term-rental/tax-compliance product; this specific link no longer functions as a general search tool)*
+- <!--[Harmari Unified Listings Search (Deprecated - Pivoted away)](https://www.harmari.com/search/unified) *(rebranded to "Neumo" and pivoted into a paid short-term-rental/tax-compliance product; this specific link no longer functions as a general search tool)* -->
 ---
 **Bonus tools**
 
