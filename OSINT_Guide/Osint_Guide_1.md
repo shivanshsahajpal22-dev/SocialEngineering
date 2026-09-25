@@ -158,6 +158,96 @@ Localized search engines categorized by tier and region for regional reconnaissa
 - StealSeek - Powerful search engine designed to help you find and analyze data breaches.
 - Venacus - Search for your data breaches and get notified when your data is compromised.
 
+**Search engines for specific information or topics**
+
+**Attack Surface / Exposed Device Search Engines**
+- [Shodan](https://www.shodan.io/) - The foundational IoT/exposed-device search engine
+- [Censys](https://search.censys.io/) - Attack-surface search engine, monitors and analyzes internet-connected devices
+- [FOFA](https://en.fofa.info/) - Asset search and analysis tool, Shodan/Censys peer with strong China/APAC coverage
+- [ZoomEye](https://www.zoomeye.ai/) - Cyberspace search engine for IPs, domains, and internet asset/exposure discovery
+- <!-- [Netlas.io](https://app.netlas.io/) - Asset/attack-surface search engine (Commented out: redundant given Shodan and Censys coverage) -->
+- [ONYPHE](https://search.onyphe.io/) - OSINT engine indexing exposed assets and services across the internet
+- [Hunter Search Engine](https://hunter.how/) - Search exposed internet assets, open web directories, and more
+- <!-- [ODIN](https://search.odin.io/) - Search for hosts, CVEs, and exposed buckets/files; 10 free searches/day (Commented out: limited daily utility compared to main alternatives) -->
+- [FullHunt](https://fullhunt.io/) - Identifies and secures external attack surface
+
+**IP / Domain Reputation & Threat Intelligence**
+- [AbuseIPDB](https://www.abuseipdb.com/) - Repository of abuses reported by system administrators for IPs, Domains, and subnets
+- [Cisco Talos Intelligence](https://talosintelligence.com/reputation_center) - IP and Domain Reputation Center for real-time threat detection
+- [GreyNoise](https://viz.greynoise.io/) - Search exposed internet assets and malicious IPs, filters internet "background noise" from real targeted activity
+- [Criminal IP](https://www.criminalip.io/) - Cyber Threat Intelligence search engine and Attack Surface Management (ASM) platform
+- <!-- [SikkerAPI](https://www.sikkerapi.com/) - Free IP/threat intel provider — reputation scores, behavioral data, attack sessions across 16+ protocols (Commented out: niche source largely redundant next to AbuseIPDB and GreyNoise) -->
+- <!-- [BrightCloud](https://brightcloud.com/tools/url-ip-lookup.php) - Checks the reputation, category, and potential threats associated with a URL or IP address (Commented out: overly basic interface with limited free telemetry) -->
+- [Shadowserver](https://dashboard.shadowserver.org/) - Global cyber threat statistics dashboard, nonprofit-run and well-regarded
+
+**Malware & Abuse.ch Ecosystem**
+- [Abuse.ch Hunting](https://hunting.abuse.ch) - Hunt across all abuse.ch platforms with one simple query
+- [MalwareBazaar](https://bazaar.abuse.ch/browse/) - Search and download confirmed malware samples by hash, family, or tag
+- [YARAif](https://yaraify.abuse.ch/scan/) - Collaborative YARA engine, open threat intelligence via file pattern matching
+
+**Certificate Transparency / SSL Search**
+- [CRT Certificate Search](https://crt.sh) - Search public SSL/TLS certificates recorded in Certificate Transparency logs
+- <!-- [CertKit Certificate Search](https://www.certkit.io/tools/ct-logs/) - Fast search for public SSL/TLS certificate records (Commented out: crt.sh provides complete historical transparency coverage natively) -->
+
+**Network / BGP Intelligence**
+- [BGP.tools](https://bgp.tools) - Modern BGP toolkit for network reconnaissance and analysis
+- [BGP.he.net](https://bgp.he.net) - Free BGP and network intelligence toolkit, Hurricane Electric
+
+**Personal OPSEC / Fingerprint & Leak Testing**
+- [Browserleaks](https://browserleaks.com/) - Tests your own browser for privacy/fingerprinting leaks — essential self-OPSEC check, not just a target-facing tool
+- [packet.guru](https://packet.guru/) - Client-side WebRTC/DNS leak test, TLS/TCP fingerprinting, and VPN/proxy/Tor detection with a 0–100 trust score — no signup
+
+**Leak, Records & Document Platforms**
+- [Intelligence X](https://intelx.io/tools) - Searches leaks, historical paste sites, and dark web sources
+- [OCCRP Aleph](https://aleph.occrp.org/) - Global data platform indexing millions of leaked and public corporate records, court filings, and sanctions lists
+- [Internet Archive](https://archive.org/) - The parent project behind the Wayback Machine, also hosts books, media, and software archives
+
+**Cloud & Exposed Storage Search**
+- [GrayhatWarfare](https://grayhatwarfare.com/) - Searches and indexes open Amazon S3 buckets, one of the highest-yield exposed-data search tools
+
+**Web Application / CMS Security Scanning**
+- [Wpscan](https://wpscan.com) - Scans a WordPress site and returns an instant security report
+
+**Mobile Application OSINT**
+- [BeVigil](https://bevigil.com/search) - Search for assets like Subdomains, URLs, Parameters in mobile applications
+
+**Corporate / Brand / IP Records**
+- [WIPO Brand DB](https://www3.wipo.int/branddb/en/) - Global trademark/brand database, useful for corporate OSINT
+
+**Traffic & Infrastructure Intelligence**
+- [Cloudflare Radar](https://radar.cloudflare.com) - Internet traffic patterns, attacks, and technology trends
+
+**General / Custom Web Search**
+- [Google Custom Search](https://www.google.com/cse) - Build a scoped custom search engine over specific sites for a recurring investigation
+- [Million Short](https://millionshort.com) - Excludes the top N most popular results — genuinely useful for surfacing content SEO-dominant sites bury
+
+**Visual Search and Clustering Search Engines**
+> Search engines that scrape multiple sites (Google, Yahoo, Bing, etc.) at once and return clustered results
+- [Carrot2](https://search.carrot2.org) - Organizes your search results into topic clusters, still actively maintained/open-source
+
+**Similar Sites Search**
+> Find websites similar to a target site — useful for competitor/business-network mapping
+- [SimilarSites](https://www.similarsites.com) - Discover websites similar to each other
+
+---
+
+**Now degraded / not practically used**
+> Verified individually, not just carried over unquestioned. Grouped by what they used to cover.
+
+*Attack surface / general search — dead or pivoted*
+- [Zanran (Deprecated - Pivoted away)](https://zanran.com) *(the original public data/graph search engine is entirely gone; the domain now hosts an unrelated B2B private-equity reporting product)*
+- [Zapmeta (Deprecated - Defunct)](https://www.zapmeta.com) *(a 2003-era meta-search engine with no evidence of activity since; the domain now blocks automated access entirely, consistent with a parked/abandoned site)*
+- [Mamont / mmnt.ru (Deprecated - Niche/rarely used)](https://www.mmnt.ru/) *(technically still online — a Russian-language global FTP file index with billions of files — but not something a professional investigator reaches for outside very specific FTP-leak hunting, and the interface is Russian-only)*
+- [2lingual Search (Deprecated - Not OSINT-relevant)](https://www.2lingual.com) *(confirmed still functional, but it's a bilingual Google search wrapper with no investigative utility)*
+
+*Document/records/science search — sunset or broken*
+- [WorldWideScience.org (Deprecated - Sunset)](https://worldwidescience.org) *(the homepage now shows retrospective "thanks to our founding partners" language, and reference sources have shifted to describing it in the past tense)*
+- [Biznar (Deprecated - Defunct)](https://biznar.com) *(Deep Web Technologies wound down its federated-search products years ago; no evidence of activity since roughly 2015)*
+- [CiteSeerX (Deprecated - Currently broken)](https://citeseer.ist.psu.edu) *(the domain currently serves a bare placeholder page instead of the actual academic search index)*
+
+*Records/listings — pivoted to paid enterprise product*
+- [Harmari Unified Listings Search (Deprecated - Pivoted away)](https://www.harmari.com/search/unified) *(rebranded to "Neumo" and pivoted into a paid short-term-rental/tax-compliance product; this specific link no longer functions as a general search tool)*
+
 **Bonus tools**
 
 > Putting my Instagram reels to go use :) 
