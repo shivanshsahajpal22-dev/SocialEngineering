@@ -108,7 +108,7 @@ Organized by Investigative Pivot. Each category leads with the tools actually wo
 - Threat-actor profiling: [Mitre.org](https://www.mitre.org) or [Recorded Future](https://www.recordedfuture.com) (paid)
 - Network/BGP intelligence: [BGP.tools](https://bgp.tools), [BGP.he.net](https://bgp.he.net)
 - Traffic/infrastructure trends: [Cloudflare Radar](https://radar.cloudflare.com)
-**Deprioritized:** MaxMind GeoLite legacy offline formats; older static signature scanners without cloud threat feeds; Netlas.io (redundant given Shodan/Censys coverage); ODIN (10-searches/day cap too limited vs. main alternatives); SikkerAPI (niche, redundant next to AbuseIPDB/GreyNoise); BrightCloud (overly basic interface, limited free telemetry); CertKit Certificate Search (crt.sh already covers this natively)
+- **Deprioritized:** MaxMind GeoLite legacy offline formats; older static signature scanners without cloud threat feeds; Netlas.io (redundant given Shodan/Censys coverage); ODIN (10-searches/day cap too limited vs. main alternatives); SikkerAPI (niche, redundant next to AbuseIPDB/GreyNoise); BrightCloud (overly basic interface, limited free telemetry); CertKit Certificate Search (crt.sh already covers this natively)
  
 ---
  
