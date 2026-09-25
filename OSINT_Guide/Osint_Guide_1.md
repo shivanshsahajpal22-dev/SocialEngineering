@@ -6,247 +6,219 @@
 
 **last updated** - `24 september 2026`
 
-> Active tools upfront and deprecated tools mentioned in the last 
-
----> Framework Automation Hubs <-----
-- Automation Frameworks -> All-in-one OSINT and reconnaissance automation Current Best: [SpiderFoot](https://github.com/smicallef/spiderfoot) or [Recon-ng](https://github.com/lanmaster53/recon-ng)
-  - Now degraded tools: Maltego (heavily paywalled/restricted free tier), Datasploit (unmaintained)
+Organized by investigative pivot. Each category leads with the tools actually worth reaching for; anything kept only for completeness sits in a **Deprioritized** bucket at the end of that same category, not mixed in above the fold.
+ 
 ---
-- person's name -> name based address search Current Best: [TruePeopleSearch](https://www.truepeoplesearch.com) or [192.com](https://www.192.com) (us only)
-- person's name -> name based username and email generator Current Best: [soxoj's username-generation-guide](https://github.com/soxoj/username-generation-guide) and [transform_username](https://github.com/soxoj/transform_username) tool
-- person's name -> person name to phone number finder Current Best: [Truecaller](https://www.truecaller.com)
-- Person's name -> Company or work place finding Current best: [OpenCorporates](https://opencorporates.com). Then pivot to country-based pools
-  - Now degraded tools: Pipl (now fully commercial/paid-only), Spokeo (heavy restrictions/paywalls on free lookups)
+ 
+### 1. Automation Frameworks & All-in-One Platforms
+ 
+- **Self-hosted / open-source automation:** [SpiderFoot](https://github.com/smicallef/spiderfoot) or [Recon-ng](https://github.com/lanmaster53/recon-ng) — open these first on any investigation
+- **Hosted all-in-one platforms:** [Intell Base](https://intelbase.is/) — note: [OSINT CAT](https://www.osintcat.net/) also markets itself here, but its actual core function is breach-checking — see §10 (Exposed Data, Leaks & Code Repositories), listed there once to avoid duplicating the same URL under two labels
+**Deprioritized:** Maltego (heavily paywalled/restricted free tier), Datasploit (unmaintained)
+ 
 ---
-- Username -> Username search engines Current Best: [maigret](https://github.com/soxoj/maigret) or [Sherlock](https://github.com/sherlock-project/sherlock)
-- Username -> look at writing style for stylometry Current Best: [JStylo](https://github.com/psal/jstylo)
-- Username -> Use snowflake decoding on social media account Current Best: [singhajit.com/tools/snowflake-decoder](https://singhajit.com/tools/snowflake-decoder)
-- Username -> Shortcode/Id to snowflake ID converter Current Best: [Tweeterid.com](https://tweeterid.com) + [Instagram Shortcode Converter](https://techconverter.me/instagram-shortcode-to-date)
-  - Now degraded tools: WhatsMyName (older local python wrappers lacking active updates compared to web/maigret)
+ 
+### 2. Person Identity — Name-Based Pivots
+ 
+- Address search: [TruePeopleSearch](https://www.truepeoplesearch.com) or [192.com](https://www.192.com) (US only)
+- Username/email generation: [soxoj's username-generation-guide](https://github.com/soxoj/username-generation-guide) + [transform_username](https://github.com/soxoj/transform_username)
+- Phone number by name: [Truecaller](https://www.truecaller.com)
+- Company/workplace: [OpenCorporates](https://opencorporates.com) — full corporate-records listing under §8, then pivot to country-based registries
+**Deprioritized:** Pipl (now fully commercial/paid-only), Spokeo (heavy restrictions/paywalls on free lookups)
+ 
 ---
-- Image -> Reverse Image search Current Best: [Yandex Images](https://yandex.com/images) or [Google Lens](https://lens.google.com)
-- Image -> Face image people searcher Current Best: [Facecheck.id](https://facecheck.id) or [lenso.ai](https://lenso.ai)
-- Image -> Meta data extractor tool Current Best: [Exiftool](https://exiftool.org) or [EXIF.tools](https://exif.tools)
-- Image -> Street view websites Current Best: [Google Street View](https://www.google.com/maps), [Yandex Panorama](https://yandex.com/maps), [Mapillary](https://www.mapillary.com), [KartaView](https://kartaview.org), [Panoramax](https://panoramax.fr)
-- Image -> Advance street view query engine: [Overpass-turbo](https://overpass-turbo.eu)
-- Image -> Geolocator finder and hunter Current Best: [GeoSeeker](https://geoseeker.com), [GeoAxis](https://geoaxis.com) or [Picarta.ai](https://picarta.ai)
-- Image -> image based hints collection base Current Best: [GeoHints](https://geohints.com)
-- Image -> Shadow to location pinpointing Current Best: [SunCalc](https://www.suncalc.org), [ShadowMap](https://shadowmap.org) and [ShadowFinder](https://github.com/bellingcat/ShadowFinder)
-  - Now degraded tools: TinEye (outperformed by modern neural reverse search engines)
+ 
+### 3. Username Pivots
+ 
+- Search engines: [maigret](https://github.com/soxoj/maigret) or [Sherlock](https://github.com/sherlock-project/sherlock)
+- Stylometry (writing-style analysis): [JStylo](https://github.com/psal/jstylo)
+- Snowflake ID decoding: [singhajit.com snowflake-decoder](https://singhajit.com/tools/snowflake-decoder)
+- Shortcode/ID converters: [Tweeterid.com](https://tweeterid.com) + [Instagram Shortcode Converter](https://techconverter.me/instagram-shortcode-to-date)
+**Deprioritized:** WhatsMyName (older local Python wrappers lacking active updates compared to the web version/maigret)
+ 
 ---
-- Email address -> Email-ID search engine Current Best: [Epieos](https://epieos.com) or [Holehe](https://github.com/megadose/holehe) or [Mailmeteor](https://mailmeteor.com), if Gmail use [GHunt](https://github.com/mxrch/GHunt)
-- Email address -> Email-ID format predictors Current Best: [Mailmeteor Email Permutator](https://mailmeteor.com/email-permutator)
-- Email address -> Email-ID verification engines Current Best: [MyEmailVerifier](https://myemailverifier.com) or [VerifyEmailAddress](https://www.verifyemailaddress.org)
-- Email address -> Email-ID breach data searchers Current Best: [Have I Been Pwned](https://haveibeenpwned.com)
-- Email address -> Email-ID Mail blacklist processor Current Best: [MXToolbox SuperTool](https://mxtoolbox.com/SuperTool.aspx)
-  - Now degraded tools: Skymem (drastically throttled free export limits)
+ 
+### 4. Image & Visual Pivots
+ 
+- Reverse image search: [Yandex Images](https://yandex.com/images) or [Google Lens](https://lens.google.com)
+- Face search: [Facecheck.id](https://facecheck.id) or [lenso.ai](https://lenso.ai)
+- Metadata extraction: [Exiftool](https://exiftool.org) or [EXIF.tools](https://exif.tools)
+- Street view coverage: [Google Street View](https://www.google.com/maps), [Yandex Panorama](https://yandex.com/maps), [Mapillary](https://www.mapillary.com), [KartaView](https://kartaview.org), [Panoramax](https://panoramax.fr)
+- Advanced street-view query engine: [Overpass-turbo](https://overpass-turbo.eu)
+- Geolocation hunters: [GeoSeeker](https://geoseeker.com), [GeoAxis](https://geoaxis.com), [Picarta.ai](https://picarta.ai)
+- Geolocation hints database: [GeoHints](https://geohints.com)
+- Shadow-based location pinpointing: [SunCalc](https://www.suncalc.org), [ShadowMap](https://shadowmap.org), [ShadowFinder](https://github.com/bellingcat/ShadowFinder)
+**Deprioritized:** TinEye (outperformed by modern neural reverse-search engines)
+ 
 ---
-- Phone number -> phone number databases Current Best: [Truecaller](https://www.truecaller.com) or [PhoneInfoga](https://github.com/sundowndev/phoneinfoga)
-  - Now degraded tools: Twilio Lookup basic carrier APIs (heavily restricted to verified commercial accounts)
+ 
+### 5. Email Pivots
+ 
+- Search engines: [Epieos](https://epieos.com), [Holehe](https://github.com/megadose/holehe), [Mailmeteor](https://mailmeteor.com) — Gmail specifically: [GHunt](https://github.com/mxrch/GHunt)
+- Format prediction: [Mailmeteor Email Permutator](https://mailmeteor.com/email-permutator)
+- Verification: [MyEmailVerifier](https://myemailverifier.com) or [VerifyEmailAddress](https://www.verifyemailaddress.org)
+- Breach data: [Have I Been Pwned](https://haveibeenpwned.com) — broader breach-search catalog in §10
+- Mail blacklist check: [MXToolbox SuperTool](https://mxtoolbox.com/SuperTool.aspx)
+**Deprioritized:** Skymem (drastically throttled free export limits)
+ 
 ---
-- Search Engines -> Search engine dorker Current Best: [Dorkgpt](https://www.dorkgpt.com) or [pagodo](https://github.com/opsdisk/pagodo) or [Google Hacking Database](https://www.exploit-db.com/google-hacking-database)
-  - Now degraded tools: Unindexed basic google scraping scripts without captcha solving or proxy pools
+ 
+### 6. Phone Number Pivots
+ 
+- [Truecaller](https://www.truecaller.com) or [PhoneInfoga](https://github.com/sundowndev/phoneinfoga)
+**Deprioritized:** Twilio Lookup basic carrier APIs (heavily restricted to verified commercial accounts)
+ 
 ---
-- IP address -> to geolocation and ownership Current Best: [Ipinfo](https://ipinfo.io) and [ViewDNS.info](https://viewdns.info)
-- IP address -> Exposed services and devices: [Shodan](https://www.shodan.io) or [Censys](https://censys.io)
-- IP address -> Understanding if it a tor/vpn node Current Best: [IPQualityScore](https://www.ipqualityscore.com), [GetIPIntel](https://getipintel.net)
-  - Now degraded tools: MaxMind GeoLite legacy offline formats
+ 
+### 7. Domain & Website Pivots
+ 
+**Before anything manual:** [theHarvester](https://github.com/laramies/theHarvester)
+ 
+- WHOIS/ownership: [WhoisXML](https://www.whoisxmlapi.com) or [ICANN Lookup](https://lookup.icann.org)
+- Subdomain enumeration: [crt.sh](https://crt.sh) or [Amass](https://github.com/owasp-amass/amass) — crt.sh is also your certificate-transparency tool, cross-referenced in §9
+- Archived/deleted content: [Wayback Machine](https://web.archive.org)
+- Domain → IP resolution: [dig](https://linux.die.net/man/1/dig)
+- Exposed document metadata: [FOCA](https://github.com/ElevenPaths/FOCA) or [Metagoofil](https://github.com/laramies/metagoofil)
+**Deprioritized:** Sublist3r (unmaintained, broken API endpoints)
+ 
 ---
----> Before you do anything manually, with [theHarvester](https://github.com/laramies/theHarvester) <-----
-- Domain name/website -> WHOIS/Ownership records Current Best: [WhoisXML](https://www.whoisxmlapi.com) or [ICANN Lookup](https://lookup.icann.org)
-- Domain name/website -> Subdomain enumeration Current Best: [crt.sh](https://crt.sh) or [Amass](https://github.com/owasp-amass/amass)
-- Domain name/website -> archived or deleted content Current Best: [Wayback Machine](https://web.archive.org)
-- Domain name/Website -> Domain name to ip address Current Best: [dig](https://linux.die.net/man/1/dig)
-- Domain name/website -> exposed document's metadata Current Best: [FOCA](https://github.com/ElevenPaths/FOCA) or [Metagoofil](https://github.com/laramies/metagoofil)
-  - Now degraded tools: Sublist3r (unmaintained, broken api endpoints)
+ 
+### 8. Company & Corporate Records
+ 
+- Ownership/registry: [OpenCorporates](https://opencorporates.com) or [Crunchbase](https://www.crunchbase.com)
+- Trademark/brand records: [WIPO Brand DB](https://www3.wipo.int/branddb/en/)
+**Deprioritized:** Gleif (too narrow/niche for broad enterprise identification)
+ 
 ---
-- Company name/ownership -> Ownership and registry Current Best: [OpenCorporates](https://opencorporates.com) or [Crunchbase](https://www.crunchbase.com)
-  - Now degraded tools: Gleif (too narrow/niche for broad enterprise identification)
+ 
+### 9. Infrastructure, Attack Surface & Threat Intelligence
+ 
+*(Merged from what was previously four overlapping sections — IP-address pivots, attack-surface search engines, IP/domain reputation, and general threat intel all answer the same underlying question: "what do we know about this IP/domain/host's exposure and reputation")*
+ 
+- IP geolocation/ownership: [Ipinfo](https://ipinfo.io) and [ViewDNS.info](https://viewdns.info)
+- Exposed devices/services (attack-surface search engines): [Shodan](https://www.shodan.io), [Censys](https://search.censys.io), [FOFA](https://en.fofa.info), [ZoomEye](https://www.zoomeye.ai), [ONYPHE](https://search.onyphe.io), [Hunter Search Engine](https://hunter.how), [FullHunt](https://fullhunt.io)
+- Tor/VPN detection: [IPQualityScore](https://www.ipqualityscore.com), [GetIPIntel](https://getipintel.net)
+- IP/domain reputation: [AbuseIPDB](https://www.abuseipdb.com), [Cisco Talos Intelligence](https://talosintelligence.com/reputation_center), [GreyNoise](https://viz.greynoise.io), [Criminal IP](https://www.criminalip.io), [Shadowserver](https://dashboard.shadowserver.org)
+- Malware intelligence (abuse.ch ecosystem): [Abuse.ch Hunting](https://hunting.abuse.ch), [MalwareBazaar](https://bazaar.abuse.ch/browse/), [YARAify](https://yaraify.abuse.ch/scan/)
+- General IOC/CVE feeds: [VirusTotal](https://www.virustotal.com), [AlienVault OTX](https://otx.alienvault.com), [CVE Details](https://www.cvedetails.com)
+- Threat-actor profiling: [Mitre.org](https://www.mitre.org) or [Recorded Future](https://www.recordedfuture.com) (paid)
+- Network/BGP intelligence: [BGP.tools](https://bgp.tools), [BGP.he.net](https://bgp.he.net)
+- Traffic/infrastructure trends: [Cloudflare Radar](https://radar.cloudflare.com)
+**Deprioritized:** MaxMind GeoLite legacy offline formats; older static signature scanners without cloud threat feeds; Netlas.io (redundant given Shodan/Censys coverage); ODIN (10-searches/day cap too limited vs. main alternatives); SikkerAPI (niche, redundant next to AbuseIPDB/GreyNoise); BrightCloud (overly basic interface, limited free telemetry); CertKit Certificate Search (crt.sh already covers this natively)
+ 
 ---
-- flight/ship info -> real time flight tracking Current Best: [FlightRadar24](https://www.flightradar24.com)
-- flight/ship info -> Flight history and data Current Best: [FlightAware](https://www.flightaware.com)
-- flight/ship info -> Marine traffic and ship tracking Current Best: [MarineTraffic](https://www.marinetraffic.com)
-- flight/ship info -> Vessel and container tracking Current Best: [VesselFinder](https://www.vesselfinder.com)
-- flight/ship info -> for train info and past data Current Best: [OpenRailwayMap](https://www.openrailwaymap.org)
-  - Now degraded tools: PlaneFinder (less comprehensive tracking density than FlightRadar24)
+ 
+### 10. Exposed Data, Leaks & Code Repositories
+ 
+*(Merged from three previously separate lists — code/pastebin leaks, exposed cloud storage, and breach-search engines are all the same investigative move: "has this person/org's data already leaked somewhere")*
+ 
+- Source-code leak scanning: [Gitleaks](https://github.com/gitleaks/gitleaks) or GitHub Code Search
+- Exposed cloud storage: [GrayhatWarfare](https://grayhatwarfare.com) — one of the highest-yield tools in this entire list for open S3 buckets
+- Breach/leak search engines: [CheckLeaked](https://checkleaked.cc), [OSINT CAT / OsintCat](https://www.osintcat.net) (same site as the §1 cross-reference), [StealSeek](https://stealseek.com), [Venacus](https://venacus.com), CredenShow, HIB Ransomed, HEROIC.NOW, IKnowYour.Dad, Leaker (passive CLI, 10 breach DBs at once), NOX (recursive async breach/identity pivoting)
+- Historical paste-site & dark-web indexing: [Intelligence X](https://intelx.io/tools)
+**Deprioritized:** Pastebin basic unauthenticated scrapers (heavily rate-limited by Cloudflare)
+ 
 ---
-- Social Media -> Platform-specific aggregator search Current Best: [Social-Searcher](https://www.social-searcher.com) or [Social Analyzer](https://github.com/qeeqbox/social-analyzer)
-  - Now degraded tools: Twint (frequently breaks due to continuous X/Twitter API structural updates)
+ 
+### 11. Dark Web Monitoring
+ 
+- [Ahmia](https://ahmia.fi) or [Dark.fail](https://dark.fail)
+**Deprioritized:** Torch (unreliable index uptime, dead mirrors)
+ 
 ---
-- Instant Messaging -> Telegram, WhatsApp, and Discord OSINT Current Best: [Telemint](https://github.com/telemint/telemint) or Telegram search dorks via [Google CSE](https://cse.google.com)
-  - Now degraded tools: ChatWatch (outdated WhatsApp status tracking scripts)
+ 
+### 12. Cryptocurrency & Blockchain Tracing
+ 
+- [Blockchair](https://blockchair.com) or [Arkham Intelligence](https://platform.arkhamintelligence.com)
+**Deprioritized:** BitcoinWhosWho (archaic UI, minimal free tracking depth)
+ 
 ---
-- Cryptocurrencies -> Blockchain transaction tracing Current Best: [Blockchair](https://blockchair.com) or [Arkham Intelligence](https://platform.arkhamintelligence.com)
-  - Now degraded tools: BitcoinWhosWho (archaic user interface and minimal free tracking depth)
+ 
+### 13. Social Media & Messaging Platforms
+ 
+- Platform-aggregator search: [Social-Searcher](https://www.social-searcher.com) or [Social Analyzer](https://github.com/qeeqbox/social-analyzer)
+- Instant messaging (Telegram/WhatsApp/Discord): [Telemint](https://github.com/telemint/telemint) or Telegram dorks via [Google CSE](https://cse.google.com)
+**Deprioritized:** Twint (frequently breaks from X/Twitter API structural changes), ChatWatch (outdated WhatsApp status-tracking scripts)
+ 
 ---
-- Dark Web -> Onion directory and leak site monitors Current Best: [Ahmia](https://ahmia.fi) or [Dark.fail](https://dark.fail)
-  - Now degraded tools: Torch (unreliable index uptime and dead mirrors)
+ 
+### 14. Web Application & Mobile App Recon
+ 
+- WordPress-specific scanning: [Wpscan](https://wpscan.com)
+- Mobile app asset discovery (subdomains/URLs/parameters embedded in apps): [BeVigil](https://bevigil.com/search)
+*(No deprioritized entries in this category yet — it's small and both tools are current)*
+ 
 ---
-- Threat Intelligence & Vulnerabilities -> IOC lookups and vulnerability feeds Current Best: [VirusTotal](https://www.virustotal.com), [AlienVault OTX](https://otx.alienvault.com), or [CVE Details](https://www.cvedetails.com)
-  - Now degraded tools: Older static signature scanners without cloud threat feeds
-- Threat actor information -> [Mitre.org](https://www.mitre.org/) or [Recorded future](https://www.recordedfuture.com/) (paid)
+ 
+### 15. Transportation Tracking
+ 
+- Flight (live): [FlightRadar24](https://www.flightradar24.com)
+- Flight (history/data): [FlightAware](https://www.flightaware.com)
+- Marine traffic: [MarineTraffic](https://www.marinetraffic.com)
+- Vessel/container tracking: [VesselFinder](https://www.vesselfinder.com)
+- Rail: [OpenRailwayMap](https://www.openrailwaymap.org)
+**Deprioritized:** PlaneFinder (less comprehensive tracking density than FlightRadar24)
+ 
 ---
-- Code Repositories & Pastebins -> Source code leak scanning Current Best: [Gitleaks](https://github.com/gitleaks/gitleaks) or GitHub Code Search
-  - Now degraded tools: Pastebin basic unauthenticated scrapers (heavily rate-limited by Cloudflare)
+ 
+### 16. Search Engines — General, National & Specialized
+ 
+**General dorking:**
+[Dorkgpt](https://www.dorkgpt.com), [pagodo](https://github.com/opsdisk/pagodo), [Google Hacking Database](https://www.exploit-db.com/google-hacking-database)
+ 
+**Custom/scoped search:**
+[Google Custom Search](https://www.google.com/cse) (build a scoped engine for a recurring investigation), [Million Short](https://millionshort.com) (excludes the top N most popular results — surfaces content SEO-dominant sites bury)
+ 
+**National — Tier 1 (Strategic Global Powers):**
+[Baidu](https://www.baidu.com) (China), [Yandex](https://yandex.com) (Russia/Eastern Europe, also strongest reverse-image search), [Naver](https://www.naver.com) (South Korea), [Daum](https://www.daum.net) (South Korea), [SoGou](https://www.sogou.com) (China, indexes WeChat official-account articles)
+ 
+**National — Tier 2 (Global):**
+[Google](https://www.google.com), [Bing](https://www.bing.com), [Yahoo](https://www.yahoo.com)
+ 
+**National — Tier 3 (Regional/Localized):**
+Alleba (Philippines), Eniro (Sweden/Nordics), Gerdoo (Iran), Goo (Japan), Najdi (Slovenia), Onet.pl (Poland), Orange (France), Parseek (Iran), SAPO (Portugal), Search.ch (Switzerland), Seznam (Czech Republic), Walla (Israel), Zarebin (Iran), Coc Coc (Vietnam)
+ 
+**Visual/clustering search:**
+[Carrot2](https://search.carrot2.org) (clusters results by topic, actively maintained/open-source)
+ 
+**Similar-site discovery:**
+[SimilarSites](https://www.similarsites.com)
+ 
+**Deprioritized:** Zanran (dead — domain now hosts an unrelated B2B product), Zapmeta (defunct since ~2003, domain blocks automated access), Mamont/mmnt.ru (technically live but Russian-only FTP index, too niche for routine use), 2lingual Search (functional but zero investigative utility, just a bilingual Google wrapper), unindexed basic Google-scraping scripts without captcha-solving or proxy pools
+ 
 ---
-- OpSec & Anonymity -> Privacy and browser fingerprint testing Current Best: [BrowserLeaks](https://browserleaks.com) or [Tor Browser](https://www.torproject.org)
-  - Now degraded tools: Abandoned public proxy lists
+ 
+### 17. Investigative Document & Records Platforms
+ 
+- [Google Pinpoint](https://journaliststudio.google.com/pinpoint/) — parses massive PDF/audio/email/handwritten-note troves
+- [DocumentCloud](https://www.documentcloud.org) — annotate, publish, search leaked/public-record documents
+- [OCCRP Aleph](https://aleph.occrp.org) — global leaked/public corporate records, court filings, sanctions lists
+- [RECAP / CourtListener](https://www.courtlistener.com/recap/) — federal/state US court document archive
+- [Internet Archive](https://archive.org) — the parent project behind Wayback Machine (full web-snapshot tool cross-referenced in §7); also hosts books, media, software
+**Deprioritized:** De-facto (closed/absorbed), WorldWideScience.org (sunset — homepage now speaks of founding partners in the past tense), Biznar (defunct since ~2015, Deep Web Technologies wound down its federated-search line), CiteSeerX (currently broken — domain serves a placeholder instead of the actual index), Harmari Unified Listings Search (pivoted into a paid product rebranded "Neumo," no longer functions as a general search tool)
+ 
 ---
-- fully automated OSINT platforms - [OSINT CAT](https://www.osintcat.net/) , [Intell Base](https://intelbase.is/)
-
-**Specialised privacy-focused alternative of normal apps**
-* Best VPN -> [Proton VPN](https://protonvpn.com/?utm_source=gemini) or [Mullvad VPN](https://mullvad.net/?utm_source=gemini)
-* Best Browser -> [Mullvad Browser](https://mullvad.net/browser?utm_source=gemini) or [Firefox](https://www.firefox.com/?utm_source=gemini)/[Brave](https://brave.com/?utm_source=gemini)
-* Best search engine -> [Kagi](https://kagi.com/?utm_source=gemini), [SearXNG](https://github.com/searxng/searxng?utm_source=gemini) or [DuckDuckGo](https://duckduckgo.com/?utm_source=gemini)
-* Best Emails -> [Proton Mail](https://proton.me/mail?utm_source=gemini) or [Tuta Mail](https://tuta.com/?utm_source=gemini)
-* Best Message -> [Threema](https://threema.ch/?utm_source=gemini) or [Signal](https://signal.org/?utm_source=gemini)
-* Best Cloud storage -> [Tresorit](https://tresorit.com/?utm_source=gemini) or [Proton Drive](https://proton.me/drive?utm_source=gemini)
-* Best Antivirus -> [Bitdefender](https://www.bitdefender.com/?utm_source=gemini), [ClamAV](https://www.clamav.net/?utm_source=gemini) or [Sophos](https://www.sophos.com/?utm_source=gemini)
-* Best password manager -> [1Password](https://1password.com/?utm_source=gemini) or [Bitwarden](https://bitwarden.com/?utm_source=gemini)
-* Best note-taking -> [Obsidian](https://obsidian.md/?utm_source=gemini) or [Joplin](https://joplinapp.org/?utm_source=gemini)
-
-**Specialised investigative and document search engines for OSINT & research**
-- [Google Pinpoint](https://journaliststudio.google.com/pinpoint/) (Google's tool for journalists and researchers to parse massive troves of PDFs, audio, emails, and handwritten notes)
-- [DocumentCloud](https://www.documentcloud.org/) (Platform for journalists and researchers to annotate, publish, and search leaked or public-record documents)
-- [OCCRP Aleph](https://aleph.occrp.org/) (Global data platform indexing millions of leaked and public corporate records, court filings, and sanctions lists)
-- [RECAP / CourtListener](https://www.courtlistener.com/recap/) (Project by the Free Law Project to archive, search, and liberate millions of federal and state court legal documents)
-- [Wayback Machine (Internet Archive)](https://archive.org/web/) (Essential document and historical page search engine for recovering dead links, deleted PDFs, and past snapshots of target sites)
-- [De-facto (Deprecated - Closed)](https://archive.org/) *(Historical research search platform that has been shut down or absorbed)*
-
-### **Main National Search Engines**
-Localized search engines categorized by tier and region for regional reconnaissance and OSINT.
-
-**Tier 1 — Strategic Global Powers (China, Russia, South Korea)**
-- [Baidu](https://www.baidu.com/) (China) - The dominant search engine used in China, essential for tracking regional entities, domestic Chinese web assets, and localized metadata.
-- [Yandex](https://yandex.com/) (Russia) - Primary search engine for Russia and Eastern Europe, featuring superior reverse image search capabilities and deep regional indexing.
-- [Naver](https://www.naver.com/) (South Korea) - South Korea's dominant web portal and search engine, critical for uncovering local blogs, forums (Cafe), and community discourse.
-- [Daum](https://www.daum.net/) (South Korea) - Major South Korean portal and search engine used widely for community forums and localized content.
-- [SoGou](https://www.sogou.com/) (China) - Major Chinese search engine owned by Tencent, indexing specialized localized content such as WeChat official account articles.
-
-**Tier 2 — Global Search Engines**
-- [Google](https://www.google.com/) (Global) - The standard global search engine utilized worldwide for broad reconnaissance, dorking, and open-source intelligence gathering.
-- [Bing](https://www.bing.com/) (Global) - Microsoft's global search engine, frequently used as an alternative indexing source for unique results and file types.
-- [Yahoo](https://www.yahoo.com/) (Global) - Long-standing global web portal and search engine.
-
-**Tier 3 — Regional and Localized Search Engines**
-- Alleba (Philippines) - Regional search engine indexing Philippine web properties and local directories.
-- Eniro (Sweden) - Scandinavian local search engine and business directory covering Sweden and Nordic regions.
-- Gerdoo (Iran) - Iranian regional search engine.
-- Goo (Japan) - Japanese web portal and search engine operated by NTT Resonant.
-- Najdi (Slovenia) - Slovenian search engine and web portal.
-- Onet.pl (Poland) - Leading Polish web portal and search engine.
-- Orange (France) - French telecommunications portal and regional search utility.
-- Parseek (Iran) - Iranian web directory and search engine.
-- SAPO (Portugal) - Major Portuguese web portal and search engine.
-- Search.ch (Switzerland) - Swiss local directory and search utility.
-- Seznam (Czech Republic) - Czech web portal and dominant local search engine.
-- Walla (Israel) - Israeli web portal and search engine.
-- Zarebin (Iran) - Iranian search engine and media discovery tool.
-- Coc Coc (Vietnam) - Vitename specialised search engine !  
-
-**Data Breach Search Engines**
-`Search engines and tools that can be used to check if your data's been breached: Only tho i personally hate this just learn DarkWebINT`
-
-- [CheckLeaked](https://checkleaked.cc/) - Check if an email, username or phone appears in a data breach, showing the sources; free searches, developer API and chat bots.
-- CredenShow - Identify your compromised credentials before others do.
-- HIB Ransomed - Because people have the right to know if their data has been leaked.
-- HEROIC.NOW - Has your data been leaked on the dark web? Scan your identities for FREE.
-- IKnowYour.Dad - Data Breach Search Engine.
-- Leaker - Passive leak enumeration CLI tool that searches across 10 breach databases simultaneously.
-- NOX - Recursive async framework for deep breach analysis and identity pivoting.
-- [OsintCat](https://www.osintcat.net/) - Check if an email address has been exposed in known data breaches. Fast lookup across multiple breach databases, with a simple API available.
-- StealSeek - Powerful search engine designed to help you find and analyze data breaches.
-- Venacus - Search for your data breaches and get notified when your data is compromised.
-
-### Search engines for specific information or topics
----
-**Attack Surface / Exposed Device Search Engines**
-- [Shodan](https://www.shodan.io/) - The foundational IoT/exposed-device search engine
-- [Censys](https://search.censys.io/) - Attack-surface search engine, monitors and analyzes internet-connected devices
-- [FOFA](https://en.fofa.info/) - Asset search and analysis tool, Shodan/Censys peer with strong China/APAC coverage
-- [ZoomEye](https://www.zoomeye.ai/) - Cyberspace search engine for IPs, domains, and internet asset/exposure discovery
-- > [Netlas.io](https://app.netlas.io/) - Asset/attack-surface search engine (Commented out: redundant given Shodan and Censys coverage)
-- [ONYPHE](https://search.onyphe.io/) - OSINT engine indexing exposed assets and services across the internet
-- [Hunter Search Engine](https://hunter.how/) - Search exposed internet assets, open web directories, and more
-- > [ODIN](https://search.odin.io/) - Search for hosts, CVEs, and exposed buckets/files; 10 free searches/day (Commented out: limited daily utility compared to main alternatives)
-- [FullHunt](https://fullhunt.io/) - Identifies and secures external attack surface
-
-**IP / Domain Reputation & Threat Intelligence**
-- [AbuseIPDB](https://www.abuseipdb.com/) - Repository of abuses reported by system administrators for IPs, Domains, and subnets
-- [Cisco Talos Intelligence](https://talosintelligence.com/reputation_center) - IP and Domain Reputation Center for real-time threat detection
-- [GreyNoise](https://viz.greynoise.io/) - Search exposed internet assets and malicious IPs, filters internet "background noise" from real targeted activity
-- [Criminal IP](https://www.criminalip.io/) - Cyber Threat Intelligence search engine and Attack Surface Management (ASM) platform
-- > [SikkerAPI](https://www.sikkerapi.com/) - Free IP/threat intel provider — reputation scores, behavioral data, attack sessions across 16+ protocols (Commented out: niche source largely redundant next to AbuseIPDB and GreyNoise)
-- > [BrightCloud](https://brightcloud.com/tools/url-ip-lookup.php) - Checks the reputation, category, and potential threats associated with a URL or IP address (Commented out: overly basic interface with limited free telemetry)
-- [Shadowserver](https://dashboard.shadowserver.org/) - Global cyber threat statistics dashboard, nonprofit-run and well-regarded
-
-**Malware & Abuse.ch Ecosystem**
-- [Abuse.ch Hunting](https://hunting.abuse.ch) - Hunt across all abuse.ch platforms with one simple query
-- [MalwareBazaar](https://bazaar.abuse.ch/browse/) - Search and download confirmed malware samples by hash, family, or tag
-- [YARAif](https://yaraify.abuse.ch/scan/) - Collaborative YARA engine, open threat intelligence via file pattern matching
-
-**Certificate Transparency / SSL Search**
-- [CRT Certificate Search](https://crt.sh) - Search public SSL/TLS certificates recorded in Certificate Transparency logs
-- > [CertKit Certificate Search](https://www.certkit.io/tools/ct-logs/) - Fast search for public SSL/TLS certificate records (Commented out: crt.sh provides complete historical transparency coverage natively)
-
-**Network / BGP Intelligence**
-- [BGP.tools](https://bgp.tools) - Modern BGP toolkit for network reconnaissance and analysis
-- [BGP.he.net](https://bgp.he.net) - Free BGP and network intelligence toolkit, Hurricane Electric
-
-**Personal OPSEC / Fingerprint & Leak Testing**
-- [Browserleaks](https://browserleaks.com/) - Tests your own browser for privacy/fingerprinting leaks — essential self-OPSEC check, not just a target-facing tool
-- [packet.guru](https://packet.guru/) - Client-side WebRTC/DNS leak test, TLS/TCP fingerprinting, and VPN/proxy/Tor detection with a 0–100 trust score — no signup
-
-**Leak, Records & Document Platforms**
-- [Intelligence X](https://intelx.io/tools) - Searches leaks, historical paste sites, and dark web sources
-- [OCCRP Aleph](https://aleph.occrp.org/) - Global data platform indexing millions of leaked and public corporate records, court filings, and sanctions lists
-- [Internet Archive](https://archive.org/) - The parent project behind the Wayback Machine, also hosts books, media, and software archives
-
-**Cloud & Exposed Storage Search**
-- [GrayhatWarfare](https://grayhatwarfare.com/) - Searches and indexes open Amazon S3 buckets, one of the highest-yield exposed-data search tools
-
-**Web Application / CMS Security Scanning**
-- [Wpscan](https://wpscan.com) - Scans a WordPress site and returns an instant security report
-
-**Mobile Application OSINT**
-- [BeVigil](https://bevigil.com/search) - Search for assets like Subdomains, URLs, Parameters in mobile applications
-
-**Corporate / Brand / IP Records**
-- [WIPO Brand DB](https://www3.wipo.int/branddb/en/) - Global trademark/brand database, useful for corporate OSINT
-
-**Traffic & Infrastructure Intelligence**
-- [Cloudflare Radar](https://radar.cloudflare.com) - Internet traffic patterns, attacks, and technology trends
-
-**General / Custom Web Search**
-- [Google Custom Search](https://www.google.com/cse) - Build a scoped custom search engine over specific sites for a recurring investigation
-- [Million Short](https://millionshort.com) - Excludes the top N most popular results — genuinely useful for surfacing content SEO-dominant sites bury
-
-**Visual Search and Clustering Search Engines**
-> Search engines that scrape multiple sites (Google, Yahoo, Bing, etc.) at once and return clustered results
-- [Carrot2](https://search.carrot2.org) - Organizes your search results into topic clusters, still actively maintained/open-source
-
-**Similar Sites Search**
-> Find websites similar to a target site — useful for competitor/business-network mapping
-- [SimilarSites](https://www.similarsites.com) - Discover websites similar to each other
-
----
-
-**Now degraded / not practically used**
-> Verified individually, not just carried over unquestioned. Grouped by what they used to cover.
-
-*Attack surface / general search — dead or pivoted*
-- > [Zanran (Deprecated - Pivoted away)](https://zanran.com) *(the original public data/graph search engine is entirely gone; the domain now hosts an unrelated B2B private-equity reporting product)*
-- > [Zapmeta (Deprecated - Defunct)](https://www.zapmeta.com) *(a 2003-era meta-search engine with no evidence of activity since; the domain now blocks automated access entirely, consistent with a parked/abandoned site)*
-- > [Mamont / mmnt.ru (Deprecated - Niche/rarely used)](https://www.mmnt.ru/) *(technically still online — a Russian-language global FTP file index with billions of files — but not something a professional investigator reaches for outside very specific FTP-leak hunting, and the interface is Russian-only)*
-- > [2lingual Search (Deprecated - Not OSINT-relevant)](https://www.2lingual.com) *(confirmed still functional, but it's a bilingual Google search wrapper with no investigative utility)*
-
-*Document/records/science search — sunset or broken*
-- > [WorldWideScience.org (Deprecated - Sunset)](https://worldwidescience.org) *(the homepage now shows retrospective "thanks to our founding partners" language, and reference sources have shifted to describing it in the past tense)*
-- > [Biznar (Deprecated - Defunct)](https://biznar.com) *(Deep Web Technologies wound down its federated-search products years ago; no evidence of activity since roughly 2015)*
-- > [CiteSeerX (Deprecated - Currently broken)](https://citeseer.ist.psu.edu) *(the domain currently serves a bare placeholder page instead of the actual academic search index)*
-
-*Records/listings — pivoted to paid enterprise product*
-- > [Harmari Unified Listings Search (Deprecated - Pivoted away)](https://www.harmari.com/search/unified) *(rebranded to "Neumo" and pivoted into a paid short-term-rental/tax-compliance product; this specific link no longer functions as a general search tool)*
+ 
+### 18. Personal OPSEC, Privacy Tooling & Anonymity
+ 
+**Fingerprint / leak testing (test yourself before you test anyone else):**
+[BrowserLeaks](https://browserleaks.com), [packet.guru](https://packet.guru) (WebRTC/DNS leak test, TLS/TCP fingerprinting, VPN/proxy/Tor detection with a trust score, no signup), [Tor Browser](https://www.torproject.org)
+ 
+**Privacy-respecting daily-driver apps:**
+```
+VPN              -> Proton VPN or Mullvad VPN
+Browser          -> Mullvad Browser or Firefox / Brave
+Search engine    -> Kagi, SearXNG, or DuckDuckGo
+Email            -> Proton Mail or Tuta Mail
+Messaging        -> Threema or Signal
+Cloud storage    -> Tresorit or Proton Drive
+Antivirus        -> Bitdefender, ClamAV, or Sophos
+Password manager -> 1Password or Bitwarden
+Note-taking      -> Obsidian or Joplin
+```
+ 
+**Deprioritized:** Abandoned public proxy lists
+ 
 ---
 
 **Bonus tools**
