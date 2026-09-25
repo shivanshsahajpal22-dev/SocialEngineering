@@ -48,6 +48,7 @@ Organized by investigative pivot. Each category leads with the tools actually wo
 - Geolocation hunters: [GeoSeeker](https://geoseeker.com), [GeoAxis](https://geoaxis.com), [Picarta.ai](https://picarta.ai)
 - Geolocation hints database: [GeoHints](https://geohints.com)
 - Shadow-based location pinpointing: [SunCalc](https://www.suncalc.org), [ShadowMap](https://shadowmap.org), [ShadowFinder](https://github.com/bellingcat/ShadowFinder)
+- Past world imagery: [wayback world imagery](https://livingatlas.arcgis.com/wayback/) and [google earth](https://earth.google.com/web/)
 **Deprioritized:** TinEye (outperformed by modern neural reverse-search engines)
  
 ---
