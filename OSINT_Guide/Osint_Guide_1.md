@@ -99,7 +99,7 @@ Organized by investigative pivot. Each category leads with the tools actually wo
 - Exposed devices/services (attack-surface search engines): [Shodan](https://www.shodan.io), [Censys](https://search.censys.io), [FOFA](https://en.fofa.info), [ZoomEye](https://www.zoomeye.ai), [ONYPHE](https://search.onyphe.io), [Hunter Search Engine](https://hunter.how), [FullHunt](https://fullhunt.io)
 - Tor/VPN detection: [IPQualityScore](https://www.ipqualityscore.com), [GetIPIntel](https://getipintel.net)
 - IP/domain reputation: [AbuseIPDB](https://www.abuseipdb.com), [Cisco Talos Intelligence](https://talosintelligence.com/reputation_center), [GreyNoise](https://viz.greynoise.io), [Criminal IP](https://www.criminalip.io), [Shadowserver](https://dashboard.shadowserver.org)
-- Malware intelligence (abuse.ch ecosystem): [Abuse.ch Hunting](https://hunting.abuse.ch), [MalwareBazaar](https://bazaar.abuse.ch/browse/), [YARAify](https://yaraify.abuse.ch/scan/)
+- Malware intelligence (abuse.ch ecosystem): [Abuse.ch Hunting](https://hunting.abuse.ch), [MalwareBazaar](https://bazaar.abuse.ch/browse/), [YARAify](https://yaraify.abuse.ch/scan/) `to Run and test a malware [anyrun](https://any.run/)`
 - General IOC/CVE feeds: [VirusTotal](https://www.virustotal.com), [AlienVault OTX](https://otx.alienvault.com), [CVE Details](https://www.cvedetails.com)
 - Threat-actor profiling: [Mitre.org](https://www.mitre.org) or [Recorded Future](https://www.recordedfuture.com) (paid)
 - Network/BGP intelligence: [BGP.tools](https://bgp.tools), [BGP.he.net](https://bgp.he.net)
