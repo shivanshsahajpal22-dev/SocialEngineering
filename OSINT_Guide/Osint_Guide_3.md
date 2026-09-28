@@ -47,7 +47,8 @@ daunt.link      -> community link site maintained by the Dread forum team
 2. PGP-signed link mismatch. Reputable directories and forums often
    PGP-sign their official link lists specifically so a clone can't
    silently substitute itself — if a signature check fails, that's a
-   real, confirmed red flag, not a false alarm.
+   real, confirmed red flag, not a false alarm; this is why you will
+   often find PGP keys in the dark web website 
 3. Address LOOKS plausible but isn't in ANY trusted directory. Treat
    this as a probable clone by default — legitimate services want to
    be found through verified channels precisely because of the scam
