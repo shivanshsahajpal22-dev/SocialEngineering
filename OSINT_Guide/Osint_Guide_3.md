@@ -293,6 +293,44 @@ then pivot to every other service sharing the same infrastructure
 
 **This is where attribution ends, deliberately.** Everything above confirms *who* a persona belongs to and *what's exposed* about them — it never requires logging into anything that isn't yours. The moment the goal shifts from "confirm this email belongs to this suspect" to "now access that email account" — credential stuffing a breached password, password spraying, or phishing the target directly — that's active offensive operation, not OSINT, and it needs its own explicit, separately-scoped authorization, the same discipline your Phishing Guide's ROE checklist applies to SEG-evasion techniques. Finding the door and using the door are different engagements.
 
+### Evidence handling — before you report or log anything
+
+> The attribution chain above tells you when to stop investigating.
+> This is what to do with what you found before it goes anywhere —
+> a report, a legal referral, or even just your own case file. The
+> moment of capture is the only guaranteed-original state you'll ever
+> have; preserve it properly then, not "when it's needed."
+```
+CAPTURE
+├── Save RAW page source (wget/httrack), not a screenshot — a
+│ screenshot loses metadata, hidden text, and structure a later
+│ re-analysis might depend on
+├── Hash the file immediately (SHA-256), log the hash alongside the
+│ capture — this is what later proves the file wasn't altered
+└── Timestamp against a source you don't control — an RFC 3161
+timestamping authority or OpenTimestamps beats a local system
+clock, which is trivially alterable and proves nothing alone
+
+LOG
+├── What was captured, when, by whom, and its hash — everything,
+│ not just what felt important at the time
+└── Every subsequent access to the evidence — chain of custody means
+an unbroken access log, not just possessing the file
+
+BEFORE ESCALATING TO LEGAL / LAW ENFORCEMENT
+├── Loop them in EARLY, not after your own informal work is "done" —
+│ evidence collected outside their guidance can become
+│ inadmissible regardless of how solid the underlying finding is
+└── Don't over-collect — some jurisdictions treat mere possession of
+certain material categories as independently liable regardless
+of investigative intent; know what you're allowed to retain
+before you retain it
+```
+Same "know where the line sits before you cross it" discipline this
+guide already applies to the attribution/access boundary and the
+forum-vouching gate — here it's applied to the deliverable itself,
+not just the technique that produced it.
+
 ### Worked example chain
 
 ```
