@@ -123,6 +123,61 @@ Chain A — from zero, following the trust chain properly
 
 The tools and specific directories here will keep changing — link sites rise and fall, and any specific address in this guide should be assumed stale the moment it's written down. What doesn't change is the discipline: **never trust a single unverified source for an onion address, and treat "not listed anywhere trusted" as the default red flag rather than the exception.**
 
+### Dark web search engines — the other default discovery mechanism
+
+> Directories (dark.fail/tor.taxi/daunt.link) are human-curated lists.
+> Search engines are automated crawlers indexing onion content by
+> keyword — smaller, patchier coverage than clearnet search, since
+> there's no unified dark web index.
+
+**Filtered / safer-first — start here**
+
+- **Ahmia** — clearnet: [ahmia.fi](https://ahmia.fi) — onion:
+  `msydqstlz2kzerdg.onion`
+  Open source, Tor Project–backed, filters known illegal content at
+  the index level (not just display). Most cited option in OSINT/CTI
+  work. Tradeoff: smaller index than unfiltered options below.
+
+- **Not Evil** — onion-only, verify current address via dark.fail
+  Similar filtering philosophy, focused on non-commercial content.
+
+**Unfiltered / maximum coverage — cross-verify everything**
+
+- **Torch** — onion-only: `xmh57jrknzkhv6y3ls3ubitzfqnkrwxhopf5aygthi7d6rplyvk3noyd.onion`
+  Oldest Tor search engine (2013), large but noisy index. No content
+  curation — expect clones, dead links, malicious pages mixed in.
+
+- **Haystak** — onion-only: `haystak5njsmn2hqkewecpaxetahtwhsbsa64jom2k22z5afxhnpxfid.onion`
+  Includes archived copies of offline sites. Free tier + paid tier
+  (regex, history, alerts) for actual CTI workflows.
+
+- **TorDex** — onion-only, same team/infrastructure as Torch, same
+  minimal-filtering caveat.
+
+**Cross-verification layer**
+
+- **Tor66** — onion-only, mirror rotates, verify via directories
+  Index coverage differs enough from the above three that it's worth
+  a second pass when a search comes up empty — not a first stop.
+
+**Privacy-preserving clearnet access — not dark web search**
+
+- **DuckDuckGo** — clearnet: [duckduckgo.com](https://duckduckgo.com) —
+  onion: `duckduckgogg42ts72.onion` (verify current)
+  Does **not** index onion content. Lets you search the clearnet
+  privately from inside Tor — a different tool entirely, don't
+  confuse the two.
+
+**CTI/automation tier**
+
+- **DarkSearch** — API access for recurring automated queries, same
+  standing-program logic as Part 3's monitoring feeds.
+
+Same discipline as the rest of Part 1: assume every address above is
+stale, verify against dark.fail/tor.taxi before trusting it, and run
+one filtered + one unfiltered engine together before concluding
+something isn't findable.
+
 ---
 
 ## PART 2: RED TEAM PERSPECTIVE — SUSPECT INVESTIGATION AND PERSONA CORRELATION
