@@ -1,6 +1,6 @@
 # HUMint Guide 
 
-`A professional guide to ~~Gossiping~~ human source intelligence` 
+**A professional guide to ~~Gossiping~~ human source intelligence**
 
 > HUMINT is intelligence gathered through human interaction rather than
 > technical means — the discipline OSINT, SIGINT, and every technical
