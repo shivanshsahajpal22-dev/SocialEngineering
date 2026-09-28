@@ -1,5 +1,7 @@
 # OSINT GUIDE PART 2
 
+**This one is more about the people: a professional guide to ~~stalking~~ SOCMINT, whereas the last one was focused on the geo-OSINT**
+
 ```
 NOTE BEFORE YOU PROCEED
 
@@ -7,7 +9,6 @@ NOTE BEFORE YOU PROCEED
 > Cyber OSINT (info about a company) covered in web_exploiation_Guide/Web_exploitation/Passive-recon
 ```
 
-> This one is more about the people: SOCMINT, whereas the last one was focused on the geo-OSINT
 
 - **WANT a detective like whiteboard** -> use maltego!
 - I would suggest to start your search from google + dork gpt (>>> any tool)
