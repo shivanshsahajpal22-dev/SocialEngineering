@@ -164,19 +164,24 @@ Published papers  → for technical organizations; authorship and
                     and research direction simultaneously
 ```
 
-**Approach opportunity mapping**
+**Approach methods and places**
 
 ```text
-Once you have candidates, map when and where natural contact is
-plausible without a fabricated pretext:
+Method             → use the least intrusive, most natural channel
+                     available: mutual introductions, professional
+                     networking, responses to public work, or direct
+                     contact through an established professional channel
 
-High opportunity   → industry conferences, meetups, mutual connection
-                     introduction, comment thread on their public post,
-                     same professional association
-Medium opportunity → cold LinkedIn message with genuine mutual topic,
-                     response to their published content
-Low opportunity    → cold approach with no natural common ground;
-                     requires stronger pretext to be credible
+Place              → favor ordinary professional environments where
+                     interaction is expected: conferences, meetups,
+                     industry events, professional associations,
+                     public talks, and other legitimate networking
+                     settings
+
+Principle          → the approach should make sense independently of
+                     any later collection objective; avoid unnecessary
+                     deception, pressure, or contact in private settings
+                     where the interaction would be unexpected
 ```
 
 ---
