@@ -626,6 +626,14 @@ formally, more cautiously — if you insist on it.
 Frequency calibration: enough to maintain the relationship as a
 living thing, not so much that contact itself becomes a data point
 that could be noticed by the source's colleagues or employer.
+
+- Too frequent: can create suspicion, fatigue, dependency, or unnecessary exposure.
+- Too infrequent: the relationship can go cold and information can become stale.
+- Appropriate frequency: depends on the legitimate purpose of the relationship, the person's expectations, and the sensitivity of the interaction.
+- Adjust based on feedback: changes in responsiveness, availability, or willingness to communicate can indicate that the cadence needs to change.
+
+* For a legitimate setting such as journalism, research interviewing, corporate investigations, or source-development training, you can think of it as:
+* Contact → observe response → adjust cadence → maintain an appropriate professional relationship.
 ```
 
 **Tasking — what to ask for and in what order**
