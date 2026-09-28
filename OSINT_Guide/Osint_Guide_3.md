@@ -339,6 +339,209 @@ Chain A — a standing monitoring program catching an exposure early
 
 The tools and specific leak-site addresses in this space churn faster than almost anything else in this whole guide series — what's worth keeping is the cadence discipline: this is a standing program, not a pivot chain that closes.
 
+`added a telegram and dark web network building guide here.`
+
+### Telegram network building — establishing a monitoring presence
+
+> Joining one channel answers one question. A maintained network of channels is what turns Telegram from a place you occasionally check into an actual intelligence source — the same shift from Part 1's "find a site" to Part 3's "run a standing program," just on a platform with a much lower barrier to entry than a dark web forum.
+
+**Persona setup — the part that determines whether you get anywhere at all**
+```
+Phone number  -> Telegram requires one to register. Never your real
+                 number. A privacy-focused VOIP number or a dedicated
+                 burner SIM sourced separately from any real-identity
+                 infrastructure — the same network-separation principle
+                 as your existing OPSEC section, applied to a phone
+                 number instead of an IP
+Account age    -> a brand-new account joining a dozen channels in one
+                 day reads as exactly what it is. Age the account with
+                 unrelated, believable activity before it becomes your
+                 investigation persona
+Profile         -> no photo, username, or bio reused from ANY other
+                 persona or real account — this is the same "never
+                 reuse a handle across investigations" discipline
+                 your Part 2 stylometry section warns you to defeat in
+                 a suspect; apply it to your own operational identity
+```
+
+**Default method — discovery**
+```bash
+# aggregator sites index public Telegram channels by topic/keyword,
+# the equivalent of a dark web link directory for this platform
+# (tgstat.com, telemetr.io, and similar Telegram-analytics platforms)
+```
+```
+1. Search aggregator platforms by topic/keyword — fastest first move
+2. Forward-chain crawling — once you're in one relevant channel, note
+   which OTHER channels it forwards content from or cross-promotes;
+   structurally identical to the onion-to-onion crawling technique
+   in Part 1, just following forwards instead of outbound links
+3. Invite links surfaced elsewhere — dark web forum posts, Twitter/X,
+   Reddit threads referencing a channel often contain the invite link
+   itself, since private channels can't be searched directly
+```
+
+**The decision tree — when a channel won't open**
+```
+1. Purely public channel, just join. No obstacle at all — most
+   informational/announcement channels sit here.
+2. Invite-link-only, but the link is public somewhere. Join normally;
+   this isn't gated, just not search-indexed.
+3. Requires admin approval / vetting questions. This is where account
+   age and a believable, consistent persona history actually matters —
+   a persona with zero history fails vetting immediately.
+4. Requires proof of prior activity/purchase history to access a
+   deeper tier. Treat this the same way the dark web network-building
+   section below treats forum vouching gates — see the explicit
+   boundary noted there before proceeding.
+```
+
+**Scaling — automated monitoring instead of manual checking**
+```python
+# Telethon / Pyrogram — Python libraries for programmatic Telegram
+# access, used to monitor many joined channels continuously rather
+# than manually reopening the app; this is the mechanism behind any
+# real standing monitoring program, not a manual habit
+from telethon import TelegramClient
+# authenticate once with your persona's session, then listen for
+# new messages across every joined channel in one process
+```
+
+**OPSEC specifics for this platform specifically**
+```
+- Disable P2P calls in privacy settings — historically, direct
+  peer-to-peer voice calls on Telegram could expose a real IP address
+  to the other party; route everything through Telegram's own relay
+  instead
+- Hide phone number and "last seen" visibility from non-contacts
+- Never accept an unsolicited call/voice message from an unknown
+  contact inside a persona account — same "don't interact beyond
+  passive observation" principle as everywhere else in this guide
+```
+
+**Worked example chain**
+
+```
+Chain B — building outward from one known channel
+1. Aged persona account joins one publicly known channel relevant to
+   the investigation topic
+2. Forward-chain crawling over several days surfaces four affiliated
+   channels the first one regularly cross-promotes
+3. Telethon-based passive listener attached to all five, logging new
+   posts continuously rather than manual daily checks
+4. Three weeks in, one channel posts an invite link to a private,
+   vetted group — the persona's now-established activity history is
+   what actually gets the join request approved
+5. Standing monitoring network established: five public channels
+   automated, one private group manually checked, all logged with
+   join-date and source per channel — same "log your confidence and
+   source" discipline as the rest of this guide
+```
+
+---
+
+### Dark web network building — establishing sustained forum/marketplace presence
+
+> This is a different problem than Part 1 (finding a site) or Part 2 (correlating one suspect) — it's building enough standing credibility within a community that its *content* becomes visible to you at all. A huge share of what matters on dark web forums sits behind reputation gates, vouching systems, or posting-history requirements specifically to keep casual/law-enforcement observers out — which means "network building" here is partly a technical exercise and partly a genuinely serious authorization question, addressed explicitly below rather than glossed over.
+
+**Why sustained presence matters, structurally**
+```
+Many forums show a stripped-down public face to unauthenticated
+visitors and gate the actually useful content — active trading
+sections, vetted member boards, direct messaging — behind an
+established posting history, a vouch from an existing trusted member,
+or in some cases a financial bond. A one-off visit sees almost nothing
+of real value; a maintained presence sees the forum as its actual
+members do.
+```
+
+**Persona credibility build-up**
+```
+Account age        -> same principle as Telegram, amplified; deep
+                       forum sections often have explicit minimum
+                       account-age requirements before access unlocks
+Consistent activity -> slow, believable engagement over real time,
+                       never a burst of activity that reads as
+                       synthetic or automated
+Separate personas    -> a hard rule, not a suggestion: never reuse a
+   per community        username, writing style, or PGP key across
+                       different investigations or communities — this
+                       is the exact stylometry/PGP-reuse correlation
+                       technique from Part 2, aimed at YOUR OWN
+                       operational security instead of a suspect's
+PGP key setup         -> having a PGP key and participating in signed
+                       communication is often an implicit credibility
+                       signal in these communities; set one up as part
+                       of persona construction, never reuse a key
+                       across personas
+```
+
+**Cross-platform ecosystem mapping**
+```
+Most active communities aren't confined to one platform — the same
+group often maintains a dark web forum presence, a Telegram channel,
+and sometimes a Discord, cross-referencing each other. Map the
+ecosystem, not just the one node you started on — the same
+"infrastructure overlap" pivot from Part 2's persona correlation
+section, applied at the community level instead of the individual level.
+```
+
+**Access maintenance**
+```
+- Session/cookie handling consistent enough not to trigger anti-bot
+  measures many forums run against exactly this kind of automated or
+  suspicious-pattern access
+- Infrastructure rotation handled carefully — rotating your OWN access
+  infrastructure (VPN, VM, Tor circuit) without ever letting that
+  rotation itself become a fingerprintable pattern that deanonymizes
+  the persona you're trying to protect
+```
+
+**The explicit boundary — read this before doing any of the above for real**
+```
+Passive membership and observation is what the overwhelming majority
+of legitimate CTI work actually requires — reading, monitoring, and
+logging, never posting content or participating in transactions.
+Real CTI firms that run sustained persona operations on criminal
+forums do so under specific internal legal review before an analyst
+is authorized to do it, precisely because passive membership in
+certain forums can itself carry legal exposure depending on
+jurisdiction and what the forum deals in, and because any tier that
+REQUIRES proving participation (a purchase, a vouched criminal
+transaction, contributing illegal content) to unlock access is a
+bright line — that tier needs explicit organizational/legal
+authorization before you approach it, not an assumption that
+"research purposes" covers it automatically. The same "know exactly
+where the line sits" discipline as Part 2's attribution/compromise
+boundary applies here, just earlier in the process: know where legal
+sign-off is required BEFORE building toward a gate that needs it,
+not after you're already through it.
+```
+
+**Worked example chain**
+
+```
+Chain C — a sustained, passive-only presence built over time
+1. Persona account created, aged for several weeks with unrelated,
+   believable activity before any investigation-relevant engagement
+2. Joins the public-facing tier of a relevant forum, observes only —
+   no posting
+3. Account age and passive reputation slowly unlock read access to
+   deeper public boards over time, without ever needing a vouch or
+   transaction history
+4. Cross-platform mapping identifies the same community's Telegram
+   channel, folding it into the standing monitoring network from the
+   Telegram section above
+5. A deeper, vetted-members-only section is identified as requiring
+   proof of prior transaction history to access — flagged and
+   escalated for legal/organizational review rather than pursued
+   directly, per the boundary above
+6. Sustained network logged: which tiers are accessible passively,
+   which require authorization this investigation doesn't currently
+   have, and the specific gate each one sits behind — a map of the
+   community's structure, not just a single answer
+```
+
 ---
 
 ## PART 4: DISCOVERING RESOURCES AND SITES ON THE DARK WEB
