@@ -27,7 +27,7 @@ Each puppet gets its own:
 * Language set to match the puppet's claimed locale
 * No extensions beyond what a normal user of that persona would have
 
-### Using a Burner Virtual Machine (VM)
+#### Using a Burner Virtual Machine (VM)
 
 A burner virtual machine offers robust isolation by running an entirely separate operating system instance on your existing hardware, completely cutting off the profile from your host OS, files, and daily applications. 
 
@@ -35,7 +35,7 @@ A burner virtual machine offers robust isolation by running an entirely separate
 * **The "Burner" Lifecycle:** Treat the VM as disposable. Keep a pristine, clean snapshot of the virtual machine immediately after setup. When a puppet session ends, simply revert the VM to that clean state or discard it entirely, erasing all local cookies, cache, and tracking artifacts instantly.
 * **Caveat:** Default hypervisor graphics drivers and hardware strings can sometimes be flagged by advanced trackers, so ensure you still employ browser-level fingerprint masking (such as Canvas spoofing and consistent User-Agents) inside the VM environment.
 
-### Buying and Using a Burner Device
+#### Buying and Using a Burner Device
 
 A physical burner device (such as a cheap, pre-owned smartphone or a low-cost laptop) provides the gold standard for device fingerprint isolation because it presents authentic hardware components, real mobile/residential network characteristics, and genuine sensor data that cannot be perfectly emulated by software.
 
