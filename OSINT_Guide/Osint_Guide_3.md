@@ -1,6 +1,8 @@
 # DARK WEB OSINT GUIDE
 
-`The dark web isn't a different internet — it's the same recon discipline applied to a layer that refuses to be indexed`
+> Notice: this guide will explain stuff theoretically and won't go into the implementation part , beacuse of legal and moral limitations ~ dev 
+
+`The dark web isn't a different internet — it's the same recon discipline applied to a layer that refuses to be indexed.`
 
 **WARNING:** Dark web investigation carries real legal and personal-safety risk depending on jurisdiction and what you're actually looking at. Authorized red team/CTI work only. Owner does not stand accountable for anything.
 
@@ -542,6 +544,7 @@ Chain C — a sustained, passive-only presence built over time
    community's structure, not just a single answer
 ```
 
+`I won't go deep into these two practically but maintain these networks the same way we used to maintain a phone number directory back in the day.`
 ---
 
 ## PART 4: DISCOVERING RESOURCES AND SITES ON THE DARK WEB
