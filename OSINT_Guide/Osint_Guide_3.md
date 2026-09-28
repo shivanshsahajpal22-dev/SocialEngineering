@@ -1,6 +1,6 @@
 # DARK WEB OSINT GUIDE
 
-> Notice: this guide will explain stuff theoretically and won't go into the implementation part , beacuse of legal and moral limitations ~ dev 
+> Notice: this guide will explain stuff theoretically and won't go into the implementation part , because of legal and moral limitations ~ dev 
 
 `The dark web isn't a different internet — it's the same recon discipline applied to a layer that refuses to be indexed.`
 
@@ -269,6 +269,44 @@ JStylo (already in your tools list) — genuinely one of the highest-
 value techniques against someone otherwise careful, because writing
 style is the hardest thing to consciously and consistently mask
 ```
+**Confidence calibration — a stylometric hit is not binary**
+
+```
+SAMPLE SIZE
+├── Under ~250-500 words             -> weak at best, a hint, not
+│                                        corroboration on its own
+└── 1000+ words, ideally more        -> meaningfully more reliable,
+                                         still not standalone proof
+
+CROSS-METHOD AGREEMENT
+├── One method alone (e.g. just
+│     function-word frequency)       -> insufficient by itself
+└── Multiple independent methods
+      agreeing (function words +
+      syntax + punctuation habits)   -> real signal — still pair
+                                         with a non-stylometric anchor
+
+FALSE-POSITIVE CONTROL
+├── Compare against SEVERAL other
+│     candidates' writing, not just
+│     the one suspect                -> a marginal lead over
+                                         unrelated candidates is a
+                                         weak match, not a confirmed one
+└── Match genre/register/platform
+      wherever possible              -> formal post vs. casual DM =
+                                         false negatives; same narrow
+                                         jargon across two unrelated
+                                         people = false positives
+```
+
+Treat a stylometric match the same as any other single-source finding in this guide: a candidate, not a confirmation, until paired with an independent non-stylometric anchor per the cross-bucket corroboration standard already established above.
+
+**Tools**
+- **JStylo** (already in your list) — the original tool for this bucket, general-purpose authorship attribution
+- **JGAAP** — academic authorship-attribution toolkit, used in the real-world case that helped unmask J.K. Rowling's Robert Galbraith pseudonym; good when you want a documented, court-adjacent methodology
+- **Stylo (R package)** — standard digital-humanities tool for running multiple statistical methods (Burrows' Delta, cosine distance) side by side, useful for the cross-method-agreement check above
+- **Anonymouth** — JStylo's companion tool, built to help a writer obfuscate their own style; worth checking a suspect's text against, since a stylometry-aware target may show signs of deliberate flattening
+- **Custom Python pipeline** (scikit-learn + TF-IDF/n-gram features) — the flexible fallback when the pre-built tools don't handle a specific platform's text quirks well
 
 **4. Infrastructure overlap.** If a suspect runs their own hidden service, misconfigurations occasionally leak the real hosting details — an exposed status page, a favicon shared with a clearnet site, a reused SSH key fingerprint, or a TLS certificate covering both the onion service and a clearnet domain in Certificate Transparency logs.
 ```
