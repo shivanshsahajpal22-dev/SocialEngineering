@@ -9,9 +9,30 @@ A digital puppet (also called a sock puppet or legend) is a fully constructed fa
 
 Everything in Parts 2–5 is useless if the puppet's traffic is traceable back to you. Infrastructure comes first.
 
-### 1.0 Burner / Anonymous Payment Method Setup
+### 1.1 Network Isolation
+* Never access a puppet account from your real IP — ever, not even once.
+* One slip permanently links your real identity to the puppet.
+
+> **Recommended stack (in order of isolation strength):**
+> * **Option A (CTF-grade):** VPN (paid, no-logs, paid with crypto) $\rightarrow$ puppet browser profile
+> * **Option B (engagement-grade):** VPS (paid with crypto, registered under the puppet's identity) $\rightarrow$ Residential proxy or mobile proxy (rotated) $\rightarrow$ Puppet browser profile
+> * **Option C (maximum isolation):** Air-gapped VM $\rightarrow$ Tor $\rightarrow$ Residential proxy $\rightarrow$ Puppet browser profile *(slowest, but leaves no infrastructure linkage to you whatsoever)*
+
+### 1.2 Email Infrastructure
+Never use your real email provider.
+
+* **CTF-grade:** Proton Mail or Tutanota created over Tor/VPN *(use a phone number not linked to you for verification — see Part 2.3 for anonymous number options)*
+* **Engagement-grade:** A domain registered under the puppet's identity (Namecheap + crypto payment) with a self-hosted or Proton for Business mailbox, e.g. `j.harrison@harrisonconsulting[.]net`
+
+> **Key rule:** The email address must be plausible for the puppet's claimed profession and age — a 52-year-old retired logistics manager does not have a `gmail.com`/`anime123` address.
+
+> For short-term burner email you can use : Temp mail/Fakeemailgenerator.com => not professional tho 
+
+### 1.3 Burner / Anonymous Payment Method Setup
 
 To maintain complete separation between your real-world identity and your puppet infrastructure, you need a funding mechanism that cannot be traced back to your personal bank accounts, credit cards, or legal name. 
+
+---
 
 #### Step 1: Procuring Anonymous Funding Sources
 
@@ -34,16 +55,7 @@ To safely purchase domains, hosting, proxies, or services for your puppets witho
 * **Never Cross-Contaminate:** Never use the same payment card, crypto wallet address, or VCC account across multiple independent puppets if they need to maintain strict compartmentalization. Treat each payment source as single-use or strictly siloed.
 * **IP and Browser Consistency:** When funding or generating VCCs, ensure your traffic is routed through the exact same proxy network or clean environment you intend to use for the puppet operations to prevent behavioral correlation.
 
-### 1.1 Network Isolation
-* Never access a puppet account from your real IP — ever, not even once.
-* One slip permanently links your real identity to the puppet.
-
-> **Recommended stack (in order of isolation strength):**
-> * **Option A (CTF-grade):** VPN (paid, no-logs, paid with crypto) $\rightarrow$ puppet browser profile
-> * **Option B (engagement-grade):** VPS (paid with crypto, registered under the puppet's identity) $\rightarrow$ Residential proxy or mobile proxy (rotated) $\rightarrow$ Puppet browser profile
-> * **Option C (maximum isolation):** Air-gapped VM $\rightarrow$ Tor $\rightarrow$ Residential proxy $\rightarrow$ Puppet browser profile *(slowest, but leaves no infrastructure linkage to you whatsoever)*
-
-### 1.2 Device Fingerprint Isolation
+### 1.4 Device Fingerprint Isolation
 Each puppet gets its own:
 * Dedicated browser profile (Firefox with arkenfox user.js, or a separate Chromium instance — never your daily browser)
 * Unique canvas fingerprint (use CanvasBlocker or a browser that spoofs this by default)
@@ -68,15 +80,6 @@ A physical burner device (such as a cheap, pre-owned smartphone or a low-cost la
 * **Network Hygiene:** Never connect a burner device to your home Wi-Fi network or any network tied to your real-world identity. Instead, use mobile cellular data via a prepaid SIM card bought anonymously, or connect exclusively through a trusted, isolated external hotspot.
 * **Operation:** Perform all puppet activities physically on the device. Because the hardware, MAC address, battery APIs, and screen sensors are entirely distinct from your primary workstation, the risk of cross-context correlation or hardware-level leaks is reduced to zero.
 
-### 1.3 Email Infrastructure
-Never use your real email provider.
-
-* **CTF-grade:** Proton Mail or Tutanota created over Tor/VPN *(use a phone number not linked to you for verification — see Part 2.3 for anonymous number options)*
-* **Engagement-grade:** A domain registered under the puppet's identity (Namecheap + crypto payment) with a self-hosted or Proton for Business mailbox, e.g. `j.harrison@harrisonconsulting[.]net`
-
-> **Key rule:** The email address must be plausible for the puppet's claimed profession and age — a 52-year-old retired logistics manager does not have a `gmail.com`/`anime123` address.
-
-> For short-term burner email you can use : Temp mail/Fakeemailgenerator.com => not professional tho 
 ---
 
 ## PART 2 — Legend Construction (The Identity Itself)
@@ -342,3 +345,19 @@ At engagement end, every puppet account must be deactivated or deleted in revers
 * [ ] All interactions logged with timestamps
 * [ ] Scope boundary respected throughout
 * [ ] Teardown documented and confirmed
+
+---
+
+
+## PART 8 — The osint router setting up everything: quick run through 
+
+`this section exists when the theory starts to eat you too much !`
+
+1. ..
+2. ..
+3. ..
+4. ..
+5. ..
+6. ..
+
+`Thanks for visiting the place, fellow learner, kbai :) ~ dev.`
