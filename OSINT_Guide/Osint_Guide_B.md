@@ -27,6 +27,22 @@ Each puppet gets its own:
 * Language set to match the puppet's claimed locale
 * No extensions beyond what a normal user of that persona would have
 
+### Using a Burner Virtual Machine (VM)
+
+A burner virtual machine offers robust isolation by running an entirely separate operating system instance on your existing hardware, completely cutting off the profile from your host OS, files, and daily applications. 
+
+* **Setup & Execution:** Spin up a lightweight guest OS using a hypervisor like VirtualBox, VMware, or KVM. Configure its virtual network interface to route exclusively through your proxy or VPN before opening any browser. 
+* **The "Burner" Lifecycle:** Treat the VM as disposable. Keep a pristine, clean snapshot of the virtual machine immediately after setup. When a puppet session ends, simply revert the VM to that clean state or discard it entirely, erasing all local cookies, cache, and tracking artifacts instantly.
+* **Caveat:** Default hypervisor graphics drivers and hardware strings can sometimes be flagged by advanced trackers, so ensure you still employ browser-level fingerprint masking (such as Canvas spoofing and consistent User-Agents) inside the VM environment.
+
+### Buying and Using a Burner Device
+
+A physical burner device (such as a cheap, pre-owned smartphone or a low-cost laptop) provides the gold standard for device fingerprint isolation because it presents authentic hardware components, real mobile/residential network characteristics, and genuine sensor data that cannot be perfectly emulated by software.
+
+* **Acquisition:** Purchase a low-cost, unlocked device entirely with cash or privacy-focused payment methods, avoiding any linkage to your personal identity, credit cards, or home address. When possible, factory-reset the device or flash a clean, privacy-respecting operating system (like GrapheneOS for supported phones).
+* **Network Hygiene:** Never connect a burner device to your home Wi-Fi network or any network tied to your real-world identity. Instead, use mobile cellular data via a prepaid SIM card bought anonymously, or connect exclusively through a trusted, isolated external hotspot.
+* **Operation:** Perform all puppet activities physically on the device. Because the hardware, MAC address, battery APIs, and screen sensors are entirely distinct from your primary workstation, the risk of cross-context correlation or hardware-level leaks is reduced to zero.
+
 ### 1.3 Email Infrastructure
 Never use your real email provider.
 
