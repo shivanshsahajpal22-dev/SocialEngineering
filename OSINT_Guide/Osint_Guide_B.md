@@ -9,6 +9,31 @@ A digital puppet (also called a sock puppet or legend) is a fully constructed fa
 
 Everything in Parts 2–5 is useless if the puppet's traffic is traceable back to you. Infrastructure comes first.
 
+### 1.0 Burner / Anonymous Payment Method Setup
+
+To maintain complete separation between your real-world identity and your puppet infrastructure, you need a funding mechanism that cannot be traced back to your personal bank accounts, credit cards, or legal name. 
+
+#### Step 1: Procuring Anonymous Funding Sources
+
+* **Cash-Purchased Prepaid Cards:** Purchase Visa, Mastercard, or generic reloadable debit/gift cards using physical cash at retail stores (e.g., supermarkets, convenience stores). 
+  * *Implementation note:* Many regions now require ID for certain prepaid cards or limit cash reloads. Look for non-registered "gift cards" or open-loop prepaid cards that do not require an SSN or government ID to activate online (or can be registered with burner credentials).
+* **Cryptocurrency via Peer-to-Peer (P2P) or Cash-to-Crypto:** 
+  * Avoid centralized exchanges (CEXs) that enforce strict Know-Your-Customer (KYC) rules linked to your legal identity.
+  * Instead, use privacy-focused cryptocurrencies (like Monero / XMR) obtained via decentralized exchanges (DEXs), non-custodial atomic swaps, or cash-to-crypto local meetups/ATMs where permitted.
+
+#### Step 2: Setting Up Virtual Credit Cards (VCCs)
+
+To safely purchase domains, hosting, proxies, or services for your puppets without exposing your real financial details, route your funds through Virtual Credit Card providers.
+
+* **Privacy-First VCC Providers:** Use services that allow you to generate single-use or burner virtual card numbers. 
+  * *Implementation note:* Fund these accounts using your non-KYC crypto or anonymized prepaid funding sources whenever possible to avoid linking your personal debit/credit card to the service.
+* **Burner Billing Details:** When creating the VCC or checking out at a vendor, use generated or consistent alias billing details that match your puppet's geographical profile (ensuring ZIP codes match the proxy location if address verification systems [AVS] are enforced).
+
+#### Step 3: Operational Security (OpSec) for Payments
+
+* **Never Cross-Contaminate:** Never use the same payment card, crypto wallet address, or VCC account across multiple independent puppets if they need to maintain strict compartmentalization. Treat each payment source as single-use or strictly siloed.
+* **IP and Browser Consistency:** When funding or generating VCCs, ensure your traffic is routed through the exact same proxy network or clean environment you intend to use for the puppet operations to prevent behavioral correlation.
+
 ### 1.1 Network Isolation
 * Never access a puppet account from your real IP — ever, not even once.
 * One slip permanently links your real identity to the puppet.
