@@ -83,7 +83,7 @@ onionsearch "search term" --output results.txt
 
 ### Fallback 2 — the Onion-Location pivot (clearnet → onion, the legitimate mechanism)
 
-Many major organizations now advertise their onion mirror directly from their clearnet site via the `Onion-Location` HTTP response header — when Tor Browser detects it, a ".onion available" prompt appears in the address bar automatically. The Guardian, Deutsche Welle, the Internet Archive, Facebook, and several privacy-focused search engines all deploy this.
+Many major organizations now advertise their onion mirror directly from their clearnet site via the `Onion-Location` HTTP response header — when Tor Browser detects it, a ".onion available" prompt appears in the address bar automatically. The Guardian, Deutsche Welle, the Internet Archive, Facebook, and several privacy-focused search engines all deploy this . `particalarly telegram have lot of. onion links broadcast by official vendors, so build a Telegram network too.` 
 
 ```bash
 curl -sI https://example-clearnet-site.com | grep -i onion-location
