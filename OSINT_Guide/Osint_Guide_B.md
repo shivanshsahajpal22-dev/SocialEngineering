@@ -353,7 +353,16 @@ At engagement end, every puppet account must be deactivated or deleted in revers
 
 `this section exists when the theory starts to eat you too much !`
 
-1. ..
+**EMAIL**
+
+Create Proton email through their Tor mirror => [click me, definitely not malware :)](https://protonmailrmez3lotccipshtkleegetolb73fuirgj7r4o4vfu7ozyd.onion/) or find link [here](https://proton.me/tor) + here is thier [clearnet site](https://proton.me/)
+For payment, use Menero to buy a voucher in [proxystore](https://digitalgoods.proxysto.re/en) and redeem that voucher to activate the plus account 
+
+OR 
+
+Use Tuna Mail here => [clear site](https://tuta.com/), or you can definitely do all these activities over tor 
+same proxy store method works here too for payment and activation! 
+
 2. ..
 3. ..
 4. ..
