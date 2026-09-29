@@ -353,7 +353,7 @@ At engagement end, every puppet account must be deactivated or deleted in revers
 
 `this section exists when the theory starts to eat you too much !`
 
-**PHONE NUMBER**
+**PAYMENT METHODS**
 `???`
 
 **VPS/VPN/RESIDENTIAL PROXY**
