@@ -353,6 +353,38 @@ At engagement end, every puppet account must be deactivated or deleted in revers
 
 `this section exists when the theory starts to eat you too much !`
 
+**VPS/VPN/Residential Proxy**
+
+VPN  
+- [Mullvad VPN](https://mullvad.net)
+  - Accounts: You generate a 16-digit account number with no email, username, name or password
+  - Payment method can also be routed through the [proxy store](https://digitalgoods.proxysto.re/en)
+  - Downsides: There are no refunds on cash and crypto payments. It has no free tier and is less polished than mainstream VPNs.
+- [Proton VPN](https://proton.me/tor) or [clearnet](https://protonvpn.com/)
+   - Account: It requires a Proton account, so an email address is needed (you can register over Tor, as covered earlier)
+   - You can always buy through Monero routing through the [proxy store](https://digitalgoods.proxysto.re/en) itself
+ 
+VPS 
+- [Njalla VPS](https://njal.la)
+  - Signup and payment: Signup is via email or XMPP, and payment is Bitcoin, Litecoin, Monero, Ethereum or PayPal. There is no cash option
+  - Cost and location: A competitor's comparison lists the entry VPS at €15 a month for 1 vCPU and 1.5 GB RAM, billed monthly, with all VPS in Sweden
+- [bithost VPS](https://bithost.io)
+  - How it works: You sign up with an email and password, fund your balance in crypto, and bithost deploys servers on DigitalOcean, Vultr or Linode under its own provider account.
+  - Pricing: Servers start at $0.015 an hour, and Monero deposits credit in about 20 minutes.
+  - Constraints: You must upload an SSH key, servers are deleted automatically if your balance runs out, backups aren't guaranteed, and withdrawals aren't allowed
+
+
+RESIDENTIAL PROXIES  
+
+> Residential proxies are not privacy tools like VPNs. The provider sees your traffic and your payment, and the pool's origin matters. Google's investigation found that many providers' ethical-sourcing claims were overstated, and in January 2026 it obtained a court order to take down domains tied to the Ipidea network. Most "best no-KYC" lists are affiliate sites, so treat rankings as marketing. 
+Wikipedia
+
+- [Byteful](https://byteful.com/proxy-service/residential-proxies) (formerly Ping Proxies) : accepts Monero among other crypto, and says it enforces an acceptable-use policy. 
+Byteful
+- [IPRoyal](https://iproyal.com/other-proxies/buy-a-proxy-with-crypto-bitcoin/) : KYC is only required for large plans and some restricted targets.
+- [anyIP](https://anyip.io/crypto/buy-proxies-with-xmr-monero) : activates immediately on Monero payment with no KYC.
+- [Froxy](https://froxy.com/en/residential-proxies) : claims ethical sourcing, but some payment methods may be unavailable because of KYC procedures
+
 **EMAIL**
 
 Create Proton email through their Tor mirror => [click me, definitely not malware :)](https://protonmailrmez3lotccipshtkleegetolb73fuirgj7r4o4vfu7ozyd.onion/) or find link [here](https://proton.me/tor) + here is thier [clearnet site](https://proton.me/)
