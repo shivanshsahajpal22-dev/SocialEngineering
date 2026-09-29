@@ -353,7 +353,10 @@ At engagement end, every puppet account must be deactivated or deleted in revers
 
 `this section exists when the theory starts to eat you too much !`
 
-**VPS/VPN/Residential Proxy**
+**PHONE NUMBER**
+`???`
+
+**VPS/VPN/RESIDENTIAL PROXY**
 
 VPN  
 - [Mullvad VPN](https://mullvad.net)
@@ -395,10 +398,16 @@ OR
 Use Tuna Mail here => [clear site](https://tuta.com/), or you can definitely do all these activities over tor 
 same proxy store method works here too for payment and activation! 
 
-2. ..
-3. ..
-4. ..
-5. ..
-6. ..
+**PHONE NUMBER**
+`???`
+
+**BURNER DEVICES**
+`???`
+
+**WIFI/NET ACCESS**
+`???`
+
+**AGING TIMELINE**
+`???`
 
 `Thanks for visiting the place, fellow learner, kbai :) ~ dev.`
