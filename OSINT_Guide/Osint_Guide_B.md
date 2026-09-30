@@ -132,56 +132,210 @@ For a more robust puppet:
 > **Key rule:** The phone number's country code must match the puppet's claimed location — a UK-based persona with a +1 US number is immediately suspicious.
 
 `I have recently covered the number in the burner phone number generation in section 8 too, just a little better and practical than here so check it out too`
+
 ---
 
 ## PART 3 — Platform Presence (Account Creation and Aging)
 
-### 3.1 Account Creation Order and Timing
+## 3.1 Account Creation Order and Timing
+ 
 Do not create all accounts on the same day — this is one of the most common automated detection signals on major platforms.
-
-> **Recommended creation sequence:**
-> * **Week 1:** Email account (the anchor — everything else registers with this) $\rightarrow$ LinkedIn (most important for professional engagement scenarios) $\rightarrow$ Twitter/X
-> * **Week 2:** GitHub (if the puppet is a technical persona) $\rightarrow$ Reddit (lurk only for 2 weeks before posting)
-> * **Week 3+:** Any other platform required by the specific engagement $\rightarrow$ Facebook (hardest to age convincingly — only create if required)
-
-Between each creation: wait at least 48 hours. Never create more than 2 accounts in a single session.
-
-### 3.2 Account Aging — the Most Important and Most Skipped Step
+ 
+Recommended creation sequence:
+ 
+```
+Week 1:
+  - Email account (the anchor — everything else registers with this)
+  - LinkedIn (most important for professional engagement scenarios)
+  - Twitter/X
+ 
+Week 2:
+  - GitHub (if the puppet is a technical persona)
+  - Instagram
+  - Reddit (lurk only for 2 weeks before posting)
+ 
+Week 3:
+  - TikTok (if the persona is under 35 — its absence is suspicious
+    for younger personas, its presence is suspicious for older ones)
+  - Discord (if the persona has a gaming, tech, or community angle)
+  - Medium or Substack (if the persona is a writer/researcher/analyst)
+ 
+Week 4+:
+  - Any other platform required by the specific engagement
+  - Facebook (hardest to age convincingly — only create if required)
+  - YouTube channel (create and subscribe to relevant channels;
+    do not post video unless the persona specifically requires it)
+ 
+Between each creation: wait at least 48 hours
+Never create more than 2 accounts in a single session
+```
+ 
+---
+ 
+## 3.2 Account Aging — the Most Important and Most Skipped Step
+ 
 Platforms detect new accounts aggressively. A 3-day-old LinkedIn profile that immediately starts reaching out to targets is flagged and restricted almost immediately.
-
-> **Minimum aging periods before operational use:**
-> * **LinkedIn:** 3–4 weeks of passive activity (profile views, skill endorsement received, connection with 5–10 accounts that are not your targets)
-> * **Twitter/X:** 2 weeks of posting (2–3 tweets per week, replies to real public accounts on topics matching the persona)
-> * **Reddit:** 4–6 weeks; accumulate at least 50 karma before commenting in any subreddit relevant to the target
-> * **GitHub:** Star 10–15 repos consistent with the persona's claimed skills; optionally fork one and make a small commit
-> * **Facebook:** 8–12 weeks minimum; Facebook's account authenticity checks are the most aggressive of any major platform
-
+ 
+Minimum aging periods before operational use:
+ 
+```
+LinkedIn:    3–4 weeks of passive activity (profile views, skill
+             endorsement received, connection with 5–10 accounts
+             that are not your targets)
+ 
+Twitter/X:   2 weeks of posting (2–3 tweets per week, replies to
+             real public accounts on topics matching the persona)
+ 
+Instagram:   3–4 weeks minimum; post 6–9 images before going
+             operational — an account with fewer than 6 posts
+             is immediately suspicious to any target who checks;
+             follow 30–50 accounts in the persona's interest area
+             before following anyone relevant to the engagement
+ 
+Reddit:      4–6 weeks; accumulate at least 50 karma before
+             commenting in any subreddit relevant to the target
+ 
+GitHub:      Star 10–15 repos consistent with the persona's claimed
+             skills; optionally fork one and make a small commit
+ 
+TikTok:      2–3 weeks; follow 40–60 accounts, like videos daily,
+             do not post original video unless the persona requires
+             it — a following-only account is plausible for a
+             casual user of any age
+ 
+Discord:     Join 3–4 servers relevant to the persona's interests
+             and lurk for 2 weeks before posting; Discord's
+             trust-and-safety system flags brand-new accounts that
+             immediately DM users — aging is essential before any
+             direct contact attempt
+ 
+Medium/      Publish 1–2 articles during aging on neutral topics
+Substack:    consistent with the persona's claimed expertise;
+             these also serve as linkable "proof of work" the
+             puppet can reference in LinkedIn or Twitter bio
+ 
+Facebook:    8–12 weeks minimum; Facebook's account authenticity
+             checks are the most aggressive of any major platform
+ 
+YouTube:     Subscribe to 20–30 channels matching the persona's
+             interests; comment on 2–3 videos per week during aging
+             (not the target's content); watch time matters —
+             YouTube's algorithm can detect accounts that never
+             actually watch anything
+```
+ 
 During aging, the puppet should:
-* Post/engage on topics consistent with the legend (not random)
-* Follow/connect with real accounts in the claimed industry
-* Never interact with anything related to the actual target until the operational phase begins
-* Build a consistent posting time pattern matching the puppet's claimed timezone (post during their "workday hours")
-
-### 3.3 Content Strategy Per Platform
-* **LinkedIn:**
-  * Complete all profile sections (headline, about, experience, education, skills, featured) — incomplete profiles are flagged.
-  * Connect with real people in the claimed industry first (accept anyone who sends a request during aging).
-  * Post 1 industry article comment per week during aging.
-  * Recommended connection count before ops: 50+.
-* **Twitter/X:**
-  * Follow 40–60 accounts in the persona's interest areas.
-  * Retweet 2–3 times per week, original tweet once per week.
-  * Engage with at least one real conversation thread per week (reply to a public account's tweet on a neutral topic).
-  * Do not follow the target account during aging.
-* **Reddit:**
-  * Post in 2–3 subreddits consistent with the persona's hobbies (not the subreddits relevant to the engagement target).
-  * Build karma in neutral/hobby subreddits first (gaming, cooking, local city subreddit for the puppet's city).
-  * Only move to target-relevant subreddits once karma > 50.
-* **GitHub:**
-  * Star repos in the claimed tech stack.
-  * Write a realistic README on any forked repo.
-  * Contribution graph does not need to be dense but should not be completely empty.
-
+ 
+```
+- Post/engage on topics consistent with the legend (not random)
+- Follow/connect with real accounts in the claimed industry
+- Never interact with anything related to the actual target
+  until the operational phase begins
+- Build a consistent posting time pattern matching the puppet's
+  claimed timezone (post during their "workday hours")
+- Maintain cross-platform consistency — if the puppet tweets
+  about running, their Instagram should have at least one
+  running-adjacent post; inconsistency across platforms is
+  a detection signal for any target who cross-checks
+```
+ 
+---
+ 
+## 3.3 Content Strategy Per Platform
+ 
+```
+LinkedIn:
+  Complete all profile sections (headline, about, experience,
+  education, skills, featured) — incomplete profiles are flagged
+  Connect with real people in the claimed industry first
+  (accept anyone who sends a request during aging)
+  Post 1 industry article comment per week during aging
+  Recommended connection count before ops: 50+
+ 
+Twitter/X:
+  Follow 40–60 accounts in the persona's interest areas
+  Retweet 2–3 times per week, original tweet once per week
+  Engage with at least one real conversation thread per week
+  (reply to a public account's tweet on a neutral topic)
+  Do not follow the target account during aging
+ 
+Instagram:
+  Post 6–9 images before going operational — mix of:
+    3–4 lifestyle images consistent with the persona's claimed
+    location and interests (food, travel, hobby shots)
+    2–3 professional or interest-adjacent images
+    1–2 "candid" style crops (not a perfect headshot every time)
+  Use location tags matching the puppet's claimed city
+  Use relevant hashtags during aging to attract organic
+  followers — a zero-follower account looks abandoned
+  Stories: post 2–3 per week during aging and let them expire
+  naturally — a profile with no story history is a tell
+  Do not follow the target or anyone connected to the target
+  during aging
+ 
+Reddit:
+  Post in 2–3 subreddits consistent with the persona's hobbies
+  (not subreddits relevant to the engagement target)
+  Build karma in neutral/hobby subreddits first
+  (gaming, cooking, local city subreddit for the puppet's city)
+  Only move to target-relevant subreddits once karma > 50
+ 
+GitHub:
+  Star repos in the claimed tech stack
+  Write a realistic README on any forked repo
+  Contribution graph does not need to be dense but should
+  not be completely empty
+ 
+TikTok:
+  Follow accounts in the persona's interest areas
+  Like 10–15 videos per week during aging
+  Comment occasionally on non-sensitive content
+  (short, natural comments — "this is exactly what I needed"
+   not essay-length responses which look inauthentic)
+  Posting original video is optional unless the persona
+  specifically requires a content-creator angle
+ 
+Discord:
+  Join servers relevant to the persona's interests
+  Lurk for the first 2 weeks — read-only, no messages
+  Begin posting in general/off-topic channels before any
+  topic-specific channels that relate to the engagement
+  Never DM another user until the account is at least
+  4 weeks old and has visible server activity history
+  (Discord shows "mutual servers" when you DM someone —
+   having zero mutual servers and a new account triggers
+   immediate suspicion)
+ 
+Medium / Substack:
+  Publish 1–2 articles on neutral professional topics
+  during aging — these serve double duty as:
+    content that builds persona credibility
+    linkable "published work" for the LinkedIn/Twitter bio
+  Subscribe to 5–10 publications in the persona's domain
+  Clap/like other articles during aging to build activity history
+ 
+Facebook:
+  Upload 8–12 photos across the aging period (not all at once)
+  Join 2–3 Facebook Groups relevant to the persona's location
+  or interests and engage passively before posting
+  Accept friend requests during aging — do not send them
+  Facebook's authenticity checks look for: profile photo
+  consistency, location tag history, device consistency,
+  and friend network plausibility — all must be addressed
+  Do not use Facebook on a device that has ever been logged
+  into your real Facebook account
+ 
+YouTube:
+  Subscribe to channels matching the persona's claimed interests
+  Leave 2–3 comments per week during aging on non-sensitive
+  content — medium length, genuine-sounding, no links
+  Do not create a playlist that is publicly visible until
+  the channel has enough subscription history to look natural
+  Watch time: actually let videos play rather than skipping —
+  YouTube's backend can detect accounts that subscribe
+  to everything but never actually watch anything
+```
+ 
 ---
 
 ## PART 4 — Operational Use (Actual OSINT Engagement)
@@ -580,6 +734,7 @@ Mitigations if near home is unavoidable:
 ```
 
 ### **AGING TIMELINE**
-`???`
+
+`Just now calmly follow the Account aging process for the OSINT puppets and 1-2 weeks of petince is better than recieving call from the target on your personal phone number ~ ;)`
 
 `Thanks for visiting the place, fellow learner, kbai :) ~ dev.`
