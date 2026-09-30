@@ -39,6 +39,7 @@ Organized by Investigative Pivot. Each category leads with the tools actually wo
 `These are quite useful but require proper drafting. if you are reading this help me out by placing them in thier category and them making a merge request`
 
 **Some other platforms:** [tomba](https://tomba.io/) , [InstantUsername.com](https://instantusername.com/) , [whatsmyname CheapCopy](https://whatsmynameapp.org/) , [wolver eye](https://wolverbot.online/) , [osint search.org](https://osintsearch.org/) , [social searcher](https://www.social-searcher.com/) , [intel-techniques.com](https://inteltechniques.com/tools/) , [arkm.com](https://arkm.com/) , {This category is particularly from the osint lectures i attended}
+
 ---
  
 ### 4. Image & Visual Pivots
