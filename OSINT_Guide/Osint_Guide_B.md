@@ -547,6 +547,7 @@ in VirtualBox                                  VMware; works on Windows, Mac, Li
                                                Waydroid but more universally compatible
 
 ### **WIFI/NET ACCESS**
+`use a tor + vps + anonamouse wifi setup` 
 
 Either buy a network on the anonymous SIM we are talking about 
 
