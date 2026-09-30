@@ -354,10 +354,10 @@ At engagement end, every puppet account must be deactivated or deleted in revers
 
 `this section exists when the theory starts to eat you too much !`
 
-**PAYMENT METHODS**
+### **PAYMENT METHODS**
 `???`
 
-**VPS/VPN/RESIDENTIAL PROXY**
+### **VPS/VPN/RESIDENTIAL PROXY**
 
 VPN  
 - [Mullvad VPN](https://mullvad.net)
@@ -389,7 +389,7 @@ Byteful
 - [anyIP](https://anyip.io/crypto/buy-proxies-with-xmr-monero) : activates immediately on Monero payment with no KYC.
 - [Froxy](https://froxy.com/en/residential-proxies) : claims ethical sourcing, but some payment methods may be unavailable because of KYC procedures
 
-**EMAIL**
+### **EMAIL**
 
 Create Proton email through their Tor mirror => [click me, definitely not malware :)](https://protonmailrmez3lotccipshtkleegetolb73fuirgj7r4o4vfu7ozyd.onion/) or find link [here](https://proton.me/tor) + here is thier [clearnet site](https://proton.me/)
 For payment, use Menero to buy a voucher in [proxystore](https://digitalgoods.proxysto.re/en) and redeem that voucher to activate the plus account 
@@ -399,7 +399,7 @@ OR
 Use Tuna Mail here => [clear site](https://tuta.com/), or you can definitely do all these activities over tor 
 same proxy store method works here too for payment and activation! 
 
-**PHONE NUMBER**
+### **PHONE NUMBER**
 
 Tier 1 — Fully Anonymous (No Identity Required)
 
@@ -490,7 +490,7 @@ India KYC reality   → there is no legal way to get a physical Indian SIM
                        VOIP + burner device is the practical alternative
 ```
 
-**BURNER DEVICES**
+### **BURNER DEVICES**
 
 Where to Buy Physical Burner Devices in India
 
@@ -546,10 +546,10 @@ in VirtualBox                                  VMware; works on Windows, Mac, Li
                                                degoogled builds available; slower than
                                                Waydroid but more universally compatible
 
-**WIFI/NET ACCESS**
+### **WIFI/NET ACCESS**
 `???`
 
-**AGING TIMELINE**
+### **AGING TIMELINE**
 `???`
 
 `Thanks for visiting the place, fellow learner, kbai :) ~ dev.`
