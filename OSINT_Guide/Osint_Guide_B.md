@@ -547,7 +547,22 @@ in VirtualBox                                  VMware; works on Windows, Mac, Li
                                                Waydroid but more universally compatible
 
 ### **WIFI/NET ACCESS**
-`???`
+
+Either buy a network on the anonymous SIM we are talking about 
+
+OR 
+
+use a public wifi: "Libraries and cafes are best for this; visit one that provide free public wifi"
+```
+Mitigations if near home is unavoidable:
+
+→ Leave your regular phone at home or in airplane mode
+  (eliminates cell tower location ping)
+→ Randomize MAC address on the device you're using
+  (built into modern Android and Linux by default)
+→ Vary the location and time
+→ Tor on top handles the traffic layer regardless
+```
 
 ### **AGING TIMELINE**
 `???`
