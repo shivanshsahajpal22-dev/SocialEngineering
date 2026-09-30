@@ -1,6 +1,6 @@
 # Template for OSINT games 
 
-`These are Games you can play with your friend who is interested in OSINT too.`
+`Since you have now reached the end of the OSINT write-ups, let's play instead of learning this time. These are Games you can play with your friend who is interested in OSINT too.`
 
 Rules 
 1. Set a timer or duration for each round
@@ -8,7 +8,7 @@ Rules
 3. Whoever scores the most points wins the OSINT round 
 
 ## Template for GEOINT 
-`An image will be given to you; find the following info. or pick a random image form the internet yurself !`
+`An image will be given to you; find the following info. or pick a random image from the internet yourself!`
 ```
 TIER 1 (easiest — broad strokes)
 
