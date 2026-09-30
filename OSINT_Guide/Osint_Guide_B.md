@@ -131,6 +131,7 @@ For a more robust puppet:
 
 > **Key rule:** The phone number's country code must match the puppet's claimed location — a UK-based persona with a +1 US number is immediately suspicious.
 
+`I have recently covered the number in the burner phone number generation in section 8 too, just a little better and practical than here so check it out too`
 ---
 
 ## PART 3 — Platform Presence (Account Creation and Aging)
@@ -399,10 +400,151 @@ Use Tuna Mail here => [clear site](https://tuta.com/), or you can definitely do 
 same proxy store method works here too for payment and activation! 
 
 **PHONE NUMBER**
-`???`
+
+Tier 1 — Fully Anonymous (No Identity Required)
+
+> Prepaid SIM — Cash Purchase
+```
+Note: India requires Aadhaar-based KYC for all SIM purchases
+under TRAI regulations — no carrier is legally exempt from this.
+A prepaid SIM in India is linked to your Aadhaar by default.
+
+For number separation without identity linkage, VOIP is the
+more practical path in the Indian context.
+
+If you still want a physical SIM:
+→ Buy from a small local mobile shop (not a branded carrier store)
+  in a busy market area — Nehru Place (Delhi), Linking Road (Mumbai),
+  SP Road (Bangalore), Ritchie Street (Chennai)
+→ Pay cash
+→ The KYC requirement still applies legally — understand that
+  before proceeding
+```
+
+VOIP Numbers
+`This is most likely the tier you are going to operate on. + most likely the Tier 3 as the helper tier.`
+
+| Service | Link | Notes |
+|---|---|---|
+| MySudo | [mysudo.com](https://mysudo.com) | Multiple numbers per account; real DID numbers not flagged as VOIP; anonymous signup |
+| JMP.chat | [jmp.chat](https://jmp.chat) | XMPP-based; pay with Monero; most private option that still gives a working SMS-capable number |
+| Hushed | [hushed.com](https://hushed.com) | Anonymous signup; pay with gift cards or crypto |
+| Textr | [textrapp.com](https://textrapp.com) | Works well from India; supports Indian numbers |
+
+```
+Note: many services reject VOIP numbers for SMS verification;
+for those, a secondary physical SIM is more reliable
+```
+
+Tier 2 — Pseudonymous (Identity Decoupled, Not Eliminated)
+
+| Service | Link | Notes |
+|---|---|---|
+| Google Voice | [voice.google.com](https://voice.google.com) | Not directly available in India without a US number to port; workaround exists via VPN but unreliable |
+| TextNow | [textnow.com](https://textnow.com) | Low-stakes only; ad-supported; usage logged; accessible from India |
+| IndiaMART virtual numbers | [indiamart.com](https://indiamart.com) | Business-facing but worth knowing; virtual numbers for business use |
+
+Tier 3 — Disposable / Temporary
+
+Public SMS Sites
+```
+Anyone can read SMS sent to these — one-time throwaway only
+Never use for any account you want to retain
+```
+
+| Site | Link |
+|---|---|
+| receive-smss.com | [receive-smss.com](https://receive-smss.com) |
+| quackr.io | [quackr.io](https://quackr.io) |
+| receivesms.co | [receivesms.co](https://receivesms.co) |
+| hs3x.com | [hs3x.com](https://hs3x.com) |
+| smsreceivefree.com | [smsreceivefree.com](https://smsreceivefree.com) |
+
+Temp Number Apps
+```
+Number assigned to your session only, not broadcast publicly
+Better than public sites; same VoIP-blocking caveats apply
+```
+
+| App | Link |
+|---|---|
+| Phoner | [phonerapp.com](https://phonerapp.com) |
+| 2ndLine | [2ndline.co](https://www.2ndline.co) |
+
+Operational Notes
+
+```
+Device separation   → private number should never touch your daily phone;
+                       cheap second-hand Android from Nehru Place / SP Road
+                       used only on public WiFi is the cleanest setup
+
+Network separation  → do not activate or use on home WiFi or Jio/Airtel
+                       connection tied to your identity; use public WiFi
+                       at a cafe, library, or metro station
+
+Signup environment  → creating a pseudonymous account from your real
+                       browser on your real network defeats the purpose
+
+India KYC reality   → there is no legal way to get a physical Indian SIM
+                       without Aadhaar linkage under current TRAI rules;
+                       VOIP + burner device is the practical alternative
+```
 
 **BURNER DEVICES**
-`???`
+
+Where to Buy Physical Burner Devices in India
+
+```
+If you want a completely separate cheap device for the number:
+```
+
+| Location | What to Find |
+|---|---|
+| Nehru Place, Delhi | Largest electronics grey market; cheap Android phones, refurbished handsets, cash deals common |
+| SP Road, Bangalore | Electronics wholesale market; budget Android devices widely available |
+| Ritchie Street, Chennai | Electronics hub; wide range of budget phones, accessories |
+| Linking Road / Dharavi electronics, Mumbai | Budget handsets, accessories, cash transactions normal |
+| Palika Bazaar, Delhi | Underground market; very budget handsets |
+| Any local mobile repair shop | Second-hand cheap Androids; cash purchase; no paperwork |
+
+```
+What to buy:
+→ Any Android device under ₹1500–2000 (second-hand)
+→ Does not need a SIM slot if you're using VOIP only
+→ Needs WiFi capability — that is all
+→ Factory reset before use
+```
+
+OR 
+
+You can use the following virtual machine to set up the burner devices and environments
+
+[Whonix Workstation](whonix.org)  → purpose-built for anonymity; routes all
+                                    traffic through Tor by default; best option
+                                    if anonymity is the primary goal;
+                                    run inside VirtualBox or KVM
+                        
+
+[Qubes OS VM](qubes-os.org)  → if you're already on Qubes, spin a
+                               disposable Qube for the number activity;
+                               strongest isolation if your threat model
+                               is host compromise; 
+
+
+Plain [Ubuntu](https://ubuntu.com/) (Best) → works fine for low-threat-model use cases;
+VM in VirtualBox                             no built-in anonymity features so you are
+                                             responsible for network separation yourself
+
+[Waydroid](https://waydroid.org) on Linux    → runs full Android (LineageOS based) inside
+                                               a Linux container; hardware accelerated so
+                                               feels native speed; no Google services by
+                                               default; best option if you're already on
+                                               Linux and need a mobile-only VOIP app
+
+[Android-x86](https://android-x86.org)       → full Android environment in VirtualBox or
+in VirtualBox                                  VMware; works on Windows, Mac, Linux;
+                                               degoogled builds available; slower than
+                                               Waydroid but more universally compatible
 
 **WIFI/NET ACCESS**
 `???`
