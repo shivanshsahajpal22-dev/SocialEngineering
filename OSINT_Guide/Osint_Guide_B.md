@@ -550,7 +550,21 @@ in VirtualBox                                  VMware; works on Windows, Mac, Li
 `use a tor + vps + anonamouse wifi setup` 
 
 Either buy a network on the anonymous SIM we are talking about 
+```
+Most anonymous recharge flow:
 
+Cash
+  ↓
+Small independent mobile shop in a busy market
+  ↓
+Verbal: give number + pack name
+  ↓
+Shopkeeper recharges via their retailer portal
+  ↓
+No app, no UPI, no bank account on your end
+
+visit that local recharge shoop today ;)
+```
 OR 
 
 use a public wifi: "Libraries and cafes are best for this; visit one that provide free public wifi"
