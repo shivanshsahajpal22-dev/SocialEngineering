@@ -161,3 +161,105 @@ DEBRIEF (do this every round, it's the actual learning part)
 - Judge (if present) confirms which MICE/RASCLS lever was actually
   in play, since players often don't consciously clock it themselves 
 ```
+## Template for DARKINT
+`A fake .onion service with a fake database is hosted for this round — entirely
+fabricated content, fabricated personas, fabricated "leaked" data. Players
+investigate it exactly like a real target, using the same tools and discipline
+as a real engagement, against something nobody can actually get hurt by.`
+```
+SETUP
+One host (or team) stands up the fake onion service ahead of time,
+seeds it with fabricated forum posts, fabricated vendor/marketplace
+listings, a fabricated "breach dump," and at least two DECOY personas
+that are deliberately designed to look like the same person without
+actually being confirmable as such — this is what makes Tier 5 real.
+
+Round length                       : [// fill here, suggest 30-45 min]
+
+TIER 1 (easiest — recon and verification)
+
+Site category correctly identified
+(forum/market/leak-site/etc.)      : [// fill here] -- 1 point
+Onion-Location header or clearnet
+mirror found, if seeded            : [// fill here] -- 2 points
+Correctly verifies the address
+against the host's "trusted
+directory" before trusting content : [// fill here] -- 2 points
+Tech stack / hosted software
+identified from page structure     : [// fill here] -- 2 points
+
+TIER 2 (crawling and pivoting)
+
+A second fake onion address found
+via outbound link/forward-chain
+crawling from the first            : [// fill here] -- 3 points
+A planted "scam clone" red flag
+correctly identified and NOT
+trusted                            : [// fill here] -- 4 points
+A specific forum post or listing
+content correctly extracted        : [// fill here] -- 2 points
+
+TIER 3 (persona correlation — the real skill test)
+
+Reused PGP key fingerprint found
+linking two separate posts/listings : [// fill here] -- 5 points
+Reused wallet address found linking
+two separate "transactions"        : [// fill here] -- 5 points
+Stylometric match flagged between
+two aliases (writing-style overlap) : [// fill here] -- 5 points
+Infrastructure overlap found (shared
+favicon, leaked header, shared cert) : [// fill here] -- 6 points
+
+TIER 4 (technical extraction, if the fake DB has a deliberate flaw)
+
+A hidden/unlinked page or admin
+panel discovered                   : [// fill here] -- 4 points
+A planted vulnerability (SQLi,
+IDOR, exposed backup file, weak
+creds) successfully used to pull
+data from the fake database        : [// fill here] -- 8 points
+
+TIER 5 (hardest — cross-bucket corroboration, mirrors SOCINT Tier 5)
+
+Correctly identifies WHICH of the
+two decoy personas is the confirmed
+match to the target, using at least
+TWO independent correlation
+techniques from Tier 3             : [// fill here] -- 10 points
+Correctly identifies that the OTHER
+decoy is NOT a match, and explains
+why (the trap half of the trap)    : [// fill here] -- 6 points
+
+BONUS
+Fastest team to correctly flag the
+whole site as fake/a training
+exercise, citing a specific "tell"  : +3 points
+Cleanest documented pivot chain,
+end to end, source-cited at every
+step (judged, not automatic)       : +5 points
+
+PENALTIES
+Submitting an identity as "confirmed"
+off a SINGLE correlation technique
+(no cross-bucket corroboration)    : -4 points
+Falling for the planted scam-clone
+red flag and trusting it anyway    : -3 points
+Not using Tor Browser / an isolated
+VM setup during the round (OPSEC
+habit-building counts even in a
+game)                              : -2 points
+```
+DEBRIEF (do this every round)
+- Team walks through their pivot chain start to finish, naming which
+  correlation technique closed each gap
+- Host reveals which decoy was the real match and which planted
+  "tells" existed at each tier, including any red flags nobody caught
+- Judge confirms whether a "confirmed" identity call actually met the
+  two-independent-technique bar, or got there on a lucky single hit
+
+RULE REMINDER: this must run entirely on infrastructure the host
+controls, with 100% fabricated data — no real personal information,
+no real breach data, no real onion addresses pointed to from the fake
+site. Never repoint this exercise at an actual dark web target.
+
+`Hope you enjoyed your time in the OSINT series , kbai ~ Dev`
