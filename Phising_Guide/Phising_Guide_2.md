@@ -233,13 +233,9 @@ App → queue → worker → email service → internet. Events (delivered/bounc
 - [ ] Outbound content scan to catch hacked templates
 - [ ] Watch for look-alike domains registered against your brand
 
-## 13. Test before launch
+## Defence Evasion methods: Domain Aging (You don't want the domain flag)
 
-1. Send to Gmail, Outlook, Yahoo, iCloud test accounts; use "Show original" and confirm SPF/DKIM/DMARC all pass.
-2. Score with mail-tester.com (aim 9+/10); run an inbox-placement test.
-3. Verify all records with MXToolbox and `dig` from outside.
-4. Test unsubscribe, a deliberate bounce, and a deliberate spam-mark end to end.
-5. Confirm staging genuinely cannot reach real addresses.
+## Defence Evasion methods: Good Ip range accruing (you want reputable ip)
 
 ## Defence Evasion methods: Warm-up (mandatory for new IPs/domains)
 
@@ -258,6 +254,14 @@ Warm up each big provider separately — Outlook is slowest to trust you.
 
 **Pause if:** a major provider starts delaying you, complaints pass 0.1%, bounces pass 2%, or any blocklist lists you; this may force you to burn the entire infrastructure and start from scratch again and again! 
 
+## Test before launch
+
+### The final list 
+1. Send to Gmail, Outlook, Yahoo, iCloud test accounts; use "Show original" and confirm SPF/DKIM/DMARC all pass.
+2. Score with mail-tester.com (aim 9+/10); run an inbox-placement test.
+3. Verify all records with MXToolbox and `dig` from outside.
+4. Test unsubscribe, a deliberate bounce, and a deliberate spam-mark end to end.
+5. Confirm staging genuinely cannot reach real addresses.
 ## Infra quick burn and rebuild 
 
 The goal here is: you can rebuild correctly in hours, not weeks — without ever touching the rotate-to-dodge-filters pattern that gets you blocked.
