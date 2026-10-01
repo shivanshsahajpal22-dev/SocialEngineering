@@ -1,6 +1,7 @@
 > The guide is in progress, so I would ask you to come back later <under construction> 
 
-# PHISHING EMAIL / SOCIAL ENGINEERING INFRA BUILD GUIDE 
+# Business Messaging Platform: The Complete Guide
+## Email · SMS · Phone — cloud-hosted, built to stay out of spam and phishing filters
 
 **Goal:** build email, text-message (SMS) and phone-call systems that run on the cloud, can be changed fast, and are **not flagged as spam or phishing**.
 
