@@ -1,4 +1,4 @@
-# Business Messaging Platform: The Complete Guide
+# PHISHING INFRA SETUP GUIDE 
 
 ## Email · SMS · Phone — cloud-hosted, built to stay out of spam and phishing filters
 
@@ -22,6 +22,13 @@ Inbox providers ask three questions. Fail one and you're "Spam" or "Phishing."
 | **2. Do you behave?** | People want your mail | Low complaints, clean list |
 | **3. Do you look honest?** | Nothing looks like a scam | Honest links, steady branding |
 
+```
+WHAT TO DO ABOUT SPF, DKIM, AND DMARC as red teamer 
+[data must be filled here]
+```
+`Once this is handled, check your own mail to see if it's caught or not on [MXToolbox Email Header Analyzer](https://mxtoolbox.com/EmailHeaders.aspx)` --> this will tell you if you are gonna get caught or not 
+
+
 ## Words you'll see
 
 | Term | Simple meaning |
@@ -39,8 +46,8 @@ Inbox providers ask three questions. Fail one and you're "Spam" or "Phishing."
 
 ## 1. Decide first
 
-- **Split system vs. marketing.** Receipts and codes on one domain/IP/credential set; marketing on another. If marketing gets in trouble, system mail keeps working.
 - **Estimate your busiest day.** It decides IP count, plan size, and warm-up speed.
+`Here is how you estimate it`: `number of victims * emails per person (1)`
 - **Name one owner** for abuse reports, blocklists, and on-call.
 - **Get legal review** of consent, opt-out and footer rules (CAN-SPAM, GDPR, CASL, etc.) — required almost everywhere.
 
