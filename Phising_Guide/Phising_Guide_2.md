@@ -1,483 +1,635 @@
-> The guide is in progress, so I would ask you to come back later <under construction> 
-
 # Business Messaging Platform: The Complete Guide
+
 ## Email · SMS · Phone — cloud-hosted, built to stay out of spam and phishing filters
 
-**Goal:** build email, text-message (SMS) and phone-call systems that run on the cloud, can be changed fast, and are **not flagged as spam or phishing**.
+> One guide, three self-contained sections. Each section (Email / SMS / Phone) repeats the shared foundation in short form so you can jump straight to the channel you need.
 
-*Assumption: one cloud account (AWS, Google Cloud or Azure), everything defined as code, and a mix of system messages (receipts, codes) and marketing, for initial setup and fast shifting use*
+---
+
+---
+
+# Part 1: Email
+
+> Part of a 3-guide set (Email / SMS / Phone). Shared foundation pieces are repeated here in short form so this guide stands alone.
 
 ## The one idea behind everything
 
-Email providers, phone carriers and phones all ask the same three questions. Fail one and you get blocked or labelled "Spam Likely" or "Phishing".
+Inbox providers ask three questions. Fail one and you're "Spam" or "Phishing."
 
-| Question | Plain meaning | Email | SMS | Phone |
-| --- | --- | --- | --- | --- |
-| **1. Who are you?** | Proof you are really you | SPF, DKIM, DMARC | Registered brand + campaign | Caller verification (STIR/SHAKEN) |
-| **2. Do you behave?** | People want your messages | Low complaints, clean list | Opt-in + STOP works | Low hang-ups, sensible call volume |
-| **3. Do you look honest?** | Nothing looks like a scam | Honest links, steady branding | Same, no link shorteners | Real caller name, no spoofing |
+| Question | Plain meaning | How email answers it |
+| --- | --- | --- |
+| **1. Who are you?** | Proof you're really you | SPF, DKIM, DMARC |
+| **2. Do you behave?** | People want your mail | Low complaints, clean list |
+| **3. Do you look honest?** | Nothing looks like a scam | Honest links, steady branding |
 
-## Words you will see
+## Words you'll see
 
 | Term | Simple meaning |
 | --- | --- |
-| **MTA** | The mail server that sends email |
-| **IP address / IP reputation** | Your server's "address" and the trust score inbox providers give it |
-| **DNS record** | A public note about your domain (who may send for it) |
-| **SPF / DKIM / DMARC** | Three email ID checks: approved senders / tamper-proof signature / what to do if the checks fail |
-| **Bounce / complaint** | Email could not be delivered / recipient clicked "report spam" |
-| **Suppression list** | "Do not contact again" list |
-| **Warm-up** | Slowly raising volume so providers learn to trust you |
-| **10DLC / DLT** | Business registration for text messages (US / India) |
-| **STIR/SHAKEN** | Caller-ID verification so your number shows as genuine |
-| **SIP trunk** | A cloud phone line |
-| **IaC** | "Infrastructure as code": servers set up from files, not by clicking |
+| MTA | The mail server that sends email |
+| IP reputation | The trust score inbox providers give your sending IP |
+| DNS record | A public note about your domain (who may send for it) |
+| SPF / DKIM / DMARC | Approved senders / tamper-proof signature / what to do if checks fail |
+| Bounce / complaint | Couldn't deliver / recipient clicked "report spam" |
+| Suppression list | "Do not contact again" list |
+| Warm-up | Slowly raising volume so providers learn to trust you |
+| IaC | Infrastructure as code: servers/records set up from files, not clicks |
 
 ---
 
-# Part 1: Foundation (do once, used by all three channels)
+## 1. Decide first
 
-## 1.1 Decide first
+- **Split system vs. marketing.** Receipts and codes on one domain/IP/credential set; marketing on another. If marketing gets in trouble, system mail keeps working.
+- **Estimate your busiest day.** It decides IP count, plan size, and warm-up speed.
+- **Name one owner** for abuse reports, blocklists, and on-call.
+- **Get legal review** of consent, opt-out and footer rules (CAN-SPAM, GDPR, CASL, etc.) — required almost everywhere.
 
-| Decision | Recommendation |
-| --- | --- |
-| Split by purpose | Keep **system messages** (receipts, codes, password resets) apart from **marketing**. Separate domains/numbers, credentials, queues. If marketing gets in trouble, system messages keep working. |
-| Volume | Estimate the busiest day per channel. It decides plans, number types and warm-up speed. |
-| Owner | Name one person for abuse reports, blocklists, registrations and on-call. |
-| Rules | Consent records, opt-out and company address are required in almost every country (CAN-SPAM, GDPR, CASL, TCPA, India DLT/TRAI and local rules). Get legal review. |
+## 2. Cloud setup, so you can change fast
 
-## 1.2 Cloud setup (so you can change fast)
+1. Separate **staging and production** cloud accounts. Staging only ever hits a mail catcher (e.g. Mailpit), never real inboxes.
+2. **Everything as code** (Terraform): DNS records, servers, queues, alerts — reviewed in Git, applied in minutes.
+3. **Secrets manager** for every API key; one key per service per environment.
+4. **A queue** (SQS/Pub-Sub) between your app and the mail service. Nothing sends straight from a web request.
+5. Your app calls *your own* "send email" service, not the provider directly — so switching providers means changing one place.
+6. **A backup email provider**, pre-configured and ready to flip to.
+7. **Spending alerts and caps** on the provider account.
 
-1. **Separate accounts** for production and staging. Staging must never reach real customers (use sandbox numbers and mail catchers like Mailpit).
-2. **Everything as code** (Terraform): servers, DNS records, queues, alerts. Changes are reviewed in Git and applied in minutes. Restrict who can edit DNS.
-3. **Secrets manager** for all API keys and passwords. One key per service per environment. Never put them in code.
-4. **One queue per channel** (SQS, Pub/Sub or similar). Apps drop a request in the queue; workers send it. Nothing sends directly from a web request.
-5. **Swap-ready design**: your apps call *your own* "send email / send SMS / place call" service, not the provider directly. Switching provider then means changing one place.
-6. **A backup provider per channel**, already configured: a hot standby for email, a second SMS route, a second phone carrier.
-7. **Spending alerts and limits** on every provider. A bug or attack can run up a large bill quickly.
+## 3. The shared "do-not-contact" brain
 
-## 1.3 The shared "do not contact" brain
+- One consent record per person (when, how, what wording).
+- One opt-out list, checked by every channel before every send.
+- An event log: send, bounce, complaint, reply — searchable for support.
+- Every webhook signature verified, or attackers can fake delivery events.
 
-One service, used by email, SMS and phone:
+---
 
-- **Consent record** for each person: when, how, which channel, what wording they agreed to.
-- **One opt-out list.** If someone says STOP by text or unsubscribes by email, the other channels must respect it where the law or your promise requires.
-- **Check it before every send or call.**
-- **Event log**: every send, delivery, bounce, complaint, reply and call result, searchable for support ("did she get it?").
-- **Webhook safety**: providers report events by calling your URL. Verify each request's signature, or attackers can fake events.
+## 4. Redirector (Front Door) — put this in front of everything public, *before* you touch the mail server itself
 
-## 1.4 Proxy servers (the "front door" and the "exit door")
+A redirector/reverse proxy is the one thing the internet is allowed to touch directly. It sits in front of your APIs and pages, checks the traffic, then passes it inward. Build and prove this out *before* the real mail-sending setup, because every other piece (webhooks, tracking, unsubscribe) depends on it being solid.
 
-**In plain words:** a proxy is a middleman server. You need two kinds.
+Put a redirector in front of:
 
-| Type | Where it sits | What it does for you |
-|---|---|---|
-| **Reverse proxy** ("front door") | In front of your own services | Receives internet traffic first, checks it, then passes it on |
-| **Forward proxy** ("exit door") | Between your servers and the internet | Sends your outbound requests from fixed, known IP addresses |
-
-### Front door (reverse proxy)
-
-Put one in front of every public web endpoint:
-- Your **send API** (where apps submit email/SMS/call requests)
-- **Webhook receivers** (where providers report deliveries, bounces, replies and call events)
-- Your **tracking domain** (`track.example.com`) and the **unsubscribe/preference pages**
+- Your **send API** (where internal apps submit email requests)
+- **Webhook receivers** (where the provider reports bounces, complaints, opens)
+- Your **tracking domain** (`track.example.com`)
+- Your **unsubscribe/preference pages**
 - The **MTA-STS policy site** (`mta-sts.example.com`)
 
 Checklist:
-- [ ] HTTPS only, with auto-renewing certificates; redirect HTTP to HTTPS
-- [ ] **Rate limits** and request-size limits on every endpoint
-- [ ] A **web application firewall (WAF)** to block bots and common attacks
-- [ ] Webhook endpoints: allow only the provider's published IPs where available, **and still verify every signature**
+
+- [ ] HTTPS only, auto-renewing certs, HTTP redirects to HTTPS
+- [ ] Rate limits and request-size limits on every endpoint
+- [ ] A web application firewall (WAF) for bots and common attacks
+- [ ] Webhook routes: allow only the provider's published IPs where available, **and still verify every signature** — IP allow-listing alone is not authentication
 - [ ] Internal servers never exposed directly to the internet
-- [ ] **Two or more copies** with health checks, so one failure doesn't take it down
-- [ ] Tracking and unsubscribe links stay **fast and always up**. A broken unsubscribe link causes spam complaints.
-- [ ] Use a cloud-managed load balancer + WAF, or Nginx/Envoy/Caddy defined in your infrastructure code
+- [ ] Two or more redirector instances behind a health check, so one failure doesn't take the front door down
+- [ ] Unsubscribe/tracking links stay fast and always up — a broken unsubscribe link *causes* spam complaints
+- [ ] Use a cloud-managed load balancer + WAF, or Nginx/Envoy/Caddy, all defined in your IaC
 
-### Exit door (forward proxy)
+**One hard rule specific to email:** the redirector is for *inbound* traffic (webhooks, pages). It must never sit between your mail server and the internet for *outbound* delivery — email has to leave from the exact IP that carries your PTR and SPF records. Routing delivery through a proxy breaks that match and tanks deliverability.
 
-Route your workers' outbound **API calls** (to email, SMS and phone providers) through a **fixed-IP exit**: a cloud NAT gateway with a static IP, or a small forward proxy.
+**Never:** send mail through rotating, shared, free, or "residential" proxies, or rotate sending IPs to dodge filters — providers read that as hiding, which is itself a phishing-style signal.
 
-Why:
-- Some providers let you **restrict API keys to specific IPs**, so a stolen key is useless elsewhere
-- You get **one place to log and firewall** outbound traffic
-- Providers see consistent, known IPs
+**Fast-rebuild notes for the redirector layer** (legitimate disaster recovery, not filter-evasion):
 
-Run **two exits** for backup, and add both IPs to each provider's allow-list.
-
-### Never do this
-
-- **Do not send email, SMS or calls through rotating, shared, free or "residential" proxies**, and don't rotate IPs or numbers to dodge filters. Inbox providers and carriers read this as hiding, which is a strong spam/phishing signal and breaks provider terms.
-- **Email must leave from the IP that has your PTR and SPF records.** Never route mail delivery through a proxy with a different IP.
-- Never run an **open proxy**. Require authentication or keep it on a private network only.
-
-### Keep it safe and watched
-
-- Patch regularly, MFA on admin access, least-privilege permissions
-- Don't log message bodies, tokens or full phone numbers (mask them)
-- Watch: error rate, response time, blocked requests, certificate expiry
-- Runbook: "proxy down" (switch to the second copy), "exit IP changed" (update every provider allow-list)
+- Keep the redirector's config as its own small IaC module, separate from the mail-server module, so you can redeploy just the front door in minutes if it's compromised or misconfigured.
+- Pre-bake a WAF ruleset and rate-limit profile as versioned config, so a fresh redirector inherits the same protections immediately rather than starting wide-open.
+- Keep a second, idle redirector stack (different AZ/region) that can be promoted with a DNS/load-balancer switch, so a redirector failure doesn't take down webhook intake or unsubscribe pages while you rebuild.
 
 ---
 
-# Part 2: Email
-
-## 2.1 Choose how to run it
+## 5. Choose how to run the mail server itself
 
 | Path | What it is | Pros | Cons |
 | --- | --- | --- | --- |
-| **A. Cloud email service in your own account** (SES, Postmark, SendGrid, Mailgun, or similar) with **dedicated IPs** | Provider runs the mail servers; you own domains, settings and pipeline | Fastest to change, no port-25 problems, easier on the team | Less low-level control |
-| **B. Your own mail servers on cloud machines** (Postfix, or KumoMTA at high volume) | You run the mail servers on rented cloud machines | Full control | You carry IP reputation, blocklists, and 24/7 care. Many clouds **block outgoing port 25**, so check first. |
+| **A. Cloud email service in your own account** (SES, Postmark, SendGrid, Mailgun) with dedicated IPs | Provider runs the servers; you own domains and settings | Fastest to change, no port-25 hassle, easiest to rebuild | Less low-level control |
+| **B. Your own mail servers on cloud machines** (Postfix, KumoMTA) | You run the servers | Full control | You own reputation, blocklists, and 24/7 care; many clouds block outbound port 25 |
 
-Path A is recommended for "cloud + change fast". Everything in 2.2 to 2.10 applies to both. 2.3 is **extra work for Path B** (and a smaller task of choosing dedicated IPs in Path A).
+**Path A is the right default for "cloud + change fast."** Everything below applies to both; Path B carries the extra work noted in Section 6.
 
-## 2.2 Domains (the most important step)
+## 6. Domains — the most important step
 
-Use a different subdomain for each purpose so one problem cannot hurt the others:
+Use a separate subdomain per purpose so one problem can't hurt the others:
 
 | Name | Use |
 | --- | --- |
-| `example.com` | Website and staff mailboxes. **Never send bulk mail from it.** |
+| `example.com` | Website and staff mailboxes only — **never** bulk mail |
 | `mail.example.com` | System emails |
 | `news.example.com` | Marketing |
 | `bounce.mail.example.com` | Where "could not deliver" replies go |
 | `track.example.com` | Your own link-tracking domain |
 
-**Domain hygiene (affects phishing checks directly):**
+**Domain hygiene (this is what phishing filters actually check):**
 
-- Buy domains **4+ weeks before launch**. Brand-new domains look suspicious.
-- Put a **real website** on the main domain: company name, address, contact, privacy policy.
-- Registrar: lock on, MFA on, limited access, DNSSEC if available.
-- No look-alikes of other brands; avoid cheap or abused domain endings.
-- **Protect unused domains:** SPF `v=spf1 -all`, null MX, DMARC `p=reject`, so nobody can fake them.
+- Buy domains **4+ weeks before launch** — brand-new domains look suspicious.
+- Put a **real website** on the root domain: company name, address, contact, privacy policy.
+- Lock the registrar, turn on MFA, limit access, use DNSSEC where available.
+- No look-alikes of other brands; avoid cheap/abused TLDs.
+- **Protect unused domains** you own but don't send from: `SPF v=spf1 -all`, null MX, `DMARC p=reject` — so nobody can spoof them.
 
-## 2.3 Servers and IP addresses
+**Fast-rebuild note:** keep a domain-provisioning Terraform module (subdomain structure + protective records for unused domains) as a template, so standing up a new brand/domain set is a config change, not a from-scratch DNS session.
 
-- Use **dedicated IPs** (not shared): 1 for system mail, 1-2 for marketing, 1 spare.
-- **Check each IP is clean** on Spamhaus, Barracuda, SORBS and MXToolbox before using it. Reject recycled IPs with a bad history.
-- **Path B only:** confirm outgoing port 25 works (`nc -vz gmail-smtp-in.l.google.com 25`); run at least 2 mail servers; keep a firewall that allows inbound port 25 only on the bounce-receiving server and submission only from your apps; install fail-ban tools; sign every message and **refuse to send anything unsigned**; never be an "open relay" (a server that sends for strangers); keep clocks synced.
-- **Reverse DNS (PTR):** each IP must point back to a name (e.g. `mta1.mail.example.com`), and that name must point to the same IP and match the name the server announces. All three must match.
-- IPv6 is optional; start with IPv4 only.
+## 7. Servers and IPs
 
-## 2.4 Identity records (your email "ID card")
+- Use **dedicated IPs**, not shared: one for system mail, one or two for marketing, one spare.
+- **Check every IP before using it** against Spamhaus, Barracuda, SORBS, MXToolbox. Reject recycled IPs with bad history.
+- **Path B only:** confirm outbound port 25 works; run 2+ mail servers; firewall so inbound 25 is only open on the bounce receiver and submission only from your apps; install fail-ban tooling; sign every message and refuse to send unsigned mail; never run an open relay; keep clocks synced.
+- **Reverse DNS (PTR):** each IP points to a name (`mta1.mail.example.com`); that name resolves back to the same IP; the server announces the same name. All three must match.
+- IPv4 first; IPv6 optional.
 
-| Record | In plain words | Key rules |
+## 8. Identity records — your email "ID card"
+
+| Record | Plain meaning | Key rules |
 | --- | --- | --- |
-| **SPF** | Lists which servers may send for your domain | Ends with `-all` once confident. Max 10 lookups (list IPs directly to save lookups). Set on the bounce domain too. |
-| **DKIM** | A digital signature proving the email was not altered | **2048-bit** key. One new key name per rotation. Replace keys every 6-12 months. Signing domain must match the From domain. |
-| **DMARC** | Tells receivers what to do when SPF/DKIM fail, and sends you reports | Roll out in steps (below). |
-| **Custom bounce address (Return-Path)** | Your own domain on the hidden "return" address | Needed so SPF *matches* your visible From domain ("alignment"). |
-| **MX records** | Where replies and abuse reports arrive | Every domain you send from must be able to receive. |
-| **PTR** | See 2.3 | Set at the IP owner. |
-| **MTA-STS + TLS-RPT** | Forces encrypted delivery *to you*, and reports failures | Start in "testing" mode. |
-| **BIMI** (optional) | Shows your logo in inboxes | Needs DMARC at quarantine/reject. |
+| **SPF** | Lists who may send for your domain | End with `-all` once confident; max 10 lookups (list IPs directly to save lookups); also set on the bounce domain |
+| **DKIM** | Tamper-proof signature | 2048-bit key; one new key name per rotation; rotate every 6–12 months; signing domain must match the From domain |
+| **DMARC** | What to do when SPF/DKIM fail, plus reports | Roll out in steps (below) |
+| **Custom Return-Path** | Your own bounce domain | Needed so SPF *aligns* with the visible From domain |
+| **MX** | Where replies/abuse reports land | Every sending domain must also be able to receive |
+| **PTR** | See Section 7 | Set at the IP owner |
+| **MTA-STS + TLS-RPT** | Forces encrypted delivery to you, reports failures | Start in "testing" mode |
+| **BIMI** (optional) | Shows your logo in the inbox | Needs DMARC at quarantine/reject |
 
-**DMARC rollout:** (1) `p=none` for 2-4 weeks and read the reports (parsedmarc, dmarcian, Postmark digest). (2) Fix every legitimate sender that fails (staff mail, CRM, helpdesk, billing). (3) Move to `quarantine` at 25%, then 50%, then 100%. (4) Move to `reject`. This stops criminals phishing in your name and builds trust.
+**DMARC rollout:**
 
-## 2.5 Handling bounces and complaints
+1. `p=none` for 2–4 weeks; read the reports (parsedmarc, dmarcian, Postmark digest).
+2. Fix every legitimate sender that fails (staff mail, CRM, helpdesk, billing).
+3. Move to `quarantine` at 25% → 50% → 100%.
+4. Move to `reject`.
 
-1. Give every message its **own return address** (e.g. `bounce+ID@bounce.mail.example.com`), so each bounce maps to one email.
-2. Send incoming bounces to a small program that reads the standard bounce reports (DSN) and spam-complaint reports (ARF).
-3. Rules: **"user unknown" (5.1.1) goes on the do-not-contact list immediately.** Temporary failures retry, then suppress after repeats. **Any complaint is suppressed forever.**
-4. Create and watch `abuse@`, `postmaster@`, `dmarc@`, `tlsrpt@`. Answer abuse reports within 24 hours.
-5. Register with **Google Postmaster Tools**, **Microsoft SNDS + JMRP**, and the **Yahoo complaint feedback loop**.
+This is also what stops criminals phishing *in your name* — it builds the trust you're trying to protect.
 
-## 2.6 The sending pipeline
+## 9. Bounces and complaints
 
-App -> queue -> worker -> email service -> internet. Events (delivered, bounced, complained) flow back into the shared brain.
+1. Give every message its own return address (`bounce+ID@bounce.mail.example.com`) so each bounce maps to one send.
+2. Route incoming bounces to a small reader for standard bounce reports (DSN) and spam-complaint reports (ARF).
+3. Rules: **"user unknown" (5.1.1) → suppress immediately.** Temporary failures retry, then suppress after repeats. **Any complaint → suppress forever.**
+4. Monitor `abuse@`, `postmaster@`, `dmarc@`, `tlsrpt@`. Answer abuse reports within 24 hours.
+5. Register with **Google Postmaster Tools**, **Microsoft SNDS + JMRP**, and **Yahoo's complaint feedback loop**.
 
-- **Idempotency keys** so a retry never sends twice; **retries with growing delays**; a "dead-letter" queue for messages that keep failing.
-- **Check the do-not-contact list before every send.**
-- **Rate limits** per customer/app and per receiving provider; **auto-pause** if bounces or complaints spike (a stolen API key can ruin your reputation in hours).
-- **Template versions** with test renders.
-- Never log full bodies or personal data unnecessarily.
+## 10. The sending pipeline
 
-## 2.7 What every email must contain
+App → queue → worker → email service → internet. Events (delivered/bounced/complained) flow back into the shared do-not-contact brain.
 
-- A valid From on a domain that passes checks; **same sender name every time**
-- `Message-ID` on your domain, `Date`, and **both plain-text and HTML** versions
-- Reply-To on the **same domain** unless there is a real reason
-- **One-click unsubscribe headers** (`List-Unsubscribe` and `List-Unsubscribe-Post`) on all marketing mail, honoured within 48 hours (instantly is better)
-- Footer: company name, physical address, why they received it
+- Idempotency keys so a retry never double-sends; retries with growing delays; a dead-letter queue for permanent failures.
+- Check the do-not-contact list before *every* send.
+- Rate limits per app/customer and per receiving provider; auto-pause if bounces or complaints spike — a stolen key can wreck your reputation in hours.
+- Template versions with test renders.
+- Never log full bodies or unnecessary personal data.
 
-## 2.8 Not being flagged as phishing (checklist)
+## 11. What every email must contain
+
+- A valid From on a domain that passes checks; same sender name every time.
+- `Message-ID` on your domain, `Date`, and both plain-text + HTML versions.
+- Reply-To on the same domain unless there's a real reason not to.
+- One-click unsubscribe headers (`List-Unsubscribe`, `List-Unsubscribe-Post`) on all marketing mail, honoured within 48 hours (instant is better).
+- Footer: company name, physical address, why they received it.
+
+## 12. Anti-phishing checklist
 
 **ID and servers**
 
-- [ ] SPF, DKIM and DMARC all **pass and match** the visible From domain
-- [ ] A record, PTR and server name match on every IP
-- [ ] Encryption (TLS) on all connections
-- [ ] IPs not on blocklists, checked daily
-- [ ] Registered with Google, Microsoft and Yahoo tools (2.5)
+- [ ] SPF, DKIM, DMARC all pass *and align* with the visible From domain
+- [ ] A record, PTR, and server name match on every IP
+- [ ] TLS on all connections
+- [ ] IPs checked daily against blocklists
+- [ ] Registered with Google, Microsoft, Yahoo tools
 
-**Links (the biggest phishing signal)**
+**Links — the biggest phishing signal**
 
-- [ ] Link text and real destination are the **same domain**
-- [ ] **No link shorteners**, free-hosting or redirect-heavy sites
-- [ ] Your **own tracking domain** over HTTPS, with few redirects
-- [ ] Every linked domain is old enough, has HTTPS and real content, and is **not** on Google Safe Browsing, Spamhaus DBL, SURBL or URIBL. Check before each campaign.
-- [ ] Avoid raw IP links and many different domains in one email
+- [ ] Link text and real destination are the same domain
+- [ ] No link shorteners, free-hosting, or redirect-heavy sites
+- [ ] Your own tracking domain over HTTPS, few redirects
+- [ ] Every linked domain is old enough, HTTPS, has real content, and is clean on Safe Browsing/Spamhaus DBL/SURBL/URIBL
+- [ ] No raw IP links; avoid many different domains in one email
 
 **Content and identity**
 
-- [ ] Never pretend to be another brand or person (no "PayPal" or CEO display names)
-- [ ] Avoid scam wording ("verify within 24 hours", threats, "confirm your login"). For real security notices, tell people to open the website themselves.
-- [ ] No HTML, ZIP, ISO or EXE attachments; avoid attachments if a link works; no QR-only emails
-- [ ] Not image-only; no hidden text, giant fonts, ALL-CAPS subjects, fake "Re:/Fwd:"
-- [ ] Same look, name and footer every time. Inconsistency looks like spoofing.
+- [ ] Never impersonate another brand or person
+- [ ] No scam wording ("verify within 24 hours," threats, "confirm your login")
+- [ ] No HTML/ZIP/ISO/EXE attachments; prefer links; no QR-only emails
+- [ ] Not image-only; no hidden text, giant fonts, ALL-CAPS subjects, fake Re:/Fwd:
+- [ ] Same look, name, and footer every time — inconsistency reads as spoofing
 
 **Reputation**
 
-- [ ] **Permission-only lists** (double opt-in is best). Never buy or scrape lists.
+- [ ] Permission-only lists (double opt-in best); never buy or scrape lists
 - [ ] Bounces under 2%, complaints under 0.1% (never reach 0.3%)
-- [ ] Stop mailing people who ignored you for 6 months
-- [ ] Check addresses at sign-up (spelling, can receive mail, not disposable) to avoid spam traps
-- [ ] Steady volume. Sudden spikes trigger blocks.
+- [ ] Stop mailing people who've ignored you for 6 months
+- [ ] Verify addresses at signup to avoid spam traps
+- [ ] Steady volume — sudden spikes trigger blocks
 
 **Account security**
 
-- [ ] MFA on registrar, DNS, cloud, email service and admin tools
-- [ ] DNS managed as code; delete unused records (stops takeover of forgotten subdomains)
-- [ ] Outbound content scan to catch hacked templates; rate limits on all send access
+- [ ] MFA on registrar, DNS, cloud, email service, admin tools
+- [ ] DNS as code; delete unused records (prevents subdomain takeover)
+- [ ] Outbound content scan to catch hacked templates
 - [ ] Watch for look-alike domains registered against your brand
 
-## 2.9 Test before launch
+## 13. Test before launch
 
-1. Send to Gmail, Outlook, Yahoo and iCloud test accounts. Use "Show original" and check **SPF, DKIM and DMARC all say pass**.
-2. Score with mail-tester.com (aim 9+/10); run an inbox-placement test (GlockApps or similar).
-3. Check all records with MXToolbox and `dig` from outside.
-4. Test unsubscribe, bounces (send to a fake address) and complaints (mark as spam) end to end.
-5. Confirm staging cannot reach real addresses.
+1. Send to Gmail, Outlook, Yahoo, iCloud test accounts; use "Show original" and confirm SPF/DKIM/DMARC all pass.
+2. Score with mail-tester.com (aim 9+/10); run an inbox-placement test.
+3. Verify all records with MXToolbox and `dig` from outside.
+4. Test unsubscribe, a deliberate bounce, and a deliberate spam-mark end to end.
+5. Confirm staging genuinely cannot reach real addresses.
 
-## 2.10 Warm-up (mandatory for new IPs and domains)
+## 14. Warm-up (mandatory for new IPs/domains)
 
-Start with your **most engaged people** only. Warm up each big provider separately; Outlook is the slowest to trust you. Start with system mail, then add marketing.
+Start with your most engaged people. Warm up each big provider separately — Outlook is slowest to trust you. System mail first, then marketing.
 
-| When | Emails per day, per IP |
+| When | Emails/day/IP |
 | --- | --- |
-| Days 1-3 | 50-200 |
-| Days 4-7 | 500-1,000 |
-| Week 2 | 2,000-5,000 |
-| Week 3 | 10,000-25,000 |
-| Week 4 | 50,000-100,000 |
-| Weeks 5-8 | Double only while numbers stay clean |
+| Days 1–3 | 50–200 |
+| Days 4–7 | 500–1,000 |
+| Week 2 | 2,000–5,000 |
+| Week 3 | 10,000–25,000 |
+| Week 4 | 50,000–100,000 |
+| Weeks 5–8 | Double only while metrics stay clean |
 
-**Pause if** a big provider starts delaying you, complaints pass 0.1%, bounces pass 2%, or any blocklist lists you.
+**Pause if:** a major provider starts delaying you, complaints pass 0.1%, bounces pass 2%, or any blocklist lists you.
 
----
+## 15. Fast, repeatable rebuilds (legitimate resilience, not filter evasion)
 
-# Part 3: SMS (text messages)
+The goal here is: if a key is stolen, a server needs replacing, or you're standing up a new brand's mail system, you can rebuild correctly in hours, not weeks — without ever touching the rotate-to-dodge-filters pattern that gets you blocked.
 
-## 3.1 Pick provider(s)
+- **One Terraform module per concern** (domains/DNS, redirector, mail-server/IP config, queues, alerts) so you can redeploy just the broken piece.
+- **A documented "new sending identity" runbook** for *legitimate* new brands/products: domain aging plan, DNS template, warm-up schedule — not for replacing a burned domain to dodge a block.
+- **Pre-vetted spare IPs** checked against blocklists *before* you need them, held in reserve for genuine failover (a dedicated IP going bad from someone else's history, not your own sending abuse).
+- **Key rotation as a drill**, not a crisis: practice rotating DKIM keys and API keys on a schedule so doing it after an incident is routine.
+- **Config, not manual steps, for DMARC stage changes** — store your current `p=` value in code/version control so rollback after a bad rollout is one commit.
+- If you are ever genuinely blocklisted or losing reputation: the fix is fixing the underlying cause (list quality, content, complaints) and working the delisting process with the provider — a fast rebuild should never be used to just reappear under a new identity while the underlying problem persists.
 
-Use a cloud messaging provider (Twilio, Telnyx, Vonage, Plivo, Sinch, or your cloud's own messaging service). Prefer one that offers: number registration help, delivery receipts, one-time-code protection, per-country routing, and an API with signed webhooks. **Connect a second provider as backup.**
+## 16. Monitoring
 
-## 3.2 Choose the right sender type
+Watch: delivered/delayed/bounced by provider; complaints; blocklists; Google Postmaster + SNDS; DMARC/TLS reports; certificate, key, and domain expiry; sudden drops in volume (a silent block can look like an empty queue). Alert at **half** of each danger threshold, not at the threshold itself.
 
-| Sender | Best for | Notes |
-| --- | --- | --- |
-| **10-digit local number (10DLC)** (US) | Customer alerts, support, medium marketing | **Must register your brand and campaign.** Unregistered traffic is blocked or heavily filtered. Speed depends on your trust score. |
-| **Toll-free number** (US/Canada) | Alerts, support, small to medium volume | **Verification required.** Takes days to weeks. |
-| **Short code** (5-6 digits) | High volume, urgent | Fastest sending, **8-12 weeks** carrier approval, costs more. |
-| **Sender name** (e.g. "ACMEBANK") | Alerts in many countries | Not allowed in US/Canada. Some countries require pre-registration. |
-| **Country-specific** | Everything outside the US | Rules vary (e.g. **India: company, sender names and every message template must be registered on DLT**; UK, EU and others have their own). Check each country you send to. |
-
-## 3.3 Registration steps (start early, they take time)
-
-1. Prepare: legal company name, tax ID, address, website, support contact, and a real **privacy policy** on the site.
-2. Register the **brand** with your provider.
-3. Register each **campaign** (purpose): describe who gets texts, how they opted in, **sample messages** and opt-out wording.
-4. Buy or move (port) numbers. Porting takes 1-4 weeks; **don't cancel the old service until it completes.**
-5. Use **separate numbers/campaigns** for system messages and marketing.
-6. Send only what you registered. A different kind of message than registered gets blocked.
-
-## 3.4 Consent and opt-out (legally required)
-
-- Get **clear permission before texting**: a plain tick-box or text-in keyword, with wording that names your company, message type, frequency, "msg & data rates may apply", and how to stop. **Keep proof.**
-- **Never** pre-tick the box, bundle consent into terms, or text a purchased list.
-- The first message names your business; every message is clearly from you.
-- **STOP** (also STOPALL, UNSUBSCRIBE, CANCEL, END, QUIT) must stop messages immediately and send one confirmation. **HELP** must reply with contact details.
-- Do not text between about **9pm and 8am recipient local time** (some places are stricter).
-- Add numbers to the shared do-not-contact list instantly.
-
-## 3.5 Content and link rules (to avoid carrier filtering)
-
-- **No public link shorteners** (bit.ly etc.). Use your own short domain on HTTPS.
-- Keep links few, to your own real domain, matching your registered website.
-- Be clear who you are; no urgent threats or "verify your account" scare wording.
-- Do not send banned content: illegal items, **payday loans, adult, gambling (where not licensed), tobacco/vape, cannabis, firearms, hate**, and "get rich quick" or debt-relief offers. These get blocked or need special approval.
-- **Never** rotate through many numbers to dodge filters. It is treated as abuse.
-- Keep message wording consistent with your registered samples.
-
-## 3.6 Build
-
-- App -> SMS queue -> worker -> provider. Use idempotency keys and retries as in email.
-- **Throttle** to your registered speed limit; queue extras.
-- Use **delivery receipts** (webhooks) to track sent, delivered, failed, filtered. Store them.
-- **Protect one-time codes from fraud.** Attackers trigger codes to numbers they profit from ("SMS pumping"), and you pay. Use: a country allow-list, limits per phone number and per IP/device, CAPTCHA before sending, short code expiry, and a provider's fraud-guard feature. Alert on any spike.
-- Handle incoming replies (STOP/HELP) with a webhook; check signatures.
-- Handle long messages: non-standard characters (emoji) shorten the length per segment and raise cost.
-
-## 3.7 Ramp up and monitor
-
-- Start with engaged recipients and low volume, then raise slowly over 2-4 weeks.
-- Watch: **delivery rate** (aim 95%+), filtered/blocked error codes, opt-out rate, cost per message, spikes by country.
-- If a campaign shows many "filtered" results: pause, compare wording and links with what you registered, and contact the provider.
-
----
-
-# Part 4: Phone (voice calls)
-
-## 4.1 What you need
-
-| Need | Example |
-| --- | --- |
-| **Outbound calls** | Sales, reminders, support callbacks |
-| **Inbound + menu (IVR)** | "Press 1 for support" |
-| **Staff phone system** | Desk phones, apps, extensions, call transfer |
-| **Contact center** | Queues, agents, recording, reports |
-
-## 4.2 Pick provider and build style
-
-| Option | When to use |
-| --- | --- |
-| **Cloud phone platform** (Twilio, Telnyx, Vonage, Plivo or similar) with APIs | Custom call flows, fastest to change |
-| **Cloud contact-center service** (Amazon Connect or similar) | Agents, queues, reports without building |
-| **Own phone software** (Asterisk, FreeSWITCH) on cloud servers | Only if you need deep control; you carry quality, security and uptime |
-
-Connect phone lines by **SIP trunk** (cloud phone line). Use **two carriers**, so one carrier problem does not stop calling.
-
-## 4.3 Numbers and caller trust (stops "Spam Likely")
-
-1. **Verify your business with the carrier/provider** so your calls are signed as genuine (**STIR/SHAKEN**; "A-level" means they know you and your numbers).
-2. **Use only numbers you own** or are authorised to use. Never fake or "neighbour-spoof" caller ID.
-3. Set your **caller name (CNAM)** and, where offered, **branded calling** (name/logo on screen).
-4. **Register your numbers with call-labelling companies** (via your provider, or programs such as Free Caller Registry, Hiya, TNS) and re-check regularly.
-5. **Check number reputation** before use and weekly after; replace labelled numbers.
-6. Don't rotate numbers constantly. Use a **small set of steady numbers**.
-7. Make sure the number **works when called back**, with a clear greeting naming your business.
-8. Move existing numbers by **porting** (1-4 weeks).
-
-## 4.4 Calling rules
-
-- **Marketing calls and robo-dialling need written consent** in many places (e.g. TCPA in the US). Check consent before each call.
-- Clean calling lists against **Do-Not-Call registries** (national and your own).
-- Call only during **allowed hours** (about 8am-9pm recipient local time; some states stricter).
-- **Recording laws differ.** Some places need everyone's consent. Announce recording at the start and store recordings securely with a retention limit.
-- Auto-dialers: keep **abandoned calls under 3%** and play a clear message.
-- Taking card payments by phone: use a provider's secure payment pause so card numbers never reach your recordings (PCI).
-- **Emergency calling must work** for staff phones, with a registered address (e.g. E911 in the US). Test it.
-- Always honour "do not call me again" instantly.
-
-## 4.5 Build
-
-- Number -> provider -> your **call-flow service** (menu, queues, transfer) running in your cloud.
-- Provider reports call events by webhook (ringing, answered, ended, failed); verify signatures; store them.
-- **Failover:** if your app is down, the number forwards to a backup number/voicemail; keep a second carrier ready.
-- **Pace outbound calls**; avoid bursts of very short calls (looks like a robo-caller).
-- Voicemail transcripts and recordings go to encrypted storage with access control.
-
-## 4.6 Quality and monitoring
-
-- Pick provider regions **close to callers**.
-- Watch: **answer rate**, call completion rate, call setup delay, dropped calls, echo/choppy audio (jitter, packet loss), spam-label status, cost spikes and **unusual destinations** (toll fraud: attackers use your account to call premium or foreign numbers).
-- Block high-risk countries you never call; set per-account spending caps.
-
----
-
-# Part 5: Security and compliance (all channels)
-
-- MFA everywhere (cloud, registrar, DNS, every provider dashboard)
-- Least-privilege access; remove ex-staff the same day
-- All keys in the secrets manager; rotate regularly
-- Encrypt data at rest and in transit; keep personal data minimal and delete on schedule
-- Record consent, opt-outs, registrations and call recordings with retention rules
-- Verify every webhook signature
-- Per-app limits on sending, texting and calling, with auto-suspend on odd behaviour
-- Pen-test or at least review the injection endpoints; patch regularly
-- Written incident plan: stolen key, blocklisted IP, labelled number, filtered SMS campaign
-
----
-
-# Part 6: Monitoring and operations
-
-| Channel | Watch |
-| --- | --- |
-| **Email** | Delivered/delayed/bounced by provider; complaints; blocklists; Google Postmaster + SNDS; DMARC and TLS reports; certificate, key and domain expiry; **sudden drops in volume** (a silent block looks like an empty queue) |
-| **SMS** | Delivery rate; filtered/blocked errors; opt-outs; cost per country; one-time-code spikes |
-| **Phone** | Answer and completion rates; call quality; spam labels; unusual destinations; spend |
-| **Platform** | Queue size, worker errors, provider outages, cloud cost, API error rates |
-
-- Alert at **half** of each danger limit, not at the limit.
-- Run **two of everything** (servers, providers, regions as volume grows). Drain before maintenance.
-- Keep **runbooks** (step-by-step fix lists) for: blocklisted email IP, big provider slowing you, stolen credential, DKIM key swap, SMS campaign filtered, number labelled spam, carrier outage, fraud spike.
-- Every quarter: test the backup providers, restore from backup, review consent records, and re-check registrations.
-
----
-
-# Part 7: Rollout order
-
-| Weeks | Do |
-| --- | --- |
-| **0-1** | Decisions (1.1), cloud accounts, code repo, secrets, queues. Buy domains. Start SMS brand/campaign registrations and number purchases (they take longest). |
-| **1-2** | Email: domains, IPs, SPF/DKIM/DMARC (`p=none`), bounce handling, suppression list. |
-| **2-3** | Shared consent/opt-out service, event log, send-services for each channel, staging tests. |
-| **3-4** | Phone: provider, trunk, numbers, caller verification and labelling, call flows, emergency calling test. |
-| **4-5** | Testing (2.9), seed-account checks, SMS test messages, test calls from real phones. |
-| **5-12** | Warm-up for email, SMS and calls with engaged contacts. DMARC to quarantine, then reject. |
-| **Ongoing** | Monitoring, key rotation, quarterly drills. |
-
----
-
-# Troubleshooting
+## 17. Troubleshooting
 
 | Problem | Likely cause | Fix |
 | --- | --- | --- |
-| Email goes to spam but checks pass | Reputation or content | Check complaints, list quality, links, engagement; run seed tests |
-| `dmarc=fail` | Domains do not match | Make signing and return-path domains match the From domain |
+| Spam folder despite passing checks | Reputation or content | Check complaints, list quality, links, engagement; run seed tests |
+| `dmarc=fail` | Domains don't align | Make signing and return-path domains match the From domain |
 | SPF error | More than 10 lookups | Remove includes; list IPs directly |
-| Gmail "suspicious" warning | Link/domain reputation, spoof-like look, new domain | Check links against Safe Browsing/DBL; no shorteners; fix display name; age domain |
-| Outlook blocks your IP | IP reputation | Register SNDS; send delisting request; slow down |
-| High bounces | Old or unverified list | Verify list, suppress, pause |
-| SMS "filtered" or not registered errors | Registration missing or message differs | Finish registration; match registered samples; remove shorteners |
-| SMS cost spike | Code-pumping fraud | Country allow-list, rate limits, CAPTCHA, fraud guard |
-| Calls show "Spam Likely" | Low trust, no verification | Verify business, register numbers with labelling companies, steady numbers, lower volume |
-| Calls not connecting | Carrier issue or number problem | Switch to backup carrier; check logs and number status |
+| Gmail "suspicious" warning | Link/domain reputation, new domain, spoof-like look | Check links vs. Safe Browsing/DBL; no shorteners; fix display name; age the domain |
+| Outlook blocks your IP | IP reputation | Register SNDS; send a delisting request; slow down |
+| High bounces | Old/unverified list | Verify, suppress, pause |
+
+## 18. Go-live checklist
+
+- [ ] Prod/staging separated; all setup in code
+- [ ] Secrets in manager; spending alerts on provider
+- [ ] Redirector live with WAF, rate limits, 2+ instances, verified webhook signatures
+- [ ] Domains aged; website live; registrar locked; MFA on
+- [ ] IPs clean; A, PTR, server name match
+- [ ] SPF, DKIM (2048-bit), DMARC published and passing
+- [ ] Bounce/complaint handling writes to the do-not-contact list
+- [ ] Unsubscribe headers and footer in place
+- [ ] Google, Microsoft, Yahoo tools registered
+- [ ] Warm-up and DMARC-tightening schedules set
+- [ ] Backup provider configured and tested
+- [ ] Rebuild runbooks written for: redirector loss, stolen key, blocklisted IP, DKIM rotation
 
 ---
 
-# Go-live checklist
+# Part 2: SMS
 
-**Foundation**
+> Part of a 3-guide set (Email / SMS / Phone). Shared foundation pieces are repeated here in short form so this guide stands alone.
 
-- [ ] Prod/staging separated; all setup in code
-- [ ] Secrets in manager; spending alerts on every provider
-- [ ] Shared consent and do-not-contact service live; webhooks verified
-- [ ] Backup provider ready for email, SMS and phone
+## The one idea behind everything
 
-**Email**
+Carriers and phones ask three questions. Fail one and you get filtered, blocked, or labelled.
 
-- [ ] Domains aged; website live; registrar locked; MFA on
-- [ ] IPs clean; A, PTR and server name match
-- [ ] SPF, DKIM (2048-bit) and DMARC published and passing
-- [ ] Bounce and complaint handling writes to the do-not-contact list
-- [ ] Unsubscribe headers and footer in place
-- [ ] Google, Microsoft and Yahoo tools registered
-- [ ] Warm-up scheduled; DMARC tightening scheduled
+| Question | Plain meaning | How SMS answers it |
+| --- | --- | --- |
+| **1. Who are you?** | Proof you're really you | Registered brand + campaign |
+| **2. Do you behave?** | People want your texts | Opt-in, and STOP actually works |
+| **3. Do you look honest?** | Nothing looks like a scam | Real links, no shorteners |
 
-**SMS**
+## Words you'll see
 
-- [ ] Brand, campaigns and numbers registered and approved
-- [ ] Consent wording and proof saved; STOP/HELP tested
-- [ ] Own link domain; no shorteners; one-time-code fraud limits on
+| Term | Simple meaning |
+| --- | --- |
+| 10DLC / DLT | Business registration for text messages (US / India) |
+| Brand / campaign | Your registered company identity and the registered *purpose* of a message stream |
+| Opt-in / opt-out | Explicit permission to text / the STOP mechanism |
+| Throughput | Messages per second your registration is allowed to send |
+| IaC | Infrastructure as code: config, numbers, and alerts set up from files, not clicks |
 
-**Phone**
+---
 
-- [ ] Business verified for caller ID; caller name set
-- [ ] Numbers registered with label companies; reputation clean
-- [ ] Consent, calling-hour and recording rules built in
+## 1. Decide first
+
+- **Split system vs. marketing.** Separate numbers/campaigns/credentials for codes & alerts vs. promotions — trouble on one doesn't stop the other.
+- **Estimate your busiest day.** It decides number type (local vs. toll-free vs. short code) and ramp speed.
+- **Name one owner** for abuse reports, carrier registrations, and on-call.
+- **Get legal review**: TCPA, CASL, India DLT/TRAI, and local consent/opt-out rules apply almost everywhere.
+
+## 2. Cloud setup, so you can change fast
+
+1. Separate **staging and production** — staging uses sandbox numbers only, never real customers.
+2. **Everything as code**: queues, throughput settings, webhook config, alerts — reviewed in Git.
+3. **Secrets manager** for provider API keys.
+4. **A queue** between your app and the SMS send call. Nothing texts straight from a web request.
+5. Your app calls *your own* "send SMS" service, not the provider directly — so switching providers is a one-place change.
+6. **A second SMS provider/route**, pre-configured, ready as backup.
+7. **Spending alerts and caps.**
+
+## 3. The shared "do-not-contact" brain
+
+- One consent record per person (when, how, wording).
+- One opt-out list, checked before every send, shared with email/phone where the law or your promise requires it.
+- An event log of every send, delivery, reply, and STOP.
+- Every inbound webhook (replies, STOP, delivery receipts) signature-verified.
+
+---
+
+## 4. Redirector (Front Door) — build this before the sending pipeline itself
+
+Put a redirector/reverse proxy in front of every public endpoint related to SMS, *before* wiring up the actual send pipeline, since replies and delivery receipts depend on it from day one.
+
+Put a redirector in front of:
+
+- Your **send API** (where internal apps submit SMS requests)
+- **Inbound webhook receivers** (STOP/HELP replies, delivery receipts, filtered/blocked events)
+- Your **own short link domain** (the one you use instead of a public shortener)
+- Any **click-to-text or consent-capture web forms**
+
+Checklist:
+
+- [ ] HTTPS only, auto-renewing certs
+- [ ] Rate limits and request-size limits on every endpoint
+- [ ] A WAF for bots and common attacks
+- [ ] Webhook routes: allow only the provider's published IPs where available, **and still verify every signature**
+- [ ] Internal services never exposed directly to the internet
+- [ ] Two or more redirector instances with health checks
+- [ ] Your short-link domain stays fast and always up — slow or broken links get reported as spam
+- [ ] Load balancer + WAF, or Nginx/Envoy/Caddy, defined in IaC
+
+**Never:** route messages through rotating, shared, or "residential" proxies, or constantly rotate sending numbers to dodge carrier filters — carriers read number-hopping as abuse and will block the whole pattern, not just one number.
+
+**Fast-rebuild notes for the redirector layer** (legitimate disaster recovery, not filter-evasion):
+
+- Keep the redirector config as its own IaC module so you can redeploy the front door independently of your SMS send logic if it's compromised or needs scaling.
+- Version your WAF/rate-limit rules so a fresh redirector inherits the same protections immediately.
+- Keep an idle secondary redirector ready to promote via DNS/load-balancer switch if the primary fails, so inbound STOP/HELP replies are never silently dropped during a rebuild.
+
+---
+
+## 5. Pick provider(s)
+
+Use a cloud messaging provider (Twilio, Telnyx, Vonage, Plivo, Sinch, or your cloud's own messaging service). Prefer one offering: registration help, delivery receipts, one-time-code protection, per-country routing, and signed webhooks. **Connect a second provider as backup.**
+
+## 6. Choose the right sender type
+
+| Sender | Best for | Notes |
+| --- | --- | --- |
+| **10-digit local number (10DLC)** (US) | Alerts, support, medium marketing | Must register brand + campaign; unregistered traffic is blocked or heavily filtered; speed depends on trust score |
+| **Toll-free number** (US/Canada) | Alerts, support, small–medium volume | Verification required; takes days to weeks |
+| **Short code** (5–6 digits) | High volume, urgent | Fastest sending; 8–12 weeks carrier approval; costs more |
+| **Sender name** (e.g. "ACMEBANK") | Alerts in many countries | Not allowed in US/Canada; some countries require pre-registration |
+| **Country-specific** | Everywhere outside the US | Rules vary — e.g. **India requires company, sender names, and every message template registered on DLT**; UK/EU and others have their own rules |
+
+## 7. Registration steps (start these first — they take the longest)
+
+1. Prepare: legal company name, tax ID, address, website, support contact, and a real privacy policy on the site.
+2. Register the **brand** with your provider.
+3. Register each **campaign** (purpose): who gets texts, how they opted in, sample messages, opt-out wording.
+4. Buy or port numbers. Porting takes 1–4 weeks — **don't cancel the old service until it completes.**
+5. Use **separate numbers/campaigns** for system vs. marketing messages.
+6. Send only what you registered — a different kind of message than what's on file gets blocked.
+
+**Fast-rebuild note:** keep your brand/campaign application details (company info, sample messages, opt-in wording) as a maintained template so registering a *new, legitimate* campaign or porting to a *new* provider is a paperwork exercise, not a research project. This is about shortening legitimate onboarding time — not about re-registering under a new identity after a campaign gets shut down for cause.
+
+## 8. Consent and opt-out (legally required)
+
+- Get clear permission before texting: a plain tick-box or text-in keyword naming your company, message type, frequency, "msg & data rates may apply," and how to stop. **Keep proof.**
+- **Never** pre-tick the box, bundle consent into terms, or text a purchased list.
+- The first message names your business; every message is clearly from you.
+- **STOP** (also STOPALL, UNSUBSCRIBE, CANCEL, END, QUIT) must stop messages immediately with one confirmation reply. **HELP** must reply with contact details.
+- Don't text between roughly 9pm and 8am recipient local time (some places are stricter).
+- Add numbers to the shared do-not-contact list instantly.
+
+## 9. Content and link rules (what carrier filters actually check)
+
+- **No public link shorteners** (bit.ly, etc.) — use your own short domain on HTTPS.
+- Keep links few, pointing to your own real, registered website.
+- Be clear who you are; avoid urgent threats or "verify your account" wording.
+- Avoid content that gets blocked or needs special approval: illegal items, payday loans, adult content, unlicensed gambling, tobacco/vape, cannabis, firearms, hate, "get rich quick," or debt-relief offers.
+- **Never** rotate through many numbers to dodge filters — it's treated as abuse and risks the whole account.
+- Keep wording consistent with your registered samples.
+
+## 10. Build
+
+- App → SMS queue → worker → provider, with idempotency keys and growing-delay retries, same pattern as email.
+- **Throttle to your registered speed limit**; queue the rest.
+- Use delivery receipt webhooks (sent/delivered/failed/filtered) and store them.
+- **Protect one-time codes from fraud** ("SMS pumping" — attackers trigger codes to numbers they profit from, and you pay): country allow-lists, per-number and per-IP/device limits, CAPTCHA before sending, short code expiry, and the provider's fraud-guard feature. Alert on any spike.
+- Handle inbound replies (STOP/HELP) via webhook; verify signatures.
+- Account for long messages: non-standard characters (emoji) shorten the per-segment length and raise cost.
+
+## 11. Ramp up and monitor
+
+- Start with engaged recipients and low volume; raise slowly over 2–4 weeks.
+- Watch: delivery rate (aim 95%+), filtered/blocked error codes, opt-out rate, cost per message, spikes by country.
+- If a campaign shows many "filtered" results: pause, compare wording/links against what you registered, and contact the provider — don't just switch numbers and retry.
+
+## 12. Fast, repeatable rebuilds (legitimate resilience, not filter evasion)
+
+- **One IaC module per concern** (redirector, queue/throttle config, webhook handlers, fraud-guard rules) so a broken piece can be redeployed alone.
+- **Pre-vetted backup numbers/routes** held with your second provider, ready to fail over to if your primary provider has an outage — not as a rotation pool to outrun filtering.
+- **A documented new-campaign runbook** for genuinely new, legitimate message streams, so launching one is fast — separate from, and never a substitute for, fixing a campaign that got filtered for cause.
+- **Key/credential rotation as a scheduled drill**, so rotating a compromised API key is routine, not a scramble.
+- If a number gets labeled or a campaign gets throttled: the fix is content/consent/volume changes plus working with the provider and carrier — not replacing the number to start the trust clock over elsewhere.
+
+## 13. Monitoring
+
+Watch: delivery rate, filtered/blocked error codes, opt-out rate, cost per country, one-time-code volume spikes. Alert at **half** of each danger threshold.
+
+## 14. Troubleshooting
+
+| Problem | Likely cause | Fix |
+| --- | --- | --- |
+| "Filtered" or not-registered errors | Registration missing or message differs from sample | Finish registration; match registered wording; remove shorteners |
+| Cost spike | Code-pumping fraud | Country allow-list, rate limits, CAPTCHA, fraud guard |
+| Low delivery rate suddenly | Carrier-side filtering or volume spike | Check against registered samples; slow down; contact provider |
+
+## 15. Go-live checklist
+
+- [ ] Brand, campaigns, and numbers registered and approved
+- [ ] Redirector live with WAF, rate limits, 2+ instances, verified webhook signatures
+- [ ] Consent wording and proof saved; STOP/HELP tested end to end
+- [ ] Own short-link domain in use; no public shorteners
+- [ ] One-time-code fraud limits on (country allow-list, rate limits, CAPTCHA)
+- [ ] Separate system vs. marketing numbers/campaigns
+- [ ] Backup provider configured and tested
+- [ ] Rebuild runbooks written for: redirector loss, stolen key, provider outage, filtered campaign
+
+---
+
+# Part 3: Phone
+
+> Part of a 3-guide set (Email / SMS / Phone). Shared foundation pieces are repeated here in short form so this guide stands alone.
+
+## The one idea behind everything
+
+Carriers and phones ask three questions. Fail one and your calls show "Spam Likely" or get blocked.
+
+| Question | Plain meaning | How phone answers it |
+| --- | --- | --- |
+| **1. Who are you?** | Proof you're really you | Caller verification (STIR/SHAKEN) |
+| **2. Do you behave?** | People want your calls | Low hang-ups, sensible call volume |
+| **3. Do you look honest?** | Nothing looks like a scam | Real caller name, no spoofing |
+
+## Words you'll see
+
+| Term | Simple meaning |
+| --- | --- |
+| STIR/SHAKEN | Caller-ID verification so your number shows as genuine |
+| SIP trunk | A cloud phone line |
+| CNAM | The caller name shown on the recipient's screen |
+| IVR | Interactive voice response — "press 1 for support" menus |
+| Toll fraud | Attackers using your account to call premium or foreign numbers |
+| IaC | Infrastructure as code: call flows and config set up from files, not clicks |
+
+---
+
+## 1. Decide first
+
+- **Split system vs. marketing calls.** Separate numbers for support/alerts vs. sales outreach — trouble on one doesn't stop the other.
+- **Estimate your busiest hour.** It decides trunk capacity, number count, and agent/queue sizing.
+- **Name one owner** for carrier registrations, number reputation, and on-call.
+- **Get legal review**: TCPA and similar consent/recording/Do-Not-Call rules apply in most places.
+
+## 2. Cloud setup, so you can change fast
+
+1. Separate **staging and production** — staging uses sandbox numbers/test calls only.
+2. **Everything as code**: call flows, trunk config, alerts — reviewed in Git.
+3. **Secrets manager** for provider API keys.
+4. **A queue** for outbound dial jobs, so pacing and retries are controlled centrally, not fired straight from the app.
+5. Your app calls *your own* "place call" / call-flow service, not the provider directly — switching carriers is then a one-place change.
+6. **A second carrier/trunk**, pre-configured, so one carrier's problem doesn't stop calling.
+7. **Spending alerts and caps.**
+
+## 3. The shared "do-not-contact" brain
+
+- One consent record per person for marketing/auto-dialled calls.
+- One opt-out list, checked before every outbound call.
+- An event log of call attempts, outcomes, and "don't call me again" requests.
+- Every webhook (call events from the provider) signature-verified.
+
+---
+
+## 4. Redirector (Front Door) — set this up before the call-flow service itself
+
+Put a redirector/reverse proxy in front of every public endpoint related to calling, *before* building the actual IVR/call-flow logic behind it.
+
+Put a redirector in front of:
+
+- Your **call-control API** (where your app triggers outbound calls or configures flows)
+- **Webhook receivers** for call events (ringing, answered, ended, failed)
+- Any **web-based IVR builder or recording-playback endpoint** you expose
+- **Click-to-call** web widgets, if you have them
+
+Checklist:
+
+- [ ] HTTPS only, auto-renewing certs
+- [ ] Rate limits and request-size limits on every endpoint
+- [ ] A WAF for bots and common attacks
+- [ ] Webhook routes: allow only the provider's published IPs where available, **and still verify every signature**
+- [ ] Internal call-flow services never exposed directly to the internet
+- [ ] Two or more redirector instances with health checks
+- [ ] Load balancer + WAF, or Nginx/Envoy/Caddy, defined in IaC
+
+**Never:** route calls through anonymizing relays, or rotate through many caller-ID numbers to dodge spam-likely labels — carriers and labelling databases treat number-hopping itself as a strong spam signal.
+
+**Fast-rebuild notes for the redirector layer** (legitimate disaster recovery, not label-evasion):
+
+- Keep the redirector config as its own IaC module, separate from call-flow logic, so the front door can be redeployed independently if compromised or overloaded.
+- Version your WAF/rate-limit rules so a fresh redirector inherits the same protections immediately.
+- Keep an idle secondary redirector ready to promote via DNS/load-balancer switch, so call-event webhooks aren't silently dropped during a rebuild.
+
+---
+
+## 5. What you need
+
+| Need | Example |
+| --- | --- |
+| Outbound calls | Sales, reminders, support callbacks |
+| Inbound + menu (IVR) | "Press 1 for support" |
+| Staff phone system | Desk phones, apps, extensions, transfer |
+| Contact center | Queues, agents, recording, reports |
+
+## 6. Pick provider and build style
+
+| Option | When to use |
+| --- | --- |
+| **Cloud phone platform** (Twilio, Telnyx, Vonage, Plivo) with APIs | Custom call flows, fastest to change |
+| **Cloud contact-center service** (Amazon Connect or similar) | Agents, queues, reports without building |
+| **Own phone software** (Asterisk, FreeSWITCH) on cloud servers | Only if you need deep control; you own quality, security, uptime |
+
+Connect lines by **SIP trunk**. Use **two carriers**, so one carrier's problem doesn't stop calling.
+
+## 7. Numbers and caller trust — what actually stops "Spam Likely"
+
+1. **Verify your business with the carrier/provider** so calls are signed as genuine (STIR/SHAKEN — "A-level" attestation means they vouch for you and your numbers).
+2. **Use only numbers you own or are authorized to use.** Never fake or "neighbour-spoof" caller ID.
+3. Set your **caller name (CNAM)** and, where offered, **branded calling** (name/logo on screen).
+4. **Register your numbers with call-labelling companies** (via your provider, or Free Caller Registry, Hiya, TNS) and re-check regularly.
+5. **Check number reputation** before use and weekly after; replace any number that gets labelled.
+6. **Don't rotate numbers constantly** — use a small, steady set of numbers so they can build trust.
+7. Make sure a number **works when called back**, with a clear greeting naming your business.
+8. Move existing numbers by **porting** (1–4 weeks).
+
+**Fast-rebuild note:** keep a documented, reusable process for verifying a *new, legitimate* number with STIR/SHAKEN and registering it with labelling companies, so onboarding additional genuine capacity is fast. This should never be used as a pool of fresh numbers to swap in after one gets labelled for cause — a labelled number means something about your calling pattern needs to change, not that you need a new number.
+
+## 8. Calling rules
+
+- **Marketing calls and robo-dialling need written consent** in many places (e.g. TCPA in the US). Check consent before each call.
+- Clean calling lists against national and your own Do-Not-Call registries.
+- Call only during allowed hours (roughly 8am–9pm recipient local time; some states stricter).
+- **Recording laws differ** — some places need everyone's consent. Announce recording at the start; store recordings securely with a retention limit.
+- Auto-dialers: keep **abandoned calls under 3%** and play a clear message when one happens.
+- Taking card payments by phone: use the provider's secure payment pause so card numbers never reach recordings (PCI).
+- **Emergency calling must work** for staff phones, with a registered address (e.g. E911 in the US) — test it.
+- Always honour "do not call me again" instantly.
+
+## 9. Build
+
+- Number → provider → your call-flow service (menu, queues, transfer) running in your cloud.
+- Provider reports call events by webhook (ringing, answered, ended, failed); verify signatures; store them.
+- **Failover:** if your app is down, the number forwards to a backup number/voicemail; keep a second carrier ready.
+- **Pace outbound calls** — avoid bursts of very short calls, which look like robo-dialling.
+- Voicemail transcripts/recordings go to encrypted storage with access control.
+
+## 10. Quality and monitoring
+
+- Pick provider regions close to your callers.
+- Watch: answer rate, call completion rate, call setup delay, dropped calls, echo/jitter/packet loss, spam-label status, cost spikes, and **unusual destinations** (toll fraud — attackers calling premium or foreign numbers on your account).
+- Block high-risk countries you never legitimately call; set per-account spending caps.
+
+## 11. Fast, repeatable rebuilds (legitimate resilience, not label evasion)
+
+- **One IaC module per concern** (redirector, trunk config, call-flow logic, recording storage) so any one piece can be redeployed independently.
+- **A second, pre-configured carrier/trunk** ready to take over traffic if the primary has an outage.
+- **A documented new-number onboarding runbook** (verification, CNAM, labelling-company registration) for genuinely new, legitimate capacity — not a rotation pool.
+- **Scheduled credential-rotation drills**, so swapping a compromised API key or trunk credential is routine.
+- If a number gets labelled or calls start failing: the fix is reducing abandoned-call rate, tightening consent/targeting, and working the labelling-company dispute process — not cycling to a new number to restart the trust clock.
+
+## 12. Troubleshooting
+
+| Problem | Likely cause | Fix |
+| --- | --- | --- |
+| Calls show "Spam Likely" | Low trust, no verification | Verify business, register with labelling companies, use steady numbers, lower volume |
+| Calls not connecting | Carrier issue or number problem | Switch to backup carrier; check logs and number status |
+| Sudden cost spike to unfamiliar destinations | Toll fraud | Block high-risk countries, review account access, rotate compromised credentials |
+
+## 13. Go-live checklist
+
+- [ ] Business verified for caller ID; CNAM set
+- [ ] Redirector live with WAF, rate limits, 2+ instances, verified webhook signatures
+- [ ] Numbers registered with labelling companies; reputation checked
+- [ ] Consent, calling-hour, and recording rules built into the call flow
 - [ ] Emergency calling tested; failover carrier tested
-
-**Operations**
-
-- [ ] Dashboards and alerts live for every channel
-- [ ] Runbooks written; owner named
+- [ ] Backup trunk/carrier configured and tested
+- [ ] Rebuild runbooks written for: redirector loss, stolen credential, carrier outage, fraud spike
