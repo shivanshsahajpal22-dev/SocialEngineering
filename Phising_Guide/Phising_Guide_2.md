@@ -1179,3 +1179,168 @@ Free entry in 2 a wkly comp to win FA Cup final tkts 21st May 2005. Text FA to 8
 Hello from Orange. For 1 month's free access to games, news and sport, plus 10 free texts and 20 photo messages, reply YES. Terms apply: www.orange.co.uk/ow
 ~~~
 
+### 8. RECIPROCITY / RAPPORT (20)
+
+**How it shows up in SMS:** Simulated intimacy, personal persona openers ("Hi, it's Lucy", "Claire here"), secret admirer reveals, and conversational banter. By opening with warm, informal tone or feigned familiarity, the attacker exploits human desires for connection, flattery, or social courtesy to disarm the recipient and prompt a paid reply or premium-rate call back.
+
+##### S-141 - "Hey there darling," assumption of prior contact
+**Primary:** Reciprocity | **Also uses:** Curiosity, Commitment
+**Why:** Opens with feigned familiarity ("it's been 3 week's now"), tricking the victim into feeling they owe a friendly response to an ongoing acquaintance.
+
+~~~text
+FreeMsg Hey there darling it's been 3 week's now and no word back! I'd like some fun you up for it still? Tb ok! XxX std chgs to send, £1.50 to rcv
+~~~
+
+##### S-142 - "Secret admirer" reveal prompt
+**Primary:** Reciprocity | **Also uses:** Curiosity, Social Proof
+**Why:** Flattery ("thinks U R So special") creates immediate personal rapport and curiosity, driving the victim to dial a premium number to identify the admirer.
+
+~~~text
+U have a secret admirer. REVEAL who thinks U R So special. Call 0906517xxxx. To opt out Cust care 0782123xxxx
+~~~
+
+##### S-143 - Dating service "someone you know"
+**Primary:** Reciprocity | **Also uses:** Curiosity, Social Proof
+**Why:** Claims a personal acquaintance entered the target's number out of romantic interest, leveraging social connection and rapport to prompt a premium-rate call.
+
+~~~text
+You are being contacted by our dating service by someone you know! To find out who it is, call from a land line 0905000xxxx. PoBox45W2TG150P
+~~~
+
+##### S-144 - "Why haven't you replied?" local persona
+**Primary:** Reciprocity | **Also uses:** Curiosity, Urgency
+**Why:** Poses as a friendly, attractive local contact inquiring about a missing reply. The illusion of a personal social interaction invites reciprocity.
+
+~~~text
+FreeMsg Why haven't you replied to my text? I'm Randy, sexy, female and live local. Luv to hear from u. Netcollex Ltd 0870062xxxx150p per msg reply Stop to end
+~~~
+
+##### S-145 - Friendly product tester invitation
+**Primary:** Reciprocity | **Also uses:** Authority, Reward
+**Why:** Uses informal, friendly banter ("posh birds and chaps", "Ta r") to build casual rapport before soliciting sensitive personal details (address and DOB).
+
+~~~text
+Hello. We need some posh birds and chaps to user trial prods for champneys. Can i put you down? I need your address and dob asap. Ta r
+~~~
+
+##### S-146 - Persona profile "I'm Sue"
+**Primary:** Reciprocity | **Also uses:** Curiosity, Urgency
+**Why:** Establishes immediate personal intimacy and rapport through a named persona offering a private chat in real time.
+
+~~~text
+Hi I'm sue. I am 20 years old and work as a lapdancer. I love sex. Text me live - I'm i my bedroom now. text SUE to 89555. By TextOperator G2 1DA 150ppmsg 18+
+~~~
+
+##### S-147 - Direct conversational invitation
+**Primary:** Reciprocity | **Also uses:** Curiosity
+**Why:** Disarms the recipient with direct, casual intimacy ("Fancy a shag? I do."), enticing a paid text reply to engage with the persona.
+
+~~~text
+Fancy a shag? I do.Interested? sextextuk.com txt XXUK SUZY to 69876. Txts cost 1.50 per msg. TnCs on website. X
+~~~
+
+##### S-148 - Dating service "entered your phone"
+**Primary:** Reciprocity | **Also uses:** Curiosity, Social Proof
+**Why:** Uses the pretext that someone specifically "fancies you" and registered your phone number, manufacturing rapport out of targeted personal interest.
+
+~~~text
+Someone has contacted our dating service and entered your phone because they fancy you! To find out who it is call from a landline 0911103xxxx . PoBox12n146tf150p
+~~~
+
+##### S-149 - "Discreet text dating" community
+**Primary:** Reciprocity | **Also uses:** Social Proof, Curiosity
+**Why:** Appeals to the desire for companionship and romantic connection by framing the service as a welcoming, discreet social network.
+
+~~~text
+Talk sexy!! Make new friends or fall in love in the worlds most discreet text dating service. Just text VIP to 83110 and see who you could meet.
+~~~
+
+##### S-150 - "Somebody you know secretly fancies you!"
+**Primary:** Reciprocity | **Also uses:** Curiosity, Social Proof
+**Why:** Builds intense interpersonal curiosity by claiming an existing personal acquaintance holds secret affection for the recipient.
+
+~~~text
+Guess what! Somebody you know secretly fancies you! Wanna find out who it is? Give us a call on 0906539xxxx From Landline DATEBox1282EssexCM61XN 150p/min 18
+~~~
+
+##### S-151 - Anonymous match notification
+**Primary:** Reciprocity | **Also uses:** Curiosity, Social Proof
+**Why:** Stretches the rapport angle by suggesting a mutual acquaintance in the victim's social circle is harboring attraction.
+
+~~~text
+We know someone who you know that fancies you. Call 0905809xxxx to find out who. POBox 6, LS15HB 150p
+~~~
+
+##### S-152 - "All will be revealed" dating pretext
+**Primary:** Reciprocity | **Also uses:** Curiosity, Urgency
+**Why:** Relies on the flattering premise that someone in the target's life requested contact through a dating agency, combining rapport with an urgent call-to-action.
+
+~~~text
+Someone U know has asked our dating service 2 contact you! Cant Guess who? CALL 0905809xxxx NOW all will be revealed. PO BOX385 M6 6WU
+~~~
+
+##### S-153 - "Feelin kinda lnly" webcam teaser
+**Primary:** Reciprocity | **Also uses:** Curiosity, Reward
+**Why:** Projects vulnerability and a request for company ("Feelin kinda lnly"), triggering a reciprocal urge to connect and view shared photos.
+
+~~~text
+FreeMsg:Feelin kinda lnly hope u like 2 keep me company! Jst got a cam moby wanna c my pic?Txt or reply DATE to 82242 Msg150p 2rcv Hlp 0871231xxxx stop to 82242
+~~~
+
+##### S-154 - "Janine" daytime chat offer
+**Primary:** Reciprocity | **Also uses:** Urgency, Curiosity
+**Why:** Uses a personal name ("JANINExx") and an intimate persona offering casual daytime meetups to initiate a high-cost phone call.
+
+~~~text
+Hi if ur lookin 4 saucy daytime fun wiv busty married woman Am free all next week Chat now 2 sort time 0909972xxxx JANINExx Calls£1/minMobsmoreLKPOBOX177HP51FL
+~~~
+
+##### S-155 - "I'm Buffy," home alone
+**Primary:** Reciprocity | **Also uses:** Curiosity, Reward
+**Why:** Offers exclusive personal attention from a named persona ("Buffy"), manufacturing rapport to sell paid picture messages.
+
+~~~text
+FreeMsg: Hey - I'm Buffy. 25 and love to satisfy men. Home alone feeling randy. Reply 2 C my PIX! QlynnBV Help0870062xxxx150p a msg Send stop to stop txts
+~~~
+
+##### S-156 - "DENA" passion before work
+**Primary:** Reciprocity | **Also uses:** Urgency, Commitment
+**Why:** Leverages friendly personal warmth, routine relatable topics ("back 2 work 2morro"), and romantic availability to prompt engagement.
+
+~~~text
+Back 2 work 2morro half term over! Can U C me 2nite 4 some sexy passion B4 I have 2 go back? Chat NOW 0909972xxxx Luv DENA Calls £1/minMobsmoreLKPOBOX177HP51FL
+~~~
+
+##### S-157 - "CLAIRE here," lonely at home
+**Primary:** Reciprocity | **Also uses:** Curiosity, Urgency
+**Why:** Uses personal name greeting ("CLAIRE here") and informal conversational style to simulate a message sent by a friend or acquaintance.
+
+~~~text
+CLAIRE here am havin borin time & am now alone U wanna cum over 2nite? Chat now 0909972xxxx hope 2 C U Luv CLAIRE xx Calls£1/minmoremobsEMSPOBox45PO139WA
+~~~
+
+##### S-158 - "LUCY," hotel meetup invitation
+**Primary:** Reciprocity | **Also uses:** Urgency, Curiosity
+**Why:** Simulates a direct personal note from an acquaintance ("Lucy x"), leveraging intimate social rapport to bait the target into calling back.
+
+~~~text
+Hi its LUCY Hubby at meetins all day Fri & I will B alone at hotel U fancy cumin over? Pls leave msg 2day 0909972xxxx Lucy x Calls£1/minMobsmoreLKPOBOX177HP51FL
+~~~
+
+##### S-159 - Community company invitation
+**Primary:** Reciprocity | **Also uses:** Social Proof, Commitment
+**Why:** Appeals to social connection and human warmth ("folks waiting for company"), inviting the target to join an inclusive mobile community.
+
+~~~text
+How about getting in touch with folks waiting for company? Just txt back your NAME and AGE to opt in! Enjoy the community (150p/SMS)
+~~~
+
+##### S-160 - "JANE xx," urgent meet setup
+**Primary:** Reciprocity | **Also uses:** Urgency, Curiosity
+**Why:** Direct, personal signature ("Luv JANE xx") and conversational urgency simulate an intimate arrangement, driving immediate response.
+
+~~~text
+Can U get 2 phone NOW? I wanna chat 2 set up meet Call me NOW on 0909610xxxx U can cum here 2moro Luv JANE xx Calls£1/minmoremobsEMSPOBox45PO139WA
+~~~
+
+
