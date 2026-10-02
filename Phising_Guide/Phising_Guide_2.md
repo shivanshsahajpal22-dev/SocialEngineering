@@ -712,6 +712,51 @@ Checklist:
 6. Do-not-contact service wired to consume bounce/complaint events from the state machine
 7. End-to-end test: one message through the whole pipeline, confirm the state machine updates from `submitted` to `delivered` only after the real webhook arrives — not before
 
+### The System Hardening
+
+**Access Control**
+- SSH key-only authentication — disable password login entirely
+- Disable root login — require a non-root user, then `sudo` for privileged actions
+- Fail2ban or similar — auto-ban IPs after repeated failed login attempts
+- Non-default SSH port — reduces scanner noise (not a real boundary)
+- IP allow-listing — SSH/admin access restricted to known operator IPs or a VPN range
+- **SMTP AUTH on submission (587/465) only for authenticated apps** — never allow anonymous relay
+- **Separate credentials per sending pool** (system vs. marketing) so a leaked key only burns one pool, not the whole sending identity
+- **Any webmail/admin UI (if self-hosted) behind VPN only**, never public-facing
+
+**Firewall / Network Exposure**
+- Default-deny inbound; minimal open ports (443 for redirector, 587/465 for authenticated submission, 25 inbound only on the dedicated bounce-receiving host)
+- Egress filtering on the host
+- **Block outbound port 25 from everything except the actual MTA process** — stops a compromised app server from spewing mail directly, bypassing your pipeline entirely
+- **Rate-limit SMTP connection attempts per source IP** at the firewall — guards against credential-stuffing on your submission port the same way fail2ban guards SSH
+
+**OS and Software Hygiene**
+- Regular patching of OS and packages
+- Minimal installed software; disable unused services
+- **Patch the MTA software itself on its own cycle** (Postfix/Exim/OpenDKIM have their own CVE history, separate from general OS updates)
+- **Disable VRFY and EXPN SMTP commands** — these let an attacker enumerate valid addresses on your domain from the outside
+- **Remove any default/sample mail-server config files** shipped with the install — they're a common source of accidental open-relay misconfig
+
+**Logging and Monitoring**
+- Centralized, tamper-resistant logging shipped off-host
+- Intrusion detection (`auditd`, OSSEC, etc.)
+- **Ship mail logs (maillog) off-host specifically** — needed for bounce/complaint audit trail even if the host itself gets rebuilt
+- **Alert on unusual outbound send volume** — the fastest sign a signing key or relay got abused, often faster than a blocklist catching it
+- **Alert on DKIM signing failures** — can indicate key corruption, a bad rotation, or tampering
+
+**Secrets and Credentials**
+- No hardcoded credentials on the host; secrets manager for everything
+- Least privilege for service accounts
+- **DKIM private key readable only by the mail process's own user**, never world-readable, never committed in plaintext to your IaC repo — decrypt from the secrets manager at deploy time only
+- **Rotate SMTP AUTH credentials on the same cadence as DKIM keys** (6–12 months)
+
+**Data Protection**
+- Encryption at rest for sensitive data
+- No sensitive data lingering unencrypted
+- **Encrypt the mail queue at rest** if self-hosting — queued messages sit on disk with full content until delivered
+- **Don't log full message bodies/headers by default** — metadata only, body logging as an explicit opt-in for debugging
+- **Enforce STARTTLS/TLS on all inbound and outbound SMTP connections** where the receiving server supports it
+  
 ### DEFENCE EVASION TACTICS 
 
 ### Domain Aging and Domain Choosing 
