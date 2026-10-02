@@ -688,3 +688,166 @@ Your free ringtone is waiting to be collected. Simply text the password "MIX" to
 Hello. We need some posh birds and chaps to user trial prods for champneys. Can i put you down? I need your address and dob asap. Ta r
 ~~~
 
+### 6. SOCIAL PROOF (20)[cite: 1]
+
+**How it shows up in SMS:** Social proof relies on group activity ("1000's flirting NOW"), claimed local popular demand ("lots of new people registered in YOUR AREA"), social network invites, or named individual winners ("Mr. T. Foley won an iPod!") to make joining, calling, or replying feel validated, safe, or socially expected[cite: 1]. Pretending someone from the victim's social circle is involved ("someone you know fancies you") is the most common smishing shortcut for this lever[cite: 1].
+
+##### S-101 - Named public winner showcase
+**Primary:** Social Proof | **Also uses:** Reward, Curiosity
+**Why:** Naming a specific individual ("Mr. T. Foley") who allegedly won creates believable proof that real people are winning, encouraging others to stay tuned or visit the site[cite: 1].
+
+```text
+WIN: We have a winner! Mr. T. Foley won an iPod! More exciting prizes soon, so keep an eye on ur mobile or visit www.win-82050[.]co[.]uk
+```
+
+##### S-102 - "1000's flirting NOW!"
+**Primary:** Social Proof | **Also uses:** Curiosity, Reward
+**Why:** High volume numbers ("1000's") create a bandwagon effect, making participation feel popular and widely accepted[cite: 1].
+
+```text
+1000's flirting NOW! Txt GIRL or BLOKE & ur NAME & AGE, eg GIRL ZOE 18 to 8007 to join and get chatting!
+```
+
+##### S-103 - "Lots of new people registered in YOUR AREA"
+**Primary:** Social Proof | **Also uses:** Curiosity, Rapport
+**Why:** Claims local momentum and group participation to normalize joining the service[cite: 1].
+
+```text
+We have new local dates in your area - Lots of new people registered in YOUR AREA. Reply DATE to start now! 18 only www.flirtparty[.]us REPLYS150
+```
+
+##### S-104 - "More people are... in your area now"
+**Primary:** Social Proof | **Also uses:** Curiosity, Commitment
+**Why:** Suggests an existing local group of "like minded guys" who are already participating, nudging the reader to fit in[cite: 1].
+
+```text
+More people are dogging in your area now. Call 0909020xxxx and join like minded guys. Why not arrange 1 yourself. There's 1 this evening. A£1.50 minAPN LS278BB
+```
+
+##### S-105 - "Someone you know" contact claim
+**Primary:** Social Proof | **Also uses:** Curiosity, Rapport
+**Why:** Leverages existing social connections by asserting that an actual acquaintance initiated the contact[cite: 1].
+
+```text
+You are being contacted by our dating service by someone you know! To find out who it is, call from a land line 0905000xxxx. PoBox45W2TG150P
+```
+
+##### S-106 - "Secret admirer" validation
+**Primary:** Social Proof | **Also uses:** Curiosity, Rapport
+**Why:** Uses implicit social validation (the idea that someone already finds the target special) to provoke curiosity and action[cite: 1].
+
+```text
+U have a secret admirer. REVEAL who thinks U R So special. Call 0906517xxxx. To opt out Cust care 0782123xxxx
+```
+
+##### S-107 - Social network friend invitation
+**Primary:** Social Proof | **Also uses:** Curiosity, Authority
+**Why:** Mimics a social network notification where a named user (`bootydelious`) is waiting for friend approval[cite: 1].
+
+```text
+-PLS STOP bootydelious (32/F) is inviting you to be her friend. Reply YES-434 or NO-434 See her: www.SMS[.]ac/u/bootydelious STOP? Send STOP FRND to 62468
+```
+
+##### S-108 - "Join the mobile community"
+**Primary:** Social Proof | **Also uses:** Rapport, Commitment
+**Why:** Frames participation as joining a community of peers rather than purchasing a service
+
+```text
+Ever thought about living a good life with a perfect partner? Just txt back NAME and AGE to join the mobile community. (100p/SMS)
+```
+
+##### S-109 - "Folks waiting for company"
+**Primary:** Social Proof | **Also uses:** Rapport, Curiosity
+**Why:** Implies an active community of waiting participants ("folks"), making the user feel welcomed into a pre-existing social group[cite: 1].
+
+```text
+How about getting in touch with folks waiting for company? Just txt back your NAME and AGE to opt in! Enjoy the community (150p/SMS)
+```
+
+##### S-110 - "World's most discreet text dating service"
+**Primary:** Social Proof | **Also uses:** Curiosity, Rapport
+**Why:** Reassures the target by framing the platform as an established global service where others meet safely
+
+```text
+Talk sexy!! Make new friends or fall in love in the worlds most discreet text dating service. Just text VIP to 83110 and see who you could meet.
+```
+
+##### S-111 - Local singles matching prompt
+**Primary:** Social Proof | **Also uses:** Rapport, Curiosity
+**Why:** Implies local demand ("sexy singles in yr area") to encourage instant participation
+
+```text
+Summers finally here! Fancy a chat or flirt with sexy singles in yr area? To get MATCHED up just reply SUMMER now. Free 2 Join. OptOut txt STOP Help0871474xxxx
+```
+
+##### S-112 - Specific profile highlight
+**Primary:** Social Proof | **Also uses:** Curiosity, Rapport
+**Why:** Displays a real-sounding user profile (`Rodds1 is 21/m from Aberdeen`) to prove that real members actively use the network.
+
+```text
+SMS. ac Blind Date 4U!: Rodds1 is 21/m from Aberdeen, United Kingdom. Check Him out hxxp://img[.] sms[.] ac/W/icmb3cktz8r7!-4 no Blind Dates send HIDE
+```
+
+##### S-113 - Secret acquaintance interest
+**Primary:** Social Proof | **Also uses:** Curiosity, Rapport
+**Why:** Claims personal acquaintance interest ("Somebody you know secretly fancies you") to exploit social peer dynamics[cite: 1].
+
+```text
+Guess what! Somebody you know secretly fancies you! Wanna find out who it is? Give us a call on 0906539xxxx From Landline DATEBox1282EssexCM61XN 150p/min 18
+```
+
+##### S-114 - Peer-initiated service referral
+**Primary:** Social Proof | **Also uses:** Curiosity, Rapport
+**Why:** Claims that a personal acquaintance specifically requested the service to make contact with the recipient[cite: 1].
+
+```text
+Someone U know has asked our dating service 2 contact you! Cant Guess who? CALL 0905809xxxx NOW all will be revealed. PO BOX385 M6 6WU
+```
+
+##### S-115 - Speedchat active platform
+**Primary:** Social Proof | **Also uses:** Curiosity, Commitment
+**Why:** Presents an active environment where users can dynamically swap chat partners, signaling a large live audience[cite: 1].
+
+```text
+Bored of speed dating? Try SPEEDCHAT, txt SPEEDCHAT to 80155, if you don't like em txt SWAP and get a new chatter! Chat80155 POBox36504W45WQ 150p/msg rcd 16
+```
+
+##### S-116 - Postcode-based local network search
+**Primary:** Social Proof | **Also uses:** Curiosity, Rapport
+**Why:** Encourages local area matching, giving the impression of an active local user base
+
+```text
+New TEXTBUDDY Chat 2 horny guys in ur area 4 just 25p Free 2 receive Search postcode or at gaytextbuddy[.]com. TXT ONE name to 89693. 0871550xxxx rpl Stop 2 cnl
+```
+
+##### S-117 - "UK's largest network" claim
+**Primary:** Social Proof | **Also uses:** Authority, Curiosity
+**Why:** Claims market leadership ("UK's largest") so potential users assume safety and widespread participation
+
+```text
+Want 2 get laid tonight? Want real Dogging locations sent direct 2 ur mob? Join the UK's largest Dogging Network bt Txting GRAVEL to 69888! Nt. ec2a. 31p.msg@150p
+```
+
+##### S-118 - Simulated ongoing social relationship
+**Primary:** Social Proof | **Also uses:** Rapport, Curiosity
+**Why:** Pretends an ongoing dialogue ("3 week's now and no word back!"), exploiting personal familiarity to force a response.
+
+```text
+FreeMsg Hey there darling it's been 3 week's now and no word back! I'd like some fun you up for it still? Tb ok! XxX std chgs to send, £1.50 to rcv
+```
+
+##### S-119 - User panel recruitment ("posh birds and chaps")
+**Primary:** Social Proof | **Also uses:** Authority, Rapport
+**Why:** Uses casual peer-group language to recruit participants for product trials under the guise of an exclusive user group.
+
+```text
+Hello. We need some posh birds and chaps to user trial prods for champneys. Can i put you down? I need your address and dob asap. Ta r
+```
+
+##### S-120 - Public winner announcement ("Mr. T. Tilo")
+**Primary:** Social Proof | **Also uses:** Reward, Curiosity
+**Why:** Highlights individual win verification ("Mr. T. Tilo won an iPod!") to reinforce the legitimacy of the prize draw.
+
+```text
+WIN: We have a winner! Mr. T. Tilo won an iPod! More exciting prizes soon, so keep an eye on ur mobile or visit www.win-82050[.]co[.]uk
+```
