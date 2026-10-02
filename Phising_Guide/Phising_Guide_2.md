@@ -445,7 +445,7 @@ This keeps every component under your own version control and audit trail, at th
 
 ---
 
-## Social engineering molding: Part 1 : for Emails
+## Social engineering molding: Part 1: for Emails
 
 > Part of a 3-guide set (Email / SMS / Phone). Shared foundation pieces are repeated here in short form so this guide stands alone.
 
@@ -890,7 +890,7 @@ Watch: delivered/delayed/bounced by provider; complaints; blocklists; Google Pos
 
 ---
 
-# Part 2: SMS
+## Social engineering molding: Part 1 : for SMS 
 
 > Part of a 3-guide set (Email / SMS / Phone). Shared foundation pieces are repeated here in short form so this guide stands alone.
 
@@ -1065,7 +1065,7 @@ Watch: delivery rate, filtered/blocked error codes, opt-out rate, cost per count
 
 ---
 
-# Part 3: Phone
+# ## Social engineering molding: Part 3 : for phone 
 
 > Part of a 3-guide set (Email / SMS / Phone). Shared foundation pieces are repeated here in short form so this guide stands alone.
 
