@@ -2,6 +2,80 @@
 
 ## Pre-social engineering OSINT linkage 
 
+> Every phase of a social engineering engagement — the pretext, the target selection, the thing that makes a lie land instead of bounce — is only as good as the information it's built from. OSINT isn't a prerequisite chapter you skim before the "real" work starts; it's the raw material the real work is made of. Nothing in the Phishing Guide or the HUMINT Guide works without it, and both of those guides say so themselves.
+
+**The dependency, stated plainly**
+
+Phishing Guide 1's own opening framing already names this: *"Phishing and social engineering is a field that depends on the adjacent OSINT field to take input."* HUMINT Guide's first two phases — Targeting and Spotting — aren't adjacent to OSINT, they *are* OSINT, just under a different name: requirement decomposition is impossible without knowing who plausibly has the access you need, and spotting sources (LinkedIn, conference programs, GitHub, alumni networks, published papers) are pulled directly from the exact same bucket chain as the OSINT Guide's Image/Username/Email/RealName pivots.
+
+**Where each OSINT bucket actually lands downstream**
+
+```
+OSINT GUIDE (Parts 1-2)
+  Person's name -> company/workplace    -> HUMINT Targeting: defines
+                                             the source profile before
+                                             a single person is spotted
+  LinkedIn / employer / role             -> HUMINT Spotting Tier 1-3:
+                                             the access-mapping itself
+  Username/email breach correlation      -> HUMINT Assessment (MICE):
+                                             a recent job change found
+                                             via OSINT is literally the
+                                             "loosened loyalty" signal
+                                             MICE's Ideology lever
+                                             depends on
+  Chronemics / posting rhythm            -> HUMINT Development pacing:
+                                             knowing someone's actual
+                                             schedule tells you when a
+                                             "coincidental" approach
+                                             reads as natural, not
+                                             engineered
+
+DARK WEB OSINT GUIDE (Parts 1-4)
+  Breach/leak correlation                -> Phishing pretext material:
+                                             a credential or internal
+                                             detail that already leaked
+                                             makes a lure impossible to
+                                             distinguish from a real
+                                             account-compromise notice
+  Persona correlation (PGP/wallet/
+  stylometry/infrastructure overlap)     -> HUMINT Assessment: the exact
+                                             same corroboration discipline,
+                                             aimed at a suspect instead
+                                             of a source
+
+OSINT GUIDE: company/domain bucket
+  theHarvester, Hunter.io, OpenCorporates -> Gophish target-list CSV
+                                              (Users & Groups) directly;
+                                              the Position field that
+                                              drives department-themed
+                                              pretext selection comes
+                                              from here, not guesswork
+```
+
+**Why this determines pretext tier, not just target selection**
+
+The Phishing Guide's own difficulty tiering makes the dependency explicit rather than implied: Tier 1 needs no OSINT at all — a generic lure, and it shows. Tier 2 needs enough OSINT to personalize a name and a plausible internal system. **Tier 3, the red-team-grade pretext, is defined entirely by its OSINT depth** — "pretext built from actual OSINT on the target org — real vendor names they use, a real recent internal event or project name, spoofed to look like a genuine reply in an existing thread." There is no version of a Tier 3 pretext that skips this step; the tier *is* the OSINT.
+
+**What happens without it, concretely**
+
+A pretext built without OSINT input reads exactly like the failure mode the Phishing Guide warns about directly: "deliberately bad grammar, an implausible prize, a sender domain that doesn't even try to look real" — because there's nothing real underneath it to anchor the lie. A HUMINT approach without prior OSINT means spotting the wrong person entirely — Part 1 of the HUMINT Guide names this exact mistake: "the most talkative person in a room is rarely the one with actual access; validate access level before investing development time," and validating access level is, again, an OSINT task that has to happen first.
+
+**The actual sequencing, in practice**
+
+```
+1. OSINT GUIDE buckets establish WHO has the access you need
+   (Targeting/Spotting)
+2. DARK WEB OSINT GUIDE adds whatever's already exposed about them
+   (credential reuse, persona correlation, prior leak appearances)
+3. That combined picture determines the PRETEXT TIER you can
+   credibly run — Tier 1 through Tier 3, per the Phishing Guide
+4. Only then does actual contact begin — a Phishing campaign launch,
+   or HUMINT's Development phase — built on information gathered
+   before a single message was sent, not improvised during it
+```
+
+Same discipline as the rest of this series, just applied one layer earlier than usual: the tool you reach for during contact was never the hard part — the OSINT that made the contact believable in the first place is.
+
 ## PSYCHOLOGICAL FACTORS OF SOCIAL ENGINEERING 
 
 **The Eight Psychological Levers Behind Social Engineering**
