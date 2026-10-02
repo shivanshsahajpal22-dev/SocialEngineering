@@ -444,6 +444,94 @@ doctl compute droplet delete redirector-01 teamserver-01
 This keeps every component under your own version control and audit trail, at the cost of more upfront setup time per engagement compared to a single automated `apply`/`destroy` cycle.
 
 ---
+## Additional Infrastructure Components (Advanced Build-Out)
+
+The sections above cover the baseline redirector → teamserver chain. A full professional build typically extends this with the following.
+
+### 1. Payload Delivery Infrastructure
+
+Separate payload hosting from your C2 redirector chain entirely — a file-hosting layer serving initial-access artifacts (droppers, macros, LNKs) should not share infrastructure with your ongoing C2 traffic.
+
+- Stand up a dedicated **staging host** for serving first-stage payloads, isolated from both the C2 redirector and the teamserver.
+- Use short-lived, randomized URIs per payload rather than static, predictable paths — reduces the chance a single discovered link exposes your whole delivery mechanism.
+- Serve payloads over HTTPS with the same domain-categorization and cert discipline as your C2 domains (see Section 2 of the main guide).
+- Log every payload request (timestamp, source IP, user-agent) separately from C2 logs, so a compromised staging host doesn't automatically expose ongoing C2 sessions.
+
+### 2. Short-Haul Staging C2 vs. Long-Haul C2
+
+Distinguish between the C2 channel used for initial execution/staging and the channel used for sustained, long-term access:
+
+| Channel | Purpose | Characteristics |
+|---|---|---|
+| **Staging/short-haul** | Initial beacon callback immediately after execution | Noisy, used briefly, burned readily, tied to the specific payload delivery |
+| **Long-haul** | Sustained post-exploitation access | Quiet, low-and-slow check-in intervals, jitter enabled, separate domain/redirector from staging |
+
+Route staged payloads to immediately migrate/stage into the long-haul listener rather than persisting on the loud staging channel. Use separate domains and separate redirectors for each so burning the staging infrastructure (which gets hit first and is most exposed) doesn't compromise the long-haul channel.
+
+### 3. Multiple C2 Channel Diversity
+
+Don't rely on a single transport. Build redundancy across protocol types so a block on one doesn't end the engagement:
+
+- **Primary**: HTTP/S listener (as covered in the main guide)
+- **Secondary**: DNS-based listener, for environments with aggressive HTTP/S egress filtering
+- **Internal-only**: SMB/named-pipe listener for peer-to-peer C2 once inside the network (no direct internet egress required for this one)
+
+Each transport should have its own redirector/infrastructure path where it touches the internet — don't funnel DNS and HTTP/S C2 through the same redirector host.
+
+### 4. Internal Pivoting Infrastructure
+
+Once initial access is established, infrastructure needs extend inward:
+
+- **SOCKS proxy**: most C2 frameworks support spinning up a SOCKS proxy through an active implant, letting operators tunnel tools (e.g., for further enumeration) through the compromised host.
+- **Pivot listeners**: a secondary listener bound to an internal interface on a compromised host, allowing other internal hosts to beacon to it instead of back out to the internet — critical in segmented networks where only one host has egress.
+- **Peer-to-peer C2 chaining**: implants relay through each other (host A relays to host B's C2 traffic) to minimize the number of hosts with direct external C2 callbacks.
+
+Document the pivot chain topology as it's built during the engagement — this becomes part of the attack-path narrative in the final report.
+
+### 5. Malleable / Traffic-Shaping Profiles
+
+Customizing the C2 traffic signature itself is often as important as the redirector:
+
+- **Cobalt Strike**: malleable C2 profiles define HTTP header structure, URI patterns, and timing to mimic legitimate traffic (e.g., shaping Beacon traffic to resemble a known SaaS API or CDN pattern).
+- **Sliver / Mythic**: equivalent C2 profile customization through their respective profile/config systems.
+- Build profiles in advance and test them against the client's actual security stack where possible (or a representative EDR/proxy in a lab) rather than relying on default profiles, which are the most heavily signatured by defensive products.
+- Version-control your profiles like any other piece of infra-as-code, so proven profiles can be reused (with domain/IOC values swapped) across engagements.
+
+### 6. Payload Build and Signing Infrastructure
+
+Define where and how payloads/loaders are actually produced:
+
+- A dedicated, isolated **build host** (not the teamserver) for compiling loaders/droppers — keeps build artifacts and toolchains off infrastructure that's directly internet-facing.
+- If code-signing certificates are used (common for reducing AV/EDR friction on signed binaries), store signing keys in a secrets manager, never on the build host itself long-term.
+- Keep a build log mapping payload hash → build date → engagement, both for your own tracking and for inclusion in client reporting (IOCs delivered at the end of the engagement).
+
+### 7. Team Collaboration and Data Handling
+
+Operational data (loot, credentials, screenshots, session logs) needs its own handling plan, separate from C2 infrastructure:
+
+- Centralize loot in an encrypted-at-rest store (not left sitting on the teamserver indefinitely).
+- Enforce access controls so only engagement operators can reach the loot store — not the whole red team org.
+- Define a retention and destruction policy tied to the engagement's end date and the client's data-handling requirements.
+- If using a C2 framework's built-in multiplayer/logging features (Cobalt Strike's event log, Sliver's multiplayer mode), still mirror critical data to your own controlled store rather than relying solely on the teamserver's local storage.
+
+### 8. Deconfliction Channel with the Blue Team
+
+Most engagement rules of engagement require a live deconfliction mechanism:
+
+- Establish a direct contact channel (phone number, dedicated email, or ticketing system) with the client's SOC/blue team lead before infrastructure goes live, so activity can be confirmed as authorized if flagged mid-engagement.
+- Keep a timestamped log of all offensive actions (not just beacon check-ins) that can be cross-referenced quickly during a deconfliction call.
+- Agree in advance on a code word or reference number tied to the engagement, so verification over the phone can happen fast without revealing operational details over an insecure channel.
+
+### 9. Infrastructure Diagramming for Client Reporting
+
+The final report typically needs a visual map of everything built:
+
+- Diagram the full chain: domains → redirectors → teamserver(s) → pivot points → internal hosts reached.
+- Include timestamps for when each piece of infrastructure was stood up and torn down.
+- Map IOCs (domains, IPs, cert serials, payload hashes) against the diagram so the client's blue team can use it directly for retrospective detection engineering.
+- Tools like diagrams.io, Lucidchart, or even a simple Mermaid diagram embedded in the report work — the point is making the attack path legible to people who weren't on the operator side.
+  
+---
 
 ## Social engineering molding: Part 1: for Emails
 
