@@ -1,14 +1,451 @@
-# PHISHING INFRA SETUP GUIDE 
+# PHISHING AND RED TEAM INFRA SETUP GUIDE 
 
-## Email · SMS · Phone — cloud-hosted, built to stay out of spam and phishing filters
+`Email · SMS · Phone · Other operations — cloud-hosted, built to stay out of spam and phishing filters and not get tracked and flagged.` 
 
 > One guide, three self-contained sections. Each section (Email / SMS / Phone) repeats the shared foundation in short form so you can jump straight to the channel you need.
 
----
+`We will start by, in general, red team infra before specifically molding it for the social engineering-based attacks.`
 
 ---
 
-# Part 1: Email
+## Manual Red Team Infrastructure Setup (Tool-Independent)
+
+This guide walks through building a redirector + teamserver + domain + TLS stack by hand — the same outcome tools like Red Baron automate, but without depending on a single tool's maintenance status, provider compatibility, or bundled plugin versions.
+
+---
+
+### 1. Architecture Overview
+
+A resilient minimal setup has three logical tiers, with optional layers for scale and additional campaign types:
+
+```
+Target --> DNS (domain) --> Redirector(s) (public-facing) --> Teamserver (C2 backend)
+                                      |
+                              (optional: CDN/domain fronting layer)
+
+Phishing track (parallel): Mail server --> SMTP relay --> Landing page redirector
+```
+
+- **Redirector**: disposable, cheap VPS running a reverse proxy. Filters traffic by user-agent, URI, or header and forwards only legitimate C2 traffic to the teamserver; everything else gets redirected to a decoy site or dropped.
+- **Teamserver**: runs the actual C2 framework (Cobalt Strike, Sliver, Havoc, Mythic, etc.). Never exposed directly to the internet — only reachable from known redirector IP(s) and operator SSH.
+- **Domain + TLS**: a domain pointed at the redirector with a valid certificate so traffic blends in as normal HTTPS.
+- **(Optional) CDN/domain fronting layer**: adds a layer like CloudFront/Azure CDN in front of the redirector for additional attribution resistance.
+- **(Optional) Phishing infrastructure**: a separate mail-sending server and landing-page host, isolated from the C2 chain so burning one doesn't burn the other.
+
+**Design principles to carry through every step:**
+- Assume every host is disposable — nothing important should live only on a redirector.
+- One redirector per domain/campaign where possible, to limit blast radius if one gets burned.
+- Keep teamserver credentials, logs, and loot off the redirector entirely.
+- Use separate cloud accounts/billing per client engagement where feasible, to avoid cross-contamination of infrastructure history.
+- Keep phishing infrastructure (mail/landing pages) segregated from C2 infrastructure — a phishing domain getting reported shouldn't expose the C2 channel.
+
+---
+
+### 2. Pre-Engagement Planning (OPSEC Considerations)
+
+Before provisioning anything:
+
+- **Domain age/category**: Freshly registered domains are often flagged by proxy categorization engines (Zscaler, Bluecoat/Symantec, Palo Alto URL filtering) as "newly registered" or "uncategorized" — both commonly blocked by default policies. Where the engagement allows it, use:
+  - Aged domains (purchased from expired-domain marketplaces) with existing category history, or
+  - Submit new domains for categorization in advance via the vendor's self-service portal (Palo Alto, Zscaler, Bluecoat all offer this) so they land in a benign category (e.g., "Technology", "Business") well before the engagement starts.
+- **ASN/IP reputation**: Cloud provider IP ranges (DigitalOcean, Linode, AWS) are commonly flagged by threat-intel feeds as "hosting provider" / "cloud" categories. Rotating providers across redirectors mitigates a single ASN getting blocklisted engagement-wide.
+- **SSL cert transparency logs**: Let's Encrypt certs are logged publicly in Certificate Transparency (CT) logs the moment they're issued. If stealth against a well-resourced blue team matters:
+  - Issue the cert close to go-live rather than weeks in advance.
+  - Monitor CT logs yourself (e.g., via `crt.sh`) for your own domains to know what a defender watching the same logs would see.
+- **Legal/compliance groundwork**: Confirm signed rules of engagement (RoE), authorization letter, and scope boundaries are in hand before any infrastructure goes live. Keep a copy of the signed authorization accessible to the ops team in case infrastructure gets flagged by a third-party abuse team (hosting provider, registrar) mid-engagement.
+- **Document everything**: IPs, domains, cert serials, and timestamps should be logged as you go for the final engagement report and for deconfliction with the blue team/SOC if required.
+
+---
+
+### 3. Provision the Hosts
+
+Spin up VPS instances manually through your provider's console, CLI, or API — no IaC tool required.
+
+```bash
+# Example: DigitalOcean CLI (doctl)
+doctl compute droplet create redirector-01 \
+  --region nyc3 --size s-1vcpu-1gb --image ubuntu-22-04-x64 \
+  --ssh-keys <your-ssh-key-id>
+
+doctl compute droplet create teamserver-01 \
+  --region nyc3 --size s-2vcpu-4gb --image ubuntu-22-04-x64 \
+  --ssh-keys <your-ssh-key-id>
+```
+
+```bash
+# Example: AWS CLI
+aws ec2 run-instances \
+  --image-id ami-0abcdef1234567890 \
+  --instance-type t3.micro \
+  --key-name operator-key \
+  --security-group-ids sg-0123456789abcdef0 \
+  --subnet-id subnet-0123456789abcdef0 \
+  --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=redirector-01}]'
+```
+
+**Harden SSH access immediately on both hosts:**
+
+```bash
+sed -i 's/#PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config
+sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin no/' /etc/ssh/sshd_config
+systemctl restart sshd
+```
+
+Consider moving SSH to a non-default port and installing `fail2ban` to blunt automated scanning:
+
+```bash
+apt install -y fail2ban
+systemctl enable --now fail2ban
+```
+
+**Lock down the teamserver's firewall so only the redirector(s) and operator IP can reach it:**
+
+```bash
+ufw default deny incoming
+ufw default allow outgoing
+ufw allow from <redirector_ip> to any port <c2_port>
+ufw allow from <operator_ip> to any port 22
+ufw enable
+```
+
+---
+
+### 4. Operator Access (VPN/Bastion Layer)
+
+Avoid SSHing into teamservers directly from operator home/office IPs where possible — use an intermediary:
+
+- Stand up a lightweight **WireGuard** VPN endpoint that all operators connect through, so the teamserver firewall only ever needs to allow one stable VPN IP rather than every operator's changing home IP.
+
+```bash
+apt install -y wireguard
+wg genkey | tee privatekey | wg pubkey > publickey
+```
+
+- Alternatively, use a hardened **bastion host** as a single SSH jump point, with MFA enforced on the bastion itself, and no direct SSH from the internet to the teamserver at all.
+- Rotate operator SSH keys at the start of each engagement rather than reusing a long-lived key pair across clients.
+
+---
+
+### 5. Register and Point a Domain
+
+Register through any registrar (Namecheap, Porkbun, GoDaddy) manually via web UI or API, then point an A record (and optionally a CNAME for a subdomain) at the redirector:
+
+```
+Type: A
+Name: @ (or subdomain, e.g. "cdn")
+Value: <redirector_public_ip>
+TTL: 300
+```
+
+If using multiple redirectors for redundancy, create multiple A records (round-robin DNS) or use a DNS failover service:
+
+```
+Type: A
+Name: @
+Value: <redirector_01_ip>
+
+Type: A
+Name: @
+Value: <redirector_02_ip>
+```
+
+**Submit the domain for proxy categorization** (see Section 2) as early in the engagement timeline as your rules of engagement allow.
+
+---
+
+### 6. Issue a TLS Certificate
+
+Use **Certbot** directly on the redirector instead of relying on a Terraform ACME provider:
+
+```bash
+apt update && apt install -y certbot python3-certbot-apache
+certbot --apache -d yourdomain.com --non-interactive --agree-tos -m you@example.com
+```
+
+For Nginx instead of Apache:
+
+```bash
+apt install -y certbot python3-certbot-nginx
+certbot --nginx -d yourdomain.com --non-interactive --agree-tos -m you@example.com
+```
+
+**Verify auto-renewal is scheduled:**
+
+```bash
+systemctl list-timers | grep certbot
+certbot renew --dry-run
+```
+
+**Rate limits:** Let's Encrypt enforces 50 certificates per registered domain per week and 5 duplicate certificates per week — plan cert issuance accordingly if rotating domains frequently.
+
+---
+
+### 7. Configure the Redirector
+
+**Option A — Apache with `mod_rewrite`:**
+
+```bash
+apt install -y apache2
+a2enmod rewrite proxy proxy_http ssl
+```
+
+`/etc/apache2/sites-enabled/000-default-le-ssl.conf`:
+
+```apache
+<VirtualHost *:443>
+    ServerName yourdomain.com
+
+    RewriteEngine On
+    RewriteCond %{HTTP_USER_AGENT} !^Mozilla/5\.0\ \(Windows\ NT\ 10\.0.*$
+    RewriteRule ^.*$ https://www.decoy-site.com/ [L,R=302]
+
+    RewriteCond %{HTTP_USER_AGENT} ^Mozilla/5\.0\ \(Windows\ NT\ 10\.0.*$
+    RewriteRule ^(.*)$ https://<teamserver_ip>:<c2_port>$1 [P,L]
+
+    SSLEngine on
+    SSLCertificateFile /etc/letsencrypt/live/yourdomain.com/fullchain.pem
+    SSLCertificateKeyFile /etc/letsencrypt/live/yourdomain.com/privkey.pem
+
+    ServerTokens Prod
+    ServerSignature Off
+</VirtualHost>
+```
+
+```bash
+systemctl restart apache2
+```
+
+**Option B — Nginx (lighter-weight alternative):**
+
+```nginx
+server {
+    listen 443 ssl;
+    server_name yourdomain.com;
+
+    ssl_certificate /etc/letsencrypt/live/yourdomain.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/yourdomain.com/privkey.pem;
+
+    location / {
+        if ($http_user_agent !~* "Mozilla/5.0 \(Windows NT 10.0") {
+            return 302 https://www.decoy-site.com/;
+        }
+        proxy_pass https://<teamserver_ip>:<c2_port>;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+    }
+
+    server_tokens off;
+}
+```
+
+```bash
+systemctl restart nginx
+```
+
+**Redundancy tip:** stand up a second redirector pointed at a backup domain or secondary A record, so a single blocked/burned redirector doesn't take down the whole engagement.
+
+---
+
+### 8. (Optional) Add a CDN/Domain Fronting Layer
+
+For additional attribution resistance, place a CDN (e.g., CloudFront, Azure CDN, Fastly) in front of the redirector:
+
+1. Create a CDN distribution with the redirector as the origin.
+2. Use a high-reputation "front domain" already hosted on the same CDN as the TLS SNI value, while routing the `Host` header to your actual domain internally.
+3. Confirm this complies with your engagement's rules of engagement — domain fronting abuses provider trust relationships, and some providers (notably AWS and Azure) have actively restricted or blocked it, so test against your specific CDN before relying on it operationally.
+
+---
+
+### 9. Deploy the C2 Teamserver
+
+Install and launch your chosen framework directly on the teamserver host:
+
+```bash
+# Example: Sliver
+curl https://sliver.sh/install | sudo bash
+sliver-server
+```
+
+```bash
+# Example: Cobalt Strike (licensed install, not downloadable publicly)
+./teamserver <teamserver_ip> <password> /path/to/malleable.profile
+```
+
+Bind listeners to localhost or the internal interface only — all public-facing traffic should route exclusively through the redirector.
+
+---
+
+### 10. Phishing Infrastructure (If In Scope)
+
+If the engagement includes phishing as an initial access vector, build this as a **separate, isolated chain**:
+
+- **Mail-sending server**: a dedicated VPS (not the C2 teamserver) running something like `Postfix`, configured with:
+  - **SPF** record authorizing the sending IP
+  - **DKIM** signing enabled
+  - **DMARC** record (even a permissive `p=none` policy helps deliverability)
+- **Landing page host**: a separate redirector/host serving the credential-harvesting or payload-delivery page, decoupled from the C2 redirector so a reported phishing domain doesn't expose the C2 domain.
+- **Link tracking**: if click-tracking is needed, host it on the landing page infrastructure, not the mail server, to limit what a abuse report can trace back to.
+
+Keep mail, landing page, and C2 on separate domains and separate hosts entirely — this is one of the most common infra-isolation mistakes in rushed engagement setups.
+
+---
+
+### 11. Monitoring and Alerting
+
+Set up basic health checks so a burned or dead redirector doesn't go unnoticed mid-engagement:
+
+```bash
+# Simple cron-based healthcheck hitting the redirector and alerting on failure
+*/5 * * * * curl -sf https://yourdomain.com/health || echo "Redirector down" | mail -s "ALERT" ops@example.com
+```
+
+For more robust setups, point an external uptime monitor (self-hosted Uptime Kuma, or similar) at each redirector's health endpoint so the team gets paged rather than discovering an outage from a stalled beacon.
+
+---
+
+### 12. Logging and Telemetry
+
+Since you're not using a packaged tool's built-in reporting, set this up manually:
+
+- **Centralize redirector + teamserver logs** to a separate logging host (not the teamserver itself) using `rsyslog` forwarding or an ELK stack if search/visualization is needed:
+
+```bash
+# On redirector/teamserver: forward logs via rsyslog
+echo "*.* @<logging_host_ip>:514" >> /etc/rsyslog.conf
+systemctl restart rsyslog
+```
+
+- Log every beacon/implant check-in, redirector hit, and cert issuance with timestamps — this becomes part of the final engagement report and supports deconfliction if the blue team flags activity mid-engagement.
+- Keep a simple append-only log file per host (`/var/log/redteam-infra.log`) tracking what was stood up, when, and by whom.
+
+---
+
+### 13. Making It Repeatable Without a Framework Dependency
+
+Wrap the manual steps in scripts you own and version yourself.
+
+**Bash approach:**
+
+```bash
+#!/usr/bin/env bash
+set -euo pipefail
+
+DOMAIN="$1"
+TEAMSERVER_IP="$2"
+C2_PORT="$3"
+
+apt update && apt install -y apache2 certbot python3-certbot-apache fail2ban
+a2enmod rewrite proxy proxy_http ssl
+certbot --apache -d "$DOMAIN" --non-interactive --agree-tos -m ops@example.com
+envsubst < redirector.conf.template > /etc/apache2/sites-enabled/000-default-le-ssl.conf
+systemctl restart apache2
+systemctl enable --now fail2ban
+```
+
+**Ansible approach (more maintainable across engagements):**
+
+```yaml
+- hosts: redirector
+  become: true
+  vars:
+    domain: "{{ redirector_domain }}"
+    teamserver_ip: "{{ c2_backend_ip }}"
+    c2_port: "{{ c2_backend_port }}"
+  tasks:
+    - name: Install required packages
+      apt:
+        name: [apache2, certbot, python3-certbot-apache, fail2ban]
+        state: present
+        update_cache: true
+
+    - name: Enable required Apache modules
+      command: a2enmod {{ item }}
+      loop: [rewrite, proxy, proxy_http, ssl]
+
+    - name: Issue TLS certificate
+      command: >
+        certbot --apache -d {{ domain }} --non-interactive
+        --agree-tos -m ops@example.com
+
+    - name: Template redirector vhost config
+      template:
+        src: redirector.conf.j2
+        dest: /etc/apache2/sites-enabled/000-default-le-ssl.conf
+      notify: restart apache
+
+    - name: Ensure fail2ban is running
+      service:
+        name: fail2ban
+        state: started
+        enabled: true
+
+  handlers:
+    - name: restart apache
+      service:
+        name: apache2
+        state: restarted
+```
+
+Keep these scripts/playbooks in a private git repository, parameterized per engagement (domain, teamserver IP, C2 port, user-agent string) so standing up new infra is a config change, not a rewrite.
+
+---
+
+### 14. Cost Tracking
+
+Without a tool auto-tagging resources, track spend manually to avoid surprise bills or orphaned infrastructure after an engagement:
+
+- Tag every resource with the engagement/client name in the provider console at creation time.
+- Maintain a simple spreadsheet or ledger of: host, provider, creation date, monthly cost, teardown date.
+- Set a calendar reminder tied to the engagement end date to confirm teardown actually happened — orphaned VPS instances are a common source of unplanned cost and lingering attack surface.
+
+---
+
+### 15. Teardown and Cleanup
+
+Tear down deliberately and in order:
+
+```bash
+# 1. Revoke the cert if the domain won't be reused
+certbot revoke --cert-path /etc/letsencrypt/live/yourdomain.com/cert.pem
+
+# 2. Remove DNS records via registrar UI/API
+
+# 3. Destroy the compute instances
+doctl compute droplet delete redirector-01 teamserver-01
+```
+
+**Before destroying hosts:**
+- Pull final logs off the redirector/teamserver for the engagement report.
+- Securely wipe sensitive data if the host isn't being destroyed outright (`shred` or provider-level disk wipe on reuse).
+- Confirm with the client whether domains/infrastructure should be retained for a retest window before fully decommissioning.
+- Close out any categorization submissions or abuse-team correspondence tied to the domain/IPs.
+
+---
+
+### 16. Summary Checklist
+
+| Step | Manual equivalent |
+|---|---|
+| Host provisioning | Provider CLI/console instead of Terraform `apply` |
+| SSH/firewall hardening | Manual `sshd_config` + `ufw`/`fail2ban` |
+| Operator access | WireGuard VPN or bastion host instead of direct SSH |
+| Domain + DNS | Registrar UI/API instead of GoDaddy Terraform provider |
+| Domain categorization | Manual submission to proxy vendor portals |
+| TLS cert | Certbot directly instead of ACME Terraform provider |
+| Redirector config | Hand-written Apache/Nginx config |
+| CDN/domain fronting | Manual CDN distribution setup (optional) |
+| Phishing infra | Separate mail/landing-page hosts, isolated from C2 |
+| Monitoring | Cron health checks or self-hosted uptime monitor |
+| Logging | `rsyslog`/ELK forwarding instead of built-in tool reporting |
+| Repeatability | Your own Ansible/Bash scripts, version-controlled |
+| Cost tracking | Manual tagging and a spend ledger |
+| Teardown | Manual cert revoke, DNS cleanup, instance deletion |
+
+This keeps every component under your own version control and audit trail, at the cost of more upfront setup time per engagement compared to a single automated `apply`/`destroy` cycle.
+
+---
+
+## Social engineering molding: Part 1 : for Emails
 
 > Part of a 3-guide set (Email / SMS / Phone). Shared foundation pieces are repeated here in short form so this guide stands alone.
 
@@ -233,11 +670,15 @@ App → queue → worker → email service → internet. Events (delivered/bounc
 - [ ] Outbound content scan to catch hacked templates
 - [ ] Watch for look-alike domains registered against your brand
 
-## Defence Evasion methods: Domain Aging (You don't want the domain flag)
+---
 
-## Defence Evasion methods: Good Ip range accruing (you want reputable ip)
+## DEFENCE EVASION TACTICS 
 
-## Defence evasion: Warm-up (mandatory for new IPs/domains) ☑️
+### Domain Aging (You don't want the domain flag)
+
+### Good Ip range accruing (you want reputable ip)
+
+### Warm-up (mandatory for new IPs/domains) ☑️
 
 Warm up each big provider separately — Outlook is slowest to trust you.
 
@@ -254,6 +695,8 @@ Warm up each big provider separately — Outlook is slowest to trust you.
 
 **Pause if:** a major provider starts delaying you, complaints pass 0.1%, bounces pass 2%, or any blocklist lists you; this may force you to burn the entire infrastructure and start from scratch again and again! 
 
+---
+
 ## Test before launch
 
 ### The final list 
@@ -263,7 +706,9 @@ Warm up each big provider separately — Outlook is slowest to trust you.
 4. Test unsubscribe, a deliberate bounce, and a deliberate spam-mark end to end.
 5. Confirm staging genuinely cannot reach real addresses.
 
-## Infra quick burn and rebuild ☑️
+---
+
+## INFRA QUICK BURN & REBUILD ☑️
 
 The goal here is: you can rebuild correctly in hours, not weeks — without ever touching the rotate-to-dodge-filters pattern that gets you blocked.
 
@@ -410,6 +855,8 @@ terraform destroy
     - where to check -> [click here](https://mxtoolbox.com/blacklists.aspx) and [here](https://check.spamhaus.org/) and where to buy -> `ip ranges are given by the cloud VPS provider themself.`
 - **Key rotation as a drill**, not a crisis: practice rotating DKIM keys and API keys on a schedule so doing it after an incident is routine.
 - **Config, not manual steps, for DMARC stage changes** — store your current `p=` value in code/version control so rollback after a bad rollout is one commit.
+
+---
 
 ## 16. Monitoring
 
