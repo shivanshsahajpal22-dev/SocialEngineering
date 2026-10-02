@@ -2,11 +2,11 @@
 
 `Read the phishing guide part 2 for the full picture, since it is part 1 of infra setup.` 
 
-# PHONE INFRA GUIDE
+## PHONE INFRA GUIDE
 
-## RAW PHONE INFRASTRUCTURE
+### RAW PHONE INFRASTRUCTURE
 
-### Why this isn't a regular VPS server
+#### Why this isn't a regular VPS server
 
 You already know how to spin up a VPS and run something like an FTP server — a client connects, authenticates, transfers a file, disconnects. Phone infra looks nothing like that under the hood, and the differences are exactly where people get tripped up building it for the first time.
 
@@ -66,6 +66,50 @@ Checklist:
 - [ ] Load balancer + WAF, or Nginx/Envoy/Caddy, defined in IaC
 
 **Fast-rebuild notes (legitimate DR, not label-evasion):** keep the redirector config as its own IaC module, separate from call-flow logic; version your WAF/rate-limit rules so a fresh instance inherits protection immediately; keep an idle secondary redirector ready to promote via DNS/load-balancer switch so call-event webhooks aren't dropped mid-rebuild.
+
+---
+
+### The System Hardening
+
+**Access Control**
+- SSH key-only authentication — disable password login entirely
+- Disable root login — require a non-root user, then `sudo`
+- Fail2ban or similar — auto-ban IPs after repeated failed login attempts
+- Non-default SSH port
+- IP allow-listing for SSH/admin access
+- **SIP registration requires strong, non-default credentials per extension/trunk** — weak SIP auth is the #1 entry point for toll fraud
+- **PBX/SBC admin web console restricted to VPN/known-IP only**, never exposed publicly (FreePBX's web GUI being internet-facing is one of the most common real-world compromise stories)
+- **Disable anonymous/guest SIP calls entirely** unless you have a specific, deliberate reason to allow them
+
+**Firewall / Network Exposure**
+- Default-deny inbound; minimal open ports
+- Egress filtering
+- **Restrict the SIP signaling port (5060/5061) to your trunk provider's known IPs only** — don't leave it open to the whole internet; open SIP ports are constantly scanned specifically for toll-fraud exploitation
+- **Narrow the RTP media port range to the minimum you actually need**, and firewall it to expected media-relay/SBC IPs rather than leaving the full 10000–20000 range open to anyone
+- **Put a Session Border Controller (SBC) in front of any self-hosted PBX** — it plays the same role as your web redirector, but for SIP/RTP: it's the thing the internet touches, so Asterisk/FreeSWITCH itself never faces the internet directly
+
+**OS and Software Hygiene**
+- Regular patching; minimal installed software; disable unused services
+- **Patch Asterisk/FreeSWITCH on their own cycle** — PBX software has a well-documented history of being a toll-fraud target with its own CVEs, separate from general OS patching
+- **Disable and remove unused SIP extensions/trunks immediately**, don't leave dormant ones configured "just in case"
+
+**Logging and Monitoring**
+- Centralized, tamper-resistant logging
+- Intrusion detection
+- **Wire unusual call-destination patterns into your intrusion detection, not just billing alerts** — by the time a toll-fraud spike shows up on your bill, it's already cost you; catching it in near-real-time via call logs is the actual defense
+- **Alert on concurrent-channel usage spikes outside normal business hours** — toll fraud disproportionately happens nights/weekends when no one's watching the dashboard
+- **Ship CDRs (call detail records) off-host** for audit, same reasoning as mail logs
+
+**Secrets and Credentials**
+- No hardcoded credentials; secrets manager; least privilege
+- **SIP trunk credentials and provider API keys in the secrets manager**, rotated on a schedule
+- **Recording/voicemail storage access keys kept separate and least-privilege from call-flow service credentials** — a compromised call-flow process shouldn't automatically have access to every historical recording
+
+**Data Protection**
+- Encryption at rest; no sensitive data lingering
+- **Encrypt call recordings and voicemail at rest**, not just access-controlled
+- **Confirm the payment-capture pause actually works end to end if taking card payments by phone** — card numbers must never reach a recording or a log, this is a PCI requirement, not a nice-to-have
+- **Enforce retention limits automatically** (auto-delete past the policy window), not as a manual cleanup task someone has to remember
 
 ---
 
@@ -344,6 +388,47 @@ Since you never run the SMPP server yourself, what you're building is the **pipe
 6. Event store/state machine connecting both
 7. OTP fraud-guard layer added before any code-sending path goes live
 8. Do-not-contact service wired to auto-consume STOP events
+
+---
+
+### The System Hardening
+
+**Access Control**
+- SSH key-only authentication — disable password login entirely
+- Disable root login — require a non-root user, then `sudo`
+- Fail2ban or similar — auto-ban IPs after repeated failed login attempts
+- Non-default SSH port
+- IP allow-listing for SSH/admin access
+- **Provider API keys scoped to minimum needed permission** — a send-only key for the worker, never an account-admin key used for day-to-day sending
+- **Separate API keys per campaign/number pool** (system vs. marketing) — a leaked marketing key shouldn't be able to blast OTP traffic or vice versa
+- **Brand/campaign registration dashboard access restricted separately** from general cloud IAM — it's a compliance-critical account, treat it like one
+
+**Firewall / Network Exposure**
+- Default-deny inbound; minimal open ports
+- Egress filtering
+- **Webhook receiver: allow-list the provider's published source IPs where available, in addition to signature verification** — defense in depth, not either/or
+- **If you run your own short-link redirect service, treat it as public attack surface** — same WAF/rate-limiting as your main redirector, since it's a web-facing endpoint even though the "real" work happens at the provider
+
+**OS and Software Hygiene**
+- Regular patching; minimal installed software; disable unused services
+- **Patch your short-link/redirect service and webhook-handler app on the same cycle as everything else** — it's small, but it's still internet-facing code you wrote
+
+**Logging and Monitoring**
+- Centralized, tamper-resistant logging
+- Intrusion detection
+- **Dedicated alerting on your OTP-send endpoint specifically** — separate from general SMS metrics, since this is the exact path fraud (SMS pumping) targets
+- **Log delivery receipts and STOP events centrally** — this is your compliance audit trail, not just an operational metric
+
+**Secrets and Credentials**
+- No hardcoded credentials; secrets manager; least privilege
+- **CAPTCHA/verification service keys (hCaptcha, Turnstile) kept in the secrets manager**, never embedded in frontend code where they can be extracted and swapped
+- **Separate credentials for system vs. marketing sends**, same reasoning as the API-key scoping above
+
+**Data Protection**
+- Encryption at rest; no sensitive data lingering
+- **Never log full phone numbers in plaintext in application logs** — mask/partially redact (e.g. `+1••••••1234`)
+- **Encrypt consent records at rest** — they contain name, number, IP, and timestamp, which is real PII
+- **OTP codes never logged in plaintext anywhere**, including debug logs
 
 ---
 
