@@ -687,6 +687,169 @@ Your free ringtone is waiting to be collected. Simply text the password "MIX" to
 ~~~text
 Hello. We need some posh birds and chaps to user trial prods for champneys. Can i put you down? I need your address and dob asap. Ta r
 ~~~
+### 5. CURIOSITY (20)
+
+**How it shows up in SMS:** Curiosity pretexts exploit information gaps, driving recipients to act simply to satisfy an unanswered question[cite: 2]. Rather than dangling explicit monetary gains or making high-pressure threats, these messages rely on incomplete details—unnamed contacts, mysterious voicemail or picture notifications, secret admirers, or misdirected personal notes[cite: 2]. The victim responds or clicks a link to resolve the ambiguity[cite: 2].
+
+##### S-81 - Bare voicemail notification
+**Primary:** Curiosity | **Also uses:** Urgency
+**Why:** Strips away all context except the existence of an unread voice message[cite: 2]. By withholding the caller's identity and subject, it triggers an impulse to resolve the missing information[cite: 2].
+
+```text
+You have 1 new voicemail. Please call 0871918xxxx.
+```
+
+##### S-82 - "Secret Admirer" reveal hook
+**Primary:** Curiosity | **Also uses:** Rapport, Reward
+**Why:** Plays on ego and social curiosity by teasing an anonymous admirer[cite: 2]. The identity is locked behind a premium-rate line[cite: 2].
+
+```text
+U have a secret admirer. REVEAL who thinks U R So special. Call 0906517xxxx. To opt out Cust care 0782123xxxx
+```
+
+##### S-83 - Unrequested picture link
+**Primary:** Curiosity | **Also uses:** Social Proof
+**Why:** Hints that a photo involving or directed at the recipient is available online[cite: 2], driving an immediate click to inspect the URL[cite: 2].
+
+```text
+A link to your picture has been sent. You can also use hxxp://alto18[.]co[.]uk/wave/wave.asp?o=44345
+```
+
+##### S-84 - Vague "Today is your lucky day!" teaser
+**Primary:** Curiosity | **Also uses:** Authority, Reward
+**Why:** Merges network carrier branding with an intentionally vague promise[cite: 2], forcing the recipient to visit an external domain to discover what they supposedly won[cite: 2].
+
+```text
+IMPORTANT INFORMATION 4 ORANGE USER 0796XXXXXX. TODAY IS UR LUCKY DAY!2 FIND OUT WHY LOG ONTO hxxp://www[.]urawinner[.]com
+```
+
+##### S-85 - Unread mailbox messages and matches
+**Primary:** Curiosity | **Also uses:** Authority, Urgency
+**Why:** Simulates an automated messaging system reporting unread social matches and notes[cite: 2], tapping into curiosity and FOMO[cite: 2].
+
+```text
+<Forwarded 21870000 from>Hi - this is your Mailbox Messaging SMS alert. You have 4 messages. You have 21 matches. Please call back on 0905624xxxx to retrieve your messages and matches
+```
+
+##### S-86 - "Dating Service" hook from an acquaintance
+**Primary:** Curiosity | **Also uses:** Social Proof, Rapport
+**Why:** Claims that someone the victim knows personally entered their contact details into a dating site[cite: 2], creating an intriguing interpersonal puzzle[cite: 2].
+
+```text
+Someone has contacted our dating service and entered your phone because they fancy you! To find out who it is call from a landline 0911103xxxx . PoBox12n146tf150p
+```
+
+##### S-87 - Cryptic branding campaign ("Are you unique enough?")
+**Primary:** Curiosity | **Also uses:** Commitment
+**Why:** Uses a philosophical teaser question with no context or product explanation[cite: 2], tempting recipients to visit the site out of sheer intrigue[cite: 2].
+
+```text
+Are you unique enough? Find out from 30th August. www[.]areyouunique[.]co[.]uk
+```
+
+##### S-88 - Minimalist message notice
+**Primary:** Curiosity | **Also uses:** Urgency
+**Why:** A bare notification with zero specifics[cite: 2]. The lack of details forces the recipient to call to bridge the information gap[cite: 2].
+
+```text
+You have 1 new message. Please call 0871873xxxx.
+```
+
+##### S-89 - Unsolicited social network friend invite
+**Primary:** Curiosity | **Also uses:** Rapport, Social Proof
+**Why:** Uses a specific profile name and age to make an invitation feel genuine[cite: 2], prompting the recipient to check who is attempting to connect[cite: 2].
+
+```text
+-PLS STOP bootydelious (32/F) is inviting you to be her friend. Reply YES-434 or NO-434 See her: www[.]SMS[.]ac/u/bootydelious STOP? Send STOP FRND to 62468
+```
+
+##### S-90 - "Guess what! Somebody secretly fancies you"
+**Primary:** Curiosity | **Also uses:** Rapport
+**Why:** Starts with an informal conversational hook ("Guess what!")[cite: 2] paired with an anonymous crush lure to compel a premium call back[cite: 2].
+
+```text
+Guess what! Somebody you know secretly fancies you! Wanna find out who it is? Give us a call on 0906539xxxx From Landline DATEBox1282EssexCM61XN 150p/min 18
+```
+
+##### S-91 - Personal picture teaser
+**Primary:** Curiosity | **Also uses:** Rapport
+**Why:** Mixes informal conversational phrasing ("Feelin kinda lnly") with visual curiosity ("wanna c my pic?")[cite: 2] to drive a paid response[cite: 2].
+
+```text
+FreeMsg:Feelin kinda lnly hope u like 2 keep me company! Jst got a cam moby wanna c my pic?Txt or reply DATE to 82242 Msg150p 2rcv Hlp 0871231xxxx stop to 82242
+```
+
+##### S-92 - Open-ended email audio gateway alert
+**Primary:** Curiosity | **Also uses:** Authority
+**Why:** Formatted as an automated gateway alert for an incoming voice email[cite: 2]. The recipient's curiosity is piqued by an unknown sender name[cite: 2].
+
+```text
+Email AlertFrom: Jeri StewartSize: 2KBSubject: Low-cost prescripiton drvgsTo listen to email call 123
+```
+
+##### S-93 - Personal fortune / horoscope hook
+**Primary:** Curiosity | **Also uses:** Reward
+**Why:** Asks self-reflective questions regarding love and career prospects[cite: 2], exploiting personal curiosity to solicit an SMS reply[cite: 2].
+
+```text
+Will u meet ur dream partner soon? Is ur career off 2 a flyng start? 2 find out free, txt HORO followed by ur star sign, e. g. HORO ARIES
+```
+
+##### S-94 - Cryptic lifestyle survey
+**Primary:** Curiosity | **Also uses:** Rapport, Commitment
+**Why:** Poses an open-ended question about personal goals before requesting personal information (name and age)[cite: 2].
+
+```text
+Ever thought about living a good life with a perfect partner? Just txt back NAME and AGE to join the mobile community. (100p/SMS)
+```
+
+##### S-95 - Teaser for upcoming media content
+**Primary:** Curiosity | **Also uses:** Reward, Authority
+**Why:** Builds anticipation for exclusive "free downloads" coming in a subsequent message[cite: 2], conditioning the user to accept incoming WAP push links[cite: 2].
+
+```text
+TheMob>Yo yo yo-Here comes a new selection of hot downloads for our members to get for FREE! Just click & open the next link sent to ur fone...
+```
+
+##### S-96 - Unrecognized ongoing conversation hook
+**Primary:** Curiosity | **Also uses:** Fear, Rapport
+**Why:** Implies a prior intimate relationship or missed communication ("no word back!")[cite: 2], inducing confusion that prompts a reply to clarify[cite: 2].
+
+```text
+FreeMsg Hey there darling it's been 3 week's now and no word back! I'd like some fun you up for it still? Tb ok! XxX std chgs to send, £1.50 to rcv
+```
+
+##### S-97 - Social platform greeting alert
+**Primary:** Curiosity | **Also uses:** Social Proof, Rapport
+**Why:** Mimics a notification from a social network showing an incoming friendly note[cite: 2], tempting the recipient to engage[cite: 2].
+
+```text
+SMS[.]ac sun0819 posts HELLO:"You seem cool, wanted to say hi. HI!!!" Stop? Send STOP to 62468
+```
+
+##### S-98 - Blind date profile recommendation
+**Primary:** Curiosity | **Also uses:** Social Proof
+**Why:** Displays a specific username and location ("21/m from Aberdeen")[cite: 2], using targeted profile details to spur curiosity clicks[cite: 2].
+
+```text
+SMS[.]ac Blind Date 4U!: Rodds1 is 21/m from Aberdeen, United Kingdom. Check Him out hxxp://img[.]sms[.]ac/W/icmb3cktz8r7!-4 no Blind Dates send HIDE
+```
+
+##### S-99 - Unrequested order download notification
+**Primary:** Curiosity | **Also uses:** Authority, Fear
+**Why:** Informs the user of an incoming media order they never placed[cite: 2], leveraging curiosity and minor concern to drive traffic to a WAP portal[cite: 2].
+
+```text
+BangBabes Ur order is on the way. U SHOULD receive a Service Msg 2 download UR content. If U do not, GoTo wap[.]bangb[.]tv on UR mobile internet/service menu
+```
+
+##### S-100 - Misdirected personal illicit invitation
+**Primary:** Curiosity | **Also uses:** Rapport, Reward
+**Why:** Disguised as a private, misdirected invite ("Hubby at meetins all day")[cite: 2], exploiting taboo intrigue to prompt a call[cite: 2].
+
+```text
+Hi its LUCY Hubby at meetins all day Fri & I will B alone at hotel U fancy cumin over? Pls leave msg 2day 0909972xxxx Lucy x Calls£1/minMobsmoreLKPOBOX177HP51FL
+```
 
 ### 6. SOCIAL PROOF (20)[cite: 1]
 
