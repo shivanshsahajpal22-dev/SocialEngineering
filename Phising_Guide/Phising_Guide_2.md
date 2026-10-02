@@ -756,7 +756,142 @@ Checklist:
 - **Encrypt the mail queue at rest** if self-hosting — queued messages sit on disk with full content until delivered
 - **Don't log full message bodies/headers by default** — metadata only, body logging as an explicit opt-in for debugging
 - **Enforce STARTTLS/TLS on all inbound and outbound SMTP connections** where the receiving server supports it
-  
+
+### Where Lookalike Login Pages Come From
+
+---
+
+#### 1. Built into the Tools Directly
+
+```
+SET ships with pre-built static templates for
+common targets maintained by the SET team:
+
+→ Google, Facebook, Twitter, LinkedIn, Yahoo
+
+Location on disk:
+/usr/share/set/src/webattack/web_templates/
+
+These are just folders with index.html and assets —
+open them directly to see or modify them
+```
+
+---
+
+#### 2. Live Cloning (Most Common Method)
+
+```
+SET Site Cloner — give it a URL and it:
+→ Makes a real HTTP request to the target page
+→ Downloads HTML, CSS, JS, images
+→ Rewrites form action= to point to SET's listener
+→ Serves it locally — always current, always accurate
+
+Other tools that do this:
+→ Gophish        — manual but same concept
+→ Zphisher       — github.com/htr-tech/zphisher
+→ Evilginx2      — reverse proxy, more sophisticated
+→ Modlishka      — same reverse proxy approach
+```
+
+---
+
+#### 3. Community Template Repositories
+
+```
+Pre-built HTML clone collections on GitHub:
+
+github.com/htr-tech/zphisher
+→ 30+ templates: Instagram, Snapchat, Google,
+  Netflix, Steam, PayPal and more
+→ Each is an HTML folder with a PHP credential logger
+
+github.com/An0nUD4Y/blackeye
+→ Similar collection, different target set
+
+github.com/thelinuxchoice/shellphish
+→ Another collection with some unique targets
+
+All of these are just curated HTML clones with a
+PHP backend writing POST data to a file
+```
+
+---
+
+#### 4. Manual Build (Professional Engagements)
+
+```
+Off-the-shelf templates avoided in serious engagements
+because they are detected by email gateways and look
+slightly off under close inspection. Instead:
+
+→ Inspect source of real page (Ctrl+U or DevTools)
+→ Download all assets with wget or HTTrack
+→ Strip everything except the login form
+→ Add custom POST handler
+→ Host on a convincing lookalike domain
+
+wget mirror one-liner:
+wget --mirror --convert-links --page-requisites \
+     --no-parent https://target-site.com
+
+HTTrack (GUI alternative):
+httrack.com
+```
+
+---
+
+#### 5. Evilginx / Reverse Proxy (Most Effective — Bypasses MFA)
+
+```
+Fundamentally different from cloning —
+instead of copying HTML, acts as a middleman:
+
+→ Victim talks to Evilginx
+→ Evilginx talks to real site on their behalf
+→ Real site returns real HTML — always pixel perfect
+→ Evilginx intercepts credentials AND session cookies
+
+Because session cookies are captured post-auth,
+MFA is bypassed in many cases
+
+Tools:
+→ Evilginx2   github.com/kgretzky/evilginx2
+→ Modlishka   github.com/drk1wi/Modlishka
+```
+
+---
+
+#### Where SET Gets Its Cloner Logic
+
+```
+SET is fully open source:
+github.com/trustedsec/social-engineer-toolkit
+
+Cloner logic:   set/src/webattack/cloner.py
+Web templates:  set/src/webattack/web_templates/
+
+Core logic is just:
+→ requests.get(url) to fetch the page
+→ BeautifulSoup to rewrite form action attributes
+→ SimpleHTTPServer to serve it
+→ Credential capture listener on the POST endpoint
+```
+
+---
+
+#### Quick Decision Guide
+
+```
+Situation                          Best Approach
+───────────────────────────────────────────────────────
+Quick internal test                SET site cloner
+Polished external engagement       Manual clone + custom domain
+MFA bypass in scope                Evilginx2 or Modlishka
+Need many targets fast             Gophish + Zphisher templates
+Corporate SSO target               Evilginx with company phishlet
+```
+
 ### DEFENCE EVASION TACTICS 
 
 ### Domain Aging and Domain Choosing 
