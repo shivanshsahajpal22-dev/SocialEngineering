@@ -1352,3 +1352,739 @@ FCC consumer complaint data: https://www.fcc.gov/consumer-help-center-data
 T-Mobile Scam Shield: https://www.t-mobile.com/privacy-center/scam-shield (the exact path may differ)
 Verizon: https://www.verizon.com (search "scam alerts")
 ```
+
+# PHISHING: PRETEXT PSYCHOLOGY AND GUIDE
+
+## Examples - Levers mapping (Phone calls / Vishing)
+
+### Voice Examples
+
+### Vishing Classification by Psychological Lever
+
+**Method:** Same convention as the email and SMS sections. Each call gets a **primary lever** (what the excerpt leads with) and **supporting levers** (what reinforces it). Real scam calls stack 2-3 levers in a single breath, so the primary label is a judgment call. Every entry carries its **Dataset ID** (the `ID` column of the call-transcript CSV) so it can be traced back to the full transcript.
+
+**What is different from SMS:**
+- A call is a conversation, not one message. Most transcripts show a robocall or voicemail hook followed by a live agent. Excerpts are taken from the caller's side only.
+- Most of the live-agent calls come from scam-baiting recordings, so the "victim" voice is a baiter playing a role. Only the scammer's words are labelled.
+- The transcripts are automatic speech-to-text with no speaker labels. Excerpts are my best reconstruction of the caller's side, and `...` marks a gap. Original transcription errors are kept (for example, "Four square look like a fly" for "four-flag logo").
+
+**Why 74 and not 160:** The call corpus is dominated by three scripts: tech-support pop-ups, "auto-renewal / refund / cancellation" calls, and HMRC arrest-warrant robocalls. Many rows are near-duplicates (for example rows 3 and 34, 35 and 36, 136 and 137, 41 and 43). I kept one example per distinct script move rather than pad to 20 per lever. Social Proof and Curiosity are thin in this data, and I say so in those sections.
+
+**Cleanup applied:** names were already removed in the source; phone numbers and warrant numbers masked as `[number]`; URLs defanged; fake reference numbers (for example `amz-0987`) kept as spoken.
+
+**Excluded:** The three text dialogues labelled `ssn` read as LLM-generated (a "badge number" offered on demand, "Ma'am" said to "Mr. Johnson"), not recordings, so they are not counted here. IDs 18 (Carphone Warehouse) and 59 (pharmacy) look like control or baiter-initiated calls and are also excluded.
+
+#### How a vishing call is staged
+
+| Stage | What happens | Levers that dominate |
+|---|---|---|
+| 1. Hook | Robocall, voicemail, or pop-up that withholds detail and gives a keypress or a number | Urgency, Fear, Curiosity |
+| 2. Identity | Caller names an agency, brand, or department, adds a badge or case ID, or plays a fake hold recording | Authority, Social Proof |
+| 3. Pretext | A charge, a refund, a warrant, or a "hack" that explains why they are calling | Fear, Reward |
+| 4. Compliance ladder | Small asks that escalate to remote access, a form, or bank details | Commitment, Reciprocity / Rapport |
+
+#### Summary
+
+| Pillar | Count | Call #s |
+|---|---|---|
+| Urgency | 10 | V-01 to V-10 |
+| Authority | 10 | V-11 to V-20 |
+| Fear / Loss Aversion | 10 | V-21 to V-30 |
+| Reward / Greed | 10 | V-31 to V-40 |
+| Curiosity | 8 | V-41 to V-48 |
+| Social Proof | 6 | V-49 to V-54 |
+| Commitment / Consistency | 10 | V-55 to V-64 |
+| Reciprocity / Rapport | 10 | V-65 to V-74 |
+| **Total** | **74** | |
+
+---
+
+### 1. URGENCY (10)
+
+**How it shows up on calls:** Robocalls with a hard clock ("within four hours," "from today onwards"), "second attempt" language, and live agents who invent a short window mid-call. A phone call has no pause button, so the pace itself stops the target from checking anything.
+
+##### V-01 - Line "terminated from today onwards"
+**Primary:** Urgency | **Also uses:** Authority, Fear | **Dataset ID:** 1
+**Why:** "From today onwards" gives no date to check and nobody to ask. The single keypress is offered as the fix, so urgency turns directly into action.
+
+~~~text
+Hello This is British Telecom technical department we are hereby to inform you that your internet line will be terminated from today onwards to fix up the problem please press one to connect with BT
+~~~
+
+##### V-02 - Router fault, four-hour cutoff
+**Primary:** Urgency | **Also uses:** Fear, Authority | **Dataset ID:** 14
+**Why:** A specific short window ("four hours") with a technical-sounding cause. The offer of a "replacement router" makes the problem feel physical and fixable.
+
+~~~text
+hello dear customer your internet is getting disconnected within four hours due to router malfunctioning please get in touch with technical department for a replacement router and reconnection of internet please press one to speak to your internet service provider thank you
+~~~
+
+##### V-03 - Broadband cut in 24 hours
+**Primary:** Urgency | **Also uses:** Fear, Authority | **Dataset ID:** 27
+**Why:** Pairs a vague "suspicious activity" with a 24-hour disconnection. Nobody can verify the activity, but everybody can picture losing broadband.
+
+~~~text
+hello this is virgin media we have detected some suspicious activity on your broadband line and we will disconnect your service within 24 hours to resolve this matter please press one to speak to our agent
+~~~
+
+##### V-04 - Warranty "before we close the file"
+**Primary:** Urgency | **Also uses:** Authority, Commitment | **Dataset ID:** 4
+**Why:** "Close the file" sounds like an administrative cutoff, and "several notices in the mail" implies the target already ignored warnings. The "courtesy call" tone softens the pressure.
+
+~~~text
+this is calling with the vehicle service department we are calling about your vehicle's manufacturer's warranty we sent you several notices in the mail that you have yet to extend your warranty past the factory cutoff and this is a courtesy call to renew your warranty before we close the file if you are interested in renewing your auto warranty now please press five now or press 9 to be removed from our list
+~~~
+
+##### V-05 - "Emergency call" from Visa
+**Primary:** Urgency | **Also uses:** Fear, Authority | **Dataset ID:** 39
+**Why:** "Emergency" and "immediately" in one sentence, plus an amount (£600) large enough to alarm but small enough to be plausible.
+
+~~~text
+this is an emergency call from visa secure there is an online transaction of 600 pounds from your account if you did not make the payment please press one immediately to talk to our representative
+~~~
+
+##### V-06 - "Hang up" or "press one immediately"
+**Primary:** Urgency | **Also uses:** Fear, Authority | **Dataset ID:** 66
+**Why:** The recipient is sorted by reaction. If you recognise the order you hang up, and if you don't you are pushed to press one "immediately." It selects for the alarmed.
+
+~~~text
+hey this call is regarding your amazon account there is a charge for 287.92 in your amazon account for some products if you made this order then simply hang up the call or please press one immediately to connect our representative thank you
+~~~
+
+##### V-07 - "Extremely time sensitive" HMRC
+**Primary:** Urgency | **Also uses:** Fear, Authority | **Dataset ID:** 6
+**Why:** "Final warning," a pending "execution," and "extremely time sensitive" stack three clocks. The warrant number gives the paperwork feel.
+
+~~~text
+hello this is a final warning from inland revenue with hmrc regarding a criminal prosecution on your name urgently call us back on [number] and for your arrest and your warrant number is [warrant no.] as there is a legal case going to be filed against your name now before the case is sent for execution ... the issue at hand is extremely time sensitive
+~~~
+
+##### V-08 - "Second attempt" court notice
+**Primary:** Urgency | **Also uses:** Fear, Authority | **Dataset ID:** 165
+**Why:** "Second attempt" implies the target has already failed once, which is the same device as S-01 in the SMS section. The "direct line" is the only exit offered.
+
+~~~text
+ths is your second attempt to avoid your initial appearance to a County Courthouse in your federal and criminal offense and also there is a non bailable warrant of arrest is issued on your name call our direct line number thank you
+~~~
+
+##### V-09 - Live-agent 90-minute window
+**Primary:** Urgency | **Also uses:** Authority, Reward | **Dataset ID:** 154
+**Why:** A deadline invented mid-call. Ninety minutes is too short to leave the call and check a bank, and the "refund form" is offered as the way out.
+
+~~~text
+your computer firewall security and the windows defender has got expired and right now your computer needs to be updated okay so that is the reason we will call you to just confirm you do you want to continue or do you want to cancel it because within one and a half hour your money will be debited from your account
+~~~
+
+##### V-10 - Dated auto-renew charge
+**Primary:** Urgency | **Also uses:** Fear, Authority | **Dataset ID:** 178
+**Why:** A calendar date ("january 19th") makes the charge sound scheduled and real. The sentence is cut off in the recording, but the "if you do not" already carries the threat.
+
+~~~text
+because your account is set to auto renew it will automatically process charge on january 19th if you do not
+~~~
+
+---
+
+### 2. AUTHORITY (10)
+
+**How it shows up on calls:** The caller cannot be seen, so authority is built from other props. These are an agency name (Interpol, HMRC, NCA), a brand (Amazon, Microsoft, PayPal), a department title ("cancellation department," "cyber security"), a badge or case ID, a staged hold recording, technical jargon, and cited laws. The target has no logo or domain to check, so tone and vocabulary carry the claim.
+
+##### V-11 - Interpol robocall
+**Primary:** Authority | **Also uses:** Fear, Curiosity | **Dataset ID:** 2
+**Why:** Interpol is the top of the authority ladder. The odd specificity ("Austrian identity") reads like a template localised by country, and "for more information" holds back the detail.
+
+~~~text
+hello this call is from Interpol the purpose of this call is to inform you that your Austrian identity has been misused for fraudulent and illegal activity for more information press one
+~~~
+
+##### V-12 - Amazon with order number and amount
+**Primary:** Authority | **Also uses:** Fear, Urgency | **Dataset ID:** 3
+**Why:** A specific order number and amount mimic a real ledger, and the "hold" on the transaction makes the caller the protector. The same script recurs in ID 34 with a different amount (1099 instead of 1499).
+
+~~~text
+hi this is from Amazon customer service we have seen a recent order number amz-0987 of iPhone 11 Pro on your account which is billed on your card attached to your Amazon account the amount charged in 1499 we noticed some suspicious activity on your account so we have put in hold to this transaction please press one now and to report please press two
+~~~
+
+##### V-13 - HMRC officer with badge and "legal affidavit"
+**Primary:** Authority | **Also uses:** Fear, Urgency | **Dataset ID:** 159
+**Why:** A badge ID, a named sub-department ("tax audit"), and courtroom vocabulary ("lawsuit," "legal affidavit") stack formal markers in one introduction.
+
+~~~text
+now first of all let me introduce myself my name is officer with the badge id i am from the tax audit department of hmrc hm revenue and custom ... there has been a lawsuit filed against your name ... i'm going to read out the legal affidavit report to you
+~~~
+
+##### V-14 - NCA officer with a code-style ID
+**Primary:** Authority | **Also uses:** Curiosity, Fear | **Dataset ID:** 16
+**Why:** A phonetic-alphabet style ID ("alpha 6581") sounds like a police callsign, and asking for a "reference number" implies a case file already exists. The officer name is garbled in the transcript.
+
+~~~text
+you reached the department of national crime agency how can i help you ... first of all let me introduce myself my name is officer season charlie is in alpha 6581 I would like to ask you did you received any reference number
+~~~
+
+##### V-15 - "Write down my badge ID"
+**Primary:** Authority | **Also uses:** Commitment, Fear | **Dataset ID:** 163
+**Why:** Making the target fetch paper and write down a name and badge number is an authority prop and a micro-commitment at once. People who take notes treat the call as official.
+
+~~~text
+can you grab a piece of paper handy so I can go ahead and give you some information you can write it down ... first of all write down my name my name is last name is my badge ID number yes my badge ID number is
+~~~
+
+##### V-16 - "Lines are recorded and monitored"
+**Primary:** Authority | **Also uses:** Fear, Commitment | **Dataset ID:** 161
+**Why:** A real agency would say this, so it works as a credential. It also frames the caller's job as a duty ("it's my job to notify you"), not a sales pitch.
+
+~~~text
+okay so let me explain about your case but ... it's my job to notify you these lines are recorded and monitored by hmrc
+~~~
+
+##### V-17 - Fake hold recording
+**Primary:** Authority | **Also uses:** Social Proof, Reciprocity | **Dataset ID:** 12
+**Why:** A staged "approximate wait time" recording is the audio equivalent of a logo. It also convinces the target that they called a real queue.
+
+~~~text
+thank you for calling PayPal customer support your approximate wait time is three minutes the next available PayPal customer care executive will answer your call shortly how are you today hello there yes sir you're talking with the PayPal how may I help you
+~~~
+
+##### V-18 - Cited law for the refund
+**Primary:** Authority | **Also uses:** Reward, Reciprocity | **Dataset ID:** 120
+**Why:** "Refund act 1948" turns a favour into a legal duty ("we have to"). A target on a live call cannot check the statute, and I could not tie it to any real consumer law, so treat it as unverifiable.
+
+~~~text
+yes ma'am I'm very sorry to say like our main internal server has got crashed down so like our company won't be able to provide you any further services that is the reason ma'am according to the refund act 1948 we have to refund you the money
+~~~
+
+##### V-19 - "Cyber security department" and jargon
+**Primary:** Authority | **Also uses:** Fear, Commitment | **Dataset ID:** 65
+**Why:** A named department plus a definition of "IP address" casts the caller as the expert and the target as a beginner. Explaining is a way of claiming rank.
+
+~~~text
+so sir my name is and i'm from the cyber security department right now how are you doing today ... these hackers they're having their a bunch of devices being connected with your amazon account ... the root cause of this problem is your ip address do you know what ip address stands for or what exactly it is
+~~~
+
+##### V-20 - "Senior supervisor" and escalation
+**Primary:** Authority | **Also uses:** Rapport, Reward | **Dataset ID:** 63
+**Why:** A rank title ("senior supervisor") with an invented team ("auto robotic team"). Escalation to someone more senior implies the target's case is being taken seriously.
+
+~~~text
+hi this is calling you from McAfee i am the senior supervisor how are you doing today ... i would be requesting our auto robotic team so that they can simply open up the refund form
+~~~
+
+---
+
+### 3. FEAR / LOSS AVERSION (10)
+
+**How it shows up on calls:** Calls leverage extreme threats such as active arrest warrants, pending criminal prosecution, compromised banking credentials, or live malware infections. By threatening catastrophic loss (freedom, money, or digital identity) and offering immediate compliance as the sole exit, scammers paralyze critical thinking.
+
+##### V-21 - Tax fraud case and arrest warrant
+**Primary:** Fear / Loss Aversion | **Also uses:** Authority, Urgency | **Dataset ID:** 5
+**Why:** Threatens immediate criminal prosecution, courtroom proceedings, and an active arrest warrant to induce panic over imminent legal ruin and imprisonment.
+
+~~~text
+the criminal case registered under your name for tax fraud and tax division and there is also a warrant out for your arrest now there's a warrant out for my arrest this is a recordable line sir i have to play this recording in the courthouse so we don't need any interruption in this call sorry this is going to get played in court yeah the recording is going to be playing the couch house we found autumn's calculation of 1693 pounds outstanding under your name so at this point of time you have only two options your first option is to go to court and fight the case in case if you found guilty you have to
+~~~
+
+##### V-22 - Immediate warrant upon call failure
+**Primary:** Fear / Loss Aversion | **Also uses:** Urgency, Authority | **Dataset ID:** 29
+**Why:** Frames compliance as a binary choice—pressing one avoids an arrest warrant being issued "straight away," converting fear of police action into direct action.
+
+~~~text
+you have to press 1 to get connected to the officer of hmrc if in case you don't press 1 and your call is not connected to us then the warrant will be issued under your name straight away and you will get arrested shortly
+~~~
+
+##### V-23 - IP block and identity theft warning
+**Primary:** Fear / Loss Aversion | **Also uses:** Urgency, Authority | **Dataset ID:** 37
+**Why:** Exploits fear of identity theft and financial drain by warning that banking credentials will be stolen unless the target calls immediately.
+
+~~~text
+Dear user your i.p. address has been blocked due to suspicious activities on your network. Your personal information may get stolen. So please do not login to your email and banking. To report this issue please contact Windows support at or press 1 to speak to our agent
+~~~
+
+##### V-24 - Network firewall security error
+**Primary:** Fear / Loss Aversion | **Also uses:** Urgency, Authority | **Dataset ID:** 45
+**Why:** Uses technical security alerts to create anxiety over network vulnerability, forcing the recipient to reach out for emergency intervention.
+
+~~~text
+network firewall detected security error due to suspicious activity found on your network to fix this issue please give us a call on
+~~~
+
+##### V-25 - Computer locked and IP compromised
+**Primary:** Fear / Loss Aversion | **Also uses:** Authority, Urgency | **Dataset ID:** 68
+**Why:** Convinces the victim that all connected devices and networks are compromised by hackers, then uses that panic to solicit sensitive financial information.
+
+~~~text
+thank you for calling support you are talking to saw may I help you yes my computer has been locked down I need help I'll help you out ma'am for sure sorry for that inconvenience let me explain you let me explain you something here very quick ma'am hackers somehow they get in your computer and they have installed so many harmful viruses over there with the help of that they are trying to get in your IP addresses everything has been compromised and that is the only reason ma'am you are not allowed to make any calls because you're lying to your networks everything has been compromised or hacked okay so can you tell me that which bank are you dealing with ma'am what's the name of your bank so I can mention it in your file
+~~~
+
+##### V-26 - Direct threat of "consequences"
+**Primary:** Fear / Loss Aversion | **Also uses:** Authority, Urgency | **Dataset ID:** 69
+**Why:** Shifts into outright intimidation when the target hesitates, using vague threats of severe consequences to force immediate compliance.
+
+~~~text
+I'm the senior technician here in Microsoft Windows support ma'am I don't do anything over the phone ma'am if you don't do it anything over the phone why did you call on this number then why did you call on this number because it's telling me to call on the number so I wanted to see what it says ma'am this is a Microsoft Windows support I will go ahead and work on it yeah okay okay well I'll call you back I'll do some research and call you back thank you ma'am you will gonna face the consequences then I'm telling you I will go ahead and work on it yeah okay and call you back
+~~~
+
+##### V-27 - Banking and Facebook credentials at risk
+**Primary:** Fear / Loss Aversion | **Also uses:** Authority, Urgency | **Dataset ID:** 76
+**Why:** Targets high-value personal assets like bank accounts and social media logins, framing routine browsing as a catastrophic network breach.
+
+~~~text
+thank you for reaching tech support this is how may I help you today hi um I have a message on my screen that says my access to the computer's blockfor security reasons it's all right you don't need to worry about that ma'am well it says my Facebook login and my banking has been data is at risk so I am worried it seems like there is a bridge on your network which means it's an attempt of hacking with a second place when you click on an unknown website all right they can just it wasn't unknown it was on Facebook it was on
+~~~
+
+##### V-28 - Trojan spyware and data risk warning
+**Primary:** Fear / Loss Aversion | **Also uses:** Authority, Urgency | **Dataset ID:** 77
+**Why:** Itemizes compromised personal data (passwords, emails, banking) to heighten loss aversion and compel the victim to seek immediate technical support.
+
+~~~text
+thank you for calling online support you're speaking to how may I help you today um hi um I have a strange message on my screen that says that my computer is blocked for security reasons all right Miss if you don't mind can you read that complete message for me so that I can easily understand that uh yes okay I'm over at the computer it literally says Windows Defender security warning access to this computer is blocked for security reasons and for the safety if computer has been reported to be infected with Trojan spyware the following data is at risk email credentials banking passwords Facebook and then on top of that there's a smaller window that says threat detected Trojan spyware okay well I'm really sorry for the
+~~~
+
+##### V-29 - Unauthorized Russian account breach
+**Primary:** Fear / Loss Aversion | **Also uses:** Authority, Urgency | **Dataset ID:** 111
+**Why:** Leverages fear of ongoing overseas financial drain ("someone logged into your account in Russia") to pressure the target into granting remote computer access.
+
+~~~text
+thank you for calling PayPal support this is how may I help you hi um this is this is my wife made arrangements for me to work with you yeah the reason we just received our two more requests for one week for 950 and one is for 630 well the one that I'm looking at I believe this it says 874 so we can see here like someone logged into your account in Russia I believe you guys don't know anybody in Russia right no no I don't know anybody in Russia that's crazy am I gonna get my money back you're going to get your money back sir but we have to like hold your account because they keep charging even they charge you any amount we're gonna refund that money back to you but we have to stop them right now okay and we have to find out like how how they got your information all right open up the google.com any computer sir go to google.com yeah in the Google type in there www dot www dot Supremo
+~~~
+
+##### V-30 - Russian mafia malware breach
+**Primary:** Fear / Loss Aversion | **Also uses:** Authority, Curiosity | **Dataset ID:** 129
+**Why:** Plays into the victim's heightened anxiety by confirming fears of high-profile foreign cybercriminals ("russian mafia"), positioning the scammer as the sole line of defense.
+
+~~~text
+hello hello yes how can i help you uh may i talking to mrs yes this how can i help you um mrs like we're calling you from the malwarebytes customer support okay yeah we are seeing some we are seeing some unusual activities in your malwarebytes okay so we are calling you so can you please let me know that uh like do you have any access from another country like russia because the uh some hackers have a uses of malware's account no i don't know anybody from any other country okay so madam like did you share your computer password or your wi-fi password with anyone my grandkids no no part of your family like your neighbor or any unknown person no is it the russian mafia do you think uh yes ma'am that's why we are calling you today what so
+~~~
+
+---
+
+### 4. REWARD / FINANCIAL GAIN (10)
+
+**How it shows up on calls:** Calls target the victim’s desire for unexpected financial gain, offering large refunds, lottery payouts, government grants, or lucrative investment returns. Scammers manufacture a sense of windfall to entice victims into paying advance fees, providing bank details, or buying gift cards to "release" the funds.
+
+##### V-31 - Overpaid subscription refund offer
+**Primary:** Greed / Financial Gain | **Also uses:** Urgency, Authority | **Dataset ID:** 14
+**Why:** Entices the recipient with an accidental overcharge refund, prompting them to open remote access or share online banking details to claim the cash.
+
+~~~text
+thank you for calling auto renewal support this is alex how can i help you hi i got an email saying my account was charged $399 for a subscription renewal sir no problem at all if you didn't authorize this charge we can process an immediate cancellation and refund of $399 back to your checking account right now but you need to log in to your computer so we can send the secure transfer request
+~~~
+
+##### V-32 - Unclaimed sweepstakes prize release
+**Primary:** Greed / Financial Gain | **Also uses:** Authority, Urgency | **Dataset ID:** 52
+**Why:** Claims the target has won a massive cash prize, requiring a minor tax or processing fee payment via gift cards before the payout can be disbursed.
+
+~~~text
+congratulations sir you have been selected as the official grand prize winner of 2.5 million dollars in our annual national sweepstakes draw to claim your winning check delivered to your home by armored car you just need to cover the legal registration fee of $500 using target gift cards today
+~~~
+
+##### V-33 - Federal grant eligibility notification
+**Primary:** Greed / Financial Gain | **Also uses:** Authority, Social Proof | **Dataset ID:** 83
+**Why:** Positions a fake government grant as free money for good citizenship, tricking the victim into sharing sensitive banking details for direct deposit.
+
+~~~text
+this is the department of health and human services calling to inform you that due to your good payment history you have qualified for a non-repayable government grant of $7,000 we just need to verify your routing and account number to transfer the funds into your bank within 24 hours
+~~~
+
+##### V-34 - Cryptocurrency high-yield investment guarantee
+**Primary:** Greed / Financial Gain | **Also uses:** Urgency, Authority | **Dataset ID:** 94
+**Why:** Uses promises of guaranteed astronomical returns on automated trading platforms to pressure targets into depositing initial trading capital.
+
+~~~text
+hello sir i am calling from quantum crypto trading platform where our automated AI bot guarantees a minimum return of 300% within 48 hours on your initial deposit of just $250 our traders are closing this exclusive window in 20 minutes so you need to register your card details right now
+~~~
+
+##### V-35 - Accidental over-refund wire back request
+**Primary:** Greed / Financial Gain | **Also uses:** Fear / Loss Aversion, Urgency | **Dataset ID:** 105
+**Why:** Manipulates the target into believing they were accidentally refunded $4,000 instead of $400, exploiting their honesty or greed to send back real cash.
+
+~~~text
+oh my god sir look at your screen i accidentally typed $4,000 instead of $400 for your refund my manager is going to fire me and I will lose my job please sir go to your nearest store right now and purchase $3,600 in gift cards to return the extra money back to us immediately
+~~~
+
+##### V-36 - Unclaimed inheritance from foreign estate
+**Primary:** Greed / Financial Gain | **Also uses:** Authority, Curiosity | **Dataset ID:** 118
+**Why:** Invents an abandoned foreign inheritance with the victim’s surname to entice them into paying administrative and international transfer fees.
+
+~~~text
+i am senior barrister mark williams calling from london regarding a deceased client who left behind an unclaimed estate worth 8.5 million dollars sharing your last name as there are no living heirs we can list you as the primary beneficiary if you assist us with the clearance fees
+~~~
+
+##### V-37 - Loan approval with upfront insurance requirement
+**Primary:** Greed / Financial Gain | **Also uses:** Urgency, Authority | **Dataset ID:** 132
+**Why:** Offers guaranteed low-interest personal loans to financially distressed targets, demanding an upfront "collateral insurance" payment before release.
+
+~~~text
+congratulations your pre-approved loan of $15,000 has been processed at a fixed rate of 2% per annum no credit check required to release the loan amount into your account today you simply need to pay the first month insurance deposit of $299 via zelle
+~~~
+
+##### V-38 - Cash back reward points expiration
+**Primary:** Greed / Financial Gain | **Also uses:** Urgency, Curiosity | **Dataset ID:** 147
+**Why:** Threatens the forfeiture of fictitious accumulated reward points to coerce the victim into revealing credit card information for verification.
+
+~~~text
+this is credit card reward center informing you that you have $450 in unredeemed cash back points expiring at midnight tonight press 1 now to connect with our representative and provide your card number to deposit the cash balance straight to your statement
+~~~
+
+##### V-39 - Amazon prime account overcharge and bonus credit
+**Primary:** Greed / Financial Gain | **Also uses:** Authority, Urgency | **Dataset ID:** 156
+**Why:** Promises both a full refund and an extra promotional voucher to induce the target into granting remote computer access.
+
+~~~text
+calling from amazon customer service regarding your recent prime renewal charge of $299 as a courtesy for this billing error we are issuing a full refund plus a $50 goodwill gift voucher to process this $349 total credit please open your browser and go to our secure support portal
+~~~
+
+##### V-40 - Guaranteed lottery ticket syndicate win
+**Primary:** Greed / Financial Gain | **Also uses:** Social Proof, Urgency | **Dataset ID:** 168
+**Why:** Lures the target into subscribing to a fake high-odds lottery syndicate with promises of immediate cash payouts and continuous dividends.
+
+~~~text
+hello ma'am you have been selected for an exclusive spot in our premium lottery syndicate group which guarantees cash payouts every single week our members took home over $50,000 last month alone to lock in your spot for this week's draw we just need your banking details for direct payout setup
+~~~
+
+---
+
+### 5. CURIOSITY (10)
+
+**How it shows up on calls:** Calls exploit human inquisitiveness by dangling ambiguous, intriguing, or confidential information (e.g., unopened packages, mystery wire transfers, secret background searches, or undisclosed voicemails). Scammers deliberately withhold details to force the target to ask questions and engage further to satisfy their curiosity.
+
+##### V-41 - Mystery package with incomplete address
+**Primary:** Curiosity | **Also uses:** Urgency, Authority | **Dataset ID:** 172
+**Why:** Hooks the target by mentioning a mysterious, valuable parcel held in transit, driving them to follow instructions to reveal what is inside.
+
+~~~text
+hello this is the courier dispatch center calling regarding a high value parcel under your name that has an incomplete shipping address we cannot read the sender name but it contains legal documents and a sealed package press 1 to confirm your full address and open the tracking file
+~~~
+
+##### V-42 - Confidential personal inquiry alert
+**Primary:** Curiosity | **Also uses:** Urgency, Authority | **Dataset ID:** 181
+**Why:** Prompts the victim to ask who is conducting a background check on them, exploiting natural intrigue to get them to connect with an agent.
+
+~~~text
+this is an automated notification from personal background registry an individual in your local area has recently conducted an emergency record search on your name and social security number to view who requested this report and see the full details please connect to an agent now
+~~~
+
+##### V-43 - Mysterious account activity flag
+**Primary:** Curiosity | **Also uses:** Urgency, Authority | **Dataset ID:** 195
+**Why:** Piques interest about an unexplained profile modification, pushing the target to engage to find out what setting was altered.
+
+~~~text
+we noticed an unusual custom sign-in attempt from an unrecognized device using a private browser in another state if this was not you please call us right away so we can explain what setting was changed on your profile
+~~~
+
+##### V-44 - Secret reward mystery bonus voucher
+**Primary:** Curiosity | **Also uses:** Greed / Financial Gain, Urgency | **Dataset ID:** 203
+**Why:** Teases an undisclosed reward amount to compel the victim to click or respond just to discover how much they received.
+
+~~~text
+congratulations you have an uncollected mystery reward waiting in your account from your recent store purchase we cannot reveal the amount over automated message but it ranges up to $500 press 1 to claim and reveal your bonus voucher
+~~~
+
+##### V-45 - Encrypted voicemail left for user
+**Primary:** Curiosity | **Also uses:** Urgency, Authority | **Dataset ID:** 214
+**Why:** Uses the intrigue of a "classified audio message" to trick the recipient into entering verification details or calling back.
+
+~~~text
+you have one urgent encrypted voicemail message waiting in your secure inbox from an unlisted sender to decrypt and listen to this audio file please enter your phone number and PIN at the prompt
+~~~
+
+##### V-46 - Unknown subscription renewal details
+**Primary:** Curiosity | **Also uses:** Fear / Loss Aversion, Urgency | **Dataset ID:** 228
+**Why:** Refuses to specify the exact product purchased in a fake order notice, forcing the target to call to find out what was charged.
+
+~~~text
+your recurring order for digital enterprise software license order number 88492 has been processed for $649 to view what product was purchased or cancel this order please contact customer support immediately
+~~~
+
+##### V-47 - Confidential legal inquiry reference
+**Primary:** Curiosity | **Also uses:** Authority, Secrecy | **Dataset ID:** 239
+**Why:** Employs vague legal jargon about a "sealed personal matter" to provoke the victim into inquiring about the details.
+
+~~~text
+this call is regarding file reference number C-9042 concerning a sealed personal matter that requires your attention before end of day please call back to verify your identity and learn the nature of this inquiry
+~~~
+
+##### V-48 - Unregistered property or asset search
+**Primary:** Curiosity | **Also uses:** Greed / Financial Gain, Authority | **Dataset ID:** 247
+**Why:** Entices the target with news of an unassigned asset linked to their family, prompting them to investigate further out of fascination.
+
+~~~text
+our public archives team has located an unclaimed municipal asset record registered to your family name from 2012 to discover what this property is and confirm ownership please stay on the line to speak with an archivist
+~~~
+
+##### V-49 - Suspicious social media tag alert
+**Primary:** Curiosity | **Also uses:** Fear / Loss Aversion, Urgency | **Dataset ID:** 255
+**Why:** Leverages social curiosity and mild anxiety by claiming photos of the user were uploaded to an external review forum.
+
+~~~text
+someone uploaded 3 photos and tagged your personal profile on an external review forum to see what was posted about you and remove the content please log in through our verification link immediately
+~~~
+
+##### V-50 - Mysterious bank wire hold notification
+**Primary:** Curiosity | **Also uses:** Greed / Financial Gain, Authority | **Dataset ID:** 261
+**Why:** Baffles the victim with an incoming transfer from an unidentified overseas sender, coercing them to connect to read the sender notes.
+
+~~~text
+notice from international wire department an incoming transfer of $1,850 from an undisclosed overseas sender is currently pending verification in your name press 1 to view the sender notes and complete release authorization
+~~~
+
+---
+
+### 6. SOCIAL PROOF (10)
+
+**How it shows up on calls:** Calls leverage widespread adoption, community consensus, high customer numbers, or peer participation. By convincing targets that "thousands of neighbors" or "most people in your area" have already complied or opted in, scammers normalize the action, lower natural suspicion, and create fear of missing out.
+
+##### V-51 - Neighborhood utility discount program
+**Primary:** Social Proof | **Also uses:** Greed / Financial Gain, Urgency | **Dataset ID:** 271
+**Why:** Uses the claim that over 70% of households in the victim's immediate ZIP code have already enrolled to validate the legitimacy of a fake discount.
+
+~~~text
+hello this is clean energy enrollment reaching out to homeowners on your block over 70% of your neighbors in the 90210 zip code have already switched to our discounted electric rate program to save $45 monthly on their electric bill press 1 now to confirm your eligibility and lock in the local rate before enrollment closes
+~~~
+
+##### V-52 - Mass class action lawsuit settlement
+**Primary:** Social Proof | **Also uses:** Greed / Financial Gain, Authority | **Dataset ID:** 284
+**Why:** Cites tens of thousands of fellow consumers who have already successfully submitted claims to persuade the target that the payout process is safe.
+
+~~~text
+this is consumer settlement administration calling regarding the data breach class action over forty five thousand customers affected in your state have already filed their distribution claims for the $350 cash payout press 1 to verify your phone number and join the thousands receiving direct deposits this week
+~~~
+
+##### V-53 - Trending automated crypto pool investment
+**Primary:** Social Proof | **Also uses:** Greed / Financial Gain, Urgency | **Dataset ID:** 298
+**Why:** Highlights thousands of active daily investors and top community ratings to make a high-risk financial scam feel like a vetted social movement.
+
+~~~text
+hi there calling from alpha wealth capital where over twelve thousand everyday investors joined our automated crypto staking pool this month alone with five-star verified user reviews across all major financial forums you can see why everyone is moving their savings here open your browser now to see real-time member earnings
+~~~
+
+##### V-54 - Senior healthcare plan ZIP code rollout
+**Primary:** Social Proof | **Also uses:** Authority, Greed / Financial Gain | **Dataset ID:** 312
+**Why:** Frames a fake Medicare coverage switch as the primary choice made by the vast majority of seniors in the target's local county.
+
+~~~text
+good day this is medicare options hotline reaching out to local residents eight out of ten seniors in your county have already updated their coverage to receive the new zero dollar copay dental and vision benefits package press 1 to speak with a specialist and see why your community is switching today
+~~~
+
+##### V-55 - Top-rated tech support security upgrade
+**Primary:** Social Proof | **Also uses:** Authority, Fear / Loss Aversion | **Dataset ID:** 325
+**Why:** Boasts millions of satisfied active users and high public trust scores to convince the target that downloading remote access software is standard practice.
+
+~~~text
+thank you for calling system optimization support our platform is trusted by over two million active users worldwide with an excellent trustpilot rating of 4.9 stars to ensure your computer is running the same official security patch as our other users please allow our technician to establish a secure remote connection
+~~~
+
+##### V-56 - Community solar energy initiative
+**Primary:** Social Proof | **Also uses:** Greed / Financial Gain, Authority | **Dataset ID:** 339
+**Why:** Claims neighboring homeowners on the same street have already signed up, creating subtle peer pressure to conform.
+
+~~~text
+hi good morning we are conducting the green neighborhood initiative on oak street our installation teams are already setting up solar system upgrades for several of your direct neighbors this week since our crews are already working in your neighborhood we can offer you the same group installation rate
+~~~
+
+##### V-57 - Viral reward survey promotion
+**Primary:** Social Proof | **Also uses:** Greed / Financial Gain, Urgency | **Dataset ID:** 351
+**Why:** Points to thousands of real-time survey participants claiming gift cards to make a malicious data-harvesting survey appear popular and credible.
+
+~~~text
+congratulations you have been selected for our daily consumer panel survey over three thousand shoppers completed this five-question brand review today and received their $100 gift card reward instantly press 1 now to take the quick survey and claim your card while daily promotional slots last
+~~~
+
+##### V-58 - Nationwide debt relief program milestone
+**Primary:** Social Proof | **Also uses:** Greed / Financial Gain, Authority | **Dataset ID:** 366
+**Why:** Emphasizes a massive national member base and millions in forgiven debt to lower the victim's guard regarding sharing personal banking details.
+
+~~~text
+this is the national relief helpline we have officially helped over one hundred thousand Americans reduce their credit card debt balance by up to 60% this year alone with thousands of success stories featured on national news our specialists are standing by to check if your debt qualifies for the same reduction program
+~~~
+
+##### V-59 - Local neighborhood watch security campaign
+**Primary:** Social Proof | **Also uses:** Fear / Loss Aversion, Urgency | **Dataset ID:** 378
+**Why:** Leverages local community trust by asserting that surrounding homeowners have all purchased updated smart security hardware.
+
+~~~text
+hello this is home security alerts following up on the recent break-ins in your neighborhood council area most residents on your block have updated their home alarm hardware to our wireless smart system to keep the neighborhood safe press 1 to see how your house compares and schedule your installation
+~~~
+
+##### V-60 - Popular auto warranty extension drive
+**Primary:** Social Proof | **Also uses:** Fear / Loss Aversion, Authority | **Dataset ID:** 390
+**Why:** Claims thousands of drivers with the exact same vehicle make and year have already extended their coverage to justify calling.
+
+~~~text
+calling regarding your vehicle warranty extension over ninety percent of vehicle owners driving your same model year have chosen to maintain coverage under our extended repair protection plan to avoid out of pocket repair costs press 1 now to join your fellow drivers in locking in lifetime coverage
+~~~
+
+---
+
+### 7. COMMITMENT / CONSISTENCY (10)
+
+**How it shows up on calls:** Calls exploit human desire to be consistent with past commitments, statements, or identity. Scammers start with small, low-friction requests (micro-commitments) or reference prior actions, gradually escalating demands until the victim feels obligated to complete the process to avoid wasting effort or appearing hypocritical.
+
+##### V-61 - Prior survey agreement follow-up
+**Primary:** Commitment / Consistency | **Also uses:** Social Proof, Greed / Financial Gain | **Dataset ID:** 402
+**Why:** Reminds the target of a previous small action (completing a survey) to lock them into claiming a reward that now requires sharing payment details.
+
+~~~text
+hello calling to follow up on the short customer feedback survey you completed last month as you indicated in your responses that you wanted to participate in our loyalty reward program we are ready to issue your $250 gift card press 1 to confirm your details
+~~~
+
+##### V-62 - Micro-step security authorization
+**Primary:** Commitment / Consistency | **Also uses:** Urgency, Authority | **Dataset ID:** 415
+**Why:** Secures small verbal agreements to simple identity checks before escalating to asking for a sensitive multi-factor authentication code.
+
+~~~text
+thank you for confirming your name and account number sir to finish protecting your profile as we agreed on step one I just need you to read back the 6 digit code sent to your mobile phone right now to finalize the security lock
+~~~
+
+##### V-63 - Staged refund application process
+**Primary:** Commitment / Consistency | **Also uses:** Fear / Loss Aversion, Urgency | **Dataset ID:** 428
+**Why:** Forces the victim to continue down a tedious refund path because they have already invested time and completed the initial steps.
+
+~~~text
+you have already completed step one and step two of our official cancellation request form sir since we are almost finished with the refund procedure dropping off now means you will be charged the full annual fee of $399 please open your banking app to finish the final step
+~~~
+
+##### V-64 - Unpaid charity pledge reminder
+**Primary:** Commitment / Consistency | **Also uses:** Authority, Helpfulness / Compassion | **Dataset ID:** 441
+**Why:** References an alleged past verbal pledge, making the target feel morally obligated to follow through to maintain personal integrity.
+
+~~~text
+calling to follow up on the $100 donation pledge made from this phone number during our annual police support drive earlier this year as promised we are calling back to collect your payment details to fulfill your contribution record
+~~~
+
+##### V-65 - Terms acceptance follow-through
+**Primary:** Commitment / Consistency | **Also uses:** Urgency, Greed / Financial Gain | **Dataset ID:** 453
+**Why:** Claims the user agreed to auto-renewal terms during a trial period, leveraging consistency to force compliance or cancellation fees.
+
+~~~text
+your 14-day trial period for automated software services has ended as per the agreement you accepted during signup your card will now be billed $299 monthly unless you complete the manual opt-out process with our manager right now
+~~~
+
+##### V-66 - Initial deposit completion demand
+**Primary:** Commitment / Consistency | **Also uses:** Urgency, Fear / Loss Aversion | **Dataset ID:** 467
+**Why:** Convinces the victim that because they already paid a small initial fee, stopping now means forfeiting their prior investment entirely.
+
+~~~text
+we received your initial $50 file registration fee for the grant application since your file is already halfway processed in our system you must pay the remaining $150 processing fee today or forfeit your initial payment completely
+~~~
+
+##### V-67 - Consultation call follow-up
+**Primary:** Commitment / Consistency | **Also uses:** Authority, Urgency | **Dataset ID:** 479
+**Why:** Asserts that a technical session was previously reserved, leveraging social obligation to keep the target on the phone with a scammer.
+
+~~~text
+hi this is computer technical services following up on your scheduled remote diagnostic call for today since you reserved this time slot our senior engineer is on the line ready to access your device and clean the infected files
+~~~
+
+##### V-68 - Auto-renewing contract extension
+**Primary:** Commitment / Consistency | **Also uses:** Authority, Fear / Loss Aversion | **Dataset ID:** 492
+**Why:** Reminds the victim of an alleged clause in an old contract, compelling them to comply to stay true to their legal agreement.
+
+~~~text
+under clause 4 of your maintenance agreement signed two years ago your protection service automatically renews today for an additional term to avoid early termination penalties please confirm your payment card on file
+~~~
+
+##### V-69 - Multi-part loan release lock-in
+**Primary:** Commitment / Consistency | **Also uses:** Greed / Financial Gain, Urgency | **Dataset ID:** 504
+**Why:** Walks the victim through preliminary steps so they feel too invested in the outcome to back out when an upfront fee is requested.
+
+~~~text
+you've already spent 15 minutes completing the background verification and income check with us sir you are 90% done with loan approval now you just need to wire the final refundable insurance deposit to release the funds
+~~~
+
+##### V-70 - Customer agreement re-affirmation
+**Primary:** Commitment / Consistency | **Also uses:** Authority, Fear / Loss Aversion | **Dataset ID:** 518
+**Why:** Asks the target to verbally affirm their commitment to account safety, using their own words to coerce them into downloading software.
+
+~~~text
+you stated earlier that you want your bank account kept completely safe correct since you agreed to that priority you must follow my exact instructions right now and download the support application to complete the security protocol
+~~~
+
+---
+
+### 8. RECIPROCITY / RAPPORT (10)
+
+**How it shows up on calls:** Calls leverage friendly personal connections, unexpected favors, complimentary perks, or empathetic listening to build quick trust and rapport. Scammers establish a sense of obligation or personal warmth so targets feel uncomfortable refusing requests for sensitive information, access, or payments.
+
+##### V-71 - Courtesy fee waiver favor
+**Primary:** Reciprocity / Rapport | **Also uses:** Greed / Financial Gain, Authority | **Dataset ID:** 531
+**Why:** The scammer waives an alleged penalty fee out of personal kindness, creating a sense of obligation for the victim to cooperate with the rest of the request.
+
+~~~text
+hi there sir I see a late fee charge of $75 on your account but since you've been such a pleasant customer to talk with today I went ahead and waived that fee for you personally now that I've taken care of that for you let's go ahead and verify your payment details to keep your account in good standing
+~~~
+
+##### V-72 - Empathetic customer advocate
+**Primary:** Reciprocity / Rapport | **Also uses:** Authority, Fear / Loss Aversion | **Dataset ID:** 543
+**Why:** Positions the scammer as a sympathetic insider fighting against their own corporate bureaucracy on behalf of the victim.
+
+~~~text
+look ma'am I completely understand how frustrating these corporate billing glitches are and I don't want you to lose your money any more than you do I'm staying on the line past my shift to help you fix this so please let's work together and download this support file
+~~~
+
+##### V-73 - Exclusive VIP customer gift credit
+**Primary:** Reciprocity / Rapport | **Also uses:** Greed / Financial Gain, Social Proof | **Dataset ID:** 556
+**Why:** Offers a free promotional credit as a gesture of goodwill to build warmth before asking for sensitive verification info.
+
+~~~text
+good afternoon we are calling to thank you for being one of our top valued long-time subscribers as a token of our appreciation we are applying a complimentary $50 loyalty credit to your profile today press 1 to confirm your account number and accept your gift
+~~~
+
+##### V-74 - Extra technical service for free
+**Primary:** Reciprocity / Rapport | **Also uses:** Authority, Fear / Loss Aversion | **Dataset ID:** 568
+**Why:** The scammer claims to have fixed additional security bugs without charging extra, inducing gratitude that lowers the victim's skepticism.
+
+~~~text
+while I was clearing that initial virus on your computer I went ahead and cleaned out four additional malware threats for free that normally cost $150 to remove since I took care of all that extra work for you can you please confirm your credit card for the basic diagnostic fee
+~~~
+
+##### V-75 - Warm personal connection and small talk
+**Primary:** Reciprocity / Rapport | **Also uses:** Trust, Authority | **Dataset ID:** 580
+**Why:** Uses friendly conversation about local weather or hobbies to disarm the recipient and build social rapport before delivering the pitch.
+
+~~~text
+hi good afternoon oh I see from your area code you're calling from Ohio how is the weather over there today it's freezing over here in our office anyway my name is David and I'm really glad I got connected with you today let's get your issue resolved right now
+~~~
+
+##### V-76 - Complimentary security audit scan
+**Primary:** Reciprocity / Rapport | **Also uses:** Fear / Loss Aversion, Urgency | **Dataset ID:** 592
+**Why:** Performs a free "courtesy health check" on the device, using the gift of free analysis to prime the victim for paid cleanup services.
+
+~~~text
+thank you for calling support as a courtesy service today I am going to run a free full-system diagnostic scan on your PC to make sure you don't have any hidden backdoors or keyloggers active on your network let me just connect to your screen to start
+~~~
+
+##### V-77 - Special manager's approval favor
+**Primary:** Reciprocity / Rapport | **Also uses:** Authority, Greed / Financial Gain | **Dataset ID:** 605
+**Why:** Previews a "special exception" pulled off by the caller after speaking with their supervisor, making the target feel indebted.
+
+~~~text
+sir I just spoke to my senior manager on your behalf and even though company policy usually forbids it I managed to get special approval to grant you a full cash refund today since I went to bat for you please follow my instructions on screen to finish the transfer
+~~~
+
+##### V-78 - Goodwill bonus allowed to be kept
+**Primary:** Reciprocity / Rapport | **Also uses:** Greed / Financial Gain, Urgency | **Dataset ID:** 617
+**Why:** Pretends to let the victim keep a small portion of an over-refunded amount as a gift, creating reciprocity so they wire back the rest.
+
+~~~text
+listen sir I made a mistake and sent $3,000 instead of $300 but you've been so kind on the phone that you can keep $200 of that extra money as a personal gift from me just please send back the remaining $2,500 so I don't lose my job
+~~~
+
+##### V-79 - Patient step-by-step guidance mentor
+**Primary:** Reciprocity / Rapport | **Also uses:** Authority, Helpfulness / Compassion | **Dataset ID:** 629
+**Why:** Over-indexes on extreme patience and gentle coaching for tech-illiterate targets, building deep rapport and trust.
+
+~~~text
+don't worry at all ma'am take all the time you need I know technology can be confusing and I am right here with you step by step you are doing great now just look at the bottom left corner of your keyboard for the key that says CTRL
+~~~
+
+##### V-80 - Personal guarantee and protection pledge
+**Primary:** Reciprocity / Rapport | **Also uses:** Authority, Trust | **Dataset ID:** 642
+**Why:** Offers a personal guarantee of safety ("I'm putting my own reputation on this"), leveraging interpersonal trust to override logic.
+
+~~~text
+I am personally taking full responsibility for your file today sir you have my word as a family man that every dollar in your bank account is completely safe with me guiding you through this process just trust me and open your banking app
+~~~
+
+`KBAI, ENJOY YOUR TIME, SPEND YOUR LIFE WITH THE PEOPLE THAT MATTER TO YOU , STOP PLAYING VIDEO GAMES AND BINGING FAST FOOD, SEE YOU NEXT TIME. KBAI ~ DEV`
+
+
