@@ -1,4 +1,4 @@
-# Infrastructure setup guide part 2 
+# PHISHING AND RED TEAM INFRA SETUP GUIDE PART 2
 
 `Read the phishing guide part 2 for the full picture, since it is part 1 of infra setup.` 
 
@@ -19,7 +19,7 @@ You already know how to spin up a VPS and run something like an FTP server — a
 | Scaling concern | CPU/memory/connections | **Concurrent channel capacity** on your SIP trunk — a hard ceiling on simultaneous calls, not a request-rate limit |
 | New problems you didn't have before | — | **Jitter, packet loss, NAT traversal for media, codec negotiation** — none of this exists in a normal web server |
 
-### Path A vs Path B — pick this first, it decides everything else
+#### Path A vs Path B — pick this first, it decides everything else
 
 Just like email has "use an ESP" vs "run your own MTA," phone has the same fork:
 
@@ -31,7 +31,7 @@ Just like email has "use an ESP" vs "run your own MTA," phone has the same fork:
 
 **My honest default: start with Path A.** Twilio or Telnyx get you a verified, signed, working number in under a day. Move to Asterisk/FreeSWITCH only once you have a concrete reason the platform can't do (e.g. extremely custom media processing, or cost at massive scale).
 
-### Building it — the actual components, Path A
+#### Building it — the actual components, Path A
 
 1. **Sign up with your chosen provider and verify your business.** This single step is the most important one in the entire guide — it's what determines your STIR/SHAKEN attestation level later (see the dedicated section below). In Twilio this is under Trust Hub; in Telnyx it's Business Identity verification.
 2. **Provision your SIP trunk.** With Path A you don't manually configure SIP — the provider's console gives you a trunk endpoint and credentials. Note your trunk's **concurrent channel limit** (this is your real capacity ceiling, not a rate limit — it's "how many calls at once," not "how many calls per second").
@@ -113,11 +113,11 @@ Checklist:
 
 ---
 
-## NOT GETTING FLAGGED
+### HOW TO NOT GET FLAGGED  
 
 This is the section that actually determines whether your calls ring through or show "Spam Likely." Think of each subsection below as one knob a carrier's spam-scoring model is watching — get each one genuinely right, in this order, and you build real trust instead of chasing a label after the fact.
 
-### Caller ID verification level (STIR/SHAKEN attestation A/B/C)
+#### Caller ID verification level (STIR/SHAKEN attestation A/B/C)
 
 **What this actually is, in plain terms:** every call your trunk places gets digitally signed at the moment it's set up, and the signature says how confident your carrier is that you're really allowed to use that number as your caller ID. There are three levels:
 
@@ -140,7 +140,7 @@ This is the section that actually determines whether your calls ring through or 
 - [ ] Confirmed A-attestation on a real test call
 - [ ] Re-check attestation after any number porting event — it can reset
 
-### Caller Name (CNAM) and Branded Calling
+#### Caller Name (CNAM) and Branded Calling
 
 **What this is:** CNAM is the business name shown on a basic caller ID display (works on most carriers by default once set). Branded calling goes further — showing your logo, verified checkmark, and even the reason for the call on supporting apps/devices.
 
@@ -155,7 +155,7 @@ This is the section that actually determines whether your calls ring through or 
 - [ ] CNAM verified showing correctly on a real test call (check after 48+ hours for propagation)
 - [ ] Branded calling enrollment submitted through your provider's partner program, if offered
 
-### Call volume pattern (burst vs. steady)
+#### Call volume pattern (burst vs. steady)
 
 **Why this matters:** carriers' spam models specifically watch for calls firing in bursts — hundreds of calls in the same few seconds is a textbook robo-dial signature. A human-operated or well-designed sales dialer never does this.
 
@@ -171,7 +171,7 @@ This is the section that actually determines whether your calls ring through or 
 - [ ] Large campaigns scheduled across hours, not fired all at once
 - [ ] Small randomized jitter added between dials
 
-### Abandoned call rate, answer rate, hang-up rate
+#### Abandoned call rate, answer rate, hang-up rate
 
 **What each one is and why carriers watch it:**
 
@@ -194,7 +194,7 @@ This is the section that actually determines whether your calls ring through or 
 - [ ] Early hang-up rate tracked as a separate metric from total hang-ups
 - [ ] Pre-recorded identification message plays within 2 seconds if no agent is ready
 
-### Number reputation history
+#### Number reputation history
 
 **The mentor-level point here:** a number's reputation isn't reset by you acquiring it — if you're buying a number from a provider's shared pool (rather than registering a brand-new one), it may carry history from whoever used it before you. This is the single most overlooked cause of "why is my brand-new setup already labelled."
 
@@ -210,7 +210,7 @@ This is the section that actually determines whether your calls ring through or 
 - [ ] Weekly recheck scheduled, not a one-time setup step
 - [ ] Shared-pool numbers specifically requested as "no prior flag history" where your provider allows it
 
-### Call duration patterns (many short calls)
+#### Call duration patterns (many short calls)
 
 **Why this is a signal:** a cluster of calls that all last 1–3 seconds looks identical to a dialer hitting disconnected numbers or voicemail boxes at scale — a classic scanning/robo-dial fingerprint, even if your actual calls are legitimate.
 
@@ -224,7 +224,7 @@ This is the section that actually determines whether your calls ring through or 
 - [ ] List validated against a number-lookup/line-type check before each campaign
 - [ ] Sharp duration drops investigated same-day, not at the next weekly review
 
-### Consent on file (for marketing/auto-dialed calls)
+#### Consent on file (for marketing/auto-dialed calls)
 
 **The compliance reality:** in the US, TCPA requires prior express written consent for marketing calls/texts using an autodialer or prerecorded voice, and this isn't a "nice to have" record — it's your actual legal defense if a recipient complains or sues.
 
@@ -240,7 +240,7 @@ This is the section that actually determines whether your calls ring through or 
 - [ ] National/state Do-Not-Call lists checked before every marketing campaign
 - [ ] Retention period for consent records confirmed with legal counsel
 
-### Number usage consistency (steady set vs. constant cycling)
+#### Number usage consistency (steady set vs. constant cycling)
 
 **The direct point:** using the same small set of numbers consistently is what lets carriers and labelling databases build positive history on them over time. Constantly adding and dropping numbers resets that trust clock every time, and — this is the part people miss — number-cycling itself is a pattern labelling companies specifically watch for and penalize, independent of any one number's individual behavior.
 
@@ -256,7 +256,7 @@ This is the section that actually determines whether your calls ring through or 
 - [ ] Number retirements documented with reason
 - [ ] "Numbers churned per month" tracked as its own metric
 
-### Destination patterns (unusual countries, premium numbers)
+#### Destination patterns (unusual countries, premium numbers)
 
 **What this catches:** toll fraud — attackers who gain access to your calling account and use it to dial premium-rate or international numbers they profit from, running up your bill and burning your reputation simultaneously.
 
@@ -272,7 +272,7 @@ This is the section that actually determines whether your calls ring through or 
 - [ ] Daily spend cap and alert configured, set below normal expected spend
 - [ ] Destination list reviewed monthly
 
-### Recording and compliance consistency
+#### Recording and compliance consistency
 
 **What's easy to miss:** recording-consent law varies by state/country (some are one-party consent, some require all-party consent), and inconsistent application across campaigns is itself a legal exposure, separate from spam-flagging.
 
@@ -286,7 +286,7 @@ This is the section that actually determines whether your calls ring through or 
 - [ ] Disclosure message built into the automated call flow, not manual
 - [ ] Encrypted storage with access logs and a defined retention period
 
-### Emergency calling readiness (E911 / local equivalent)
+#### Emergency calling readiness (E911 / local equivalent)
 
 **Why this belongs in a "not getting flagged" section at all:** it's not a spam-avoidance item, it's a compliance requirement that gets audited separately — but it's commonly skipped by teams focused entirely on outbound sales/marketing calling, so it's worth flagging here explicitly.
 
@@ -300,7 +300,7 @@ This is the section that actually determines whether your calls ring through or 
 
 ---
 
-## TEST BEFORE LAUNCH CHECKLIST
+### TEST BEFORE LAUNCH CHECKLIST
 
 - [ ] Place test calls from real external phones (not softphone-to-softphone) across 2–3 major carriers (e.g. one Verizon, one AT&T/T-Mobile line)
 - [ ] Confirm caller ID + CNAM displays correctly on the receiving screen
@@ -316,11 +316,11 @@ This is the section that actually determines whether your calls ring through or 
 
 ---
 
-## IFRA QUICK AGAIN SETUP
+### IFRA QUICK AGAIN SETUP
 
 > Goal: fix the actual cause and fail over to infrastructure that was already clean and ready — not spin up a fresh identity to outrun the flag. Number-cycling gets the *new* number flagged faster, since carriers link it back to the same verified business via your Free Caller Registry / STIR/SHAKEN profile, not just the number itself.
 
-### Diagnosis checklist
+#### Diagnosis checklist
 
 - [ ] Stop outbound dialing on the affected number/campaign immediately
 - [ ] Check labelling-company status directly: [Free Caller Registry](https://www.freecallerregistry.com/fcr) submission status, [Hiya](https://www.hiya.com/), [TNS](https://tnsi.com/)
@@ -330,7 +330,7 @@ This is the section that actually determines whether your calls ring through or 
 - [ ] Check consent records for the specific calls that triggered complaints, if any exist
 - [ ] Confirm the exact root cause in writing before touching any infrastructure
 
-### Quick re-run checklist and steps
+#### Quick re-run checklist and steps
 
 - [ ] Fix the identified root cause (lower abandoned rate via pacing changes, close a consent gap, adjust destination allow-list, etc.)
 - [ ] Fail over outbound traffic to your **pre-configured second carrier/trunk** while the primary number is under dispute
@@ -340,11 +340,11 @@ This is the section that actually determines whether your calls ring through or 
 - [ ] Monitor abandoned/hang-up rates hourly for the first day back
 - [ ] Log the incident, root cause, and fix applied in your runbook for next time
 
-# SMS INFRA GUIDE
+## SMS INFRA GUIDE
 
-## RAW SMS INFRASTRUCTURE
+### RAW SMS INFRASTRUCTURE
 
-### Why this isn't a regular VPS server, and isn't an email MTA either
+#### Why this isn't a regular VPS server, and isn't an email MTA either
 
 You know how to stand up a VPS for something like FTP hosting — you run the server, control the whole stack. SMS infra deliberately isn't that, and understanding *why* changes how you build the pipeline around it.
 
@@ -353,7 +353,7 @@ You know how to stand up a VPS for something like FTP hosting — you run the se
 - **Stateless per message, but throughput-capped like a token bucket.** Each message is one API call, but your registered campaign has a hard messages/second ceiling enforced by the carrier — this is architecturally closer to a quota system than email's soft reputation scoring.
 - **No hop-by-hop relay.** It's always a direct path: your API call → provider → carrier → handset. No equivalent of SMTP's multi-hop relay chain to reason about.
 
-### Pick a provider — what actually differs between them
+#### Pick a provider — what actually differs between them
 
 | Provider | Good for | Notes |
 | --- | --- | --- |
@@ -365,7 +365,7 @@ You know how to stand up a VPS for something like FTP hosting — you run the se
 
 **My honest default:** Twilio to start (fastest to get a working, compliant pipeline live), with a second provider (Telnyx is a common pairing) wired in as backup from day one — not as an afterthought.
 
-### The actual components you're building
+#### The actual components you're building
 
 Since you never run the SMPP server yourself, what you're building is the **pipeline around the provider's API**:
 
@@ -378,7 +378,7 @@ Since you never run the SMPP server yourself, what you're building is the **pipe
 7. **Event store / state machine** — `queued → submitted → delivered/failed/filtered → replied`, same shape as the email pipeline.
 8. **One-time-code (OTP) fraud guard** — a dedicated pre-send filter, separate from the general throttle: country allow-list check, per-number/per-IP rate limit, CAPTCHA gate upstream, short-code expiry. Most providers (Twilio Verify, for instance) offer a managed OTP service with fraud-guard built in — worth using instead of hand-rolling this.
 
-### Build order
+#### Build order
 
 1. Redirector stood up and tested
 2. Brand/campaign registration completed — this gates everything else
@@ -432,11 +432,11 @@ Since you never run the SMPP server yourself, what you're building is the **pipe
 
 ---
 
-## NOT GETTING FLAGGED
+### HOW TO NOT GET FLAGGED 
 
 Each of these is a distinct lever carriers and your provider are watching. Walk through each one deliberately rather than treating this as a single checklist — getting the registration pieces right up front saves you from firefighting filtered messages later.
 
-### Brand registration status
+#### Brand registration status
 
 **What this actually is:** in the US, your "brand" is your business's identity record with **[The Campaign Registry](https://www.campaignregistry.com/)** (TCR) — the independent body that all major carriers rely on to vet who's sending 10DLC traffic. Every campaign you register sits under this brand.
 
@@ -453,9 +453,9 @@ Each of these is a distinct lever carriers and your provider are watching. Walk 
 - [ ] Website has a visible, real Terms of Service and Privacy Policy page
 - [ ] Re-verification triggered on any business detail change
 
-### Campaign registration status
+#### Campaign registration status
 
-**What this is:** a campaign is the registered *purpose* of a specific message stream under your brand — e.g. "Account Alerts," "Marketing," "Two-Factor Authentication." Carriers assign trust and throughput per campaign, not per brand alone.
+**What this is:** A campaign is the registered *purpose* of a specific message stream under your brand — e.g., "Account Alerts," "Marketing," "Two-Factor Authentication." Carriers assign trust and throughput per campaign, not per brand alone.
 
 **How to register one correctly:**
 
@@ -470,7 +470,7 @@ Each of these is a distinct lever carriers and your provider are watching. Walk 
 - [ ] Use-case category accurately reflects actual content
 - [ ] Status confirmed "Active" before launch
 
-### Content-to-registered-sample match
+#### Content-to-registered-sample match
 
 **The practical trap here:** marketing/product teams iterate on copy constantly, but your registered samples are what carriers compare live traffic against. Drift between the two is one of the most common causes of a previously-working campaign suddenly getting filtered.
 
@@ -485,7 +485,7 @@ Each of these is a distinct lever carriers and your provider are watching. Walk 
 - [ ] New message templates reviewed against the registered sample before shipping
 - [ ] Campaign re-registered (not just content silently changed) if the purpose shifts
 
-### Opt-in / consent proof
+#### Opt-in/consent proof
 
 **Why this matters beyond "being nice":** TCPA and most other countries' equivalents require provable consent, and "provable" means you need the actual record, not just a policy that says you require it.
 
@@ -501,7 +501,7 @@ Each of these is a distinct lever carriers and your provider are watching. Walk 
 - [ ] No pre-ticked boxes, no bundled consent, no purchased lists
 - [ ] Record is queryable by phone number for support/dispute resolution
 
-### Throughput compliance (registered send-rate limits)
+#### Throughput compliance (registered send-rate limits)
 
 **What this actually enforces:** your campaign registration comes with a specific messages-per-second (or per-day, depending on tier) ceiling set by the carrier based on your trust score and registration tier. Exceeding it doesn't just get the excess messages dropped — it can flag the whole campaign.
 
@@ -517,7 +517,7 @@ Each of these is a distinct lever carriers and your provider are watching. Walk 
 - [ ] Limiter is shared/centralized across worker instances, not per-process
 - [ ] Sustained queue growth triggers an alert, not a silent limiter bypass
 
-### Link quality (own domain vs. public shorteners)
+#### Link quality (own domain vs. public shorteners)
 
 **The direct problem:** carrier content filters specifically flag public shorteners (bit.ly, tinyurl, t.co, etc.) because they're disproportionately used in SMS phishing (smishing) campaigns — using one instantly raises your filter risk regardless of what the link actually points to.
 
@@ -533,7 +533,7 @@ Each of these is a distinct lever carriers and your provider are watching. Walk 
 - [ ] Destination domains checked against Safe Browsing/Spamhaus DBL before each campaign
 - [ ] Redirect mapping stored and auditable, not a third-party black box
 
-### Opt-out functionality (STOP working immediately)
+#### Opt-out functionality (STOP working immediately)
 
 **Why this is non-negotiable, not just best practice:** carriers actively test opt-out compliance (sending STOP to sampled numbers and confirming it's honored), and failure here is one of the few things that can get a campaign suspended outright, fast.
 
@@ -549,7 +549,7 @@ Each of these is a distinct lever carriers and your provider are watching. Walk 
 - [ ] All STOP keyword variants tested end to end
 - [ ] HELP tested, returns real contact info
 
-### Complaint / spam report rate
+#### Complaint/spam report rate
 
 **The tracking gap most teams have:** complaint rate needs to be tracked **per campaign**, not just account-wide — a single bad campaign can hide inside a healthy account average and keep running until it causes real damage.
 
@@ -563,7 +563,7 @@ Each of these is a distinct lever carriers and your provider are watching. Walk 
 - [ ] Per-campaign alert threshold set
 - [ ] Spike response pauses the specific campaign, not the whole account
 
-### Sender content consistency
+#### Sender content consistency
 
 **What carriers actually compare:** the same opening identification and structural pattern across every message in a campaign. Inconsistency — even innocent variation from different team members writing copy — reads similarly to how inconsistent branding reads as spoofing in email.
 
@@ -577,7 +577,7 @@ Each of these is a distinct lever carriers and your provider are watching. Walk 
 - [ ] Frequency changes trigger a registration review, not a silent ramp-up
 - [ ] Tone/structure kept consistent across all templates in a campaign
 
-### Number type trust level (long code vs. toll-free vs. short code)
+#### Number type trust level (long code vs. toll-free vs. short code)
 
 **The mentor point here:** this isn't just a cost/speed tradeoff — using a number type mismatched to your actual volume is itself a filtering risk, independent of everything else being correctly registered.
 
@@ -592,7 +592,7 @@ Each of these is a distinct lever carriers and your provider are watching. Walk 
 - [ ] Number type matched to realistic peak volume, not just current low volume
 - [ ] Migration path identified in advance (e.g. 10DLC → short code) if growth is expected, since short-code approval alone takes 8–12 weeks
 
-### Country-specific registration (beyond the US)
+#### Country-specific registration (beyond the US)
 
 **India specifically — DLT, and it's mandatory, not optional:**
 
@@ -629,7 +629,7 @@ Each of these is a distinct lever carriers and your provider are watching. Walk 
 
 ---
 
-## TEST BEFORE LAUNCH CHECKLIST
+### TEST BEFORE LAUNCH CHECKLIST
 
 - [ ] Send test messages to real phones on 2–3 major carriers
 - [ ] Confirm sender ID/number displays correctly
@@ -644,7 +644,7 @@ Each of these is a distinct lever carriers and your provider are watching. Walk 
 
 ---
 
-## IFRA QUICK AGAIN SETUP
+### IFRA QUICK AGAIN SETUP
 
 > Goal: fix the actual cause and fail over to a provider/campaign that was already registered and clean — not cycle numbers to outrun filtering. Carriers link new traffic back to the same registered brand via TCR, so a fresh number under the same brand inherits the same scrutiny.
 
@@ -668,3 +668,5 @@ Each of these is a distinct lever carriers and your provider are watching. Walk 
 - [ ] This only works in hours because the backup provider's number/campaign was **already registered and tested in advance** — that's the actual speed lever
 - [ ] Monitor delivery rate and filtered-error rate hourly for the first day back
 - [ ] Log the incident and root cause in your runbook
+
+`THANKS FOR READING TILL THEN, KBAI ~ Dev`
