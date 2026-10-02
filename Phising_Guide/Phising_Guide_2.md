@@ -1343,4 +1343,12 @@ How about getting in touch with folks waiting for company? Just txt back your NA
 Can U get 2 phone NOW? I wanna chat 2 set up meet Call me NOW on 0909610xxxx U can cum here 2moro Luv JANE xx Calls£1/minmoremobsEMSPOBox45PO139WA
 ~~~
 
+**Sources**
+```
+SMS (smishing)
 
+FTC Consumer Alerts: https://consumer.ftc.gov/consumer-alerts
+FCC consumer complaint data: https://www.fcc.gov/consumer-help-center-data
+T-Mobile Scam Shield: https://www.t-mobile.com/privacy-center/scam-shield (the exact path may differ)
+Verizon: https://www.verizon.com (search "scam alerts")
+```
