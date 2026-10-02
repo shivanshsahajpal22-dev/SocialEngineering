@@ -6,6 +6,85 @@
 
 `We will start by, in general, red team infra before specifically molding it for the social engineering-based attacks.`
 
+--- 
+
+## Pre-Engagement Authorization — Infrastructure-Relevant Documentation
+
+Before any infrastructure is provisioned, the following documents must exist, be signed, and be read and understood by everyone on the infra/ops team. This section covers only the documents that directly bound or govern infrastructure decisions — not the full legal/business paperwork stack (MSA, NDA, payment terms, etc.), which sits outside infra scope.
+
+---
+
+### 1. Rules of Engagement (RoE) — Infra-Relevant Sections
+
+The RoE is the single most important document for infra build decisions. Before provisioning anything, the infra lead must extract and confirm the following from it:
+
+- [ ] **In-scope IP ranges, domains, and systems** — the exact boundaries infrastructure is allowed to target or interact with
+- [ ] **Explicitly out-of-scope systems** — written down separately from "everything else," since ambiguity here is the most common source of accidental scope violations
+- [ ] **Engagement start and end date/time** — infra must not go live before this window opens and must be torn down at or before it closes
+- [ ] **Permitted techniques** — confirm phishing/SMS/phone infra is actually authorized if being built; don't assume
+- [ ] **Explicitly excluded techniques** — anything the client has ruled out (e.g., no physical social engineering, no calling specific departments, no targeting specific individuals)
+- [ ] **Data handling instructions specific to infra** — what to do with captured credentials, screenshots, or session data if the infra captures any during the test
+- [ ] **Any client-specified infra constraints** — e.g., client requires all infra hosted in a specific country/cloud region, or requires use of client-provided IP space for sending
+
+**Process requirement:** the infra lead should produce a short, written "scope summary" distilled from the RoE before build starts, and have it reviewed by at least one other team member — not rely on everyone independently reading and interpreting the full RoE document themselves.
+
+---
+
+### 2. Written Authorization Letter ("Get Out of Jail Free" Letter)
+
+- Must be signed by someone with actual authority to authorize the testing (typically a named executive, CISO, or legal representative of the client) — not just any employee contact.
+- Must specifically reference the infrastructure/testing activity being authorized, the date range, and the engagement name/ID.
+- A copy (physical or digital) should be accessible to every operator standing up or operating infrastructure during the engagement — not just held by the engagement lead.
+- Confirm this letter is current and not a reused/expired letter from a prior engagement with the same client — authorization does not automatically carry over between engagements.
+
+---
+
+### 3. Deconfliction Contact Confirmation
+
+Before infra goes live, confirm in writing (email is sufficient) that:
+
+- [ ] A named contact (or small group) on the client's security/SOC side knows the engagement window and has a way to reach the red team lead if activity is detected
+- [ ] The red team lead has a way to reach that same contact if something unexpected happens on the infra side (e.g., infra accidentally touches an out-of-scope system)
+- [ ] A verification method (code word, reference number, or ticket ID) is agreed in advance, so a phone-based deconfliction call can confirm authenticity quickly without revealing operational details over an insecure channel
+
+---
+
+### 4. Data Handling / Confidentiality Terms (Infra-Relevant Extract)
+
+Pull only the parts relevant to infrastructure from the broader NDA/confidentiality agreement:
+
+- [ ] Retention period for any data captured by infra (credentials, call recordings, SMS replies, screenshots)
+- [ ] Where captured data may be stored (e.g., client may require data stay within a specific region or not leave a specific cloud account)
+- [ ] Destruction requirements and deadline after engagement end
+- [ ] Who on the team is authorized to access captured data
+
+---
+
+### 5. Pre-Build Sign-Off Checklist
+
+Before `terraform apply` (or any manual provisioning) begins, the infra lead confirms and documents (e.g., in a ticket or engagement tracker) that:
+
+- [ ] RoE has been read in full by the infra lead and summarized for the team
+- [ ] Authorization letter is signed, current, and accessible to the team
+- [ ] Deconfliction contact and verification method are confirmed in writing
+- [ ] Data handling terms relevant to infra are understood by everyone who will touch captured data
+- [ ] Engagement start/end dates are entered into the team's calendar with a teardown reminder set for the end date
+- [ ] Scope boundaries (in-scope/out-of-scope) are documented somewhere the whole team can reference during the build, not just known by the lead
+
+---
+
+### 6. Ongoing Compliance During the Engagement
+
+- Re-check the RoE if the engagement needs to extend (new dates require a new/updated authorization, not an assumption that the original one stretches)
+- If infra needs to touch a system not clearly covered in the original scope, pause and get written confirmation before proceeding — don't interpret ambiguity in favor of proceeding
+- Keep a timestamped log of infra actions (stand-up, config changes, teardown) that can be cross-referenced against the RoE's authorized window if questioned later
+
+---
+
+### Why This Matters for Infra Specifically
+
+Every infra decision downstream — which IPs get provisioned, which domains get registered, how long anything stays live — is only lawful and professionally defensible because it maps back to these documents. Building infra before this checklist is complete means the activity has no documented authorization basis, regardless of intent.
+
 ---
 
 ## Manual Red Team Infrastructure Setup (Tool-Independent)
