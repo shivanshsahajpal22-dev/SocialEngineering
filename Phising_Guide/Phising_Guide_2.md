@@ -263,13 +263,13 @@ Warm up each big provider separately — Outlook is slowest to trust you.
 4. Test unsubscribe, a deliberate bounce, and a deliberate spam-mark end to end.
 5. Confirm staging genuinely cannot reach real addresses.
 
-## Infra quick burn and rebuild 
+## Infra quick burn and rebuild ☑️
 
 The goal here is: you can rebuild correctly in hours, not weeks — without ever touching the rotate-to-dodge-filters pattern that gets you blocked.
 
 `First of all, I highly recommend a backup infra with a different domain and provider, pre-ready in the background. Nothing to be done with yet; first go through the diagnostic process, fix your mistake before picking up with the second one.`
 
-### **DIAGNOSTIC CHECKLIST and RERUNNING** ☑️
+### Diagnosis checklist and rerunning 
 
 Hour 1 — Stop and diagnose
 
