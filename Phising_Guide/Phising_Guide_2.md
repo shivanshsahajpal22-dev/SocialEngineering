@@ -1276,7 +1276,7 @@ Watch: delivery rate, filtered/blocked error codes, opt-out rate, cost per count
 
 ---
 
-# ## Social engineering molding: Part 3 : for phone 
+## Social engineering molding: Part 3 : for phone 
 
 > Part of a 3-guide set (Email / SMS / Phone). Shared foundation pieces are repeated here in short form so this guide stands alone.
 
