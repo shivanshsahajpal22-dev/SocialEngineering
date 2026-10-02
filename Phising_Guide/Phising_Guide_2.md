@@ -1014,3 +1014,168 @@ Hello. We need some posh birds and chaps to user trial prods for champneys. Can 
 ```text
 WIN: We have a winner! Mr. T. Tilo won an iPod! More exciting prizes soon, so keep an eye on ur mobile or visit www.win-82050[.]co[.]uk
 ```
+
+### 7. COMMITMENT / CONSISTENCY (20)
+
+**How it shows up in SMS:** Low-friction micro-commitments—such as answering an insultingly simple trivia question, replying with basic profile info ("NAME & AGE"), texting "YES" or "CREDIT" to activate an offer, or confirming a previous action (e.g., "for taking part in our survey"). Once the recipient takes that first trivial step, psychological consistency kicks in, making them far more likely to follow through with subsequent questions, recurring subscriptions, or fee-bearing responses.
+
+##### S-121 - Trivial trivia question to enter draw
+**Primary:** Commitment | **Also uses:** Reward, Curiosity
+**Why:** Asks an trivially simple question ("which country the Algarve is in?") to get the target to take an initial interactive action. Sending the answer establishes participation in a paid service.
+
+~~~text
+Sunshine Quiz Wkly Q! Win a top Sony DVD player if u know which country the Algarve is in? Txt ansr to 82277. £1.50 SP:Tyrone
+~~~
+
+##### S-122 - Multi-choice TV quiz entry
+**Primary:** Commitment | **Also uses:** Reward, Urgency
+**Why:** A simple multiple-choice question lowers the friction to respond. Selecting a letter ("D E or F") feels effortless, committing the user into an ongoing premium text game.
+
+~~~text
+EASTENDERS TV Quiz. What FLOWER does DOT compare herself to? D= VIOLET E= TULIP F= LILY txt D E or F to 84025 NOW 4 chance 2 WIN £100 Cash WKENT/150P16+
+~~~
+
+##### S-123 - Accumulated "balance" quiz progression
+**Primary:** Commitment | **Also uses:** Reward, Social Proof
+**Why:** Reinforces an ongoing state ("Ur balance is now £500") and presents the "next question" to leverage momentum and sunk-cost feelings.
+
+~~~text
+Ur balance is now £500. Ur next question is: Who sang 'Uptown Girl' in the 80's ? 2 answer txt ur ANSWER to 83600. Good luck!
+~~~
+
+##### S-124 - Pop-culture question for draw entry
+**Primary:** Commitment | **Also uses:** Authority, Reward
+**Why:** Frames the prize draw entry as conditional upon providing a trivial answer ("Elvis Presleys Birthday"), turning a passive draw into an active commitment step.
+
+~~~text
+Dear Subscriber ur draw 4 £100 gift voucher will b entered on receipt of a correct ans. When was Elvis Presleys Birthday? TXT answer to 80062
+~~~
+
+##### S-125 - Registered subscriber chart question
+**Primary:** Commitment | **Also uses:** Authority, Reward
+**Why:** Addresses the recipient as a "registered optin subscriber" to prime consistency, then prompts for a single answer to complete entry into the draw.
+
+~~~text
+As a registered optin subscriber ur draw 4 £100 gift voucher will be entered on receipt of a correct ans to 80062 Whats No1 in the BBC charts
+~~~
+
+##### S-126 - Survey completion reward activation
+**Primary:** Commitment | **Also uses:** Reciprocity, Reward
+**Why:** References a prior action ("taking part in our mobile survey yesterday") to invoke consistency before asking for a text reply to claim the reward.
+
+~~~text
+For taking part in our mobile survey yesterday! You can now have 500 texts 2 use however you wish. 2 get txts just send TXT to 80160 T&C www.txt43.com 1.50p
+~~~
+
+##### S-127 - Post-vote engagement hook
+**Primary:** Commitment | **Also uses:** Reciprocity, Curiosity
+**Why:** Leverages a prior micro-action ("Thanks for the Vote") to pivot immediately into another low-friction request ("reply with SING now").
+
+~~~text
+Thanks for the Vote. Now sing along with the stars with Karaoke on your mobile. For a FREE link just reply with SING now.
+~~~
+
+##### S-128 - Multi-step quiz commitment
+**Primary:** Commitment | **Also uses:** Reward, Authority
+**Why:** Asks the user to complete "4 easy questions," framing the path to a £500 voucher as a small, manageable sequence of tasks.
+
+~~~text
+HMV BONUS SPECIAL 500 pounds of genuine HMV vouchers to be won. Just answer 4 easy questions. Play Now! Send HMV to 86688 More info:www.100percent-real.com
+~~~
+
+##### S-129 - Book launch multi-question quiz
+**Primary:** Commitment | **Also uses:** Reward, Curiosity
+**Why:** Hooks fans of a high-profile release into a 5-question commitment ladder, trading simple responses for a promised chance at early access.
+
+~~~text
+Win the newest “Harry Potter and the Order of the Phoenix (Book 5) reply HARRY, answer 5 questions - chance to be the first among readers!
+~~~
+
+##### S-130 - Self-identity appeal ("Think ur smart?")
+**Primary:** Commitment | **Also uses:** Reward, Social Proof
+**Why:** Challenges the recipient's self-image ("Think ur smart ?"), prompting them to prove it by texting "PLAY" and subscribing to a weekly quiz fee.
+
+~~~text
+Think ur smart ? Win £200 this week in our weekly quiz, text PLAY to 85222 now!T&Cs WinnersClub PO BOX 84, M26 3UZ. 16+. GBP1.50/week
+~~~
+
+##### S-131 - Offer activation via keyword
+**Primary:** Commitment | **Also uses:** Reward, Authority
+**Why:** Tells the user their account has already been credited, requiring a single keyword reply ("CREDIT") to finish activating the benefit.
+
+~~~text
+Your account has been credited with 500 FREE Text Messages. To activate, just txt the word: CREDIT to No: 80488 T&Cs www.80488.biz
+~~~
+
+##### S-132 - One-word "OK" activation
+**Primary:** Commitment | **Also uses:** Reward
+**Why:** Minimizes friction to the absolute lowest barrier—replying with a simple "ok"—to get the victim to initiate contact with a shortcode.
+
+~~~text
+500 free text msgs. Just text ok to 80488 and we'll credit your account
+~~~
+
+##### S-133 - Incomplete message fragment requiring action
+**Primary:** Commitment | **Also uses:** Urgency, Reward
+**Why:** Presents a truncated instruction ending with a calendar boundary, forcing the user to supply the missing response to secure claimed credits.
+
+~~~text
+it to 80488. Your 500 free text messages are valid until 31 December 2005.
+~~~
+
+##### S-134 - Community membership via profile input
+**Primary:** Commitment | **Also uses:** Social Proof, Rapport
+**Why:** Asking for basic personal details ("NAME and AGE") acts as a registration step that formally commits the target to the paid community network.
+
+~~~text
+Ever thought about living a good life with a perfect partner? Just txt back NAME and AGE to join the mobile community. (100p/SMS)
+~~~
+
+##### S-135 - Onboarding opt-in prompt
+**Primary:** Commitment | **Also uses:** Rapport, Social Proof
+**Why:** Uses a two-parameter reply ("NAME and AGE") as an explicit opt-in mechanism, establishing ongoing participation charged per SMS.
+
+~~~text
+How about getting in touch with folks waiting for company? Just txt back your NAME and AGE to opt in! Enjoy the community (150p/SMS)
+~~~
+
+##### S-136 - Low-cost trial entry with personal details
+**Primary:** Commitment | **Also uses:** Rapport, Reward
+**Why:** Pairs an initial low price point ("Join 4 just 10p") with a profile completion step ("REPLY with NAME & AGE") to lock in the subscription.
+
+~~~text
+Text & meet someone sexy today. U can find a date or even flirt its up to U. Join 4 just 10p. REPLY with NAME & AGE eg Sam 25. 18 -msg recd@thirtyeight pence
+~~~
+
+##### S-137 - Segment selection and profile onboarding
+**Primary:** Commitment | **Also uses:** Social Proof, Curiosity
+**Why:** Forces the user to make a explicit self-categorization choice ("GIRL or BLOKE") along with profile details to complete registration into a paid chat line.
+
+~~~text
+1000's flirting NOW! Txt GIRL or BLOKE & ur NAME & AGE, eg GIRL ZOE 18 to 8007 to join and get chatting!
+~~~
+
+##### S-138 - Free auction entry prompt
+**Primary:** Commitment | **Also uses:** Reward, Authority
+**Why:** Lowers resistance by declaring the auction "FREE 2 join & take part," getting the target to text "NOKIA" and enter the bidding funnel.
+
+~~~text
+SMS AUCTION - A BRAND NEW Nokia 7250 is up 4 auction today! Auction is FREE 2 join & take part! Txt NOKIA to 86021 now! HG/Suite342/2Lands Row/W1J6HL
+~~~
+
+##### S-139 - Multi-step competition entry flow
+**Primary:** Commitment | **Also uses:** Reward, Urgency
+**Why:** Promises free entry but requires texting a keyword ("FA") to receive a follow-up question, establishing a multi-turn engagement flow.
+
+~~~text
+Free entry in 2 a wkly comp to win FA Cup final tkts 21st May 2005. Text FA to 87121 to receive entry question(std txt rate)T&C's apply 08452810075over18's
+~~~
+
+##### S-140 - Carrier trial opt-in reply
+**Primary:** Commitment | **Also uses:** Authority, Reward
+**Why:** Uses carrier branding to offer a free 1-month trial, asking for a single "YES" reply to bind the user to terms and ongoing access.
+
+~~~text
+Hello from Orange. For 1 month's free access to games, news and sport, plus 10 free texts and 20 photo messages, reply YES. Terms apply: www.orange.co.uk/ow
+~~~
+
