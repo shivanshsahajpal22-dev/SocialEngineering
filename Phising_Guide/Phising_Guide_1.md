@@ -2094,3 +2094,5 @@ Human Resources Department
 - **#17 and #31** had no email body text, only descriptions, so their classification is tentative.
 - **Borderline calls:** #10, #14, #57, and #69 could reasonably go under a different primary pillar.
 - **Footers trimmed:** legal disclaimers on #51, #69, and #81 only.
+
+`FOR PHONE CALL AND SMS TEXTS BREAKDOWN, CHECK OUT THE NEXT GUIDE`
