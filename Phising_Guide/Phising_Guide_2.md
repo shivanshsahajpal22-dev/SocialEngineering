@@ -535,77 +535,105 @@ The final report typically needs a visual map of everything built:
 
 ## Social engineering molding: Part 1: for Emails
 
-## 1. Decide first
+### Raw Email Infrastructure — Building It Ground-Up (Path A: Cloud ESP + Dedicated IPs)
 
-- **Name one owner** for abuse reports, blocklists, and on-call.
-- **Get legal review** of consent, opt-out and footer rules (CAN-SPAM, GDPR, CASL, etc.) — required almost everywhere.
+#### Why this isn't "just another VPS service"
 
-## 2. Cloud setup, so you can change fast
+A regular server (your FTP host, a web API, etc.) is synchronous — a request comes in, your server handles it, a response goes back on the same connection, done. Email infra doesn't work that way, and building it like a normal server is the most common mistake.
 
-1. Separate **staging and production** cloud accounts. Staging only ever hits a mail catcher (e.g. Mailpit), never real inboxes.
-2. **Everything as code** (Terraform): DNS records, servers, queues, alerts — reviewed in Git, applied in minutes.
-3. **Secrets manager** for every API key; one key per service per environment.
-4. **A queue** (SQS/Pub-Sub) between your app and the mail service. Nothing sends straight from a web request.
-5. Your app calls *your own* "send email" service, not the provider directly — so switching providers means changing one place.
-6. **A backup email provider**, pre-configured and ready to flip to.
-7. **Spending alerts and caps** on the provider account.
+| | Regular VPS/API server | Email sending infra |
+| --- | --- | --- |
+| Protocol shape | Request → response, same connection | SMTP is **store-and-forward** — a message is accepted, queued, and delivered later, possibly after retries/hops |
+| "Success" means | The response came back 200 OK | The ESP accepted the message into *its* queue — that is NOT delivery, just acceptance |
+| How you learn the real outcome | You already know from the response | You find out **later, asynchronously**, via a webhook (delivered/bounced/complained) — there is no live connection to the recipient to check against |
+| Scaling model | Scale the server, sessions are often sticky | Scale **workers**, not servers — SMTP/ESP sending has no session state tying a send to one machine, so you can run N workers in parallel with zero coordination |
+| Trust model | Firewall rules, auth tokens you control | Trust is **cryptographic and reputation-based**, verified by someone else (the receiving provider) after the fact — you can't just "allow" your own mail in |
+| What you're actually hosting | The whole service, end to end | With Path A, the ESP IS your MTA fleet — you're hosting the *client* that calls it, plus the inbound webhook receiver, not the mail server itself |
 
-## 3. The shared "do-not-contact" brain
+This last row is the big mental shift: in Path A, you never run an MTA. The ESP (SES/Postmark/SendGrid/Mailgun) runs the actual Postfix-equivalent infrastructure. What you're building is the **pipeline around it** — the part that queues sends, calls their API, and listens for what happened after.
 
-- One consent record per person (when, how, what wording).
-- One opt-out list, checked by every channel before every send.
-- An event log: send, bounce, complaint, reply — searchable for support.
-- Every webhook signature verified, or attackers can fake delivery events.
+#### The actual components you're building
+```
+Your app → Queue → Worker service → ESP Send API → (ESP's MTA fleet handles real delivery)
+↓
+Webhook events (delivered/bounce/complaint/open/click)
+↓
+Webhook receiver (behind your redirector) → Your event store
+```
 
----
+Four things to actually build, in this order:
 
-## 4. Redirector (Front Door) — put this in front of everything public, *before* you touch the mail server itself
+**1. The queue**
+- Define the message schema up front: recipient, template ID, personalization payload, your own idempotency key, which IP pool/sending identity it should use (system vs. marketing)
+- This is what makes the pipeline async-safe — the worker never calls the ESP directly from a web request
 
-A redirector/reverse proxy is the one thing the internet is allowed to touch directly. It sits in front of your APIs and pages, checks the traffic, then passes it inward. Build and prove this out *before* the real mail-sending setup, because every other piece (webhooks, tracking, unsubscribe) depends on it being solid.
+**2. The worker service**
+- Pulls from the queue, calls the ESP's send API with your stored credentials
+- **Critical difference from a normal API integration:** the response you get back means "accepted into their queue," not "delivered." Treat it as step one of a multi-step status, not a final result
+- Store that initial state (`submitted`) in your own event store, keyed by the message ID the ESP hands back — you'll need that ID to match up the webhook event that arrives later
+
+**3. The webhook receiver (sits behind the redirector you already built)**
+- This is where the *real* delivery outcome shows up — minutes, sometimes hours, after the original send
+- Each ESP has its own webhook format and signature method:
+  - **SES** — typically via SNS notifications; verify the SNS message signature
+  - **SendGrid** — signed webhook with an Ed25519 verification key you configure
+  - **Postmark** — webhook with Basic Auth or a shared token you set
+  - **Mailgun** — HMAC signature using your webhook signing key
+- Translate whichever format into one internal event schema so the rest of your system doesn't care which ESP sent it
+- This is the piece the redirector exists to protect — see below
+
+**4. The event store / state machine**
+- One record per message, moving through: `queued → submitted → accepted/delivered/bounced/complained → opened/clicked`
+- This state machine *is* your real delivery status — not the original API response from step 2
+- Feed bounce/complaint transitions straight into your existing do-not-contact service (already built — just wire this pipeline into it, nothing new to design there)
+
+#### Horizontal scaling, the email-specific way
+
+- Run **N worker instances** consuming the same queue in parallel — safe to do because there's no session state linking a send to a specific worker, unlike a sticky-session web server
+- Multiple **dedicated IPs = multiple send pools**, not multiple servers. You route system vs. marketing traffic to different IP pools by selecting the ESP's "IP pool" parameter at send time in your worker code — you don't stand up separate machines for this
+- Scaling the webhook receiver is a normal stateless-web-server scaling problem (more instances behind the load balancer) — this is the one part of the whole pipeline that *does* behave like a regular server
+
+#### Redirector (Front Door) — build this before any of the above touches the internet
+
+A redirector/reverse proxy is the one thing the internet is allowed to touch directly. It sits in front of your APIs and pages, checks the traffic, then passes it inward. Build and prove this out *before* the real mail-sending pipeline goes live, because the webhook receiver above depends on it being solid from day one.
 
 Put a redirector in front of:
-
-- Your **send API** (where internal apps submit email requests)
-- **Webhook receivers** (where the provider reports bounces, complaints, opens)
+- Your **send API** (where internal apps submit email requests into the queue)
+- **Webhook receivers** (where the ESP reports bounces, complaints, opens — the component from step 3 above)
 - Your **tracking domain** (`track.example.com`)
 - Your **unsubscribe/preference pages**
 - The **MTA-STS policy site** (`mta-sts.example.com`)
 
 Checklist:
-
 - [ ] HTTPS only, auto-renewing certs, HTTP redirects to HTTPS
 - [ ] Rate limits and request-size limits on every endpoint
 - [ ] A web application firewall (WAF) for bots and common attacks
 - [ ] Webhook routes: allow only the provider's published IPs where available, **and still verify every signature** — IP allow-listing alone is not authentication
-- [ ] Internal servers never exposed directly to the internet
+- [ ] Internal services never exposed directly to the internet
 - [ ] Two or more redirector instances behind a health check, so one failure doesn't take the front door down
 - [ ] Unsubscribe/tracking links stay fast and always up — a broken unsubscribe link *causes* spam complaints
 - [ ] Use a cloud-managed load balancer + WAF, or Nginx/Envoy/Caddy, all defined in your IaC
 
-**One hard rule specific to email:** the redirector is for *inbound* traffic (webhooks, pages). It must never sit between your mail server and the internet for *outbound* delivery — email has to leave from the exact IP that carries your PTR and SPF records. Routing delivery through a proxy breaks that match and tanks deliverability.
+**One hard rule specific to email:** the redirector is for *inbound* traffic (webhooks, pages). It must never sit between your worker service and the ESP's API for outbound sending — that's a direct API call on its own fixed egress, not something to route through a reverse proxy.
 
 **Never:** send mail through rotating, shared, free, or "residential" proxies, or rotate sending IPs to dodge filters — providers read that as hiding, which is itself a phishing-style signal.
 
 **Fast-rebuild notes for the redirector layer** (legitimate disaster recovery, not filter-evasion):
-
-- Keep the redirector's config as its own small IaC module, separate from the mail-server module, so you can redeploy just the front door in minutes if it's compromised or misconfigured.
+- Keep the redirector's config as its own small IaC module, separate from the worker/queue module, so you can redeploy just the front door in minutes if it's compromised or misconfigured.
 - Pre-bake a WAF ruleset and rate-limit profile as versioned config, so a fresh redirector inherits the same protections immediately rather than starting wide-open.
 - Keep a second, idle redirector stack (different AZ/region) that can be promoted with a DNS/load-balancer switch, so a redirector failure doesn't take down webhook intake or unsubscribe pages while you rebuild.
 
----
+#### Build order, start to finish
 
-## 5. Choose how to run the mail server itself
+1. Redirector stood up and tested (health checks, WAF, signature verification stub) — before anything else goes live
+2. Queue + message schema defined
+3. Worker service built, calling the ESP API, writing `submitted` state
+4. Webhook receiver wired in behind the redirector, writing real delivery state
+5. Event store / state machine connects the two — this is your actual source of truth for "did it send"
+6. Do-not-contact service wired to consume bounce/complaint events from the state machine
+7. End-to-end test: one message through the whole pipeline, confirm the state machine updates from `submitted` to `delivered` only after the real webhook arrives — not before
 
-| Path | What it is | Pros | Cons |
-| --- | --- | --- | --- |
-| **A. Cloud email service in your own account** (SES, Postmark, SendGrid, Mailgun) with dedicated IPs | Provider runs the servers; you own domains and settings | Fastest to change, no port-25 hassle, easiest to rebuild | Less low-level control |
-| **B. Your own mail servers on cloud machines** (Postfix, KumoMTA) | You run the servers | Full control | You own reputation, blocklists, and 24/7 care; many clouds block outbound port 25 |
-
-**Path A is the right default for "cloud + change fast."** Everything below applies to both; Path B carries the extra work noted in Section 6.
-
----
-
-## DEFENCE EVASION TACTICS 
+### DEFENCE EVASION TACTICS 
 
 ### Domain Aging and Domain Choosing 
 
