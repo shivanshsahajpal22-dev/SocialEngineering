@@ -237,7 +237,7 @@ App → queue → worker → email service → internet. Events (delivered/bounc
 
 ## Defence Evasion methods: Good Ip range accruing (you want reputable ip)
 
-## Defence Evasion methods: Warm-up (mandatory for new IPs/domains) ☑️
+## Defence evasion: Warm-up (mandatory for new IPs/domains) ☑️
 
 Warm up each big provider separately — Outlook is slowest to trust you.
 
