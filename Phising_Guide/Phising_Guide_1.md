@@ -2095,4 +2095,15 @@ Human Resources Department
 - **Borderline calls:** #10, #14, #57, and #69 could reasonably go under a different primary pillar.
 - **Footers trimmed:** legal disclaimers on #51, #69, and #81 only.
 
+**SOURCES I USED** 
+```
+UC Berkeley Phishing Examples Archive: https://security.berkeley.edu/education-awareness/phishing/phishing-examples-archive
+Stanford Recent Examples of Phishing: https://uit.stanford.edu/phishing
+MIT IS&T: https://ist.mit.edu (search "phishing")
+University of Michigan Safe Computing: https://safecomputing.umich.edu (search "phishing examples")
+CanIPhish: https://caniphish.com (look under their phishing email examples section)
+PhishTank: https://phishtank.org (I'm not certain who runs it now or whether registration and API keys are open, so check the site)
+APWG trend reports: https://apwg.org/trendsreports/
+```
+```
 `FOR PHONE CALL AND SMS TEXTS BREAKDOWN, CHECK OUT THE NEXT GUIDE`
